@@ -1,4 +1,4 @@
-content = """# AWS Solutions Architect – Ultimate Study Repository
+# AWS Solutions Architect – Ultimate Study Repository
 
 ## 🚀 Introduction
 
