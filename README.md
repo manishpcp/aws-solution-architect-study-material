@@ -6,6 +6,7 @@ Welcome to the **most comprehensive, high-quality, and exam-ready AWS Solutions 
 This collection is not just another set of notes — it is a **deeply researched, production-driven, interview-oriented, and exam-focused knowledge base** built to help you master AWS from fundamentals to expert-level architecture.
 
 Whether you are preparing for **AWS SAA-C03**, **SA-Pro**, upgrading skills for real-world cloud architecture, or looking for ready-to-use engineering documentation —  
+
 👉 **this repository gives you everything in one place.**
 
 You will find:
@@ -24,6 +25,7 @@ If you want to **truly understand AWS and become an elite cloud architect**, thi
 ## 📘 Index — Full Chapter List
 
 ### **Core AWS Services**
+
 1. AWS Global Infrastructure  
 2. Identity and Access Management (IAM)  
 3. Virtual Private Cloud (VPC)  
@@ -36,11 +38,13 @@ If you want to **truly understand AWS and become an elite cloud architect**, thi
 10. Storage Gateway & DataSync  
 
 ### **Databases & Caching**
+
 11. Amazon RDS & Aurora  
 12. DynamoDB  
 13. ElastiCache & MemoryDB  
 
 ### **Content Delivery & Networking**
+
 14. Amazon CloudFront  
 15. Route 53  
 16. Direct Connect & VPN  
@@ -50,11 +54,13 @@ If you want to **truly understand AWS and become an elite cloud architect**, thi
 20. Amazon EventBridge  
 
 ### **Security & Governance**
+
 21. AWS WAF & Shield  
 22. AWS Secrets Manager & KMS  
 23. AWS Organizations & SCPs  
 
 ### **Monitoring, Automation & Operations**
+
 24. AWS CloudFormation  
 25. AWS CodePipeline, CodeBuild, CodeDeploy  
 26. CloudWatch  
@@ -62,10 +68,12 @@ If you want to **truly understand AWS and become an elite cloud architect**, thi
 28. Systems Manager  
 
 ### **Business, Cost & Architecture**
+
 29. Cost Management  
 30. Well-Architected Framework  
 
 ### **Advanced Patterns**
+
 31. Migration Strategies (7 Rs)  
 32. Disaster Recovery & Business Continuity  
 33. Microservices Patterns  
@@ -73,10 +81,12 @@ If you want to **truly understand AWS and become an elite cloud architect**, thi
 35. Multi-Account Strategy  
 
 ### **Exam Preparation**
+
 36. Solutions Architect Associate – Exam Guide  
 37. Solutions Architect Professional – Exam Guide  
 
 ### **Appendices**
+
 - Appendix A — AWS Service Cheat Sheets  
 - Appendix B — Architecture Diagram Templates  
 - Appendix C — Troubleshooting Guide  
