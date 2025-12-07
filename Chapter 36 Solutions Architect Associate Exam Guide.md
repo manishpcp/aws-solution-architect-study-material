@@ -722,4 +722,3 @@ AWS Certified Solutions Architect Associate exam validates practical architectur
 
 Common exam patterns: Multi-AZ for resilience, S3 + CloudFront for performance, Reserved Instances for cost optimization, IAM roles for security, Auto Scaling for elasticity, and SQS for decoupling. Mastering these patterns plus service-specific knowledge (when to use RDS vs DynamoDB, ALB vs NLB, etc.) provides foundation for passing exam and architecting production AWS solutions confidently.
 
-"""

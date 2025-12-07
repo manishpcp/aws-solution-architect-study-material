@@ -114,5 +114,3 @@ Feel free to open PRs for:
 - Real-world case studies  
 
 Let’s build the best AWS study resource on the internet — together.
-
-"""
