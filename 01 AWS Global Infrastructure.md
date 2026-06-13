@@ -20,7 +20,7 @@ AWS Global Infrastructure is designed with redundancy, fault isolation, and low 
 
 ### AWS Regions
 
-An AWS Region is a physical geographic location around the world where AWS clusters data centers. Each Region is completely independent and isolated from other Regions, providing the highest level of fault tolerance and stability. As of 2025, AWS operates 33 geographic Regions globally, with plans for continued expansion.
+An AWS Region is a physical geographic location around the world where AWS clusters data centers. Each Region is completely independent and isolated from other Regions, providing the highest level of fault tolerance and stability. As of 2025, AWS operates **34 geographic Regions** globally, with **108 Availability Zones** across **245+ countries and territories**, and plans for continued expansion. Additional Regions are announced for Malaysia, New Zealand, Thailand, and the Kingdom of Saudi Arabia.
 
 **Key Characteristics of Regions:**
 
@@ -30,16 +30,16 @@ An AWS Region is a physical geographic location around the world where AWS clust
 - **Data Sovereignty:** Data stored in a Region stays in that Region unless explicitly transferred
 - **Service Availability:** Not all AWS services are available in all Regions immediately
 
-**Region Naming Convention:**
-
-AWS Regions follow a specific naming pattern: `[geographic-area]-[sub-area]-[number]`
+**AWS Regions follow a specific naming pattern:** `[geographic-area]-[sub-area]-[number]`
 
 Examples:
 
-- `us-east-1` (US East - Northern Virginia)
-- `eu-west-1` (Europe - Ireland)
-- `ap-southeast-1` (Asia Pacific - Singapore)
-- `sa-east-1` (South America - São Paulo)
+- `us-east-1` (US East — Northern Virginia) — most services launch here first
+- `eu-west-1` (Europe — Ireland)
+- `ap-southeast-1` (Asia Pacific — Singapore)
+- `sa-east-1` (South America — São Paulo)
+
+> **2025 Note:** AWS now uses the term "AWS Regions" consistently. The "GovCloud" regions (`us-gov-east-1`, `us-gov-west-1`) are isolated US government regions requiring separate accounts. The China regions (`cn-north-1`, `cn-northwest-1`) are operated by local partners and also require separate accounts.
 
 **Region Selection Criteria:**
 
@@ -94,11 +94,11 @@ Edge Locations are AWS sites deployed in major cities and highly populated areas
 
 **Key Characteristics of Edge Locations:**
 
-- **Global Distribution:** AWS operates 450+ Edge Locations across 90+ cities in 47 countries
+- **Global Distribution:** AWS operates **600+ Points of Presence** (edge locations + regional edge caches) across 90+ cities in 47 countries (2025)
 - **Content Caching:** Cache copies of content closer to end users for faster delivery
 - **Lower Latency:** Reduce latency by serving content from the nearest Edge Location
-- **Global Accelerator:** Provide static IP addresses and route traffic over AWS's private network
-- **Lambda@Edge:** Run code closer to users for dynamic content generation
+- **Global Accelerator:** Provide static IP addresses and route traffic over AWS’s private network
+- **Lambda@Edge / CloudFront Functions:** Run code closer to users for dynamic content generation
 
 **Services Using Edge Locations:**
 
@@ -118,7 +118,7 @@ Understanding the distinction is crucial:
 | Purpose | Host AWS services and resources | Cache and deliver content |
 | Services | Full AWS service catalog | Limited services (CDN, DNS, WAF) |
 | Data Storage | Long-term persistent storage | Temporary content caching |
-| Quantity | 33 Regions | 450+ Edge Locations |
+| Quantity | 34 Regions (2025) | 600+ Points of Presence |
 | Control | Full infrastructure control | Limited configuration (cache behavior) |
 
 **Regional Edge Caches:**
@@ -158,23 +158,6 @@ AWS Local Zones are available in major metropolitan areas including:
 - Phoenix, Arizona
 
 **Local Zone Naming Convention:**
-
-Local Zones follow the pattern: `[region]-[city]-[number]`
-
-Example: `us-west-2-lax-1` (Los Angeles Local Zone extending us-west-2)ring single-digit millisecond latency to end users
-- **Limited Service Availability:** Not all AWS services are available in Local Zones
-- **Same AWS APIs:** Use the same APIs, tools, and management console as Regions
-- **Connectivity:** Connected to the parent Region via AWS's private network
-
-**Use Cases for Local Zones:**
-
-1. **Real-Time Gaming:** Multiplayer gaming requiring ultra-low latency
-2. **Media Production:** Video rendering, live streaming, and media processing
-3. **Machine Learning Inference:** Real-time ML predictions with low latency requirements
-4. **Live Video Streaming:** Broadcasting with minimal delay
-5. **AR/VR Applications:** Augmented and virtual reality experiences
-
-**Local Zone Naming:**
 
 Local Zones follow this pattern: `[region-code]-[location-code]-[number][a/b]`
 

@@ -949,3 +949,880 @@ EXAM TIPS:
 ✓ VPC Peering: No transitive routing
 ✓ Transit Gateway: Hub-and-spoke
 ```
+
+
+## Security Services Quick Reference
+
+### AWS IAM (Identity and Access Management)
+
+```
+SERVICE OVERVIEW:
+Global service — controls who can do what on AWS
+Zero-trust identity foundation for all AWS access
+
+CORE COMPONENTS:
+Users: Long-term identities (avoid; prefer roles)
+Groups: Collections of users (no nesting, max 300/account)
+Roles: Temporary identities assumed by services/users/federated
+Policies: JSON documents defining Allow/Deny on Actions+Resources
+
+POLICY EVALUATION ORDER:
+1. Explicit DENY → DENY (always wins)
+2. SCP (Organizations) → if Deny, DENY
+3. Resource-based policy → if Allow, ALLOW
+4. Identity-based policy → if Allow, ALLOW
+5. Permission Boundary → if outside, DENY
+6. Session Policy → if outside, DENY
+Default: Implicit DENY
+
+KEY POLICY TYPES:
+AWS Managed: Created/maintained by AWS (e.g., AdministratorAccess)
+Customer Managed: You create/maintain; reusable across identities
+Inline: Embedded in single identity; deleted with identity
+Resource-based: Attached to resource (S3, SQS, Lambda); includes Principal
+Permission Boundary: Max permissions cap on identity
+SCP: Max permissions cap on AWS Organization accounts/OUs
+Session Policy: Further limit temporary credential sessions
+
+CROSS-ACCOUNT ACCESS:
+Role in Account B → Trust policy allowing Account A
+User in Account A → sts:AssumeRole → gets temp creds for Account B
+Always use ExternalId for 3rd-party (prevents confused deputy)
+
+FEDERATION:
+SAML 2.0: Corporate AD → SAML assertion → STS → temp creds
+OIDC: GitHub Actions, GitLab CI → JWT token → STS → temp creds
+IAM Identity Center: SSO for workforce, integrates with external IdPs
+Cognito User Pools: Authentication for app users (login)
+Cognito Identity Pools: AWS credentials for app users (authorization)
+
+KEY LIMITS:
+- Users per account: 5,000
+- Groups per account: 300
+- Roles per account: 1,000 (soft limit)
+- Managed policies per identity: 10
+- Managed policy size: 6,144 characters
+- Inline policy size: 2,048 chars (user), 10,240 chars (role)
+- MFA devices per user: 8
+
+EXAM TIPS:
+✓ Roles provide temporary credentials (no long-term secrets)
+✓ Explicit DENY always wins over explicit ALLOW
+✓ SCPs don't grant permissions; they only restrict
+✓ Permission boundaries: effective permissions = policy ∩ boundary
+✓ SAML federation: AssumeRoleWithSAML (console + CLI)
+✓ Web identity: AssumeRoleWithWebIdentity (mobile/web apps)
+✓ Groups cannot be principals in resource-based policies
+✓ IAM is global — one user/role works in all regions
+```
+
+
+### Amazon GuardDuty
+
+```
+SERVICE OVERVIEW:
+ML-based continuous threat detection service
+Analyzes: CloudTrail, VPC Flow Logs, DNS logs, S3 data events,
+          EKS audit logs, RDS login activity, Lambda network activity
+No agents required — uses existing AWS data sources
+
+THREAT CATEGORIES:
+Backdoor: EC2 communicating with C&C servers
+Behavior: Unusual IAM user behavior
+Cryptocurrency: Mining activity detected
+PenTest: Kali Linux tools detected
+Policy: Public S3 bucket with sensitive data
+Persistence: New IAM user/role created by compromised credential
+Recon: Port scanning, unusual API calls
+Stealth: CloudTrail logging disabled
+Trojan: Domain generation algorithm traffic
+UnauthorizedAccess: Unusual logins, credential exfiltration
+
+FINDING SEVERITY: Low / Medium / High / Critical
+
+INTEGRATIONS:
+EventBridge → Lambda (automated remediation)
+Security Hub (centralized findings)
+Detective (investigation/root cause)
+Organizations (multi-account, delegated admin)
+
+PRICING:
+Per 1M CloudTrail events: ~$4.00
+Per GB VPC Flow Logs / DNS: ~$1.00
+Per 1M S3 data events: ~$0.80
+Free tier: 30-day trial per region
+
+EXAM TIPS:
+✓ Detects threats; does NOT prevent them (detection only)
+✓ No agents, no performance impact
+✓ Enable in ALL regions (threats can originate anywhere)
+✓ Multi-account: Use Organizations + delegated admin account
+✓ Suppress findings with suppression rules
+✓ GuardDuty ≠ Inspector (Inspector = vulnerability scanning)
+```
+
+
+### Amazon Inspector
+
+```
+SERVICE OVERVIEW:
+Automated vulnerability management for:
+- EC2 instances (OS/software CVEs via SSM agent)
+- ECR container images (CVE scan on push and continuously)
+- Lambda functions (code and dependency CVEs)
+
+FINDING TYPES:
+Software vulnerability (CVE-based)
+Network reachability (exposed ports, paths to internet)
+Code vulnerability (Lambda — SAST findings)
+
+SEVERITY: Critical / High / Medium / Low / Informational
+
+INTEGRATIONS:
+Security Hub (aggregated findings)
+EventBridge (automated responses)
+Organizations (multi-account)
+
+PRICING:
+EC2: Per instance-month (~$1.17/instance/month)
+ECR: Per image scan (~$0.09/image)
+Lambda: Per Lambda function-month
+
+EXAM TIPS:
+✓ Inspector = vulnerability scanning, NOT threat detection
+✓ Requires SSM agent on EC2 (or automatic via Systems Manager)
+✓ ECR scanning: Enable on push for CI/CD pipeline security
+✓ Inspector ≠ GuardDuty (GuardDuty = behavior threats)
+✓ Continuously re-evaluates as new CVEs are published
+```
+
+
+### AWS WAF (Web Application Firewall)
+
+```
+SERVICE OVERVIEW:
+Layer 7 firewall protecting web applications
+Deployed on: CloudFront, ALB, API Gateway, AppSync, Cognito
+
+RULE TYPES:
+IP Set Rules: Allow/Block by IP or CIDR range
+Geographic Match: Allow/Block by country
+Rate-Based: Throttle IPs exceeding request rate
+SQL Injection Match: Block SQLi attempts
+Cross-Site Scripting Match: Block XSS attempts
+String/Regex Match: Custom pattern matching
+
+AWS MANAGED RULES (pre-built rule groups):
+AWSManagedRulesCommonRuleSet: OWASP Top 10
+AWSManagedRulesKnownBadInputsRuleSet: Known attack patterns
+AWSManagedRulesSQLiRuleSet: SQL injection
+AWSManagedRulesAmazonIpReputationList: Malicious IPs (bots, scrapers)
+
+WEB ACL:
+Contains ordered rules; first matching rule wins (ALLOW/BLOCK/COUNT)
+Default action: ALLOW or BLOCK for non-matching requests
+Capacity: Web ACL Capacity Units (WCU), max 5,000 WCU
+
+BOT CONTROL:
+Managed rule group detecting bots
+Challenge action: CAPTCHA for suspected bots
+
+PRICING:
+Web ACL: $5.00/month
+Rule: $1.00/month per rule
+Request: $0.60/million requests
+
+EXAM TIPS:
+✓ WAF = application layer (Layer 7), not network layer
+✓ Shield Standard = free DDoS protection for ALL customers
+✓ Shield Advanced = $3,000/month, 24/7 DDoS response team
+✓ WAF + Shield Advanced = comprehensive protection
+✓ WAF on CloudFront = global protection at edge
+✓ WAF on ALB = regional protection
+✓ Rate-based rules: throttle DDoS / abuse without full block
+```
+
+
+## Networking Services Quick Reference (Extended)
+
+### Amazon Route 53
+
+```
+SERVICE OVERVIEW:
+Highly available DNS service + domain registrar
+Global service (no region selection needed)
+100% SLA for hosted zones
+
+RECORD TYPES:
+A: IPv4 address
+AAAA: IPv6 address
+CNAME: Canonical name (cannot be at zone apex/root domain)
+Alias: AWS-specific; points to AWS resources (ALB, CloudFront, S3 website)
+       CAN be at zone apex; no charge for Alias queries
+MX: Mail exchange
+TXT: Text records (domain verification, SPF, DKIM)
+NS: Name server records (defines authoritative DNS servers)
+SOA: Start of Authority
+
+ALIAS vs CNAME:
+Alias: Use for AWS resources; zone apex supported; free queries; auto-follows IP changes
+CNAME: Generic DNS standard; cannot be at root; charged per query
+
+ROUTING POLICIES:
+Simple: One or more IPs (random selection); no health checks
+Weighted: Distribute traffic by % weights; canary deployments
+Latency: Route to lowest-latency region (based on AWS network data)
+Failover: Active/passive; requires health check on primary
+Geolocation: Route by user's geographic location (country/continent)
+Geoproximity: Route by proximity + bias adjustment (Traffic Flow only)
+Multi-Value Answer: Return up to 8 healthy records randomly
+
+HEALTH CHECKS:
+HTTP/HTTPS/TCP checks against endpoints
+Interval: 30 seconds (standard) or 10 seconds (fast, extra cost)
+Failure threshold: 3 consecutive failures = unhealthy
+String match: Check response body contains string
+Calculated health checks: Combine multiple health checks (AND/OR/NOT)
+CloudWatch alarm health checks: Trigger based on alarm state
+
+PRIVATE HOSTED ZONES:
+DNS resolution within one or more VPCs
+Resolver Inbound/Outbound Endpoints: Hybrid DNS (on-premises ↔ AWS)
+DNS Firewall: Block malicious domains at DNS level
+
+PRICING:
+Hosted zone: $0.50/month (first 25), $0.10/month (additional)
+Queries: $0.40/million (standard), $0.60/million (latency/geo/failover)
+Health checks: $0.50/month per endpoint
+
+EXAM TIPS:
+✓ Only Alias records can point to zone apex (root domain)
+✓ Weighted + Health Checks = canary deployments
+✓ Latency routing ≠ Geolocation routing
+  Latency = lowest AWS network latency (may differ from closest)
+  Geolocation = based on user's IP geographic location
+✓ Failover requires health checks; Latency/Geo do NOT require them
+  but SHOULD use them for availability
+✓ TTL: Lower TTL = faster failover but more queries + higher cost
+✓ Route 53 Resolver: Resolve DNS in hybrid environments
+```
+
+
+### Amazon CloudFront
+
+```
+SERVICE OVERVIEW:
+Global CDN with 450+ edge locations in 90+ cities
+Supports HTTP/S, WebSocket, streaming (HLS, DASH)
+Integrated with: S3, ALB, EC2, API Gateway, Lambda@Edge
+
+KEY CONCEPTS:
+Origin: Where CloudFront fetches content (S3, ALB, custom HTTP)
+Distribution: CloudFront configuration (behaviors, cache settings)
+Edge Location: Where content is cached globally
+Regional Edge Cache: Larger mid-tier cache between edge and origin
+
+CACHE BEHAVIORS:
+Path-based: /images/* → S3, /api/* → ALB
+Cache key: URL path + headers/cookies/query strings you include
+TTL: Min (0s), Default (86400s=24h), Max (31536000s=1yr)
+Cache-Control header from origin overrides default TTL
+
+ORIGIN TYPES:
+S3 Origin: Use Origin Access Control (OAC) to restrict S3 to CloudFront only
+           (OAC replaces legacy Origin Access Identity/OAI)
+Custom Origin: ALB, EC2, or any HTTP endpoint
+Origin Groups: Primary + failover origins for HA
+
+SECURITY:
+HTTPS: Viewer Protocol Policy (HTTP→HTTPS redirect or HTTPS only)
+       Origin Protocol Policy (CloudFront→Origin: HTTP, HTTPS, or Match)
+Custom SSL Certificate: Upload to ACM in us-east-1 (MUST be us-east-1)
+Geo Restriction: Allow/Block by country (whitelist or blacklist)
+Signed URLs: Grant time-limited access to single files
+Signed Cookies: Grant time-limited access to multiple files
+WAF Integration: Attach Web ACL to distribution
+Origin Shield: Additional caching layer in single region (reduces origin load)
+
+LAMBDA@EDGE vs CLOUDFRONT FUNCTIONS:
+Lambda@Edge:
+- Runs at Regional Edge Caches
+- All 4 trigger points: viewer request, viewer response, origin request, origin response
+- Max 5 seconds (viewer), 30 seconds (origin)
+- Can make network calls, access body
+- More powerful but higher latency + cost
+
+CloudFront Functions:
+- Runs at Edge Locations (closer to users)
+- Only: viewer request, viewer response
+- Max 1ms execution, 2MB memory
+- Cannot make network calls
+- URL rewrites, header manipulation, auth token validation
+- 1/6 the cost of Lambda@Edge for simple manipulations
+
+PRICING:
+Data Transfer Out: $0.0085–$0.02/GB (varies by region)
+HTTP Requests: $0.0075–$0.016/10,000 requests
+Free tier: 1 TB data transfer + 10M HTTP requests/month (12 months)
+Origin fetch: FREE from S3 in same region
+
+EXAM TIPS:
+✓ CloudFront + S3: Always use OAC (not direct public S3)
+✓ Custom SSL cert: MUST be in ACM us-east-1
+✓ Invalidation: $0.005/path after first 1,000 free/month
+✓ CloudFront Functions: Simple, fast, cheap (URL rewrites, A/B testing)
+✓ Lambda@Edge: Complex logic requiring network calls
+✓ Signed URLs: Single object time-limited access
+✓ Signed Cookies: Multiple objects, don't want to change URLs
+✓ Origin Shield: Reduce origin load (one more caching hop)
+✓ Price Class: Reduce edge locations to lower cost (All, 200, 100)
+```
+
+
+## Messaging Services Quick Reference
+
+### Amazon SQS (Simple Queue Service)
+
+```
+SERVICE OVERVIEW:
+Fully managed message queue service
+Decouples producers and consumers
+Infinitely scalable, pay per use
+
+QUEUE TYPES:
+Standard:
+- At-least-once delivery (duplicates possible)
+- Best-effort ordering
+- Unlimited throughput
+- Use: Most decoupling scenarios
+
+FIFO:
+- Exactly-once processing (deduplication)
+- Strict ordering (within message group)
+- 300 TPS, or 3,000 TPS with batching (10 messages per batch)
+- Message Group ID: Allows parallel processing per group
+- Deduplication ID: 5-minute deduplication window
+- Use: Financial transactions, order processing
+
+KEY PARAMETERS:
+Visibility Timeout: Time message is hidden after receive (default 30s, max 12h)
+Message Retention: 1 min to 14 days (default 4 days)
+Max Message Size: 256 KB
+Delivery Delay: 0 to 15 minutes (delay before delivery)
+Receive Message Wait Time: 0–20 seconds (long polling saves cost)
+
+DEAD LETTER QUEUE (DLQ):
+Messages that fail maxReceiveCount times → moved to DLQ
+Separate queue for analysis of failed messages
+DLQ redrive: Move messages back to source queue after fixing issue
+Lambda DLQ: Failed async Lambda invocations stored here
+
+LONG POLLING vs SHORT POLLING:
+Short polling (WaitTimeSeconds=0): Returns immediately even if empty
+Long polling (WaitTimeSeconds=1-20): Waits up to 20s for messages
+Long polling: Reduces empty responses → cost savings
+
+EXTENDED CLIENT LIBRARY:
+Messages > 256 KB → store payload in S3, SQS stores S3 pointer
+Java SDK supports this natively
+
+PRICING:
+First 1M requests/month: Free
+$0.40 per million requests (Standard)
+$0.50 per million requests (FIFO)
+
+EXAM TIPS:
+✓ SQS = pull-based (consumers poll)
+✓ Standard: At-least-once → handle duplicate messages (idempotency)
+✓ FIFO: Exactly-once, 300 TPS (3K with batching)
+✓ Visibility timeout > processing time to prevent duplicates
+✓ DLQ: Capture failed messages for analysis/retry
+✓ Long polling: Reduces cost (fewer empty API calls)
+✓ SQS + Auto Scaling: Scale EC2 on queue depth (ApproximateNumberOfMessages)
+✓ SQS + Lambda: Lambda polls queue (event source mapping)
+```
+
+
+### Amazon SNS (Simple Notification Service)
+
+```
+SERVICE OVERVIEW:
+Fully managed pub/sub messaging
+Push-based (messages pushed to subscribers)
+Fan-out: One message → multiple endpoints simultaneously
+
+TOPIC TYPES:
+Standard Topics:
+- At-least-once delivery
+- Best-effort message ordering
+- Unlimited subscriptions and throughput
+
+FIFO Topics:
+- Exactly-once delivery
+- Strict message ordering
+- Only SQS FIFO as subscriber
+- 300 TPS
+
+SUPPORTED PROTOCOLS (Subscribers):
+SQS: Queue for async processing (most common)
+Lambda: Trigger function
+HTTP/HTTPS: Webhook endpoint
+Email/Email-JSON: Human notifications
+SMS: Text messages
+Mobile Push: APNS (iOS), GCM/FCM (Android), ADM (Amazon)
+Kinesis Data Firehose: Stream to S3/Redshift/OpenSearch
+
+MESSAGE FILTERING:
+Filter policies on subscriptions: Only deliver messages matching attributes
+Example: Order topic → Fulfillment queue (filter: status=PLACED)
+                     → Shipping queue (filter: status=SHIPPED)
+Reduces number of queues and Lambda functions needed
+
+SNS + SQS FAN-OUT PATTERN:
+One SNS topic → Multiple SQS queues
+Each queue processed independently
+Example: Image upload → SNS → [Resize queue, Watermark queue, Backup queue]
+
+MESSAGE ATTRIBUTES:
+Up to 10 key-value pairs per message
+Used for filtering and routing
+
+PRICING:
+First 1M requests/month: Free
+$0.50 per million Amazon SQS deliveries
+$0.06 per million HTTP deliveries
+$0.75 per 100 SMS (US)
+Push notifications: $1.00 per million
+
+EXAM TIPS:
+✓ SNS = push-based (fan-out to multiple subscribers)
+✓ Fan-out: SNS → multiple SQS queues (decouple + parallel processing)
+✓ Message Filtering: Reduces unnecessary processing
+✓ SNS FIFO only supports SQS FIFO subscribers
+✓ Mobile push: SNS simplifies push to iOS/Android
+✓ SNS does NOT persist messages (no retry store)
+✓ SQS DLQ for retry; SNS has no built-in DLQ
+```
+
+
+### Amazon EventBridge
+
+```
+SERVICE OVERVIEW:
+Serverless event bus connecting AWS services, SaaS, and custom apps
+Formerly CloudWatch Events (same underlying service)
+Schema registry for event discovery
+
+COMPONENTS:
+Event Bus:
+- Default (AWS services): Receives all AWS service events
+- Custom: For your application events
+- Partner: SaaS integrations (Zendesk, Datadog, Segment, etc.)
+
+Rules:
+- Event pattern matching (JSON filter on event fields)
+- Schedule (cron expressions or rate)
+- Target: Up to 5 targets per rule
+
+Targets (60+ supported):
+Lambda, SQS, SNS, Kinesis, Step Functions, ECS tasks,
+API Gateway, CodeBuild, Systems Manager, EventBridge API Destinations
+
+EVENT PATTERN EXAMPLES:
+EC2 state change:
+{
+  "source": ["aws.ec2"],
+  "detail-type": ["EC2 Instance State-change Notification"],
+  "detail": {"state": ["stopped", "terminated"]}
+}
+
+Custom application event:
+{
+  "source": ["com.myapp.orders"],
+  "detail-type": ["OrderPlaced"],
+  "detail": {"amount": [{"numeric": [">", 1000]}]}
+}
+
+EVENTBRIDGE PIPES:
+Point-to-point integration: Source → Filter → Enrich → Target
+Sources: SQS, DynamoDB Streams, Kinesis, MSK, MQ, Kafka
+Filtering: Only process matching events
+Enrichment: Lambda, Step Functions, API Gateway, API Destination
+Targets: Same as EventBridge rules
+Use: Simplified event-driven architecture without Lambda glue code
+
+EVENTBRIDGE SCHEDULER:
+Create one-time or recurring schedules (replaces CloudWatch Events schedules)
+Targets: 270+ AWS services
+Flexible time windows: Allow execution within window for cost savings
+Rate and cron expressions
+
+SCHEMA REGISTRY:
+Auto-discovers event schemas from event buses
+Code bindings: Generate code from schemas (Java, Python, TypeScript)
+Reduces boilerplate for event-driven development
+
+PRICING:
+Custom events: $1.00/million
+Events from AWS services: Free
+Cross-account events: $1.00/million
+Schema Registry: $0.10/million schema discovery events
+
+EXAM TIPS:
+✓ EventBridge = content-based routing (filter on event fields)
+✓ Default event bus: all AWS service events flow here
+✓ CloudWatch Events = legacy name for EventBridge
+✓ Cron schedules: Use EventBridge Scheduler (not CloudWatch Events)
+✓ SaaS integration: Partner event buses (Zendesk, etc.)
+✓ Multi-account: Event bus resource policy allows cross-account
+✓ Dead-letter queue: Configure DLQ on rules for failed deliveries
+✓ EventBridge Pipes: Replaces SQS→Lambda→SQS pipeline code
+```
+
+
+## Analytics Services Quick Reference
+
+### AWS Glue
+
+```
+SERVICE OVERVIEW:
+Serverless ETL (Extract, Transform, Load) service
+Data catalog for metadata management
+Runs Apache Spark under the hood
+
+COMPONENTS:
+Data Catalog:
+- Metadata repository for tables, databases, schemas
+- Integrates with Athena, Redshift Spectrum, EMR
+- Populated by Crawlers automatically
+
+Crawlers:
+- Scan data sources (S3, RDS, DynamoDB, etc.)
+- Infer schema and update Data Catalog
+- Schedule: On-demand, hourly, daily, weekly
+
+ETL Jobs:
+- Spark or Python Shell scripts
+- Auto-generated code from visual editor
+- Job bookmarks: Track processed data (incremental ETL)
+- DPU (Data Processing Units): Unit of compute (2 vCPU, 8 GB)
+
+Glue Studio:
+- Visual drag-and-drop ETL builder
+- Monitor job runs, visualize data flows
+
+DataBrew:
+- No-code data preparation (250+ transforms)
+- Profiling and data quality checks
+- For data analysts without Spark knowledge
+
+COMMON PATTERNS:
+S3 → Crawler → Data Catalog → Athena (query in place)
+S3 Raw → Glue ETL → S3 Processed → Redshift (load)
+Operational DB → Glue DMS → S3 → Glue ETL → Data Warehouse
+
+PRICING:
+DPU-hour: $0.44 (ETL jobs), $0.44 (crawlers)
+Data Catalog: Free for first 1M objects
+DataBrew: $1.00/DPU-hour
+
+EXAM TIPS:
+✓ Glue = ETL + Data Catalog (not a database)
+✓ Crawlers auto-populate Data Catalog schema
+✓ Athena uses Glue Data Catalog for table definitions
+✓ Glue vs EMR: Glue is serverless; EMR is managed cluster (more control)
+✓ Job Bookmarks: Prevent reprocessing already-processed data
+✓ Glue DataBrew: Visual, no-code for data analysts
+```
+
+
+### Amazon Athena
+
+```
+SERVICE OVERVIEW:
+Interactive SQL query service for S3
+Serverless — no infrastructure to manage
+Pay per query ($5.00/TB scanned)
+
+SUPPORTED FORMATS:
+Columnar (best performance): Parquet, ORC
+Row: CSV, TSV, JSON, Avro
+Compressed: GZIP, Snappy, LZO, ZSTD
+
+PERFORMANCE OPTIMIZATION:
+1. Use columnar formats (Parquet/ORC): Scans only needed columns → 30-90% less data
+2. Partition data: s3://bucket/year=2025/month=01/day=15/ → partition pruning
+3. Compress data: GZIP reduces scan costs but Snappy better for parallel reads
+4. Use large files (>128 MB): Fewer S3 API calls, better parallelism
+5. Predicate pushdown: Filter in WHERE clause reduces scan
+
+FEDERATED QUERIES:
+Query data outside S3 using Lambda connectors:
+- RDS, Redshift, DynamoDB, CloudWatch Logs, DocumentDB
+- On-premises databases (via Glue connector)
+
+WORKGROUPS:
+Isolate users/teams with separate query execution settings
+Per-workgroup: query output location, encryption, data scan limits
+Cost control: Set data scan limits per query or per workgroup
+
+PRICING:
+$5.00 per TB scanned
+Columnar format saves ~70% → effectively $1.50/TB
+No charge for DDL queries, failed queries
+
+EXAM TIPS:
+✓ Athena = serverless SQL on S3 (no loading, no clusters)
+✓ Pay per scan → use Parquet/ORC + partitioning to save cost
+✓ Athena uses Glue Data Catalog for schema
+✓ Federated queries: Athena can query non-S3 data sources
+✓ Best for: Ad-hoc analysis, log analysis, BI on S3 data
+✓ Not for: Low-latency queries (use DynamoDB/ElastiCache), OLTP
+```
+
+
+### Amazon Kinesis
+
+```
+SERVICE OVERVIEW:
+Real-time data streaming platform
+
+KINESIS SERVICES COMPARISON:
+
+Data Streams:
+- Real-time data collection and processing
+- Shards: Unit of capacity (1 MB/s write, 2 MB/s read, 1,000 records/s)
+- Retention: 24h (default) to 365 days
+- Multiple consumers: Fan-out (Enhanced fan-out: 2 MB/s per consumer per shard)
+- Use: Custom real-time applications, complex processing
+- Pricing: Per shard-hour + per PUT payload unit
+
+Data Firehose (Delivery Streams):
+- Delivery to: S3, Redshift, OpenSearch, Splunk, HTTP endpoints, Datadog
+- No consumers to manage — fully managed delivery
+- Transform with Lambda before delivery
+- Buffer: By size (1-128 MB) or time (60-900 seconds)
+- Use: Simple delivery to data stores (no consumer code)
+- Pricing: Per GB ingested
+
+Data Analytics (Managed Service for Apache Flink):
+- SQL or Apache Flink on streaming data
+- Sources: Kinesis Data Streams, MSK (Kafka)
+- Use: Real-time aggregations, anomaly detection
+- Pricing: Per KPU-hour
+
+Video Streams:
+- Ingest video, audio, images from cameras/devices
+- Playback, ML processing with Rekognition
+- Use: Smart home cameras, industrial monitoring
+
+KINESIS vs SQS:
+Kinesis: Multiple consumers, ordered per shard, replay possible, real-time
+SQS: Single consumer per message, simpler, at-least-once, up to 14-day retention
+
+KINESIS vs KAFKA (MSK):
+Kinesis: Fully managed, AWS native, no ZooKeeper
+MSK: Open-source Kafka on AWS, more control, compatible with Kafka ecosystem
+
+SHARDING:
+Add shards (scale out): Splits or merge shards
+Hot shard: Too much data on one shard → resharding or better partition key
+Partition key: Determines shard assignment (use high-cardinality key)
+
+EXAM TIPS:
+✓ Kinesis Data Streams: Multiple consumers, replay, ordered per shard
+✓ Kinesis Firehose: Simple delivery (no consumer code), no replay
+✓ Kinesis Analytics/Flink: Real-time SQL/Flink on streams
+✓ SQS: Decoupling, simpler, at-least-once, messages consumed once
+✓ Hot shard fix: Better partition key selection
+✓ Enhanced Fan-out: Dedicated 2 MB/s throughput per consumer (vs shared 2 MB/s)
+✓ Firehose buffer: Data arrives in near-real-time (60-900 sec delay)
+✓ Retention: Extend to 7 days for replay capability
+```
+
+
+## Migration Services Quick Reference
+
+### AWS Snow Family
+
+```
+SERVICE OVERVIEW:
+Physical devices for offline data transfer and edge computing
+
+DEVICE COMPARISON:
+
+Snowcone:
+- Storage: 8 TB HDD or 14 TB SSD
+- Compute: 2 vCPU, 4 GB RAM
+- Connectivity: USB-C power, WiFi/wired
+- Weight: 4.5 lbs (rugged, portable)
+- Use: Remote/disconnected sites, small migrations
+- DataSync: Can send data online after offline collection
+
+Snowball Edge Storage Optimized:
+- Storage: 80 TB usable
+- Compute: 40 vCPU, 80 GB RAM, optional GPU
+- Clustering: Up to 15 nodes
+- Use: Large data migrations (petabyte-scale), on-site storage
+
+Snowball Edge Compute Optimized:
+- Storage: 28 TB usable
+- Compute: 104 vCPU, 416 GB RAM, optional GPU
+- Use: Machine learning at edge, video analysis
+
+Snowmobile:
+- Capacity: Up to 100 PB (exabyte-scale)
+- Transport: Semi-truck with secure container
+- Security: 24/7 video surveillance, GPS tracking
+- Use: Massive data center migrations
+
+WHEN TO USE SNOW FAMILY:
+Rule of thumb: > 1 week to transfer → use Snow device
+At 1 Gbps: ~10 TB/day → Snowcone viable for < 80 TB
+At 100 Mbps: ~1 TB/day → Snowball Edge for hundreds of TB
+Exabyte scale → Snowmobile
+
+EXAM TIPS:
+✓ Snowcone = small, portable, 8-14 TB
+✓ Snowball Edge = petabyte migrations
+✓ Snowmobile = exabyte migrations (> 10 PB)
+✓ Edge computing: Snowball Edge / Snowcone can run EC2 instances/Lambda
+✓ Encrypted at rest and in transit (256-bit encryption, KMS)
+✓ Chain of custody: Physical security tracked by AWS
+```
+
+
+### AWS Database Migration Service (DMS)
+
+```
+SERVICE OVERVIEW:
+Migrate databases to AWS with minimal downtime
+Continuous replication using Change Data Capture (CDC)
+
+SUPPORTED MIGRATIONS:
+Homogeneous: Oracle → Oracle, MySQL → RDS MySQL (simple)
+Heterogeneous: Oracle → Aurora PostgreSQL (requires SCT first)
+
+MIGRATION TYPES:
+Full Load: One-time migration of existing data
+Full Load + CDC: Migrate + replicate ongoing changes (near-zero downtime)
+CDC Only: Ongoing replication only (source already migrated)
+
+SCHEMA CONVERSION TOOL (SCT):
+Converts database schema + stored procedures + views
+From: Oracle, SQL Server, SAP ASE, Teradata
+To: Aurora, MySQL, PostgreSQL, Redshift
+Highlights items requiring manual conversion
+
+REPLICATION INSTANCE:
+EC2 instance running DMS engine (not serverless)
+Size based on: Data volume, number of tables, transformation complexity
+
+COMMON PATTERNS:
+On-prem Oracle → Aurora PostgreSQL:
+  1. SCT: Convert schema
+  2. DMS Full Load + CDC: Migrate data + sync changes
+  3. Switch application connection string
+  4. Stop source database
+
+Data Warehouse Migration (Teradata → Redshift):
+  1. SCT: Convert schema
+  2. DMS: Migrate data in parallel
+
+PRICING:
+Replication instance: Same as EC2 pricing (per hour)
+Data transfer: First 1 TB free/month from on-premises → AWS
+
+EXAM TIPS:
+✓ DMS = minimal downtime database migrations
+✓ Heterogeneous migration: Always need SCT first
+✓ CDC: Near-zero downtime (application stays up during migration)
+✓ DMS can migrate: RDS, on-premises, EC2 databases, Azure, Google Cloud
+✓ Replication instance: Must be in same VPC or accessible from source
+✓ Multi-AZ replication instance: HA for production migrations
+```
+
+---
+
+## Quick Service Selection Cheat Sheet
+
+```
+WHEN TO USE WHAT:
+
+COMPUTE:
+Need servers, full control → EC2
+Variable/unpredictable events → Lambda (15 min max)
+Containerized apps, managed → ECS Fargate
+Kubernetes, self-managed → EKS
+Batch jobs, queue-based → AWS Batch
+
+STORAGE:
+Object storage (images, backups, data lake) → S3
+Block storage for EC2 → EBS (gp3 default)
+Shared file system (Linux, NFS) → EFS
+Shared file system (Windows, SMB) → FSx for Windows
+High-performance HPC/ML storage → FSx for Lustre
+
+DATABASE:
+Relational, familiar SQL → RDS (MySQL, PostgreSQL, etc.)
+High-performance relational → Aurora
+Variable workload relational → Aurora Serverless v2
+NoSQL, massive scale → DynamoDB
+In-memory cache → ElastiCache (Redis or Memcached)
+In-memory DynamoDB cache → DAX
+Full-text search → OpenSearch
+Data warehouse → Redshift
+
+NETWORKING:
+HTTP routing, microservices → ALB
+High performance TCP/UDP → NLB
+Virtual appliances (firewall, IDS) → GWLB
+Private secure access to AWS services → VPC Endpoints
+Multiple VPC connectivity → Transit Gateway
+Expose service privately → PrivateLink
+Dedicated on-premises connection → Direct Connect
+Encrypted on-premises connection → Site-to-Site VPN
+Global low-latency routing → Global Accelerator
+CDN (static content) → CloudFront
+
+MESSAGING:
+Decouple producers/consumers → SQS
+Fan-out to multiple systems → SNS
+Event routing, filtering → EventBridge
+Real-time streaming → Kinesis Data Streams
+Simple delivery to S3/Redshift → Kinesis Firehose
+
+SECURITY:
+Identity management → IAM
+Threat detection → GuardDuty
+Vulnerability scanning → Inspector
+Web application attacks → WAF
+DDoS protection → Shield (Standard=free, Advanced=$3K/month)
+Secrets rotation → Secrets Manager
+Compliance configuration → AWS Config
+Audit logging → CloudTrail
+Centralized findings → Security Hub
+Sensitive data discovery → Macie
+
+MIGRATION:
+Database migration → DMS
+Schema conversion → SCT
+Server lift-and-shift → MGN (Application Migration Service)
+Offline large data → Snow Family
+Online accelerated transfer → DataSync
+SFTP to S3 → Transfer Family
+
+MONITORING:
+Metrics + alarms → CloudWatch
+API audit trail → CloudTrail
+Distributed tracing → X-Ray
+Resource configuration history → AWS Config
+Synthetic monitoring → CloudWatch Synthetics
+
+COST:
+RI/Savings Plans analysis → Cost Explorer
+Budget alerts → AWS Budgets
+Detailed billing → Cost and Usage Report + Athena
+Right-sizing recommendations → Compute Optimizer
+Multi-service cost checks → Trusted Advisor
+```

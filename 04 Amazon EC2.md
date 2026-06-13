@@ -62,22 +62,21 @@ Example: `m5.2xlarge`
 
 Balanced compute, memory, and networking for diverse workloads.
 
-**M6i Family (Latest Intel):**
+**M7i/M7g Family (Latest Gen 2024-2025):**
 
-- **Use Cases:** Web servers, small databases, development environments
-- **vCPUs:** 1 to 128
-- **Memory:** 4 GiB to 512 GiB
-- **Network:** Up to 50 Gbps
-- **Example:** `m6i.xlarge` - 4 vCPUs, 16 GiB RAM
+- **M7i:** 4th Gen Intel Xeon (Sapphire Rapids), up to 192 vCPUs
+- **M7g:** AWS Graviton3, up to 64 vCPUs, 20% better price-performance than M6g
+- **M7i-Flex:** Lowest-cost general purpose (uses burst model like T-series)
+- **Use Cases:** Web servers, application servers, small/medium databases
 
-**T3/T4g Family (Burstable):**
+**T4g Family (Burstable ARM):**
 
 - **Use Cases:** Websites, microservices, dev/test, small databases
 - **Special Feature:** CPU credits for burst performance
-- **Cost:** Lowest cost per hour
-- **Baseline Performance:** 20-40% of vCPU
-- **Burst:** Up to 100% when credits available
-- **Example:** `t3.medium` - 2 vCPUs, 4 GiB RAM, 20% baseline
+- **T4g (Graviton2):** 40% better price-performance than T3; ARM-based
+- **Cost:** Lowest cost per hour for general purpose
+
+> **2025 Note:** AWS now requires IMDSv2 (`HttpTokens=required`) as the default for new EC2 instances launched after August 2024 in most Regions. Always set `HttpTokens=required` and `HttpPutResponseHopLimit=2` (for container workloads) in launch templates.
 
 **CPU Credits:**
 

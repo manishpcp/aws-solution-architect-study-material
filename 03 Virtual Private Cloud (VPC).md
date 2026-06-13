@@ -248,9 +248,11 @@ NAT (Network Address Translation) enables instances in private subnets to connec
 
 - Fully managed by AWS
 - Highly available within a single AZ
-- Scales automatically up to 45 Gbps
+- Scales automatically up to **100 Gbps** (updated 2023 — was previously 45 Gbps)
 - Billed per hour + data processed
-- Supports up to 55,000 simultaneous connections
+- Supports up to 55,000 simultaneous connections per unique destination
+
+> **2025 Note:** AWS now offers **Private NAT Gateways** (no Elastic IP required) for VPC-to-VPC or VPC-to-on-premises communication entirely within the AWS network, eliminating internet transit.
 
 **Best Practices:**
 
