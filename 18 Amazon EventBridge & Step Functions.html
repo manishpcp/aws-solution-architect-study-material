@@ -2012,13 +2012,13 @@
   
 
 
-<h1 id="chapter-18-amazon-eventbridge-step-functions">Chapter 18: Amazon EventBridge \&amp; Step Functions<a class="headerlink" href="#chapter-18-amazon-eventbridge-step-functions" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-18-amazon-eventbridge-step-functions">Chapter 18: Amazon EventBridge \&amp; Step Functions</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Modern cloud applications require orchestration—coordinating multiple services, handling failures gracefully, managing long-running workflows, and responding to events across distributed systems. Amazon EventBridge and AWS Step Functions solve these challenges through event-driven architectures and visual workflow orchestration. EventBridge routes events between AWS services, SaaS applications, and custom applications without writing integration code, while Step Functions coordinates distributed services through state machines, handling retries, parallel execution, error handling, and human approvals with visual workflow design.</p>
 <p>The shift from monolithic to microservices architectures makes orchestration essential. Consider an order fulfillment workflow: validate payment, check inventory, reserve items, charge customer, update database, send confirmation email, trigger warehouse system, and update analytics. Traditional approaches tightly couple these steps in application code, making changes risky and failures catastrophic. EventBridge decouples services through event routing—order placement triggers events that multiple independent services process. Step Functions orchestrates the sequence—defining workflow logic visually, automatically retrying failures, branching based on conditions, and providing audit trails of every execution.</p>
 <p>Understanding EventBridge and Step Functions deeply separates basic automation from production-grade orchestration. Overly complex event patterns miss critical events. Missing error handling causes silent failures. Improper state machine design hits execution limits. Not using parallel states wastes time. Missing saga patterns leave distributed systems in inconsistent states. This chapter covers event-driven architectures and workflow orchestration from fundamentals to production patterns, including event buses, event patterns, schema registry, state machine types, error handling, retry strategies, parallel execution, saga patterns, monitoring, and building resilient distributed systems.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="event-driven-architecture-fundamentals">Event-Driven Architecture Fundamentals<a class="headerlink" href="#event-driven-architecture-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="event-driven-architecture-fundamentals">Event-Driven Architecture Fundamentals</h3>
 <p><strong>Traditional vs Event-Driven Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Traditional Synchronous Architecture:
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -2105,7 +2105,7 @@
 <a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>Read Models: Order history, analytics, reporting
 <a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>Events keep read models synchronized
 </code></pre></div>
-<h3 id="amazon-eventbridge-architecture">Amazon EventBridge Architecture<a class="headerlink" href="#amazon-eventbridge-architecture" title="Permanent link">&para;</a></h3>
+<h3 id="amazon-eventbridge-architecture">Amazon EventBridge Architecture</h3>
 <p><strong>EventBridge Components:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Event Bus:
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>- Central routing hub for events
@@ -2369,7 +2369,7 @@
 <a id="__codelineno-6-49" name="__codelineno-6-49" href="#__codelineno-6-49"></a>- Events replayed with new timestamp
 <a id="__codelineno-6-50" name="__codelineno-6-50" href="#__codelineno-6-50"></a>- Original event ID preserved in replay-name field
 </code></pre></div>
-<h3 id="aws-step-functions-architecture">AWS Step Functions Architecture<a class="headerlink" href="#aws-step-functions-architecture" title="Permanent link">&para;</a></h3>
+<h3 id="aws-step-functions-architecture">AWS Step Functions Architecture</h3>
 <p><strong>State Machine Fundamentals:</strong></p>
 <p>Step Functions coordinates distributed systems through state machines:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>State Machine:
@@ -2779,7 +2779,7 @@
 <a id="__codelineno-11-78" name="__codelineno-11-78" href="#__codelineno-11-78"></a>✓ Independent failure handling
 <a id="__codelineno-11-79" name="__codelineno-11-79" href="#__codelineno-11-79"></a>✓ Automatic aggregation of results
 </code></pre></div>
-<h3 id="orchestration-patterns">Orchestration Patterns<a class="headerlink" href="#orchestration-patterns" title="Permanent link">&para;</a></h3>
+<h3 id="orchestration-patterns">Orchestration Patterns</h3>
 <p><strong>Saga Pattern (Distributed Transactions):</strong></p>
 <p>Saga pattern handles distributed transactions without 2PC (two-phase commit):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Problem: Distributed Transaction
@@ -2925,8 +2925,8 @@
 <a id="__codelineno-13-56" name="__codelineno-13-56" href="#__codelineno-13-56"></a>✓ Complete audit trail
 <a id="__codelineno-13-57" name="__codelineno-13-57" href="#__codelineno-13-57"></a>✓ Timeout supported (max 1 year)
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-eventbridge-rule-to-lambda">Lab 1: EventBridge Rule to Lambda<a class="headerlink" href="#lab-1-eventbridge-rule-to-lambda" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-eventbridge-rule-to-lambda">Lab 1: EventBridge Rule to Lambda</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">events</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;events&#39;</span><span class="p">)</span>
@@ -2958,7 +2958,7 @@
 <a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>    <span class="p">}]</span>
 <a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a><span class="p">)</span>
 </code></pre></div>
-<h3 id="lab-2-step-functions-state-machine">Lab 2: Step Functions State Machine<a class="headerlink" href="#lab-2-step-functions-state-machine" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-step-functions-state-machine">Lab 2: Step Functions State Machine</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="p">{</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span><span class="nt">&quot;Comment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Order processing workflow&quot;</span><span class="p">,</span>
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span><span class="nt">&quot;StartAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ValidateOrder&quot;</span><span class="p">,</span>
@@ -3020,7 +3020,7 @@
 <a id="__codelineno-15-59" name="__codelineno-15-59" href="#__codelineno-15-59"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-15-60" name="__codelineno-15-60" href="#__codelineno-15-60"></a><span class="p">}</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
 <p><strong>Tip 1: Use Event Archives for Replay</strong>
 Always enable archives for production events—invaluable for disaster recovery and debugging.</p>
 <p><strong>Tip 2: Start with Express Workflows for High-Volume</strong>
@@ -3031,7 +3031,7 @@ Use compensating transactions instead of distributed locks—more resilient for 
 Execute independent tasks in parallel (3 tasks × 1s = 1s total vs 3s sequential).</p>
 <p><strong>Tip 5: Leverage waitForTaskToken for Human Approval</strong>
 Pause workflows indefinitely for manual approvals without polling or timeouts.</p>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
 <p><strong>Pitfall 1: Overly Complex Event Patterns</strong>
 <em>Problem:</em> Patterns too specific miss events; too broad trigger unnecessary invocations.
 <em>Solution:</em> Test patterns with sample events; start broad, refine based on actual usage.</p>
@@ -3041,7 +3041,7 @@ Pause workflows indefinitely for manual approvals without polling or timeouts.</
 <p><strong>Pitfall 3: State Machine Timeout Issues</strong>
 <em>Problem:</em> Workflows hit 1-year limit or 5-minute Express limit.
 <em>Solution:</em> Use Standard for long workflows; break large workflows into smaller sub-workflows.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>EventBridge maximum event size?</strong> 256 KB</li>
 <li><strong>Step Functions Standard workflow max duration?</strong> 1 year</li>

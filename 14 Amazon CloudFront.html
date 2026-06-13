@@ -1677,14 +1677,14 @@
   
 
 
-<h1 id="part-5-networking-content-delivery">Part 5: Networking \&amp; Content Delivery<a class="headerlink" href="#part-5-networking-content-delivery" title="Permanent link">&para;</a></h1>
-<h1 id="chapter-14-amazon-cloudfront">Chapter 14: Amazon CloudFront<a class="headerlink" href="#chapter-14-amazon-cloudfront" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="part-5-networking-content-delivery">Part 5: Networking \&amp; Content Delivery</h1>
+<h1 id="chapter-14-amazon-cloudfront">Chapter 14: Amazon CloudFront</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Content delivery speed directly impacts user experience, engagement, and revenue. Studies show that a 100ms delay in page load time can reduce conversions by 7%, and 40% of users abandon websites that take more than 3 seconds to load. Amazon CloudFront, AWS's content delivery network (CDN), solves this problem by caching content at 450+ edge locations worldwide, delivering data from the location closest to users. Instead of requesting files from your origin server thousands of miles away, users receive content from nearby edge locations with single-digit millisecond latency.</p>
 <p>CloudFront isn't just about speed—it's a comprehensive content delivery platform providing security, customization, and reliability. CloudFront integrates with AWS Shield for DDoS protection, AWS WAF for application firewall, and AWS Certificate Manager for free SSL/TLS certificates. Lambda@Edge enables running code at edge locations for dynamic content generation, A/B testing, and request/response manipulation. Origin failover provides automatic switching between primary and backup origins, ensuring high availability. Understanding CloudFront's architecture, cache behaviors, and optimization techniques transforms slow, centralized applications into fast, globally distributed systems.</p>
 <p>The difference between proper and improper CloudFront configuration can mean success or failure for global applications. Misconfigured cache keys cause duplicate caching, wasting storage and reducing hit rates. Wrong TTL settings serve stale content or miss cache opportunities. Improper origin configurations expose backend servers to DDoS attacks. Missing security headers leave applications vulnerable. This chapter covers CloudFront from fundamentals to production patterns, including distributions, origins, cache behaviors, Lambda@Edge, signed URLs/cookies, security best practices, monitoring, and cost optimization. Whether you're serving static websites or dynamic applications, mastering CloudFront is essential for delivering exceptional global performance.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="cloudfront-fundamentals">CloudFront Fundamentals<a class="headerlink" href="#cloudfront-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="cloudfront-fundamentals">CloudFront Fundamentals</h3>
 <p><strong>What is CloudFront?</strong></p>
 <p>CloudFront is AWS's content delivery network (CDN) that caches and delivers content from edge locations closest to users.</p>
 <p><strong>Core Components:</strong></p>
@@ -1719,7 +1719,7 @@
 - <strong>Continuous deployment</strong>: CloudFront supports staging distributions and traffic weights for canary deployments natively (no Lambda required)
 - <strong>CloudFront KeyValueStore</strong>: Serverless key-value store accessible from CloudFront Functions for dynamic configuration without redeployment</p>
 </blockquote>
-<h3 id="distributions">Distributions<a class="headerlink" href="#distributions" title="Permanent link">&para;</a></h3>
+<h3 id="distributions">Distributions</h3>
 <p><strong>Two Distribution Types:</strong></p>
 <p><strong>1. Web Distribution:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Use for: Websites, web applications, APIs
@@ -1739,7 +1739,7 @@
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>├── Restrictions: Geo-blocking rules
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>└── Invalidations: Cache clearing
 </code></pre></div>
-<h3 id="origins">Origins<a class="headerlink" href="#origins" title="Permanent link">&para;</a></h3>
+<h3 id="origins">Origins</h3>
 <p><strong>Supported Origin Types:</strong></p>
 <p><strong>1. Amazon S3:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Use for: Static websites, images, videos, downloads
@@ -1791,7 +1791,7 @@
 <a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>Origin: abc123.execute-api.us-east-1.amazonaws.com
 <a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>Path: /prod
 </code></pre></div>
-<h3 id="origin-groups-failover">Origin Groups (Failover)<a class="headerlink" href="#origin-groups-failover" title="Permanent link">&para;</a></h3>
+<h3 id="origin-groups-failover">Origin Groups (Failover)</h3>
 <p><strong>High Availability with Multiple Origins:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Origin Group
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>├── Primary Origin (S3 bucket us-east-1)
@@ -1846,7 +1846,7 @@
 <a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a><span class="s1">  }</span>
 <a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="s1">}&#39;</span>
 </code></pre></div>
-<h3 id="cache-behaviors">Cache Behaviors<a class="headerlink" href="#cache-behaviors" title="Permanent link">&para;</a></h3>
+<h3 id="cache-behaviors">Cache Behaviors</h3>
 <p><strong>What are Cache Behaviors?</strong></p>
 <p>Rules that define how CloudFront handles requests based on path patterns.</p>
 <p><strong>Path Pattern Matching:</strong></p>
@@ -1896,7 +1896,7 @@
 <a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>- More in cache key = lower hit rate
 <a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>- Less in cache key = higher hit rate, but less personalization
 </code></pre></div>
-<h3 id="caching-and-ttl">Caching and TTL<a class="headerlink" href="#caching-and-ttl" title="Permanent link">&para;</a></h3>
+<h3 id="caching-and-ttl">Caching and TTL</h3>
 <p><strong>Cache TTL (Time To Live):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Three TTL Sources (priority order):
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
@@ -1957,7 +1957,7 @@
 <a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>5. Private (don&#39;t cache in CDN):
 <a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>Cache-Control: private, max-age=3600
 </code></pre></div>
-<h3 id="lambdaedge">Lambda@Edge<a class="headerlink" href="#lambdaedge" title="Permanent link">&para;</a></h3>
+<h3 id="lambdaedge">Lambda@Edge</h3>
 <p><strong>What is Lambda@Edge?</strong></p>
 <p>Run Lambda functions at CloudFront edge locations for request/response manipulation.</p>
 <p><strong>Four Trigger Points:</strong></p>
@@ -2018,7 +2018,7 @@
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>Timeout: 5 seconds (viewer), 30 seconds (origin)
 <a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>Package size: 1 MB (viewer), 50 MB (origin)
 </code></pre></div>
-<h3 id="cloudfront-functions">CloudFront Functions<a class="headerlink" href="#cloudfront-functions" title="Permanent link">&para;</a></h3>
+<h3 id="cloudfront-functions">CloudFront Functions</h3>
 <p><strong>Lightweight alternative to Lambda@Edge:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>CloudFront Functions vs Lambda@Edge:
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
@@ -2050,7 +2050,7 @@
 <a id="__codelineno-22-28" name="__codelineno-22-28" href="#__codelineno-22-28"></a>- Origin request/response
 <a id="__codelineno-22-29" name="__codelineno-22-29" href="#__codelineno-22-29"></a>- Large packages
 </code></pre></div>
-<h3 id="signed-urls-and-signed-cookies">Signed URLs and Signed Cookies<a class="headerlink" href="#signed-urls-and-signed-cookies" title="Permanent link">&para;</a></h3>
+<h3 id="signed-urls-and-signed-cookies">Signed URLs and Signed Cookies</h3>
 <p><strong>Restrict Access to Private Content:</strong></p>
 <p><strong>Signed URLs:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>Use for: Individual file access (videos, downloads)
@@ -2135,7 +2135,7 @@
 <a id="__codelineno-25-42" name="__codelineno-25-42" href="#__codelineno-25-42"></a>    <span class="n">expire_minutes</span><span class="o">=</span><span class="mi">120</span>
 <a id="__codelineno-25-43" name="__codelineno-25-43" href="#__codelineno-25-43"></a><span class="p">)</span>
 </code></pre></div>
-<h3 id="security-headers">Security Headers<a class="headerlink" href="#security-headers" title="Permanent link">&para;</a></h3>
+<h3 id="security-headers">Security Headers</h3>
 <p><strong>Recommended Security Headers:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>X-Content-Type-Options: nosniff
 <a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>  - Prevents MIME type sniffing
@@ -2193,8 +2193,8 @@
 <a id="__codelineno-27-32" name="__codelineno-27-32" href="#__codelineno-27-32"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">;</span>
 <a id="__codelineno-27-33" name="__codelineno-27-33" href="#__codelineno-27-33"></a><span class="p">};</span>
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-creating-cloudfront-distribution-for-static-website">Lab 1: Creating CloudFront Distribution for Static Website<a class="headerlink" href="#lab-1-creating-cloudfront-distribution-for-static-website" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-creating-cloudfront-distribution-for-static-website">Lab 1: Creating CloudFront Distribution for Static Website</h3>
 <p><strong>Objective:</strong> Deploy global CDN for S3-hosted static website.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># Create S3 bucket</span>
 <a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>aws<span class="w"> </span>s3<span class="w"> </span>mb<span class="w"> </span>s3://my-static-website-bucket
@@ -2313,7 +2313,7 @@
 <a id="__codelineno-28-115" name="__codelineno-28-115" href="#__codelineno-28-115"></a><span class="c1"># Wait for deployment (takes 15-20 minutes)</span>
 <a id="__codelineno-28-116" name="__codelineno-28-116" href="#__codelineno-28-116"></a>aws<span class="w"> </span>cloudfront<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>distribution-deployed<span class="w"> </span>--id<span class="w"> </span><span class="nv">$DISTRIBUTION_ID</span>
 </code></pre></div>
-<h3 id="lab-2-custom-ssl-certificate-with-acm">Lab 2: Custom SSL Certificate with ACM<a class="headerlink" href="#lab-2-custom-ssl-certificate-with-acm" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-custom-ssl-certificate-with-acm">Lab 2: Custom SSL Certificate with ACM</h3>
 <p><strong>Objective:</strong> Configure custom domain with HTTPS.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># Request certificate in us-east-1 (required for CloudFront)</span>
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="nv">CERTIFICATE_ARN</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>acm<span class="w"> </span>request-certificate<span class="w"> </span><span class="se">\</span>
@@ -2372,7 +2372,7 @@
 <a id="__codelineno-29-55" name="__codelineno-29-55" href="#__codelineno-29-55"></a><span class="s1">      }]</span>
 <a id="__codelineno-29-56" name="__codelineno-29-56" href="#__codelineno-29-56"></a><span class="s1">    }&#39;</span>
 </code></pre></div>
-<h3 id="lab-3-lambdaedge-for-dynamic-content">Lab 3: Lambda@Edge for Dynamic Content<a class="headerlink" href="#lab-3-lambdaedge-for-dynamic-content" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-lambdaedge-for-dynamic-content">Lab 3: Lambda@Edge for Dynamic Content</h3>
 <p><strong>Objective:</strong> Implement A/B testing and security headers with Lambda@Edge.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1">// a-b-testing-viewer-request.js</span>
 <a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
@@ -2546,7 +2546,7 @@
 <a id="__codelineno-32-67" name="__codelineno-32-67" href="#__codelineno-32-67"></a><span class="s1">      }</span>
 <a id="__codelineno-32-68" name="__codelineno-32-68" href="#__codelineno-32-68"></a><span class="s1">    }&#39;</span>
 </code></pre></div>
-<h3 id="lab-4-signed-urls-for-premium-content">Lab 4: Signed URLs for Premium Content<a class="headerlink" href="#lab-4-signed-urls-for-premium-content" title="Permanent link">&para;</a></h3>
+<h3 id="lab-4-signed-urls-for-premium-content">Lab 4: Signed URLs for Premium Content</h3>
 <p><strong>Objective:</strong> Restrict access to premium content with signed URLs.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="c1"># generate_signed_url.py</span>
 <a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -2740,8 +2740,8 @@
 <a id="__codelineno-33-190" name="__codelineno-33-190" href="#__codelineno-33-190"></a>
 <a id="__codelineno-33-191" name="__codelineno-33-191" href="#__codelineno-33-191"></a>    <span class="k">return</span> <span class="n">response</span>
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="cache-hit-ratio-optimization">Cache Hit Ratio Optimization<a class="headerlink" href="#cache-hit-ratio-optimization" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="cache-hit-ratio-optimization">Cache Hit Ratio Optimization</h3>
 <p><strong>Analyzing Cache Performance:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="c1"># cache_analyzer.py</span>
 <a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -2937,7 +2937,7 @@
 <a id="__codelineno-34-192" name="__codelineno-34-192" href="#__codelineno-34-192"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Impact: </span><span class="si">{</span><span class="n">issue</span><span class="p">[</span><span class="s1">&#39;impact&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <a id="__codelineno-34-193" name="__codelineno-34-193" href="#__codelineno-34-193"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Fix: </span><span class="si">{</span><span class="n">issue</span><span class="p">[</span><span class="s1">&#39;recommendation&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="origin-shield">Origin Shield<a class="headerlink" href="#origin-shield" title="Permanent link">&para;</a></h3>
+<h3 id="origin-shield">Origin Shield</h3>
 <p><strong>Additional Caching Layer:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>Benefits of Origin Shield:
 <a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>- Centralized cache layer before origin
@@ -2975,7 +2975,7 @@
 <a id="__codelineno-36-15" name="__codelineno-36-15" href="#__codelineno-36-15"></a><span class="s1">      }</span>
 <a id="__codelineno-36-16" name="__codelineno-36-16" href="#__codelineno-36-16"></a><span class="s1">    }&#39;</span>
 </code></pre></div>
-<h3 id="advanced-cache-key-configuration">Advanced Cache Key Configuration<a class="headerlink" href="#advanced-cache-key-configuration" title="Permanent link">&para;</a></h3>
+<h3 id="advanced-cache-key-configuration">Advanced Cache Key Configuration</h3>
 <p><strong>Cache Policy (New Method):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="c1"># Create cache policy with precise control</span>
 <a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>aws<span class="w"> </span>cloudfront<span class="w"> </span>create-cache-policy<span class="w"> </span>--cache-policy-config<span class="w"> </span><span class="s1">&#39;{</span>
@@ -3025,7 +3025,7 @@
 <a id="__codelineno-38-16" name="__codelineno-38-16" href="#__codelineno-38-16"></a>✓ Product ID query string only
 <a id="__codelineno-38-17" name="__codelineno-38-17" href="#__codelineno-38-17"></a>✓ Normalized Accept-Encoding
 </code></pre></div>
-<h3 id="cost-optimization">Cost Optimization<a class="headerlink" href="#cost-optimization" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization">Cost Optimization</h3>
 <p><strong>Price Class Selection:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>Price Classes:
 <a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>- PriceClass_All: All edge locations (highest performance, highest cost)
@@ -3076,8 +3076,8 @@
 <a id="__codelineno-40-31" name="__codelineno-40-31" href="#__codelineno-40-31"></a>    <span class="p">}</span>
 <a id="__codelineno-40-32" name="__codelineno-40-32" href="#__codelineno-40-32"></a><span class="p">]</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="distribution-configuration-tips">Distribution Configuration Tips<a class="headerlink" href="#distribution-configuration-tips" title="Permanent link">&para;</a></h3>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
+<h3 id="distribution-configuration-tips">Distribution Configuration Tips</h3>
 <p><strong>Tip 1: Always Use HTTPS</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="c1"># Redirect HTTP to HTTPS</span>
 <a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="s2">&quot;ViewerProtocolPolicy&quot;</span>:<span class="w"> </span><span class="s2">&quot;redirect-to-https&quot;</span>
@@ -3116,7 +3116,7 @@
 <a id="__codelineno-43-10" name="__codelineno-43-10" href="#__codelineno-43-10"></a><span class="c1"># Origin (ALB/EC2) verifies header</span>
 <a id="__codelineno-43-11" name="__codelineno-43-11" href="#__codelineno-43-11"></a><span class="c1"># Reject requests without header (bypass protection)</span>
 </code></pre></div>
-<h3 id="cache-behavior-tips">Cache Behavior Tips<a class="headerlink" href="#cache-behavior-tips" title="Permanent link">&para;</a></h3>
+<h3 id="cache-behavior-tips">Cache Behavior Tips</h3>
 <p><strong>Tip 4: Separate Behaviors for Different Content Types</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="c1"># Optimal cache behaviors</span>
 <a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>Behaviors:
@@ -3161,7 +3161,7 @@
 <a id="__codelineno-45-19" name="__codelineno-45-19" href="#__codelineno-45-19"></a><span class="c1"># Ignores utm_* and timestamp</span>
 <a id="__codelineno-45-20" name="__codelineno-45-20" href="#__codelineno-45-20"></a><span class="c1"># Higher hit rate</span>
 </code></pre></div>
-<h3 id="security-tips">Security Tips<a class="headerlink" href="#security-tips" title="Permanent link">&para;</a></h3>
+<h3 id="security-tips">Security Tips</h3>
 <p><strong>Tip 6: Use Origin Access Identity (OAI) for S3</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="c1"># Prevent direct S3 access</span>
 <a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="c1"># Force all access through CloudFront</span>
@@ -3202,7 +3202,7 @@
 <a id="__codelineno-48-12" name="__codelineno-48-12" href="#__codelineno-48-12"></a>-<span class="w"> </span>Licensing<span class="w"> </span>restrictions
 <a id="__codelineno-48-13" name="__codelineno-48-13" href="#__codelineno-48-13"></a>-<span class="w"> </span>Reduce<span class="w"> </span>abuse<span class="w"> </span>from<span class="w"> </span>specific<span class="w"> </span>regions
 </code></pre></div>
-<h3 id="monitoring-tips">Monitoring Tips<a class="headerlink" href="#monitoring-tips" title="Permanent link">&para;</a></h3>
+<h3 id="monitoring-tips">Monitoring Tips</h3>
 <p><strong>Tip 9: Enable CloudFront Logging</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="c1"># Enable access logs</span>
 <a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="s2">&quot;Logging&quot;</span>:<span class="w"> </span><span class="o">{</span>
@@ -3265,8 +3265,8 @@
 <a id="__codelineno-50-37" name="__codelineno-50-37" href="#__codelineno-50-37"></a>        <span class="n">Statistic</span><span class="o">=</span><span class="s1">&#39;Average&#39;</span>
 <a id="__codelineno-50-38" name="__codelineno-50-38" href="#__codelineno-50-38"></a>    <span class="p">)</span>
 </code></pre></div>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-low-cache-hit-rate">Pitfall 1: Low Cache Hit Rate<a class="headerlink" href="#pitfall-1-low-cache-hit-rate" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-low-cache-hit-rate">Pitfall 1: Low Cache Hit Rate</h3>
 <p><strong>Problem:</strong> Most requests miss cache and fetch from origin, negating CDN benefits.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -3402,7 +3402,7 @@
 <li>Target: &gt; 85% cache hit rate</li>
 </ul>
 <hr />
-<h3 id="pitfall-2-serving-stale-content-after-updates">Pitfall 2: Serving Stale Content After Updates<a class="headerlink" href="#pitfall-2-serving-stale-content-after-updates" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-2-serving-stale-content-after-updates">Pitfall 2: Serving Stale Content After Updates</h3>
 <p><strong>Problem:</strong> CloudFront serves old cached content after origin updates.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -3559,7 +3559,7 @@
 <li>Test cache behavior before production</li>
 </ul>
 <hr />
-<h3 id="pitfall-3-origin-exposure-to-ddos">Pitfall 3: Origin Exposure to DDoS<a class="headerlink" href="#pitfall-3-origin-exposure-to-ddos" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-3-origin-exposure-to-ddos">Pitfall 3: Origin Exposure to DDoS</h3>
 <p><strong>Problem:</strong> Origin servers directly accessible, bypassing CloudFront protection.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -3670,7 +3670,7 @@
 <li>Monitor origin access logs</li>
 </ul>
 <hr />
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>Amazon CloudFront provides global content delivery with 450+ edge locations, delivering microsecond latency to users worldwide. Understanding distributions, origins, cache behaviors, Lambda@Edge, signed URLs, and security best practices is essential for production deployments. Proper cache key configuration maximizes hit rates, appropriate TTL settings balance freshness and performance, and origin protection prevents DDoS attacks. CloudFront transforms slow centralized applications into fast global systems.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -3683,7 +3683,7 @@
 <li><strong>Monitor cache hit rate:</strong> Use CloudWatch metrics, analyze logs with Athena</li>
 </ul>
 <p>Understanding CloudFront deeply enables you to deliver exceptional global performance, reduce origin load, and build secure, scalable content delivery systems.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>CloudFront default TTL?</strong>
 a) 1 hour

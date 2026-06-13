@@ -2014,9 +2014,9 @@
   
 
 
-<h1 id="appendix-c-troubleshooting-guide">Appendix C: Troubleshooting Guide<a class="headerlink" href="#appendix-c-troubleshooting-guide" title="Permanent link">&para;</a></h1>
-<h2 id="ec2-troubleshooting">EC2 Troubleshooting<a class="headerlink" href="#ec2-troubleshooting" title="Permanent link">&para;</a></h2>
-<h3 id="issue-1-cannot-connect-to-ec2-instance-via-ssh">Issue 1: Cannot Connect to EC2 Instance via SSH<a class="headerlink" href="#issue-1-cannot-connect-to-ec2-instance-via-ssh" title="Permanent link">&para;</a></h3>
+<h1 id="appendix-c-troubleshooting-guide">Appendix C: Troubleshooting Guide</h1>
+<h2 id="ec2-troubleshooting">EC2 Troubleshooting</h2>
+<h3 id="issue-1-cannot-connect-to-ec2-instance-via-ssh">Issue 1: Cannot Connect to EC2 Instance via SSH</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>SYMPTOM:
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Connection timeout when attempting SSH to EC2 instance
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Error: &quot;ssh: connect to host X.X.X.X port 22: Operation timed out&quot;
@@ -2181,7 +2181,7 @@
 <a id="__codelineno-0-162" name="__codelineno-0-162" href="#__codelineno-0-162"></a>✓ Use bastion hosts for private instances
 <a id="__codelineno-0-163" name="__codelineno-0-163" href="#__codelineno-0-163"></a>✓ Implement VPN for secure access
 </code></pre></div>
-<h3 id="issue-2-ec2-instance-unexpectedly-terminated">Issue 2: EC2 Instance Unexpectedly Terminated<a class="headerlink" href="#issue-2-ec2-instance-unexpectedly-terminated" title="Permanent link">&para;</a></h3>
+<h3 id="issue-2-ec2-instance-unexpectedly-terminated">Issue 2: EC2 Instance Unexpectedly Terminated</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>SYMPTOM:
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>EC2 instance terminated without manual intervention
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Instance no longer appears in running instances
@@ -2313,8 +2313,8 @@
 <a id="__codelineno-1-129" name="__codelineno-1-129" href="#__codelineno-1-129"></a>✓ Regular backups via AMIs or snapshots
 <a id="__codelineno-1-130" name="__codelineno-1-130" href="#__codelineno-1-130"></a>✓ Document instance configurations (IaC)
 </code></pre></div>
-<h2 id="vpc-networking-troubleshooting">VPC Networking Troubleshooting<a class="headerlink" href="#vpc-networking-troubleshooting" title="Permanent link">&para;</a></h2>
-<h3 id="issue-3-instance-cannot-access-internet">Issue 3: Instance Cannot Access Internet<a class="headerlink" href="#issue-3-instance-cannot-access-internet" title="Permanent link">&para;</a></h3>
+<h2 id="vpc-networking-troubleshooting">VPC Networking Troubleshooting</h2>
+<h3 id="issue-3-instance-cannot-access-internet">Issue 3: Instance Cannot Access Internet</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>SYMPTOM:
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>EC2 instance in VPC cannot reach internet
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Ping/curl to external sites timeout
@@ -2485,7 +2485,7 @@
 <a id="__codelineno-2-168" name="__codelineno-2-168" href="#__codelineno-2-168"></a>✓ Test connectivity after VPC changes
 <a id="__codelineno-2-169" name="__codelineno-2-169" href="#__codelineno-2-169"></a>✓ Use VPC Reachability Analyzer
 </code></pre></div>
-<h3 id="issue-4-cannot-connect-between-vpcs">Issue 4: Cannot Connect Between VPCs<a class="headerlink" href="#issue-4-cannot-connect-between-vpcs" title="Permanent link">&para;</a></h3>
+<h3 id="issue-4-cannot-connect-between-vpcs">Issue 4: Cannot Connect Between VPCs</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>SYMPTOM:
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Instances in different VPCs cannot communicate
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>VPC peering connection exists but traffic not flowing
@@ -2596,8 +2596,8 @@
 <a id="__codelineno-3-108" name="__codelineno-3-108" href="#__codelineno-3-108"></a>
 <a id="__codelineno-3-109" name="__codelineno-3-109" href="#__codelineno-3-109"></a>Update route tables to use TGW
 </code></pre></div>
-<h2 id="rds-database-troubleshooting">RDS Database Troubleshooting<a class="headerlink" href="#rds-database-troubleshooting" title="Permanent link">&para;</a></h2>
-<h3 id="issue-5-cannot-connect-to-rds-database">Issue 5: Cannot Connect to RDS Database<a class="headerlink" href="#issue-5-cannot-connect-to-rds-database" title="Permanent link">&para;</a></h3>
+<h2 id="rds-database-troubleshooting">RDS Database Troubleshooting</h2>
+<h3 id="issue-5-cannot-connect-to-rds-database">Issue 5: Cannot Connect to RDS Database</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>SYMPTOM:
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Application cannot establish connection to RDS
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Connection timeout or &quot;Connection refused&quot; errors
@@ -2743,7 +2743,7 @@
 <a id="__codelineno-4-143" name="__codelineno-4-143" href="#__codelineno-4-143"></a>✓ Enable automated backups
 <a id="__codelineno-4-144" name="__codelineno-4-144" href="#__codelineno-4-144"></a>✓ Use Secrets Manager for credential management
 </code></pre></div>
-<h3 id="issue-6-rds-performance-degradation">Issue 6: RDS Performance Degradation<a class="headerlink" href="#issue-6-rds-performance-degradation" title="Permanent link">&para;</a></h3>
+<h3 id="issue-6-rds-performance-degradation">Issue 6: RDS Performance Degradation</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>SYMPTOM:
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Slow queries, high latency, application timeouts
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Database response times significantly increased
@@ -2924,8 +2924,8 @@
 <a id="__codelineno-5-178" name="__codelineno-5-178" href="#__codelineno-5-178"></a>✓ Right-size instance based on actual usage
 <a id="__codelineno-5-179" name="__codelineno-5-179" href="#__codelineno-5-179"></a>✓ Load test before production
 </code></pre></div>
-<h2 id="s3-troubleshooting">S3 Troubleshooting<a class="headerlink" href="#s3-troubleshooting" title="Permanent link">&para;</a></h2>
-<h3 id="issue-7-access-denied-to-s3-bucket">Issue 7: Access Denied to S3 Bucket<a class="headerlink" href="#issue-7-access-denied-to-s3-bucket" title="Permanent link">&para;</a></h3>
+<h2 id="s3-troubleshooting">S3 Troubleshooting</h2>
+<h3 id="issue-7-access-denied-to-s3-bucket">Issue 7: Access Denied to S3 Bucket</h3>
 <p>```
 SYMPTOM:
 "Access Denied" error when accessing S3 bucket or objects

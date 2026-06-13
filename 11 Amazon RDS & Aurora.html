@@ -1677,15 +1677,15 @@
   
 
 
-<h1 id="part-4-database-services">Part 4: Database Services<a class="headerlink" href="#part-4-database-services" title="Permanent link">&para;</a></h1>
-<h1 id="chapter-11-amazon-rds-aurora">Chapter 11: Amazon RDS \&amp; Aurora<a class="headerlink" href="#chapter-11-amazon-rds-aurora" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="part-4-database-services">Part 4: Database Services</h1>
+<h1 id="chapter-11-amazon-rds-aurora">Chapter 11: Amazon RDS \&amp; Aurora</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Relational databases form the backbone of most enterprise applications, storing structured data with ACID guarantees, supporting complex queries with SQL, and maintaining referential integrity through foreign keys. Amazon Relational Database Service (RDS) and Amazon Aurora revolutionize database management by automating time-consuming administrative tasks—provisioning, patching, backups, recovery, failure detection, and repair—while providing enterprise-grade reliability, security, and performance at a fraction of the operational cost.</p>
 <p>RDS supports six database engines—PostgreSQL, MySQL, MariaDB, Oracle, SQL Server, and Amazon Aurora—allowing you to run familiar databases in the cloud without changing application code. RDS automates backups, software patching, scaling, and replication, reducing database administration overhead by up to 80%. Multi-AZ deployments provide automatic failover for high availability, while read replicas enable horizontal scaling for read-heavy workloads. Understanding when to use each engine, how to configure performance, and implementing proper backup strategies separates basic RDS usage from production-grade deployments.</p>
 <p>Amazon Aurora, AWS's cloud-native relational database, represents a fundamental rearchitecture. Built from the ground up for the cloud, Aurora delivers up to 5x the throughput of MySQL and 3x PostgreSQL, with storage that automatically scales from 10 GB to 128 TB. Aurora's distributed, fault-tolerant architecture replicates data six ways across three Availability Zones, providing 99.99% availability with automatic failover in less than 30 seconds. Aurora Global Database enables sub-second replication across regions for disaster recovery and global applications. These innovations make Aurora the default choice for new cloud-native applications requiring relational database capabilities.</p>
 <p>This chapter provides comprehensive coverage of RDS and Aurora from fundamentals to production patterns. You'll learn engine selection criteria, Multi-AZ and read replica architectures, backup and recovery strategies, performance optimization techniques, Aurora-specific features like Aurora Serverless and Global Database, monitoring and alerting, cost optimization, and high availability implementations. Whether you're migrating existing databases or building new applications, mastering RDS and Aurora is essential for reliable, performant cloud applications.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="rds-fundamentals">RDS Fundamentals<a class="headerlink" href="#rds-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="rds-fundamentals">RDS Fundamentals</h3>
 <p><strong>What is Amazon RDS?</strong></p>
 <p>RDS is a managed relational database service that automates administrative tasks while providing the database engines you already know.</p>
 <p><strong>Key Features:</strong></p>
@@ -1749,7 +1749,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="rds-database-engines">RDS Database Engines<a class="headerlink" href="#rds-database-engines" title="Permanent link">&para;</a></h3>
+<h3 id="rds-database-engines">RDS Database Engines</h3>
 <p><strong>1. Amazon Aurora</strong></p>
 <p>AWS's cloud-native database, compatible with MySQL and PostgreSQL.</p>
 <ul>
@@ -1815,7 +1815,7 @@
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Oracle: Enterprise apps, Oracle-specific features
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>SQL Server: .NET/Microsoft ecosystem
 </code></pre></div>
-<h3 id="multi-az-deployments">Multi-AZ Deployments<a class="headerlink" href="#multi-az-deployments" title="Permanent link">&para;</a></h3>
+<h3 id="multi-az-deployments">Multi-AZ Deployments</h3>
 <p>Multi-AZ provides high availability through synchronous replication to a standby instance in a different AZ.</p>
 <p><strong>Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Primary AZ (us-east-1a)
@@ -1867,7 +1867,7 @@
 <li><strong>Cost:</strong> ~2x primary instance cost</li>
 <li><strong>Write Performance:</strong> Slight impact from synchronous replication</li>
 </ul>
-<h3 id="read-replicas">Read Replicas<a class="headerlink" href="#read-replicas" title="Permanent link">&para;</a></h3>
+<h3 id="read-replicas">Read Replicas</h3>
 <p>Read replicas enable horizontal scaling for read-heavy workloads through asynchronous replication.</p>
 <p><strong>Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Primary Instance (us-east-1a)
@@ -1978,7 +1978,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="amazon-aurora-architecture">Amazon Aurora Architecture<a class="headerlink" href="#amazon-aurora-architecture" title="Permanent link">&para;</a></h3>
+<h3 id="amazon-aurora-architecture">Amazon Aurora Architecture</h3>
 <p>Aurora is purpose-built for the cloud with a distributed, fault-tolerant storage layer.</p>
 <p><strong>Storage Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Aurora Instance (Compute)
@@ -2113,7 +2113,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="aurora-serverless">Aurora Serverless<a class="headerlink" href="#aurora-serverless" title="Permanent link">&para;</a></h3>
+<h3 id="aurora-serverless">Aurora Serverless</h3>
 <p>Aurora Serverless automatically scales compute capacity based on application demand.</p>
 <p><strong>Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Application
@@ -2165,7 +2165,7 @@
 <a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
 <a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>Savings: 80% for intermittent workloads
 </code></pre></div>
-<h3 id="backup-and-recovery">Backup and Recovery<a class="headerlink" href="#backup-and-recovery" title="Permanent link">&para;</a></h3>
+<h3 id="backup-and-recovery">Backup and Recovery</h3>
 <p><strong>Automated Backups:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Automated Backups (enabled by default)
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>├── Retention: 1-35 days (7 days default)
@@ -2253,7 +2253,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h3>
+<h3 id="security">Security</h3>
 <p><strong>Network Isolation:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>VPC (10.0.0.0/16)
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>├── Public Subnet (DMZ)
@@ -2331,8 +2331,8 @@
 <a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">    </span>--cloudwatch-logs-export-configuration<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">        </span><span class="nv">EnableLogTypes</span><span class="o">=[</span><span class="s2">&quot;postgresql&quot;</span><span class="o">]</span>
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-creating-production-rds-instance">Lab 1: Creating Production RDS Instance<a class="headerlink" href="#lab-1-creating-production-rds-instance" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-creating-production-rds-instance">Lab 1: Creating Production RDS Instance</h3>
 <p><strong>Objective:</strong> Deploy production-ready RDS PostgreSQL with Multi-AZ and monitoring.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Create DB subnet group</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>aws<span class="w"> </span>rds<span class="w"> </span>create-db-subnet-group<span class="w"> </span><span class="se">\</span>
@@ -2411,7 +2411,7 @@
 <a id="__codelineno-16-75" name="__codelineno-16-75" href="#__codelineno-16-75"></a>
 <a id="__codelineno-16-76" name="__codelineno-16-76" href="#__codelineno-16-76"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Database endpoint: </span><span class="nv">$ENDPOINT</span><span class="s2">&quot;</span>
 </code></pre></div>
-<h3 id="lab-2-creating-aurora-cluster-with-read-replicas">Lab 2: Creating Aurora Cluster with Read Replicas<a class="headerlink" href="#lab-2-creating-aurora-cluster-with-read-replicas" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-creating-aurora-cluster-with-read-replicas">Lab 2: Creating Aurora Cluster with Read Replicas</h3>
 <p><strong>Objective:</strong> Deploy Aurora PostgreSQL cluster with multi-region disaster recovery.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Create Aurora cluster</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>aws<span class="w"> </span>rds<span class="w"> </span>create-db-cluster<span class="w"> </span><span class="se">\</span>
@@ -2469,7 +2469,7 @@
 <a id="__codelineno-17-54" name="__codelineno-17-54" href="#__codelineno-17-54"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Writer endpoint: </span><span class="nv">$WRITER_ENDPOINT</span><span class="s2">&quot;</span>
 <a id="__codelineno-17-55" name="__codelineno-17-55" href="#__codelineno-17-55"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Reader endpoint: </span><span class="nv">$READER_ENDPOINT</span><span class="s2">&quot;</span>
 </code></pre></div>
-<h3 id="lab-3-setting-up-aurora-global-database">Lab 3: Setting Up Aurora Global Database<a class="headerlink" href="#lab-3-setting-up-aurora-global-database" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-setting-up-aurora-global-database">Lab 3: Setting Up Aurora Global Database</h3>
 <p><strong>Objective:</strong> Configure cross-region replication for disaster recovery.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Create primary cluster (us-east-1)</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>aws<span class="w"> </span>rds<span class="w"> </span>create-global-cluster<span class="w"> </span><span class="se">\</span>
@@ -2522,8 +2522,8 @@
 <a id="__codelineno-18-49" name="__codelineno-18-49" href="#__codelineno-18-49"></a><span class="w">    </span>--region<span class="w"> </span>us-west-2<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-18-50" name="__codelineno-18-50" href="#__codelineno-18-50"></a><span class="w">    </span>--query<span class="w"> </span><span class="s1">&#39;DBClusters[0].GlobalWriteForwardingStatus&#39;</span>
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="connection-pool-management">Connection Pool Management<a class="headerlink" href="#connection-pool-management" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="connection-pool-management">Connection Pool Management</h3>
 <p><strong>Connection Pooling Best Practices:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># connection_pool.py</span>
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">psycopg2</span>
@@ -2653,7 +2653,7 @@
 <a id="__codelineno-20-40" name="__codelineno-20-40" href="#__codelineno-20-40"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Per instance: min=</span><span class="si">{</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;recommended_min&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, max=</span><span class="si">{</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;recommended_max&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <a id="__codelineno-20-41" name="__codelineno-20-41" href="#__codelineno-20-41"></a><span class="c1"># Output: Per instance: min=5, max=22</span>
 </code></pre></div>
-<h3 id="rds-proxy">RDS Proxy<a class="headerlink" href="#rds-proxy" title="Permanent link">&para;</a></h3>
+<h3 id="rds-proxy">RDS Proxy</h3>
 <p>RDS Proxy manages connection pooling at the AWS infrastructure level.</p>
 <p><strong>Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>Application Instances (100s)
@@ -2711,7 +2711,7 @@
 <a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>- Long-running connections (cost not justified)
 <a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>- Simple workloads with few connections
 </code></pre></div>
-<h3 id="performance-optimization">Performance Optimization<a class="headerlink" href="#performance-optimization" title="Permanent link">&para;</a></h3>
+<h3 id="performance-optimization">Performance Optimization</h3>
 <p><strong>Parameter Tuning:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1">-- PostgreSQL performance parameters</span>
 <a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
@@ -2876,7 +2876,7 @@
 <a id="__codelineno-26-55" name="__codelineno-26-55" href="#__codelineno-26-55"></a><span class="c1"># Usage</span>
 <a id="__codelineno-26-56" name="__codelineno-26-56" href="#__codelineno-26-56"></a><span class="n">analyze_performance_insights</span><span class="p">(</span><span class="s1">&#39;production-postgres&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="high-availability-patterns">High Availability Patterns<a class="headerlink" href="#high-availability-patterns" title="Permanent link">&para;</a></h3>
+<h3 id="high-availability-patterns">High Availability Patterns</h3>
 <p><strong>Multi-AZ with Read Replicas:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>Primary AZ (us-east-1a)
 <a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>├── Primary Instance (writes + reads)
@@ -3013,7 +3013,7 @@
 <a id="__codelineno-29-96" name="__codelineno-29-96" href="#__codelineno-29-96"></a><span class="c1"># Run monthly failover test</span>
 <a id="__codelineno-29-97" name="__codelineno-29-97" href="#__codelineno-29-97"></a><span class="n">test_failover</span><span class="p">(</span><span class="s1">&#39;production-postgres&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="disaster-recovery-strategy">Disaster Recovery Strategy<a class="headerlink" href="#disaster-recovery-strategy" title="Permanent link">&para;</a></h3>
+<h3 id="disaster-recovery-strategy">Disaster Recovery Strategy</h3>
 <p><strong>RTO and RPO Planning:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>Recovery Time Objective (RTO): How quickly can we recover?
 <a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>Recovery Point Objective (RPO): How much data loss is acceptable?
@@ -3200,8 +3200,8 @@
 <a id="__codelineno-31-167" name="__codelineno-31-167" href="#__codelineno-31-167"></a><span class="c1">#     record_name=&#39;db.example.com&#39;</span>
 <a id="__codelineno-31-168" name="__codelineno-31-168" href="#__codelineno-31-168"></a><span class="c1"># )</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="engine-selection-tips">Engine Selection Tips<a class="headerlink" href="#engine-selection-tips" title="Permanent link">&para;</a></h3>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
+<h3 id="engine-selection-tips">Engine Selection Tips</h3>
 <p><strong>Tip 1: Choose Aurora for Cloud-Native Applications</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>Use Aurora when:
 <a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>- Building new applications in AWS
@@ -3232,7 +3232,7 @@
 <a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a>- Web applications (WordPress, Drupal)
 <a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a>- When team has MySQL expertise
 </code></pre></div>
-<h3 id="performance-tips">Performance Tips<a class="headerlink" href="#performance-tips" title="Permanent link">&para;</a></h3>
+<h3 id="performance-tips">Performance Tips</h3>
 <p><strong>Tip 3: Right-Size Instance Class</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">recommend_instance_class</span><span class="p">(</span><span class="n">metrics</span><span class="p">):</span>
 <a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -3290,7 +3290,7 @@
 <a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a><span class="c1"># - OS processes</span>
 <a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a><span class="c1"># - CPU utilization per core</span>
 </code></pre></div>
-<h3 id="backup-and-recovery-tips">Backup and Recovery Tips<a class="headerlink" href="#backup-and-recovery-tips" title="Permanent link">&para;</a></h3>
+<h3 id="backup-and-recovery-tips">Backup and Recovery Tips</h3>
 <p><strong>Tip 6: Set Appropriate Backup Windows</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>Best practices:
 <a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>- Schedule during low-traffic period
@@ -3360,7 +3360,7 @@
 <a id="__codelineno-39-44" name="__codelineno-39-44" href="#__codelineno-39-44"></a><span class="c1"># Run weekly via EventBridge</span>
 <a id="__codelineno-39-45" name="__codelineno-39-45" href="#__codelineno-39-45"></a><span class="n">cleanup_old_snapshots</span><span class="p">(</span><span class="s1">&#39;production-db&#39;</span><span class="p">,</span> <span class="n">retention_days</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="security-tips">Security Tips<a class="headerlink" href="#security-tips" title="Permanent link">&para;</a></h3>
+<h3 id="security-tips">Security Tips</h3>
 <p><strong>Tip 9: Always Enable Encryption</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="c1"># Enable encryption at creation (cannot be enabled later)</span>
 <a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>aws<span class="w"> </span>rds<span class="w"> </span>create-db-instance<span class="w"> </span><span class="se">\</span>
@@ -3417,7 +3417,7 @@
 <a id="__codelineno-42-12" name="__codelineno-42-12" href="#__codelineno-42-12"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="w"> </span><span class="k">INSERT</span><span class="p">,</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">,</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">app_user</span><span class="p">;</span>
 <a id="__codelineno-42-13" name="__codelineno-42-13" href="#__codelineno-42-13"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">USAGE</span><span class="p">,</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="n">SEQUENCES</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">app_user</span><span class="p">;</span>
 </code></pre></div>
-<h3 id="cost-optimization-tips">Cost Optimization Tips<a class="headerlink" href="#cost-optimization-tips" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization-tips">Cost Optimization Tips</h3>
 <p><strong>Tip 12: Use Reserved Instances</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>Savings for 1-year commitment:
 <a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>- No Upfront: 30% savings
@@ -3451,8 +3451,8 @@
 <a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>
 <a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a>Savings: 80% for dev/test environments
 </code></pre></div>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-connection-exhaustion">Pitfall 1: Connection Exhaustion<a class="headerlink" href="#pitfall-1-connection-exhaustion" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-connection-exhaustion">Pitfall 1: Connection Exhaustion</h3>
 <p><strong>Problem:</strong> Application exhausts database connections, causing failures.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -3581,7 +3581,7 @@
 <li>Test under load before production</li>
 </ul>
 <hr />
-<h3 id="pitfall-2-inadequate-backup-testing">Pitfall 2: Inadequate Backup Testing<a class="headerlink" href="#pitfall-2-inadequate-backup-testing" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-2-inadequate-backup-testing">Pitfall 2: Inadequate Backup Testing</h3>
 <p><strong>Problem:</strong> Backups exist but restore procedures fail or take too long during actual disaster.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -3795,7 +3795,7 @@
 <li>Update runbooks based on tests</li>
 </ul>
 <hr />
-<h3 id="pitfall-3-upgrade-failures">Pitfall 3: Upgrade Failures<a class="headerlink" href="#pitfall-3-upgrade-failures" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-3-upgrade-failures">Pitfall 3: Upgrade Failures</h3>
 <p><strong>Problem:</strong> Database engine upgrades fail or cause application incompatibility.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -3961,7 +3961,7 @@
 <li>Monitor closely after upgrade</li>
 </ul>
 <hr />
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>Amazon RDS and Aurora provide managed relational database services that eliminate operational overhead while delivering enterprise-grade performance, availability, and security. Understanding engine options, Multi-AZ for high availability, read replicas for scaling, Aurora's distributed architecture, backup strategies, and performance optimization is essential for production database deployments. Proper connection management, monitoring, and disaster recovery planning separate reliable database operations from problematic ones.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -3974,7 +3974,7 @@
 <li><strong>Cost optimization:</strong> Reserved instances (40-60% savings), right-size instances, Aurora Serverless for variable workloads</li>
 </ul>
 <p>Understanding RDS and Aurora deeply enables you to build highly available, performant, secure database systems that scale with your application needs while minimizing operational burden.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>Which Aurora feature provides fastest cold start performance?</strong>
 a) Multi-AZ

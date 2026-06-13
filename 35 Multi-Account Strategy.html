@@ -2024,13 +2024,13 @@
   
 
 
-<h1 id="chapter-35-multi-account-strategy">Chapter 35: Multi-Account Strategy<a class="headerlink" href="#chapter-35-multi-account-strategy" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-35-multi-account-strategy">Chapter 35: Multi-Account Strategy</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Single AWS accounts—where all resources, environments, and teams share one account—create security risks, blast radius concerns, and operational chaos that cripple enterprise cloud adoption. A financial services company running development, testing, and production in one account experiences developer accidentally deleting production database during testing, security team unable to enforce different compliance controls per environment, finance unable to attribute costs to business units, and malicious insider potentially accessing all company data. When development team needs EC2 permissions, they get access to production databases; when security incident occurs in one application, entire company infrastructure potentially compromised. AWS multi-account strategy—segregating workloads, environments, and teams across purpose-built AWS accounts managed centrally through AWS Organizations—provides security isolation, blast radius containment, independent billing, and governance at scale enabling enterprises to safely operate hundreds of AWS accounts.</p>
 <p>The business impact of poor account strategy extends beyond security to operational efficiency and cost management. Organizations operating single accounts face regulatory compliance challenges from inability to prove data isolation, audit nightmares from commingled logs and activities, cost allocation impossibility preventing chargeback to business units, and service quota limitations hitting account maximums. Developer accidentally terminates production EC2 instances costs \$500K in downtime; security breach in development environment exposes production customer data resulting in \$5M regulatory fines; inability to track costs per business unit prevents identifying wasteful spending. AWS Organizations with Control Tower provides enterprise account factory—automated account provisioning with guardrails, centralized billing showing per-account costs, Service Control Policies preventing dangerous actions, and CloudTrail audit logs across all accounts—enabling Fortune 500 companies to operate 500+ accounts with governance, security, and cost visibility.</p>
 <p>This chapter synthesizes AWS services throughout handbook—IAM for cross-account access, CloudFormation for account baselines, CloudTrail for centralized logging, Config for compliance automation, and Cost Explorer for consolidated billing. The chapter covers AWS Organizations structure, Control Tower landing zones, account vending automation, Service Control Policies, cross-account IAM patterns, consolidated billing strategies, compliance automation with Config, and building production multi-account environments where security isolation, operational efficiency, and governance scale to thousands of AWS accounts supporting global enterprises.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="aws-organizations-fundamentals">AWS Organizations Fundamentals<a class="headerlink" href="#aws-organizations-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="aws-organizations-fundamentals">AWS Organizations Fundamentals</h3>
 <p><strong>Hierarchical Account Management:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>AWS Organizations Definition:
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Service for centrally managing multiple AWS accounts
@@ -2246,7 +2246,7 @@
 <a id="__codelineno-0-212" name="__codelineno-0-212" href="#__codelineno-0-212"></a>✓ Early startup (optimize for speed)
 <a id="__codelineno-0-213" name="__codelineno-0-213" href="#__codelineno-0-213"></a>✓ POC/Learning
 </code></pre></div>
-<h3 id="aws-control-tower">AWS Control Tower<a class="headerlink" href="#aws-control-tower" title="Permanent link">&para;</a></h3>
+<h3 id="aws-control-tower">AWS Control Tower</h3>
 <p><strong>Automated Landing Zone Setup:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>AWS Control Tower Definition:
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Service to set up and govern multi-account AWS environment
@@ -2497,7 +2497,7 @@
 <a id="__codelineno-1-247" name="__codelineno-1-247" href="#__codelineno-1-247"></a>9. Implement self-service with approval workflow
 <a id="__codelineno-1-248" name="__codelineno-1-248" href="#__codelineno-1-248"></a>10. Regular access reviews for cross-account roles
 </code></pre></div>
-<h3 id="service-control-policies-scps">Service Control Policies (SCPs)<a class="headerlink" href="#service-control-policies-scps" title="Permanent link">&para;</a></h3>
+<h3 id="service-control-policies-scps">Service Control Policies (SCPs)</h3>
 <p><strong>Organizational Policy Enforcement:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>SCP Definition:
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>JSON policies defining maximum permissions for accounts/OUs
@@ -2749,8 +2749,8 @@
 <a id="__codelineno-2-248" name="__codelineno-2-248" href="#__codelineno-2-248"></a>9. Monitor CloudTrail for denied actions
 <a id="__codelineno-2-249" name="__codelineno-2-249" href="#__codelineno-2-249"></a>10. Use SCP simulator before applying
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-setting-up-aws-organizations">Lab 1: Setting Up AWS Organizations<a class="headerlink" href="#lab-1-setting-up-aws-organizations" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-setting-up-aws-organizations">Lab 1: Setting Up AWS Organizations</h3>
 <p><strong>Objective:</strong> Create AWS Organizations with hierarchical OU structure and Service Control Policies.</p>
 <p><strong>Step 1: Create Organization</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3162,7 +3162,7 @@
 <a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a>
 <a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a><span class="n">configure_consolidated_billing</span><span class="p">()</span>
 </code></pre></div>
-<h3 id="lab-2-cross-account-iam-access">Lab 2: Cross-Account IAM Access<a class="headerlink" href="#lab-2-cross-account-iam-access" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-cross-account-iam-access">Lab 2: Cross-Account IAM Access</h3>
 <p><strong>Objective:</strong> Set up secure cross-account access patterns for different use cases.</p>
 <p><strong>Step 1: Create Cross-Account Role in Target Account</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">create_cross_account_role</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">trusted_account_id</span><span class="p">,</span> <span class="n">role_name</span><span class="p">,</span> <span class="n">permissions</span><span class="p">):</span>
@@ -3437,8 +3437,8 @@
 <a id="__codelineno-11-67" name="__codelineno-11-67" href="#__codelineno-11-67"></a>    <span class="n">target_account_id</span><span class="o">=</span><span class="n">dev_account</span>
 <a id="__codelineno-11-68" name="__codelineno-11-68" href="#__codelineno-11-68"></a><span class="p">)</span>
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="enterprise-governance-patterns">Enterprise Governance Patterns<a class="headerlink" href="#enterprise-governance-patterns" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="enterprise-governance-patterns">Enterprise Governance Patterns</h3>
 <p><strong>Multi-Account Governance at Scale:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Enterprise Account Strategy:
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
@@ -3701,7 +3701,7 @@
 <a id="__codelineno-12-259" name="__codelineno-12-259" href="#__codelineno-12-259"></a>6. Remediation + root cause analysis
 <a id="__codelineno-12-260" name="__codelineno-12-260" href="#__codelineno-12-260"></a>7. Update guardrails to prevent recurrence
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
 <p><strong>Tip 1: Never Run Workloads in Management Account</strong>
 Keep management account for Organizations/billing only—compromise of management account impacts entire organization.</p>
 <p><strong>Tip 2: Use Control Tower for New Organizations</strong>
@@ -3722,7 +3722,7 @@ Comprehensive tagging enables chargeback—track spending by cost center, applic
 Quarterly review of cross-account access—revoke unused permissions, validate access still required.</p>
 <p><strong>Tip 10: Monitor Consolidated Billing</strong>
 Use Cost Explorer to analyze spending—identify cost anomalies, optimize Reserved Instances across accounts.</p>
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>AWS multi-account strategy using Organizations and Control Tower provides enterprise-scale governance enabling secure operation of hundreds of accounts through security isolation, blast radius containment, independent billing, and automated guardrails. Organizations achieving 500+ accounts report 75% reduction in security incidents through account isolation, 50% reduction in account provisioning time through Account Factory automation, and complete cost attribution through consolidated billing. Success requires hierarchical OU structure reflecting environment and business unit separation, Service Control Policies enforcing organization-wide guardrails, automated account vending with baseline configuration, and centralized logging/monitoring across all accounts—transforming multi-account complexity into managed, governed, scalable cloud environment.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>

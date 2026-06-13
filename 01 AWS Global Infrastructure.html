@@ -3376,17 +3376,17 @@
   
 
 
-<h1 id="aws-solution-architect-handbook">AWS Solution Architect: Handbook<a class="headerlink" href="#aws-solution-architect-handbook" title="Permanent link">&para;</a></h1>
-<h2 id="chapter-1-aws-global-infrastructure">Chapter 1: AWS Global Infrastructure<a class="headerlink" href="#chapter-1-aws-global-infrastructure" title="Permanent link">&para;</a></h2>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="aws-solution-architect-handbook">AWS Solution Architect: Handbook</h1>
+<h2 id="chapter-1-aws-global-infrastructure">Chapter 1: AWS Global Infrastructure</h2>
+<h2 id="introduction">Introduction</h2>
 <p>AWS Global Infrastructure forms the foundation upon which all cloud solutions are built. Understanding this infrastructure is not merely an academic exercise—it directly impacts application performance, cost efficiency, compliance requirements, and disaster recovery capabilities. As a Solutions Architect, your ability to make informed decisions about where and how to deploy resources across AWS's global network will determine the success of your cloud implementations.</p>
 <p>The AWS Global Infrastructure is one of the most extensive and reliable cloud platforms available today, spanning multiple continents and offering unprecedented flexibility in deploying applications close to end users while maintaining high availability and fault tolerance. Whether you're architecting a simple web application or a complex, globally distributed system serving millions of users, the infrastructure choices you make at the outset will have cascading effects on every aspect of your solution.</p>
 <p>This chapter explores the fundamental building blocks of AWS infrastructure: Regions, Availability Zones, Edge Locations, and Local Zones. You'll learn not just what these components are, but how to leverage them strategically to build resilient, high-performance, and cost-effective solutions. We'll examine real-world scenarios, walk through hands-on implementations, and uncover common pitfalls that can derail even well-planned architectures.</p>
 <p>By mastering AWS Global Infrastructure, you'll gain the ability to design solutions that meet stringent SLAs, comply with data sovereignty requirements, optimize for latency and throughput, and prepare for both expected growth and unexpected failures. This knowledge serves as the cornerstone for every architectural decision you'll make throughout your AWS journey.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="understanding-aws-global-infrastructure">Understanding AWS Global Infrastructure<a class="headerlink" href="#understanding-aws-global-infrastructure" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="understanding-aws-global-infrastructure">Understanding AWS Global Infrastructure</h3>
 <p>AWS Global Infrastructure is designed with redundancy, fault isolation, and low latency as core principles. The infrastructure is organized in a hierarchical model that provides multiple layers of isolation and geographic distribution, enabling you to build applications that can withstand failures at various levels while delivering optimal performance to users worldwide.</p>
-<h3 id="aws-regions">AWS Regions<a class="headerlink" href="#aws-regions" title="Permanent link">&para;</a></h3>
+<h3 id="aws-regions">AWS Regions</h3>
 <p>An AWS Region is a physical geographic location around the world where AWS clusters data centers. Each Region is completely independent and isolated from other Regions, providing the highest level of fault tolerance and stability. As of 2025, AWS operates <strong>36+ geographic Regions</strong> globally, with <strong>114+ Availability Zones</strong> across <strong>245+ countries and territories</strong>, and plans for continued expansion. Additional Regions are announced or in development for Malaysia, New Zealand, Thailand, and the Kingdom of Saudi Arabia.</p>
 <p><strong>Key Characteristics of Regions:</strong></p>
 <ul>
@@ -3416,7 +3416,7 @@
 <li><strong>Cost Considerations:</strong> Pricing varies by Region based on local operational costs. US East (Northern Virginia) often has the lowest prices</li>
 <li><strong>Disaster Recovery Strategy:</strong> For high availability, consider deploying across multiple Regions</li>
 </ol>
-<h3 id="availability-zones-azs">Availability Zones (AZs)<a class="headerlink" href="#availability-zones-azs" title="Permanent link">&para;</a></h3>
+<h3 id="availability-zones-azs">Availability Zones (AZs)</h3>
 <p>Availability Zones are the fundamental building blocks for high availability within AWS. Each AZ is one or more discrete data centers with redundant power, networking, and connectivity, housed in separate facilities within a Region.</p>
 <p><strong>Key Characteristics of Availability Zones:</strong></p>
 <ul>
@@ -3447,7 +3447,7 @@
 <li><strong>Auto Scaling:</strong> Configure Auto Scaling groups to launch instances across multiple AZs</li>
 <li><strong>Reserved Capacity:</strong> When purchasing Reserved Instances, consider AZ-specific or Regional options</li>
 </ul>
-<h3 id="edge-locations-and-amazon-cloudfront">Edge Locations and Amazon CloudFront<a class="headerlink" href="#edge-locations-and-amazon-cloudfront" title="Permanent link">&para;</a></h3>
+<h3 id="edge-locations-and-amazon-cloudfront">Edge Locations and Amazon CloudFront</h3>
 <p>Edge Locations are AWS sites deployed in major cities and highly populated areas worldwide, separate from Regions and AZs. These locations are part of AWS's Content Delivery Network (CDN) infrastructure, primarily used by Amazon CloudFront and AWS Global Accelerator.</p>
 <p><strong>Key Characteristics of Edge Locations:</strong></p>
 <ul>
@@ -3505,7 +3505,7 @@
 </table>
 <p><strong>Regional Edge Caches:</strong></p>
 <p>Between CloudFront Edge Locations and origin servers, AWS maintains Regional Edge Caches. These intermediate caching layers have larger cache capacity and serve multiple Edge Locations, improving cache hit ratios and reducing load on origin servers.</p>
-<h3 id="local-zones">Local Zones<a class="headerlink" href="#local-zones" title="Permanent link">&para;</a></h3>
+<h3 id="local-zones">Local Zones</h3>
 <p>AWS Local Zones are a type of infrastructure deployment that places compute, storage, database, and other select AWS services closer to large population centers, industry hubs, and IT centers where no AWS Region currently exists.</p>
 <p><strong>Key Characteristics of Local Zones:</strong></p>
 <ul>
@@ -3561,7 +3561,7 @@
 <li><strong>Local Zones:</strong> Focused on low latency for specific geographic areas, connected via AWS's network</li>
 <li><strong>Wavelength Zones:</strong> Embedded within telecommunications providers' 5G networks for ultra-low latency mobile edge computing</li>
 </ul>
-<h3 id="aws-outposts">AWS Outposts<a class="headerlink" href="#aws-outposts" title="Permanent link">&para;</a></h3>
+<h3 id="aws-outposts">AWS Outposts</h3>
 <p>While not part of the traditional AWS Global Infrastructure, AWS Outposts deserves mention as it brings AWS infrastructure and services on-premises.</p>
 <p><strong>Key Points:</strong></p>
 <ul>
@@ -3570,7 +3570,7 @@
 <li><strong>Local Data Processing:</strong> For workloads requiring data residency on-premises</li>
 <li><strong>AWS Management:</strong> AWS installs, monitors, and maintains the infrastructure</li>
 </ul>
-<h3 id="infrastructure-scope-and-resource-types">Infrastructure Scope and Resource Types<a class="headerlink" href="#infrastructure-scope-and-resource-types" title="Permanent link">&para;</a></h3>
+<h3 id="infrastructure-scope-and-resource-types">Infrastructure Scope and Resource Types</h3>
 <p>Understanding which AWS resources are global, regional, or AZ-specific helps in architecture design:</p>
 <p><strong>Global Services:</strong></p>
 <ul>
@@ -3594,7 +3594,7 @@
 <li>Amazon EBS volumes</li>
 <li>Subnets (part of VPC)</li>
 </ul>
-<h3 id="service-availability-and-launch-patterns">Service Availability and Launch Patterns<a class="headerlink" href="#service-availability-and-launch-patterns" title="Permanent link">&para;</a></h3>
+<h3 id="service-availability-and-launch-patterns">Service Availability and Launch Patterns</h3>
 <p>AWS follows predictable patterns when launching new services:</p>
 <ol>
 <li><strong>Initial Launch:</strong> Services typically debut in us-east-1 (Northern Virginia) and us-west-2 (Oregon)</li>
@@ -3603,7 +3603,7 @@
 <li><strong>GovCloud and China Regions:</strong> Often receive services last due to compliance requirements</li>
 </ol>
 <p>This rollout pattern affects your Region selection strategy, especially for organizations wanting to leverage cutting-edge AWS capabilities.</p>
-<h3 id="service-level-agreements-slas">Service Level Agreements (SLAs)<a class="headerlink" href="#service-level-agreements-slas" title="Permanent link">&para;</a></h3>
+<h3 id="service-level-agreements-slas">Service Level Agreements (SLAs)</h3>
 <p>AWS provides SLAs for its infrastructure and services:</p>
 <ul>
 <li><strong>Regions and AZs:</strong> Designed for 99.99% availability when properly architected across multiple AZs</li>
@@ -3612,7 +3612,7 @@
 <li><strong>Compute SLA:</strong> Calculated at the Region level, not individual AZ level</li>
 </ul>
 <p>Understanding SLAs is crucial for setting expectations with stakeholders and designing appropriate redundancy.</p>
-<h3 id="network-performance-considerations">Network Performance Considerations<a class="headerlink" href="#network-performance-considerations" title="Permanent link">&para;</a></h3>
+<h3 id="network-performance-considerations">Network Performance Considerations</h3>
 <p>The AWS Global Infrastructure provides varying network performance characteristics:</p>
 <ul>
 <li><strong>Within AZ:</strong> Highest bandwidth and lowest latency (sub-millisecond)</li>
@@ -3621,8 +3621,8 @@
 <li><strong>Edge Locations:</strong> Optimized for content delivery, not general-purpose networking</li>
 </ul>
 <p>These performance characteristics influence architectural decisions about data placement, replication strategies, and service interactions.</p>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-exploring-aws-regions-and-availability-zones">Lab 1: Exploring AWS Regions and Availability Zones<a class="headerlink" href="#lab-1-exploring-aws-regions-and-availability-zones" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-exploring-aws-regions-and-availability-zones">Lab 1: Exploring AWS Regions and Availability Zones</h3>
 <p><strong>Objective:</strong> Understand how to identify available Regions and AZs, and learn to work with resources across different locations.</p>
 <p><strong>Prerequisites:</strong></p>
 <ul>
@@ -3630,7 +3630,7 @@
 <li>AWS CLI installed and configured</li>
 <li>Basic familiarity with AWS Management Console</li>
 </ul>
-<h4 id="step-1-exploring-regions-via-aws-console">Step 1: Exploring Regions via AWS Console<a class="headerlink" href="#step-1-exploring-regions-via-aws-console" title="Permanent link">&para;</a></h4>
+<h4 id="step-1-exploring-regions-via-aws-console">Step 1: Exploring Regions via AWS Console</h4>
 <ol>
 <li><strong>Sign in to AWS Management Console</strong> at https://console.aws.amazon.com</li>
 <li><strong>Identify Your Current Region:</strong><ul>
@@ -3652,7 +3652,7 @@
 </ul>
 </li>
 </ol>
-<h4 id="step-2-using-aws-cli-to-list-regions">Step 2: Using AWS CLI to List Regions<a class="headerlink" href="#step-2-using-aws-cli-to-list-regions" title="Permanent link">&para;</a></h4>
+<h4 id="step-2-using-aws-cli-to-list-regions">Step 2: Using AWS CLI to List Regions</h4>
 <p>Open your terminal and execute the following commands:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># List all available AWS Regions</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>aws<span class="w"> </span>ec2<span class="w"> </span>describe-regions<span class="w"> </span>--output<span class="w"> </span>table
@@ -3680,7 +3680,7 @@
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>||  ec2.us-west-2...     |  opt-in-not... |  us-west-2   ||
 <a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>|+-----------------------+----------------+--------------+|
 </code></pre></div>
-<h4 id="step-3-discovering-availability-zones">Step 3: Discovering Availability Zones<a class="headerlink" href="#step-3-discovering-availability-zones" title="Permanent link">&para;</a></h4>
+<h4 id="step-3-discovering-availability-zones">Step 3: Discovering Availability Zones</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Set your preferred region</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_REGION</span><span class="o">=</span>us-east-1
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
@@ -3712,7 +3712,7 @@
 <a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>|  us-east-1f      |  available     |  use1-az5             |
 <a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>+------------------+----------------+-----------------------+
 </code></pre></div>
-<h4 id="step-4-understanding-az-ids-for-cross-account-consistency">Step 4: Understanding AZ IDs for Cross-Account Consistency<a class="headerlink" href="#step-4-understanding-az-ids-for-cross-account-consistency" title="Permanent link">&para;</a></h4>
+<h4 id="step-4-understanding-az-ids-for-cross-account-consistency">Step 4: Understanding AZ IDs for Cross-Account Consistency</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Get AZ IDs (these are consistent across accounts)</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>aws<span class="w"> </span>ec2<span class="w"> </span>describe-availability-zones<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span>--region<span class="w"> </span>us-east-1<span class="w"> </span><span class="se">\</span>
@@ -3720,16 +3720,16 @@
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span>--output<span class="w"> </span>text
 </code></pre></div>
 <p><strong>Why This Matters:</strong> When coordinating with other AWS accounts (e.g., in shared VPC scenarios), use AZ IDs instead of AZ names to ensure you're referencing the same physical location.</p>
-<h3 id="lab-2-region-selection-based-on-latency-testing">Lab 2: Region Selection Based on Latency Testing<a class="headerlink" href="#lab-2-region-selection-based-on-latency-testing" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-region-selection-based-on-latency-testing">Lab 2: Region Selection Based on Latency Testing</h3>
 <p><strong>Objective:</strong> Measure latency from your location to different AWS Regions to make informed decisions.</p>
-<h4 id="step-1-using-aws-cloudping-tool">Step 1: Using AWS CloudPing Tool<a class="headerlink" href="#step-1-using-aws-cloudping-tool" title="Permanent link">&para;</a></h4>
+<h4 id="step-1-using-aws-cloudping-tool">Step 1: Using AWS CloudPing Tool</h4>
 <ol>
 <li>Visit https://www.cloudping.info/</li>
 <li>Observe real-time latency measurements to various AWS Regions</li>
 <li>Note the regions with lowest latency from your location</li>
 <li>Consider that CDN (CloudFront) will further reduce latency</li>
 </ol>
-<h4 id="step-2-manual-latency-testing-with-aws-cli">Step 2: Manual Latency Testing with AWS CLI<a class="headerlink" href="#step-2-manual-latency-testing-with-aws-cli" title="Permanent link">&para;</a></h4>
+<h4 id="step-2-manual-latency-testing-with-aws-cli">Step 2: Manual Latency Testing with AWS CLI</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="ch">#!/bin/bash</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># Script to test latency to multiple AWS regions</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
@@ -3753,7 +3753,7 @@
 <a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="k">done</span>
 </code></pre></div>
 <p>Save this script as <code>test-region-latency.sh</code>, make it executable (<code>chmod +x test-region-latency.sh</code>), and run it.</p>
-<h4 id="step-3-creating-a-vpc-in-multiple-regions">Step 3: Creating a VPC in Multiple Regions<a class="headerlink" href="#step-3-creating-a-vpc-in-multiple-regions" title="Permanent link">&para;</a></h4>
+<h4 id="step-3-creating-a-vpc-in-multiple-regions">Step 3: Creating a VPC in Multiple Regions</h4>
 <p>Let's create identical VPCs in two different Regions to understand multi-region deployments:</p>
 <p><strong>Region 1: US East (Northern Virginia) - us-east-1</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Set region</span>
@@ -3827,7 +3827,7 @@
 <a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a>
 <a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Created subnets: </span><span class="nv">$SUBNET2_AZ1</span><span class="s2"> (</span><span class="si">${</span><span class="nv">REGION2</span><span class="si">}</span><span class="s2">a), </span><span class="nv">$SUBNET2_AZ2</span><span class="s2"> (</span><span class="si">${</span><span class="nv">REGION2</span><span class="si">}</span><span class="s2">b)&quot;</span>
 </code></pre></div>
-<h4 id="step-4-verifying-multi-region-deployment">Step 4: Verifying Multi-Region Deployment<a class="headerlink" href="#step-4-verifying-multi-region-deployment" title="Permanent link">&para;</a></h4>
+<h4 id="step-4-verifying-multi-region-deployment">Step 4: Verifying Multi-Region Deployment</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># List VPCs in both regions</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;VPCs in us-east-1:&quot;</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>aws<span class="w"> </span>ec2<span class="w"> </span>describe-vpcs<span class="w"> </span>--region<span class="w"> </span>us-east-1<span class="w"> </span><span class="se">\</span>
@@ -3841,7 +3841,7 @@
 <a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span>--query<span class="w"> </span><span class="s1">&#39;Vpcs[*].[VpcId,CidrBlock,Tags[?Key==`Name`].Value|[0]]&#39;</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span>--output<span class="w"> </span>table
 </code></pre></div>
-<h3 id="lab-3-cloudformation-template-for-multi-az-deployment">Lab 3: CloudFormation Template for Multi-AZ Deployment<a class="headerlink" href="#lab-3-cloudformation-template-for-multi-az-deployment" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-cloudformation-template-for-multi-az-deployment">Lab 3: CloudFormation Template for Multi-AZ Deployment</h3>
 <p><strong>Objective:</strong> Use Infrastructure as Code to deploy resources across multiple Availability Zones automatically.</p>
 <p>Create a file named <code>multi-az-infrastructure.yaml</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">AWSTemplateFormatVersion</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2010-09-09&#39;</span>
@@ -4088,9 +4088,9 @@
 <a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>curl<span class="w"> </span>http://<span class="nv">$AZ1_IP</span>
 <a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>curl<span class="w"> </span>http://<span class="nv">$AZ2_IP</span>
 </code></pre></div>
-<h3 id="lab-4-exploring-edge-locations-with-cloudfront">Lab 4: Exploring Edge Locations with CloudFront<a class="headerlink" href="#lab-4-exploring-edge-locations-with-cloudfront" title="Permanent link">&para;</a></h3>
+<h3 id="lab-4-exploring-edge-locations-with-cloudfront">Lab 4: Exploring Edge Locations with CloudFront</h3>
 <p><strong>Objective:</strong> Create a CloudFront distribution and understand how content is cached at Edge Locations.</p>
-<h4 id="step-1-create-an-s3-bucket-with-static-content">Step 1: Create an S3 Bucket with Static Content<a class="headerlink" href="#step-1-create-an-s3-bucket-with-static-content" title="Permanent link">&para;</a></h4>
+<h4 id="step-1-create-an-s3-bucket-with-static-content">Step 1: Create an S3 Bucket with Static Content</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Variables</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nv">BUCKET_NAME</span><span class="o">=</span><span class="s2">&quot;global-infra-demo-</span><span class="k">$(</span>date<span class="w"> </span>+%s<span class="k">)</span><span class="s2">&quot;</span>
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nv">REGION</span><span class="o">=</span><span class="s2">&quot;us-east-1&quot;</span>
@@ -4122,7 +4122,7 @@
 <a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>aws<span class="w"> </span>s3<span class="w"> </span>website<span class="w"> </span>s3://<span class="nv">$BUCKET_NAME</span>/<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a><span class="w">    </span>--index-document<span class="w"> </span>index.html
 </code></pre></div>
-<h4 id="step-2-create-cloudfront-distribution">Step 2: Create CloudFront Distribution<a class="headerlink" href="#step-2-create-cloudfront-distribution" title="Permanent link">&para;</a></h4>
+<h4 id="step-2-create-cloudfront-distribution">Step 2: Create CloudFront Distribution</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Create CloudFront distribution configuration</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>cf-config.json<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="s">{</span>
@@ -4171,7 +4171,7 @@
 <a id="__codelineno-13-46" name="__codelineno-13-46" href="#__codelineno-13-46"></a>
 <a id="__codelineno-13-47" name="__codelineno-13-47" href="#__codelineno-13-47"></a><span class="c1"># Note: CloudFront distributions take 15-20 minutes to deploy</span>
 </code></pre></div>
-<h4 id="step-3-test-edge-location-caching">Step 3: Test Edge Location Caching<a class="headerlink" href="#step-3-test-edge-location-caching" title="Permanent link">&para;</a></h4>
+<h4 id="step-3-test-edge-location-caching">Step 3: Test Edge Location Caching</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Get CloudFront domain name (after distribution deploys)</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nv">CF_DOMAIN</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>cloudfront<span class="w"> </span>list-distributions<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span>--query<span class="w"> </span><span class="s2">&quot;DistributionList.Items[?Comment==&#39;Global Infrastructure Demo Distribution&#39;].DomainName&quot;</span><span class="w"> </span><span class="se">\</span>
@@ -4190,7 +4190,7 @@
 <a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="c1"># - Miss from cloudfront: First request, fetched from origin</span>
 <a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="c1"># - Hit from cloudfront: Subsequent requests, served from edge cache</span>
 </code></pre></div>
-<h3 id="lab-5-cleanup">Lab 5: Cleanup<a class="headerlink" href="#lab-5-cleanup" title="Permanent link">&para;</a></h3>
+<h3 id="lab-5-cleanup">Lab 5: Cleanup</h3>
 <p>After completing the labs, clean up resources to avoid unnecessary charges:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Delete CloudFormation stack</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>aws<span class="w"> </span>cloudformation<span class="w"> </span>delete-stack<span class="w"> </span><span class="se">\</span>
@@ -4208,10 +4208,10 @@
 <a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="c1"># Disable CloudFront distribution (then delete after disabled)</span>
 <a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="c1"># Note: This requires getting the distribution ID and ETag first</span>
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="multi-region-architecture-patterns">Multi-Region Architecture Patterns<a class="headerlink" href="#multi-region-architecture-patterns" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="multi-region-architecture-patterns">Multi-Region Architecture Patterns</h3>
 <p>Building production-grade applications that span multiple AWS Regions requires careful planning and execution. Here are proven patterns used by enterprises:</p>
-<h4 id="pattern-1-active-passive-hot-standby">Pattern 1: Active-Passive (Hot Standby)<a class="headerlink" href="#pattern-1-active-passive-hot-standby" title="Permanent link">&para;</a></h4>
+<h4 id="pattern-1-active-passive-hot-standby">Pattern 1: Active-Passive (Hot Standby)</h4>
 <p><strong>Architecture:</strong></p>
 <ul>
 <li>Primary Region: Serves all production traffic</li>
@@ -4281,7 +4281,7 @@
 <a id="__codelineno-16-41" name="__codelineno-16-41" href="#__codelineno-16-41"></a><span class="w">        </span><span class="nt">HostedZoneId</span><span class="p">:</span><span class="w"> </span><span class="kt">!GetAtt</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SecondaryALB.CanonicalHostedZoneID</span>
 <a id="__codelineno-16-42" name="__codelineno-16-42" href="#__codelineno-16-42"></a><span class="w">        </span><span class="nt">DNSName</span><span class="p">:</span><span class="w"> </span><span class="kt">!GetAtt</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SecondaryALB.DNSName</span>
 </code></pre></div>
-<h4 id="pattern-2-active-active-multi-region-active">Pattern 2: Active-Active (Multi-Region Active)<a class="headerlink" href="#pattern-2-active-active-multi-region-active" title="Permanent link">&para;</a></h4>
+<h4 id="pattern-2-active-active-multi-region-active">Pattern 2: Active-Active (Multi-Region Active)</h4>
 <p><strong>Architecture:</strong></p>
 <ul>
 <li>Multiple Regions serve production traffic simultaneously</li>
@@ -4345,7 +4345,7 @@
 <a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a><span class="s1">      ]</span>
 <a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a><span class="s1">    }&#39;</span>
 </code></pre></div>
-<h4 id="pattern-3-geographically-distributed-regional-isolation">Pattern 3: Geographically Distributed (Regional Isolation)<a class="headerlink" href="#pattern-3-geographically-distributed-regional-isolation" title="Permanent link">&para;</a></h4>
+<h4 id="pattern-3-geographically-distributed-regional-isolation">Pattern 3: Geographically Distributed (Regional Isolation)</h4>
 <p><strong>Architecture:</strong></p>
 <ul>
 <li>Each Region serves specific geographic markets</li>
@@ -4372,9 +4372,9 @@
 <li>Predictable performance</li>
 <li>Lower data transfer costs</li>
 </ul>
-<h3 id="high-availability-across-availability-zones">High Availability Across Availability Zones<a class="headerlink" href="#high-availability-across-availability-zones" title="Permanent link">&para;</a></h3>
+<h3 id="high-availability-across-availability-zones">High Availability Across Availability Zones</h3>
 <p>Production applications must be designed to withstand AZ failures. Here's how to achieve this:</p>
-<h4 id="multi-az-database-deployments">Multi-AZ Database Deployments<a class="headerlink" href="#multi-az-database-deployments" title="Permanent link">&para;</a></h4>
+<h4 id="multi-az-database-deployments">Multi-AZ Database Deployments</h4>
 <p><strong>RDS Multi-AZ:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Create RDS instance with Multi-AZ enabled</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>aws<span class="w"> </span>rds<span class="w"> </span>create-db-instance<span class="w"> </span><span class="se">\</span>
@@ -4426,7 +4426,7 @@
 <a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a><span class="w">    </span>--db-subnet-group-name<span class="w"> </span>production-db-subnet-group<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a><span class="w">    </span>--region<span class="w"> </span>eu-west-1
 </code></pre></div>
-<h4 id="application-load-balancer-multi-az-configuration">Application Load Balancer Multi-AZ Configuration<a class="headerlink" href="#application-load-balancer-multi-az-configuration" title="Permanent link">&para;</a></h4>
+<h4 id="application-load-balancer-multi-az-configuration">Application Load Balancer Multi-AZ Configuration</h4>
 <p>ALBs automatically distribute traffic across multiple AZs:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Create ALB with subnets in multiple AZs</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>aws<span class="w"> </span>elbv2<span class="w"> </span>create-load-balancer<span class="w"> </span><span class="se">\</span>
@@ -4453,7 +4453,7 @@
 <a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a><span class="w">    </span>--unhealthy-threshold-count<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a><span class="w">    </span>--matcher<span class="w"> </span><span class="nv">HttpCode</span><span class="o">=</span><span class="m">200</span>
 </code></pre></div>
-<h3 id="auto-scaling-across-availability-zones">Auto Scaling Across Availability Zones<a class="headerlink" href="#auto-scaling-across-availability-zones" title="Permanent link">&para;</a></h3>
+<h3 id="auto-scaling-across-availability-zones">Auto Scaling Across Availability Zones</h3>
 <p>Production Auto Scaling Groups should span multiple AZs for resilience:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Create Launch Template</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>aws<span class="w"> </span>ec2<span class="w"> </span>create-launch-template<span class="w"> </span><span class="se">\</span>
@@ -4508,9 +4508,9 @@
 <li>Implement predictive scaling for known patterns</li>
 <li>Monitor AZ-specific metrics for imbalances</li>
 </ul>
-<h3 id="monitoring-and-observability">Monitoring and Observability<a class="headerlink" href="#monitoring-and-observability" title="Permanent link">&para;</a></h3>
+<h3 id="monitoring-and-observability">Monitoring and Observability</h3>
 <p>Production systems require comprehensive monitoring across all infrastructure layers:</p>
-<h4 id="cloudwatch-metrics-for-infrastructure-health">CloudWatch Metrics for Infrastructure Health<a class="headerlink" href="#cloudwatch-metrics-for-infrastructure-health" title="Permanent link">&para;</a></h4>
+<h4 id="cloudwatch-metrics-for-infrastructure-health">CloudWatch Metrics for Infrastructure Health</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Create CloudWatch Dashboard for Multi-AZ Monitoring</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>aws<span class="w"> </span>cloudwatch<span class="w"> </span>put-dashboard<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span>--dashboard-name<span class="w"> </span>Production-Infrastructure<span class="w"> </span><span class="se">\</span>
@@ -4556,8 +4556,8 @@
 <a id="__codelineno-22-43" name="__codelineno-22-43" href="#__codelineno-22-43"></a><span class="w">    </span>--alarm-actions<span class="w"> </span>arn:aws:sns:us-east-1:123456789012:production-alerts<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-22-44" name="__codelineno-22-44" href="#__codelineno-22-44"></a><span class="w">    </span>--alarm-rule<span class="w"> </span><span class="s2">&quot;ALARM(AZ1-Unhealthy-Hosts) OR ALARM(AZ2-Unhealthy-Hosts) OR ALARM(AZ3-Unhealthy-Hosts)&quot;</span>
 </code></pre></div>
-<h3 id="cost-optimization-across-global-infrastructure">Cost Optimization Across Global Infrastructure<a class="headerlink" href="#cost-optimization-across-global-infrastructure" title="Permanent link">&para;</a></h3>
-<h4 id="regional-pricing-differences">Regional Pricing Differences<a class="headerlink" href="#regional-pricing-differences" title="Permanent link">&para;</a></h4>
+<h3 id="cost-optimization-across-global-infrastructure">Cost Optimization Across Global Infrastructure</h3>
+<h4 id="regional-pricing-differences">Regional Pricing Differences</h4>
 <p>AWS pricing varies significantly by Region. Monitor these factors:</p>
 <p><strong>Data Transfer Costs:</strong></p>
 <ul>
@@ -4578,7 +4578,7 @@
 <li>EBS: Minimal variation</li>
 <li>RDS: Follows compute pricing patterns</li>
 </ul>
-<h4 id="cost-optimization-strategies">Cost Optimization Strategies<a class="headerlink" href="#cost-optimization-strategies" title="Permanent link">&para;</a></h4>
+<h4 id="cost-optimization-strategies">Cost Optimization Strategies</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Use S3 Intelligent-Tiering for automatic cost optimization</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>aws<span class="w"> </span>s3api<span class="w"> </span>put-bucket-intelligent-tiering-configuration<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span>--bucket<span class="w"> </span>production-data<span class="w"> </span><span class="se">\</span>
@@ -4620,8 +4620,8 @@
 <a id="__codelineno-23-39" name="__codelineno-23-39" href="#__codelineno-23-39"></a><span class="s1">      ]</span>
 <a id="__codelineno-23-40" name="__codelineno-23-40" href="#__codelineno-23-40"></a><span class="s1">    }&#39;</span>
 </code></pre></div>
-<h3 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h3>
-<h4 id="network-isolation-between-regions">Network Isolation Between Regions<a class="headerlink" href="#network-isolation-between-regions" title="Permanent link">&para;</a></h4>
+<h3 id="security-considerations">Security Considerations</h3>
+<h4 id="network-isolation-between-regions">Network Isolation Between Regions</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># Create VPC Peering between Regions (for controlled inter-region communication)</span>
 <a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>aws<span class="w"> </span>ec2<span class="w"> </span>create-vpc-peering-connection<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span>--vpc-id<span class="w"> </span>vpc-11111111<span class="w"> </span><span class="se">\</span>
@@ -4634,7 +4634,7 @@
 <a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="w">    </span>--vpc-peering-connection-id<span class="w"> </span>pcx-0123456789abcdef0<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="w">    </span>--region<span class="w"> </span>eu-west-1
 </code></pre></div>
-<h4 id="encryption-in-transit-and-at-rest">Encryption in Transit and at Rest<a class="headerlink" href="#encryption-in-transit-and-at-rest" title="Permanent link">&para;</a></h4>
+<h4 id="encryption-in-transit-and-at-rest">Encryption in Transit and at Rest</h4>
 <p>Ensure all cross-region and cross-AZ traffic is encrypted:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Enable S3 bucket encryption with KMS</span>
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>aws<span class="w"> </span>s3api<span class="w"> </span>put-bucket-encryption<span class="w"> </span><span class="se">\</span>
@@ -4649,7 +4649,7 @@
 <a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="s1">      }]</span>
 <a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="s1">    }&#39;</span>
 </code></pre></div>
-<h3 id="real-world-production-example-e-commerce-platform">Real-World Production Example: E-Commerce Platform<a class="headerlink" href="#real-world-production-example-e-commerce-platform" title="Permanent link">&para;</a></h3>
+<h3 id="real-world-production-example-e-commerce-platform">Real-World Production Example: E-Commerce Platform</h3>
 <p>Here's a comprehensive architecture for a global e-commerce platform:</p>
 <p><strong>Requirements:</strong></p>
 <ul>
@@ -4697,8 +4697,8 @@
 <li>Cross-region backups retained for 30 days</li>
 </ul>
 <p>This architecture delivers on all requirements while maintaining cost efficiency through right-sizing, spot instances for batch workloads, and intelligent tier storage for historical data.</p>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="region-selection-strategy">Region Selection Strategy<a class="headerlink" href="#region-selection-strategy" title="Permanent link">&para;</a></h3>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
+<h3 id="region-selection-strategy">Region Selection Strategy</h3>
 <p><strong>Tip 1: Start with Established Regions</strong></p>
 <p>For production workloads, prioritize Regions with:</p>
 <ul>
@@ -4723,7 +4723,7 @@
 <li>Lower costs than multi-region compute</li>
 <li>Better performance for end users</li>
 </ul>
-<h3 id="availability-zone-best-practices">Availability Zone Best Practices<a class="headerlink" href="#availability-zone-best-practices" title="Permanent link">&para;</a></h3>
+<h3 id="availability-zone-best-practices">Availability Zone Best Practices</h3>
 <p><strong>Tip 4: Always Use at Least Two AZs</strong></p>
 <p>The minimum for production workloads is 2 AZs:</p>
 <ul>
@@ -4752,7 +4752,7 @@
 <li>Document AZ ID mappings in your runbooks</li>
 <li>Verify AZ IDs during cross-account setup</li>
 </ul>
-<h3 id="cost-optimization-tips">Cost Optimization Tips<a class="headerlink" href="#cost-optimization-tips" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization-tips">Cost Optimization Tips</h3>
 <p><strong>Tip 7: Understand Data Transfer Costs</strong></p>
 <p>Data transfer is often overlooked but can become significant:</p>
 <ul>
@@ -4788,7 +4788,7 @@
 <li>Monitor RI/SP utilization per Region</li>
 <li>Adjust as workload distribution changes</li>
 </ul>
-<h3 id="disaster-recovery-tips">Disaster Recovery Tips<a class="headerlink" href="#disaster-recovery-tips" title="Permanent link">&para;</a></h3>
+<h3 id="disaster-recovery-tips">Disaster Recovery Tips</h3>
 <p><strong>Tip 10: Design for Failure at Every Level</strong></p>
 <p>Adopt a "chaos engineering" mindset:</p>
 <ul>
@@ -4812,7 +4812,7 @@
 <li>Measure actual RPO/RTO</li>
 <li>Update runbooks based on learnings</li>
 </ul>
-<h3 id="monitoring-and-alerting-tips">Monitoring and Alerting Tips<a class="headerlink" href="#monitoring-and-alerting-tips" title="Permanent link">&para;</a></h3>
+<h3 id="monitoring-and-alerting-tips">Monitoring and Alerting Tips</h3>
 <p><strong>Tip 13: Monitor at Infrastructure, Application, and Business Levels</strong></p>
 <p>Create a monitoring hierarchy:</p>
 <ul>
@@ -4846,7 +4846,7 @@
 <li>Busiest endpoints</li>
 <li>Resource utilization patterns</li>
 </ul>
-<h3 id="security-tips">Security Tips<a class="headerlink" href="#security-tips" title="Permanent link">&para;</a></h3>
+<h3 id="security-tips">Security Tips</h3>
 <p><strong>Tip 16: Implement Defense in Depth</strong></p>
 <p>Security at every layer:</p>
 <ul>
@@ -4870,7 +4870,7 @@
 <a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">    </span>--tags<span class="w"> </span><span class="nv">TagKey</span><span class="o">=</span>Environment,TagValue<span class="o">=</span>Production<span class="w"> </span><span class="nv">TagKey</span><span class="o">=</span>Region,TagValue<span class="o">=</span><span class="si">${</span><span class="nv">region</span><span class="si">}</span>
 <a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="k">done</span>
 </code></pre></div>
-<h3 id="compliance-and-governance-tips">Compliance and Governance Tips<a class="headerlink" href="#compliance-and-governance-tips" title="Permanent link">&para;</a></h3>
+<h3 id="compliance-and-governance-tips">Compliance and Governance Tips</h3>
 <p><strong>Tip 18: Use AWS Config for Multi-Region Compliance</strong></p>
 <p>Deploy Config rules across all Regions:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># Enable AWS Config in all active regions</span>
@@ -4909,7 +4909,7 @@
 <a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="w">  </span><span class="nt">&quot;Owner&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;platform-team@company.com&quot;</span>
 <a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="performance-optimization-tips">Performance Optimization Tips<a class="headerlink" href="#performance-optimization-tips" title="Permanent link">&para;</a></h3>
+<h3 id="performance-optimization-tips">Performance Optimization Tips</h3>
 <p><strong>Tip 20: Use Placement Groups for Low-Latency Workloads</strong></p>
 <p>For HPC and low-latency applications within an AZ:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># Create cluster placement group</span>
@@ -4946,8 +4946,8 @@
 <a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>
 <a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="c1"># Add listener and endpoint groups in multiple regions</span>
 </code></pre></div>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-ignoring-service-availability-in-region-selection">Pitfall 1: Ignoring Service Availability in Region Selection<a class="headerlink" href="#pitfall-1-ignoring-service-availability-in-region-selection" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-ignoring-service-availability-in-region-selection">Pitfall 1: Ignoring Service Availability in Region Selection</h3>
 <p><strong>Problem:</strong> You select a Region based solely on latency or cost, then discover critical services aren't available, forcing a last-minute migration or architecture change.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5022,7 +5022,7 @@
 <li>Design architectures with service substitutability in mind</li>
 </ul>
 <hr />
-<h3 id="pitfall-2-insufficient-az-distribution-for-high-availability">Pitfall 2: Insufficient AZ Distribution for High Availability<a class="headerlink" href="#pitfall-2-insufficient-az-distribution-for-high-availability" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-2-insufficient-az-distribution-for-high-availability">Pitfall 2: Insufficient AZ Distribution for High Availability</h3>
 <p><strong>Problem:</strong> Deploying resources in only one or two AZs, or having uneven distribution, leading to capacity issues or complete outages during AZ failures.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5099,7 +5099,7 @@
 <li>Document minimum instance counts per AZ in your runbooks</li>
 </ul>
 <hr />
-<h3 id="pitfall-3-excessive-cross-regioncross-az-data-transfer-costs">Pitfall 3: Excessive Cross-Region/Cross-AZ Data Transfer Costs<a class="headerlink" href="#pitfall-3-excessive-cross-regioncross-az-data-transfer-costs" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-3-excessive-cross-regioncross-az-data-transfer-costs">Pitfall 3: Excessive Cross-Region/Cross-AZ Data Transfer Costs</h3>
 <p><strong>Problem:</strong> Unexpected bills due to high data transfer costs between AZs or Regions, sometimes accounting for 20-30% of total AWS spend.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5224,7 +5224,7 @@
 <li>Educate development teams about data transfer costs</li>
 </ul>
 <hr />
-<h3 id="pitfall-4-not-testing-regional-failover-procedures">Pitfall 4: Not Testing Regional Failover Procedures<a class="headerlink" href="#pitfall-4-not-testing-regional-failover-procedures" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-4-not-testing-regional-failover-procedures">Pitfall 4: Not Testing Regional Failover Procedures</h3>
 <p><strong>Problem:</strong> Having multi-region infrastructure but never testing failover, resulting in failures during actual disasters due to broken runbooks, misconfigured DNS, or undiscovered dependencies.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5465,7 +5465,7 @@
 <li>Update runbooks immediately after every test</li>
 </ul>
 <hr />
-<h3 id="pitfall-5-misunderstanding-global-vs-regional-vs-az-scoped-services">Pitfall 5: Misunderstanding Global vs Regional vs AZ-Scoped Services<a class="headerlink" href="#pitfall-5-misunderstanding-global-vs-regional-vs-az-scoped-services" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-5-misunderstanding-global-vs-regional-vs-az-scoped-services">Pitfall 5: Misunderstanding Global vs Regional vs AZ-Scoped Services</h3>
 <p><strong>Problem:</strong> Deploying resources with incorrect scope assumptions, leading to replication issues, access problems, or architectural mistakes.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5595,7 +5595,7 @@
 <li>Create architecture diagrams showing service boundaries</li>
 </ul>
 <hr />
-<h3 id="pitfall-6-over-reliance-on-single-region-for-cost-savings">Pitfall 6: Over-Reliance on Single Region for Cost Savings<a class="headerlink" href="#pitfall-6-over-reliance-on-single-region-for-cost-savings" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-6-over-reliance-on-single-region-for-cost-savings">Pitfall 6: Over-Reliance on Single Region for Cost Savings</h3>
 <p><strong>Problem:</strong> Deploying everything in the cheapest Region (typically us-east-1) without considering latency, compliance, or reliability impacts.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5746,7 +5746,7 @@
 <li>Review regional strategy annually</li>
 </ul>
 <hr />
-<h3 id="pitfall-7-inadequate-monitoring-of-regional-health-and-performance">Pitfall 7: Inadequate Monitoring of Regional Health and Performance<a class="headerlink" href="#pitfall-7-inadequate-monitoring-of-regional-health-and-performance" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-7-inadequate-monitoring-of-regional-health-and-performance">Pitfall 7: Inadequate Monitoring of Regional Health and Performance</h3>
 <p><strong>Problem:</strong> Lacking visibility into regional or AZ-specific health metrics, leading to undetected degradation or failures.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5953,7 +5953,7 @@
 <li>Conduct "gameday" exercises using monitoring data</li>
 </ul>
 <hr />
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>AWS Global Infrastructure provides the foundational layer upon which all cloud solutions are built. Understanding the hierarchy—from Regions to Availability Zones to Edge Locations—enables architects to design solutions that balance performance, reliability, compliance, and cost.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -5967,7 +5967,7 @@
 </ul>
 <p>Understanding AWS Global Infrastructure is not just about passing certification exams—it's about making informed architectural decisions that deliver business value while managing risk and cost effectively. The patterns and practices covered in this chapter form the foundation for all subsequent chapters, as nearly every AWS service is built upon this global infrastructure.</p>
 <p>In Chapter 2, we'll explore AWS Identity and Access Management (IAM), which provides the security framework for controlling access to resources across this global infrastructure.</p>
-<h2 id="hands-on-lab-exercise">Hands-On Lab Exercise<a class="headerlink" href="#hands-on-lab-exercise" title="Permanent link">&para;</a></h2>
+<h2 id="hands-on-lab-exercise">Hands-On Lab Exercise</h2>
 <p><strong>Objective:</strong> Build a multi-AZ, production-ready web application infrastructure with monitoring and test failover capabilities.</p>
 <p><strong>Prerequisites:</strong></p>
 <ul>
@@ -6033,7 +6033,7 @@
 Delete all resources to avoid ongoing charges:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>aws<span class="w"> </span>cloudformation<span class="w"> </span>delete-stack<span class="w"> </span>--stack-name<span class="w"> </span>multi-az-web-app
 </code></pre></div>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>Which of the following statements about AWS Regions is correct?</strong>
 a) Data automatically replicates between Regions

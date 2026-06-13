@@ -3546,14 +3546,14 @@
   
 
 
-<h1 id="chapter-2-identity-and-access-management-iam">Chapter 2: Identity and Access Management (IAM)<a class="headerlink" href="#chapter-2-identity-and-access-management-iam" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-2-identity-and-access-management-iam">Chapter 2: Identity and Access Management (IAM)</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Identity and Access Management (IAM) is the cornerstone of AWS security architecture. Every interaction with AWS—whether launching an EC2 instance, reading from an S3 bucket, or updating a database—requires authentication (proving who you are) and authorization (verifying what you're allowed to do). IAM provides the framework for both, enabling you to control access to AWS resources with precision and flexibility.</p>
 <p>Unlike traditional on-premises security models with perimeter-based defenses, AWS operates on a zero-trust security model where identity is the new perimeter. This shift requires architects to think differently about security: instead of relying on network boundaries, you must explicitly grant permissions for every action on every resource. A misconfigured IAM policy can expose sensitive data, enable privilege escalation, or provide attackers with a foothold in your infrastructure.</p>
 <p>The importance of IAM cannot be overstated. It's not merely a box to check during initial setup—it's a living, breathing component of your architecture that evolves with your applications and organizational structure. Proper IAM implementation enables secure multi-account strategies, regulatory compliance, automated deployments, and defense-in-depth security. Conversely, IAM mistakes remain one of the leading causes of cloud security breaches, from exposed credentials in public repositories to overly permissive policies that grant unintended access.</p>
 <p>This chapter provides comprehensive coverage of IAM fundamentals, advanced patterns, and real-world best practices. You'll learn to craft fine-grained policies, implement cross-account access securely, leverage identity federation for enterprise integration, and build audit trails for compliance. Whether you're securing a startup's first AWS deployment or architecting enterprise-scale identity solutions, mastering IAM is non-negotiable for any Solutions Architect.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="iam-fundamentals">IAM Fundamentals<a class="headerlink" href="#iam-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="iam-fundamentals">IAM Fundamentals</h3>
 <p>IAM is a <strong>global service</strong> that operates across all AWS Regions. Resources created in IAM—users, groups, roles, and policies—are automatically available worldwide. This global nature simplifies management but requires careful consideration of naming conflicts and policy scope.</p>
 <p><strong>Key IAM Principles:</strong></p>
 <ol>
@@ -3562,9 +3562,9 @@
 <li><strong>Separation of Duties:</strong> Distribute permissions across multiple identities to prevent abuse</li>
 <li><strong>Regular Auditing:</strong> Continuously review and refine access permissions</li>
 </ol>
-<h3 id="iam-identities">IAM Identities<a class="headerlink" href="#iam-identities" title="Permanent link">&para;</a></h3>
+<h3 id="iam-identities">IAM Identities</h3>
 <p>IAM provides three types of identities for interacting with AWS resources:</p>
-<h4 id="iam-users">IAM Users<a class="headerlink" href="#iam-users" title="Permanent link">&para;</a></h4>
+<h4 id="iam-users">IAM Users</h4>
 <p>An IAM user represents a person or application that needs to interact with AWS. Each user has unique credentials (password, access keys) and can be granted specific permissions.</p>
 <p><strong>Characteristics:</strong></p>
 <ul>
@@ -3593,7 +3593,7 @@
 <li>Use temporary credentials (roles) whenever possible</li>
 <li>Implement strong password policies</li>
 </ul>
-<h4 id="iam-groups">IAM Groups<a class="headerlink" href="#iam-groups" title="Permanent link">&para;</a></h4>
+<h4 id="iam-groups">IAM Groups</h4>
 <p>Groups are collections of users that share common permissions. Instead of attaching policies to individual users, attach them to groups for easier management.</p>
 <p><strong>Characteristics:</strong></p>
 <ul>
@@ -3609,7 +3609,7 @@
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Auditors Group → ReadOnly access to logs and configuration
 </code></pre></div>
 <p><strong>Important:</strong> Groups are not true identities. You cannot grant a group access to a resource in a resource-based policy. Groups exist solely to organize users and simplify policy attachment.</p>
-<h4 id="iam-roles">IAM Roles<a class="headerlink" href="#iam-roles" title="Permanent link">&para;</a></h4>
+<h4 id="iam-roles">IAM Roles</h4>
 <p>Roles are identities that can be assumed by trusted entities (users, applications, services). Unlike users, roles don't have permanent credentials—instead, they provide temporary security credentials when assumed.</p>
 <p><strong>Characteristics:</strong></p>
 <ul>
@@ -3661,9 +3661,9 @@ Predefined roles created automatically by AWS services.</p>
 <li>Maximum: 12 hours (configurable per role)</li>
 <li>Minimum: 15 minutes</li>
 </ul>
-<h3 id="iam-policies">IAM Policies<a class="headerlink" href="#iam-policies" title="Permanent link">&para;</a></h3>
+<h3 id="iam-policies">IAM Policies</h3>
 <p>Policies are JSON documents that define permissions. They answer the question: "What actions can be performed on which resources under what conditions?"</p>
-<h4 id="policy-structure">Policy Structure<a class="headerlink" href="#policy-structure" title="Permanent link">&para;</a></h4>
+<h4 id="policy-structure">Policy Structure</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -3692,7 +3692,7 @@ Predefined roles created automatically by AWS services.</p>
 <li><strong>Resource:</strong> ARNs of resources the statement applies to</li>
 <li><strong>Condition:</strong> (Optional) Circumstances under which the statement applies</li>
 </ul>
-<h4 id="policy-types">Policy Types<a class="headerlink" href="#policy-types" title="Permanent link">&para;</a></h4>
+<h4 id="policy-types">Policy Types</h4>
 <p><strong>1. Identity-Based Policies:</strong></p>
 <p>Attached to IAM identities (users, groups, roles). They define what the identity can do.</p>
 <p><strong>Managed Policies:</strong></p>
@@ -3773,7 +3773,7 @@ Predefined roles created automatically by AWS services.</p>
 <p>This SCP prevents launching EC2 instances outside us-east-1 and us-west-2.</p>
 <p><strong>5. Session Policies:</strong></p>
 <p>Passed when assuming a role or federating a user, session policies further limit the permissions for that specific session.</p>
-<h4 id="policy-evaluation-logic">Policy Evaluation Logic<a class="headerlink" href="#policy-evaluation-logic" title="Permanent link">&para;</a></h4>
+<h4 id="policy-evaluation-logic">Policy Evaluation Logic</h4>
 <p>When multiple policies apply, AWS evaluates them in this order:</p>
 <ol>
 <li><strong>Explicit Deny:</strong> If any policy explicitly denies an action, access is denied</li>
@@ -3792,8 +3792,8 @@ Predefined roles created automatically by AWS services.</p>
 <a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>Otherwise → ALLOW
 </code></pre></div>
 <p><strong>Key Rule:</strong> An explicit deny always wins. By default, all actions are implicitly denied unless explicitly allowed.</p>
-<h3 id="iam-best-practices-for-policy-design">IAM Best Practices for Policy Design<a class="headerlink" href="#iam-best-practices-for-policy-design" title="Permanent link">&para;</a></h3>
-<h4 id="use-of-policy-variables">Use of Policy Variables<a class="headerlink" href="#use-of-policy-variables" title="Permanent link">&para;</a></h4>
+<h3 id="iam-best-practices-for-policy-design">IAM Best Practices for Policy Design</h3>
+<h4 id="use-of-policy-variables">Use of Policy Variables</h4>
 <p>Policy variables enable dynamic policies that adapt to the current context:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">{</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
@@ -3818,7 +3818,7 @@ Predefined roles created automatically by AWS services.</p>
 <li><code>${aws:CurrentTime}</code> - Current date and time</li>
 <li><code>${aws:SourceIp}</code> - Source IP address of the request</li>
 </ul>
-<h4 id="condition-keys">Condition Keys<a class="headerlink" href="#condition-keys" title="Permanent link">&para;</a></h4>
+<h4 id="condition-keys">Condition Keys</h4>
 <p>Conditions add context-based access control:</p>
 <p><strong>IP Address Restrictions:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p">{</span>
@@ -3868,9 +3868,9 @@ Predefined roles created automatically by AWS services.</p>
 <a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="identity-federation">Identity Federation<a class="headerlink" href="#identity-federation" title="Permanent link">&para;</a></h3>
+<h3 id="identity-federation">Identity Federation</h3>
 <p>Identity federation enables users to access AWS using credentials from external identity providers, eliminating the need to create IAM users for everyone.</p>
-<h4 id="federation-types">Federation Types<a class="headerlink" href="#federation-types" title="Permanent link">&para;</a></h4>
+<h4 id="federation-types">Federation Types</h4>
 <p><strong>1. SAML 2.0 Federation:</strong></p>
 <p>Integrate with corporate identity providers (Active Directory, Okta, Azure AD) using SAML.</p>
 <p><strong>Flow:</strong></p>
@@ -3924,7 +3924,7 @@ Predefined roles created automatically by AWS services.</p>
 <a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="w">  </span><span class="p">]</span>
 <a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="multi-factor-authentication-mfa">Multi-Factor Authentication (MFA)<a class="headerlink" href="#multi-factor-authentication-mfa" title="Permanent link">&para;</a></h3>
+<h3 id="multi-factor-authentication-mfa">Multi-Factor Authentication (MFA)</h3>
 <p>MFA adds an extra layer of security by requiring two forms of authentication:</p>
 <ol>
 <li>Something you know (password)</li>
@@ -3969,7 +3969,7 @@ Always enable MFA on the root account—it's non-negotiable for security.</p>
 <a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="w">  </span><span class="p">]</span>
 <a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="cross-account-access">Cross-Account Access<a class="headerlink" href="#cross-account-access" title="Permanent link">&para;</a></h3>
+<h3 id="cross-account-access">Cross-Account Access</h3>
 <p>Organizations frequently need to grant access across AWS accounts. Cross-account access enables this without sharing credentials.</p>
 <p><strong>Pattern 1: Role Assumption (Recommended)</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>Account A (123456789012) → Assume Role → Account B (987654321098)
@@ -4015,7 +4015,7 @@ Always enable MFA on the root account—it's non-negotiable for security.</p>
 <li><strong>Role assumption:</strong> Temporary credentials, scales to any service</li>
 <li><strong>Resource-based:</strong> Direct access without assuming role, limited to specific services</li>
 </ul>
-<h3 id="iam-access-analyzer">IAM Access Analyzer<a class="headerlink" href="#iam-access-analyzer" title="Permanent link">&para;</a></h3>
+<h3 id="iam-access-analyzer">IAM Access Analyzer</h3>
 <p>AWS IAM Access Analyzer helps identify resources shared with external entities and validates policies.</p>
 <p><strong>Features:</strong></p>
 <p><strong>1. External Access Analysis:</strong>
@@ -4031,7 +4031,7 @@ Analyzes CloudTrail logs to generate least-privilege policies based on actual us
 <li>KMS keys with external key policies</li>
 <li>Lambda functions with cross-account permissions</li>
 </ul>
-<h3 id="aws-security-token-service-sts">AWS Security Token Service (STS)<a class="headerlink" href="#aws-security-token-service-sts" title="Permanent link">&para;</a></h3>
+<h3 id="aws-security-token-service-sts">AWS Security Token Service (STS)</h3>
 <p>STS enables you to request temporary, limited-privilege credentials. It's the backbone of federation and role assumption.</p>
 <p><strong>Key APIs:</strong></p>
 <p><strong>AssumeRole:</strong>
@@ -4063,7 +4063,7 @@ Get temporary credentials for federated users.</p>
 <a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="iam-policies-for-aws-services">IAM Policies for AWS Services<a class="headerlink" href="#iam-policies-for-aws-services" title="Permanent link">&para;</a></h3>
+<h3 id="iam-policies-for-aws-services">IAM Policies for AWS Services</h3>
 <p>Understanding how AWS services use IAM:</p>
 <p><strong>Service Roles:</strong>
 Most AWS services require a role to operate:</p>
@@ -4088,7 +4088,7 @@ Some services support resource-based policies:</p>
 <li>Lambda function policies</li>
 <li>ECR repository policies</li>
 </ul>
-<h3 id="iam-limits-and-quotas">IAM Limits and Quotas<a class="headerlink" href="#iam-limits-and-quotas" title="Permanent link">&para;</a></h3>
+<h3 id="iam-limits-and-quotas">IAM Limits and Quotas</h3>
 <p>Understanding IAM limits helps plan architecture:</p>
 <table>
 <thead>
@@ -4131,10 +4131,10 @@ Some services support resource-based policies:</p>
 </tr>
 </tbody>
 </table>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-creating-iam-users-with-strong-password-policy">Lab 1: Creating IAM Users with Strong Password Policy<a class="headerlink" href="#lab-1-creating-iam-users-with-strong-password-policy" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-creating-iam-users-with-strong-password-policy">Lab 1: Creating IAM Users with Strong Password Policy</h3>
 <p><strong>Objective:</strong> Set up IAM users with enforced password policies and MFA.</p>
-<h4 id="step-1-configure-account-password-policy">Step 1: Configure Account Password Policy<a class="headerlink" href="#step-1-configure-account-password-policy" title="Permanent link">&para;</a></h4>
+<h4 id="step-1-configure-account-password-policy">Step 1: Configure Account Password Policy</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># Set strong password policy</span>
 <a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>aws<span class="w"> </span>iam<span class="w"> </span>update-account-password-policy<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">    </span>--minimum-password-length<span class="w"> </span><span class="m">14</span><span class="w"> </span><span class="se">\</span>
@@ -4165,7 +4165,7 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a><span class="p">}</span>
 </code></pre></div>
-<h4 id="step-2-create-iam-users">Step 2: Create IAM Users<a class="headerlink" href="#step-2-create-iam-users" title="Permanent link">&para;</a></h4>
+<h4 id="step-2-create-iam-users">Step 2: Create IAM Users</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># Create IAM user</span>
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>aws<span class="w"> </span>iam<span class="w"> </span>create-user<span class="w"> </span>--user-name<span class="w"> </span>alice
 <a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
@@ -4179,7 +4179,7 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a>aws<span class="w"> </span>iam<span class="w"> </span>create-access-key<span class="w"> </span>--user-name<span class="w"> </span>alice
 </code></pre></div>
 <p><strong>Important:</strong> Store the access key output securely. It's the only time AWS shows the secret access key.</p>
-<h4 id="step-3-enable-mfa-for-user">Step 3: Enable MFA for User<a class="headerlink" href="#step-3-enable-mfa-for-user" title="Permanent link">&para;</a></h4>
+<h4 id="step-3-enable-mfa-for-user">Step 3: Enable MFA for User</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># Create virtual MFA device</span>
 <a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>aws<span class="w"> </span>iam<span class="w"> </span>create-virtual-mfa-device<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">    </span>--virtual-mfa-device-name<span class="w"> </span>alice-mfa<span class="w"> </span><span class="se">\</span>
@@ -4196,7 +4196,7 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-30-14" name="__codelineno-30-14" href="#__codelineno-30-14"></a><span class="w">    </span>--authentication-code-1<span class="w"> </span><span class="m">123456</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-30-15" name="__codelineno-30-15" href="#__codelineno-30-15"></a><span class="w">    </span>--authentication-code-2<span class="w"> </span><span class="m">789012</span>
 </code></pre></div>
-<h4 id="step-4-create-groups-and-assign-permissions">Step 4: Create Groups and Assign Permissions<a class="headerlink" href="#step-4-create-groups-and-assign-permissions" title="Permanent link">&para;</a></h4>
+<h4 id="step-4-create-groups-and-assign-permissions">Step 4: Create Groups and Assign Permissions</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># Create developers group</span>
 <a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>aws<span class="w"> </span>iam<span class="w"> </span>create-group<span class="w"> </span>--group-name<span class="w"> </span>developers
 <a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>
@@ -4213,9 +4213,9 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-31-14" name="__codelineno-31-14" href="#__codelineno-31-14"></a><span class="c1"># Verify group membership</span>
 <a id="__codelineno-31-15" name="__codelineno-31-15" href="#__codelineno-31-15"></a>aws<span class="w"> </span>iam<span class="w"> </span>get-group<span class="w"> </span>--group-name<span class="w"> </span>developers
 </code></pre></div>
-<h3 id="lab-2-creating-custom-iam-policies">Lab 2: Creating Custom IAM Policies<a class="headerlink" href="#lab-2-creating-custom-iam-policies" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-creating-custom-iam-policies">Lab 2: Creating Custom IAM Policies</h3>
 <p><strong>Objective:</strong> Create fine-grained custom policies following least privilege principle.</p>
-<h4 id="scenario-1-s3-developer-policy">Scenario 1: S3 Developer Policy<a class="headerlink" href="#scenario-1-s3-developer-policy" title="Permanent link">&para;</a></h4>
+<h4 id="scenario-1-s3-developer-policy">Scenario 1: S3 Developer Policy</h4>
 <p>Allow developers to manage objects in specific S3 buckets but not modify bucket configuration:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1"># Create policy document</span>
 <a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>s3-developer-policy.json<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
@@ -4278,7 +4278,7 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-32-59" name="__codelineno-32-59" href="#__codelineno-32-59"></a><span class="w">    </span>--group-name<span class="w"> </span>developers<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-32-60" name="__codelineno-32-60" href="#__codelineno-32-60"></a><span class="w">    </span>--policy-arn<span class="w"> </span>arn:aws:iam::123456789012:policy/S3DeveloperAccess
 </code></pre></div>
-<h4 id="scenario-2-ec2-management-with-tag-based-access">Scenario 2: EC2 Management with Tag-Based Access<a class="headerlink" href="#scenario-2-ec2-management-with-tag-based-access" title="Permanent link">&para;</a></h4>
+<h4 id="scenario-2-ec2-management-with-tag-based-access">Scenario 2: EC2 Management with Tag-Based Access</h4>
 <p>Allow users to manage only EC2 instances tagged with their team:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>ec2-team-policy.json<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
 <a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="s">{</span>
@@ -4346,7 +4346,7 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="w">    </span>--tags<span class="w"> </span><span class="nv">Key</span><span class="o">=</span>Team,Value<span class="o">=</span>backend
 </code></pre></div>
 <p>Now Alice can only manage EC2 instances tagged with <code>Team=backend</code>.</p>
-<h4 id="scenario-3-time-based-access-control">Scenario 3: Time-Based Access Control<a class="headerlink" href="#scenario-3-time-based-access-control" title="Permanent link">&para;</a></h4>
+<h4 id="scenario-3-time-based-access-control">Scenario 3: Time-Based Access Control</h4>
 <p>Grant access only during business hours:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>business-hours-policy.json<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
 <a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="s">{</span>
@@ -4377,9 +4377,9 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-35-27" name="__codelineno-35-27" href="#__codelineno-35-27"></a><span class="w">    </span>--policy-name<span class="w"> </span>BusinessHoursRDSAccess<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-35-28" name="__codelineno-35-28" href="#__codelineno-35-28"></a><span class="w">    </span>--policy-document<span class="w"> </span>file://business-hours-policy.json
 </code></pre></div>
-<h3 id="lab-3-setting-up-cross-account-access">Lab 3: Setting Up Cross-Account Access<a class="headerlink" href="#lab-3-setting-up-cross-account-access" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-setting-up-cross-account-access">Lab 3: Setting Up Cross-Account Access</h3>
 <p><strong>Objective:</strong> Enable secure cross-account access between development and production accounts.</p>
-<h4 id="scenario-development-account-accessing-production-for-read-only">Scenario: Development Account Accessing Production for Read-Only<a class="headerlink" href="#scenario-development-account-accessing-production-for-read-only" title="Permanent link">&para;</a></h4>
+<h4 id="scenario-development-account-accessing-production-for-read-only">Scenario: Development Account Accessing Production for Read-Only</h4>
 <p><strong>Production Account (111111111111) - Create Role:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="c1"># Create trust policy</span>
 <a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>trust-policy.json<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
@@ -4489,7 +4489,7 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-37-36" name="__codelineno-37-36" href="#__codelineno-37-36"></a><span class="c1"># Now commands run with prod account permissions</span>
 <a id="__codelineno-37-37" name="__codelineno-37-37" href="#__codelineno-37-37"></a>aws<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>s3://prod-logs-bucket/
 </code></pre></div>
-<h4 id="create-assume-role-script">Create Assume Role Script<a class="headerlink" href="#create-assume-role-script" title="Permanent link">&para;</a></h4>
+<h4 id="create-assume-role-script">Create Assume Role Script</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>assume-prod-role.sh<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
 <a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="s">#!/bin/bash</span>
 <a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>
@@ -4527,9 +4527,9 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-38-35" name="__codelineno-38-35" href="#__codelineno-38-35"></a><span class="c1"># Usage:</span>
 <a id="__codelineno-38-36" name="__codelineno-38-36" href="#__codelineno-38-36"></a><span class="nb">source</span><span class="w"> </span>./assume-prod-role.sh
 </code></pre></div>
-<h3 id="lab-4-implementing-permission-boundaries">Lab 4: Implementing Permission Boundaries<a class="headerlink" href="#lab-4-implementing-permission-boundaries" title="Permanent link">&para;</a></h3>
+<h3 id="lab-4-implementing-permission-boundaries">Lab 4: Implementing Permission Boundaries</h3>
 <p><strong>Objective:</strong> Use permission boundaries to safely delegate permission management to developers.</p>
-<h4 id="scenario-allow-developers-to-create-roles-but-limit-their-permissions">Scenario: Allow Developers to Create Roles but Limit Their Permissions<a class="headerlink" href="#scenario-allow-developers-to-create-roles-but-limit-their-permissions" title="Permanent link">&para;</a></h4>
+<h4 id="scenario-allow-developers-to-create-roles-but-limit-their-permissions">Scenario: Allow Developers to Create Roles but Limit Their Permissions</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="c1"># Create permission boundary policy</span>
 <a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>developer-permission-boundary.json<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
 <a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="s">{</span>
@@ -4645,9 +4645,9 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a><span class="c1"># 1. The attached policy (AWSLambdaExecute)</span>
 <a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a><span class="c1"># 2. The permission boundary (DeveloperPermissionBoundary)</span>
 </code></pre></div>
-<h3 id="lab-5-policy-simulation-and-testing">Lab 5: Policy Simulation and Testing<a class="headerlink" href="#lab-5-policy-simulation-and-testing" title="Permanent link">&para;</a></h3>
+<h3 id="lab-5-policy-simulation-and-testing">Lab 5: Policy Simulation and Testing</h3>
 <p><strong>Objective:</strong> Test IAM policies before applying them to production.</p>
-<h4 id="using-iam-policy-simulator">Using IAM Policy Simulator<a class="headerlink" href="#using-iam-policy-simulator" title="Permanent link">&para;</a></h4>
+<h4 id="using-iam-policy-simulator">Using IAM Policy Simulator</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="c1"># Simulate S3 access for a user</span>
 <a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>aws<span class="w"> </span>iam<span class="w"> </span>simulate-principal-policy<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="w">    </span>--policy-source-arn<span class="w"> </span>arn:aws:iam::123456789012:user/alice<span class="w"> </span><span class="se">\</span>
@@ -4685,7 +4685,7 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-42-26" name="__codelineno-42-26" href="#__codelineno-42-26"></a><span class="w">  </span><span class="p">]</span>
 <a id="__codelineno-42-27" name="__codelineno-42-27" href="#__codelineno-42-27"></a><span class="p">}</span>
 </code></pre></div>
-<h4 id="programmatic-policy-testing">Programmatic Policy Testing<a class="headerlink" href="#programmatic-policy-testing" title="Permanent link">&para;</a></h4>
+<h4 id="programmatic-policy-testing">Programmatic Policy Testing</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="ch">#!/usr/bin/env python3</span>
 <a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="c1"># test_iam_policies.py</span>
 <a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>
@@ -4737,9 +4737,9 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-43-49" name="__codelineno-43-49" href="#__codelineno-43-49"></a>    <span class="p">[</span><span class="s1">&#39;arn:aws:s3:::dev-bucket/*&#39;</span><span class="p">,</span> <span class="s1">&#39;arn:aws:s3:::prod-bucket/*&#39;</span><span class="p">]</span>
 <a id="__codelineno-43-50" name="__codelineno-43-50" href="#__codelineno-43-50"></a><span class="p">)</span>
 </code></pre></div>
-<h3 id="lab-6-implementing-saml-federation">Lab 6: Implementing SAML Federation<a class="headerlink" href="#lab-6-implementing-saml-federation" title="Permanent link">&para;</a></h3>
+<h3 id="lab-6-implementing-saml-federation">Lab 6: Implementing SAML Federation</h3>
 <p><strong>Objective:</strong> Set up SAML federation with an external IdP for SSO.</p>
-<h4 id="step-1-create-saml-identity-provider-in-aws">Step 1: Create SAML Identity Provider in AWS<a class="headerlink" href="#step-1-create-saml-identity-provider-in-aws" title="Permanent link">&para;</a></h4>
+<h4 id="step-1-create-saml-identity-provider-in-aws">Step 1: Create SAML Identity Provider in AWS</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="c1"># Download IdP metadata from your SAML provider (Okta, Azure AD, etc.)</span>
 <a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="c1"># Save it as idp-metadata.xml</span>
 <a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>
@@ -4751,7 +4751,7 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-44-9" name="__codelineno-44-9" href="#__codelineno-44-9"></a><span class="c1"># Output:</span>
 <a id="__codelineno-44-10" name="__codelineno-44-10" href="#__codelineno-44-10"></a><span class="c1"># arn:aws:iam::123456789012:saml-provider/CorporateIdP</span>
 </code></pre></div>
-<h4 id="step-2-create-iam-role-for-saml-federation">Step 2: Create IAM Role for SAML Federation<a class="headerlink" href="#step-2-create-iam-role-for-saml-federation" title="Permanent link">&para;</a></h4>
+<h4 id="step-2-create-iam-role-for-saml-federation">Step 2: Create IAM Role for SAML Federation</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="c1"># Create trust policy for SAML</span>
 <a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>saml-trust-policy.json<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
 <a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="s">{</span>
@@ -4784,7 +4784,7 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-45-30" name="__codelineno-45-30" href="#__codelineno-45-30"></a><span class="w">    </span>--role-name<span class="w"> </span>CorporateIdP-Developers<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-45-31" name="__codelineno-45-31" href="#__codelineno-45-31"></a><span class="w">    </span>--policy-arn<span class="w"> </span>arn:aws:iam::aws:policy/PowerUserAccess
 </code></pre></div>
-<h4 id="step-3-configure-idp">Step 3: Configure IdP<a class="headerlink" href="#step-3-configure-idp" title="Permanent link">&para;</a></h4>
+<h4 id="step-3-configure-idp">Step 3: Configure IdP</h4>
 <p>In your SAML IdP (Okta, Azure AD, etc.):</p>
 <ol>
 <li>Add AWS as a SAML application</li>
@@ -4799,17 +4799,17 @@ Some services support resource-based policies:</p>
 <ol>
 <li>Assign users/groups to the application</li>
 </ol>
-<h4 id="step-4-test-federation">Step 4: Test Federation<a class="headerlink" href="#step-4-test-federation" title="Permanent link">&para;</a></h4>
+<h4 id="step-4-test-federation">Step 4: Test Federation</h4>
 <p>Users can now:</p>
 <ol>
 <li>Log into corporate IdP</li>
 <li>Click AWS application</li>
 <li>Get automatically signed into AWS console with federated role</li>
 </ol>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="enterprise-iam-architecture-patterns">Enterprise IAM Architecture Patterns<a class="headerlink" href="#enterprise-iam-architecture-patterns" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="enterprise-iam-architecture-patterns">Enterprise IAM Architecture Patterns</h3>
 <p>Production environments require sophisticated IAM architectures that balance security, usability, and operational efficiency.</p>
-<h4 id="pattern-1-multi-account-organization-with-iam-identity-center">Pattern 1: Multi-Account Organization with IAM Identity Center<a class="headerlink" href="#pattern-1-multi-account-organization-with-iam-identity-center" title="Permanent link">&para;</a></h4>
+<h4 id="pattern-1-multi-account-organization-with-iam-identity-center">Pattern 1: Multi-Account Organization with IAM Identity Center</h4>
 <p>For enterprises with multiple AWS accounts:</p>
 <p><strong>Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>Management Account (Organizations)
@@ -4869,7 +4869,7 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-48-37" name="__codelineno-48-37" href="#__codelineno-48-37"></a><span class="w">      </span><span class="nt">TargetId</span><span class="p">:</span><span class="w"> </span><span class="kt">!Ref</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DevAccountId</span>
 <a id="__codelineno-48-38" name="__codelineno-48-38" href="#__codelineno-48-38"></a><span class="w">      </span><span class="nt">TargetType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWS_ACCOUNT</span>
 </code></pre></div>
-<h4 id="pattern-2-service-specific-iam-roles-with-least-privilege">Pattern 2: Service-Specific IAM Roles with Least Privilege<a class="headerlink" href="#pattern-2-service-specific-iam-roles-with-least-privilege" title="Permanent link">&para;</a></h4>
+<h4 id="pattern-2-service-specific-iam-roles-with-least-privilege">Pattern 2: Service-Specific IAM Roles with Least Privilege</h4>
 <p><strong>Lambda Execution Role Pattern:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="p">{</span>
 <a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
@@ -4989,7 +4989,7 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-50-67" name="__codelineno-50-67" href="#__codelineno-50-67"></a><span class="w">    </span>--iam-instance-profile<span class="w"> </span><span class="nv">Name</span><span class="o">=</span>WebServerProfile<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-50-68" name="__codelineno-50-68" href="#__codelineno-50-68"></a><span class="w">    </span>--subnet-id<span class="w"> </span>subnet-12345678
 </code></pre></div>
-<h4 id="pattern-3-break-glass-emergency-access">Pattern 3: Break-Glass Emergency Access<a class="headerlink" href="#pattern-3-break-glass-emergency-access" title="Permanent link">&para;</a></h4>
+<h4 id="pattern-3-break-glass-emergency-access">Pattern 3: Break-Glass Emergency Access</h4>
 <p>For emergency situations when normal access methods fail:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="c1"># Create emergency access role</span>
 <a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>emergency-trust-policy.json<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
@@ -5048,8 +5048,8 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-51-55" name="__codelineno-51-55" href="#__codelineno-51-55"></a><span class="w">    </span>--dimensions<span class="w"> </span><span class="nv">Name</span><span class="o">=</span>RoleName,Value<span class="o">=</span>EmergencyAdministrator<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-51-56" name="__codelineno-51-56" href="#__codelineno-51-56"></a><span class="w">    </span>--alarm-actions<span class="w"> </span>arn:aws:sns:us-east-1:123456789012:security-alerts
 </code></pre></div>
-<h3 id="comprehensive-audit-and-compliance">Comprehensive Audit and Compliance<a class="headerlink" href="#comprehensive-audit-and-compliance" title="Permanent link">&para;</a></h3>
-<h4 id="cloudtrail-integration">CloudTrail Integration<a class="headerlink" href="#cloudtrail-integration" title="Permanent link">&para;</a></h4>
+<h3 id="comprehensive-audit-and-compliance">Comprehensive Audit and Compliance</h3>
+<h4 id="cloudtrail-integration">CloudTrail Integration</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="c1"># Ensure CloudTrail is logging IAM events</span>
 <a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>aws<span class="w"> </span>cloudtrail<span class="w"> </span>create-trail<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="w">    </span>--name<span class="w"> </span>iam-audit-trail<span class="w"> </span><span class="se">\</span>
@@ -5070,7 +5070,7 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-52-18" name="__codelineno-52-18" href="#__codelineno-52-18"></a><span class="s1">      &quot;DataResources&quot;: []</span>
 <a id="__codelineno-52-19" name="__codelineno-52-19" href="#__codelineno-52-19"></a><span class="s1">    }]&#39;</span>
 </code></pre></div>
-<h4 id="iam-access-analyzer-setup">IAM Access Analyzer Setup<a class="headerlink" href="#iam-access-analyzer-setup" title="Permanent link">&para;</a></h4>
+<h4 id="iam-access-analyzer-setup">IAM Access Analyzer Setup</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="c1"># Create analyzer</span>
 <a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>aws<span class="w"> </span>accessanalyzer<span class="w"> </span>create-analyzer<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="w">    </span>--analyzer-name<span class="w"> </span>organization-analyzer<span class="w"> </span><span class="se">\</span>
@@ -5086,7 +5086,7 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-53-13" name="__codelineno-53-13" href="#__codelineno-53-13"></a><span class="s1">      }</span>
 <a id="__codelineno-53-14" name="__codelineno-53-14" href="#__codelineno-53-14"></a><span class="s1">    }&#39;</span>
 </code></pre></div>
-<h4 id="automated-compliance-checks">Automated Compliance Checks<a class="headerlink" href="#automated-compliance-checks" title="Permanent link">&para;</a></h4>
+<h4 id="automated-compliance-checks">Automated Compliance Checks</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="ch">#!/usr/bin/env python3</span>
 <a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="c1"># iam_compliance_checker.py</span>
 <a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a>
@@ -5185,8 +5185,8 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-55-10" name="__codelineno-55-10" href="#__codelineno-55-10"></a><span class="w">    </span>--rule<span class="w"> </span>daily-iam-compliance-check<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-55-11" name="__codelineno-55-11" href="#__codelineno-55-11"></a><span class="w">    </span>--targets<span class="w"> </span><span class="s2">&quot;Id&quot;</span><span class="o">=</span><span class="s2">&quot;1&quot;</span>,<span class="s2">&quot;Arn&quot;</span><span class="o">=</span><span class="s2">&quot;arn:aws:lambda:us-east-1:123456789012:function:iam-compliance-checker&quot;</span>
 </code></pre></div>
-<h3 id="advanced-iam-patterns">Advanced IAM Patterns<a class="headerlink" href="#advanced-iam-patterns" title="Permanent link">&para;</a></h3>
-<h4 id="attribute-based-access-control-abac">Attribute-Based Access Control (ABAC)<a class="headerlink" href="#attribute-based-access-control-abac" title="Permanent link">&para;</a></h4>
+<h3 id="advanced-iam-patterns">Advanced IAM Patterns</h3>
+<h4 id="attribute-based-access-control-abac">Attribute-Based Access Control (ABAC)</h4>
 <p>ABAC uses tags to control access, enabling more scalable permission management:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="c1"># Tag resources</span>
 <a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>aws<span class="w"> </span>ec2<span class="w"> </span>create-tags<span class="w"> </span><span class="se">\</span>
@@ -5232,7 +5232,7 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-56-42" name="__codelineno-56-42" href="#__codelineno-56-42"></a><span class="s">EOF</span>
 </code></pre></div>
 <p>Now Alice can only manage EC2 instances tagged with <code>Project=WebApp</code>.</p>
-<h4 id="session-tags-for-temporary-access">Session Tags for Temporary Access<a class="headerlink" href="#session-tags-for-temporary-access" title="Permanent link">&para;</a></h4>
+<h4 id="session-tags-for-temporary-access">Session Tags for Temporary Access</h4>
 <p>When federating users, pass session tags for fine-grained control:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
 <a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>
@@ -5251,8 +5251,8 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-57-15" name="__codelineno-57-15" href="#__codelineno-57-15"></a>    <span class="n">TransitiveTagKeys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Project&#39;</span><span class="p">,</span> <span class="s1">&#39;CostCenter&#39;</span><span class="p">]</span>  <span class="c1"># These tags pass to subsequent sessions</span>
 <a id="__codelineno-57-16" name="__codelineno-57-16" href="#__codelineno-57-16"></a><span class="p">)</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="security-best-practices">Security Best Practices<a class="headerlink" href="#security-best-practices" title="Permanent link">&para;</a></h3>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
+<h3 id="security-best-practices">Security Best Practices</h3>
 <p><strong>Tip 1: Never Use Root Account for Day-to-Day Operations</strong></p>
 <p>The root account has unrestricted access to everything. Protect it:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="c1"># Enable MFA on root</span>
@@ -5332,7 +5332,7 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-62-10" name="__codelineno-62-10" href="#__codelineno-62-10"></a><span class="n">creds</span> <span class="o">=</span> <span class="n">get_database_credentials</span><span class="p">()</span>
 <a id="__codelineno-62-11" name="__codelineno-62-11" href="#__codelineno-62-11"></a><span class="c1"># Use creds[&#39;username&#39;] and creds[&#39;password&#39;]</span>
 </code></pre></div>
-<h3 id="policy-design-tips">Policy Design Tips<a class="headerlink" href="#policy-design-tips" title="Permanent link">&para;</a></h3>
+<h3 id="policy-design-tips">Policy Design Tips</h3>
 <p><strong>Tip 6: Start with AWS Managed Policies, Refine with Custom</strong></p>
 <p>AWS managed policies are a good starting point:</p>
 <ul>
@@ -5390,7 +5390,7 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-66-5" name="__codelineno-66-5" href="#__codelineno-66-5"></a><span class="w">  </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:s3:::dev-${aws:username}-*&quot;</span>
 <a id="__codelineno-66-6" name="__codelineno-66-6" href="#__codelineno-66-6"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="operational-tips">Operational Tips<a class="headerlink" href="#operational-tips" title="Permanent link">&para;</a></h3>
+<h3 id="operational-tips">Operational Tips</h3>
 <p><strong>Tip 11: Use AWS Organizations for Multi-Account Management</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="c1"># Create organization</span>
 <a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a>aws<span class="w"> </span>organizations<span class="w"> </span>create-organization<span class="w"> </span>--feature-set<span class="w"> </span>ALL
@@ -5477,7 +5477,7 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-71-34" name="__codelineno-71-34" href="#__codelineno-71-34"></a>
 <a id="__codelineno-71-35" name="__codelineno-71-35" href="#__codelineno-71-35"></a>    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Granted admin access for </span><span class="si">{</span><span class="n">duration_hours</span><span class="si">}</span><span class="s2"> hours&quot;</span>
 </code></pre></div>
-<h3 id="monitoring-and-auditing-tips">Monitoring and Auditing Tips<a class="headerlink" href="#monitoring-and-auditing-tips" title="Permanent link">&para;</a></h3>
+<h3 id="monitoring-and-auditing-tips">Monitoring and Auditing Tips</h3>
 <p><strong>Tip 16: Enable IAM Access Advisor</strong></p>
 <p>Track service-level permissions usage:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="c1"># Generate access advisor report</span>
@@ -5584,8 +5584,8 @@ Some services support resource-based policies:</p>
 <a id="__codelineno-76-38" name="__codelineno-76-38" href="#__codelineno-76-38"></a>
 <a id="__codelineno-76-39" name="__codelineno-76-39" href="#__codelineno-76-39"></a><span class="c1"># Run this on a schedule to track IAM health over time</span>
 </code></pre></div>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-overly-permissive-policies-with-wildcard-resources">Pitfall 1: Overly Permissive Policies with Wildcard Resources<a class="headerlink" href="#pitfall-1-overly-permissive-policies-with-wildcard-resources" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-overly-permissive-policies-with-wildcard-resources">Pitfall 1: Overly Permissive Policies with Wildcard Resources</h3>
 <p><strong>Problem:</strong> Policies using <code>"Resource": "*"</code> with broad actions, granting unintended access across all resources in the account.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5703,7 +5703,7 @@ Some services support resource-based policies:</p>
 <li>Use AWS Config rules to detect violations</li>
 </ul>
 <hr />
-<h3 id="pitfall-2-hardcoded-credentials-in-code-or-configuration-files">Pitfall 2: Hardcoded Credentials in Code or Configuration Files<a class="headerlink" href="#pitfall-2-hardcoded-credentials-in-code-or-configuration-files" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-2-hardcoded-credentials-in-code-or-configuration-files">Pitfall 2: Hardcoded Credentials in Code or Configuration Files</h3>
 <p><strong>Problem:</strong> Access keys embedded directly in application code, configuration files, or worse—committed to version control.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5838,7 +5838,7 @@ Some services support resource-based policies:</p>
 <li>Rotate credentials regularly using automated tools</li>
 </ul>
 <hr />
-<h3 id="pitfall-3-root-account-usage-for-daily-operations">Pitfall 3: Root Account Usage for Daily Operations<a class="headerlink" href="#pitfall-3-root-account-usage-for-daily-operations" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-3-root-account-usage-for-daily-operations">Pitfall 3: Root Account Usage for Daily Operations</h3>
 <p><strong>Problem:</strong> Using the root account (the account created when you first sign up for AWS) for routine tasks instead of creating IAM users or using federated access.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -6048,7 +6048,7 @@ Some services support resource-based policies:</p>
 <li>Conduct regular reviews of root account activity</li>
 </ul>
 <hr />
-<h3 id="pitfall-4-insufficient-cross-account-access-controls">Pitfall 4: Insufficient Cross-Account Access Controls<a class="headerlink" href="#pitfall-4-insufficient-cross-account-access-controls" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-4-insufficient-cross-account-access-controls">Pitfall 4: Insufficient Cross-Account Access Controls</h3>
 <p><strong>Problem:</strong> Cross-account roles configured without proper conditions, allowing unintended access or making accounts vulnerable to confused deputy attacks.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -6278,7 +6278,7 @@ Some services support resource-based policies:</p>
 <li>Document all cross-account relationships</li>
 </ul>
 <hr />
-<h3 id="pitfall-5-not-using-service-control-policies-scps-in-organizations">Pitfall 5: Not Using Service Control Policies (SCPs) in Organizations<a class="headerlink" href="#pitfall-5-not-using-service-control-policies-scps-in-organizations" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-5-not-using-service-control-policies-scps-in-organizations">Pitfall 5: Not Using Service Control Policies (SCPs) in Organizations</h3>
 <p><strong>Problem:</strong> Managing permissions solely through IAM policies in individual accounts without leveraging AWS Organizations SCPs for centralized control.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -6540,7 +6540,7 @@ Some services support resource-based policies:</p>
 <li>Use SCPs as guardrails, not primary access control</li>
 </ul>
 <hr />
-<h3 id="pitfall-6-neglecting-iam-policy-size-limits">Pitfall 6: Neglecting IAM Policy Size Limits<a class="headerlink" href="#pitfall-6-neglecting-iam-policy-size-limits" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-6-neglecting-iam-policy-size-limits">Pitfall 6: Neglecting IAM Policy Size Limits</h3>
 <p><strong>Problem:</strong> Creating overly complex policies that exceed AWS size limits, causing deployment failures or forcing workarounds that compromise security.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -6720,7 +6720,7 @@ Some services support resource-based policies:</p>
 <li>Monitor policy sizes in CI/CD pipeline</li>
 </ul>
 <hr />
-<h3 id="pitfall-7-improper-handling-of-temporary-security-credentials">Pitfall 7: Improper Handling of Temporary Security Credentials<a class="headerlink" href="#pitfall-7-improper-handling-of-temporary-security-credentials" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-7-improper-handling-of-temporary-security-credentials">Pitfall 7: Improper Handling of Temporary Security Credentials</h3>
 <p><strong>Problem:</strong> Treating temporary credentials (from STS) like permanent access keys, leading to expiration issues, hardcoded temporary tokens, or failed renewals.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -7003,7 +7003,7 @@ Some services support resource-based policies:</p>
 <li>Set appropriate session durations</li>
 </ul>
 <hr />
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>IAM is the foundation of AWS security, controlling who can access which resources under what conditions. Mastering IAM requires understanding its components (users, groups, roles, policies), implementing least privilege access, and following security best practices throughout the credential lifecycle.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -7017,7 +7017,7 @@ Some services support resource-based policies:</p>
 </ul>
 <p>Understanding IAM deeply enables you to build secure, scalable, and compliant AWS architectures. The patterns and practices in this chapter form the security foundation for all subsequent services and solutions.</p>
 <p>In Chapter 3, we'll explore Amazon VPC, which provides the network isolation and segmentation that complements IAM's identity-based access controls.</p>
-<h2 id="hands-on-lab-exercise">Hands-On Lab Exercise<a class="headerlink" href="#hands-on-lab-exercise" title="Permanent link">&para;</a></h2>
+<h2 id="hands-on-lab-exercise">Hands-On Lab Exercise</h2>
 <p><strong>Objective:</strong> Build a complete IAM architecture for a three-tier application with proper separation of duties, least privilege access, and audit capabilities.</p>
 <p><strong>Scenario:</strong> You're setting up IAM for a web application with:</p>
 <ul>
@@ -7077,7 +7077,7 @@ Some services support resource-based policies:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-128-1" name="__codelineno-128-1" href="#__codelineno-128-1"></a><span class="c1"># Delete users, groups, roles, policies created during exercise</span>
 <a id="__codelineno-128-2" name="__codelineno-128-2" href="#__codelineno-128-2"></a><span class="c1"># Be careful not to delete production IAM resources</span>
 </code></pre></div>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>What is the difference between an IAM user and an IAM role?</strong>
 a) Users have permanent credentials, roles provide temporary credentials

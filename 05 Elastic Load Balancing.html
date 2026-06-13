@@ -2808,14 +2808,14 @@
   
 
 
-<h1 id="chapter-5-elastic-load-balancing">Chapter 5: Elastic Load Balancing<a class="headerlink" href="#chapter-5-elastic-load-balancing" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-5-elastic-load-balancing">Chapter 5: Elastic Load Balancing</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Elastic Load Balancing (ELB) is the traffic distribution backbone of AWS applications, automatically distributing incoming application traffic across multiple targets such as EC2 instances, containers, IP addresses, and Lambda functions. In modern cloud architectures, load balancers are not merely optional components—they are essential for achieving high availability, fault tolerance, and horizontal scalability. Without load balancing, applications remain single points of failure, unable to handle traffic surges or recover gracefully from failures.</p>
 <p>The evolution of AWS load balancers reflects the changing needs of cloud applications. What began with Classic Load Balancers has evolved into three specialized types: Application Load Balancers for HTTP/HTTPS traffic with advanced routing, Network Load Balancers for ultra-low latency TCP/UDP traffic, and Gateway Load Balancers for third-party virtual appliances. Each type serves distinct use cases, and selecting the wrong one can lead to performance bottlenecks, increased costs, or architectural limitations.</p>
 <p>Understanding ELB goes far beyond simply distributing traffic. Modern load balancers provide SSL/TLS termination, reducing compute overhead on backend servers; implement sophisticated health checks to route traffic only to healthy targets; support WebSocket and HTTP/2 protocols for real-time applications; integrate with WAF for security; and provide detailed metrics for observability. Proper load balancer configuration is critical—misconfigured health checks can mark healthy instances as unhealthy, cross-zone load balancing settings affect availability, and incorrect listener rules can route traffic to wrong targets.</p>
 <p>This chapter provides comprehensive coverage of Elastic Load Balancing from fundamentals to production patterns. You'll learn to select the appropriate load balancer type for your workload, configure advanced routing rules, implement SSL/TLS termination, design health checks that accurately reflect application health, optimize performance, and troubleshoot common issues. Whether you're building a simple web application or a complex microservices architecture, mastering ELB is essential for production-ready AWS deployments.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="load-balancing-fundamentals">Load Balancing Fundamentals<a class="headerlink" href="#load-balancing-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="load-balancing-fundamentals">Load Balancing Fundamentals</h3>
 <p>Load balancing distributes client requests across multiple backend servers to ensure no single server becomes overwhelmed, improving both availability and performance.</p>
 <p><strong>Key Benefits:</strong></p>
 <ol>
@@ -2831,7 +2831,7 @@
 <p><strong>Least Outstanding Requests:</strong> Routes to target with fewest active connections (ALB)</p>
 <p><strong>Flow Hash:</strong> Routes based on 5-tuple hash for consistent routing (NLB)</p>
 <p><strong>Weighted Target Groups:</strong> Distributes traffic based on assigned weights</p>
-<h3 id="elb-types-comparison">ELB Types Comparison<a class="headerlink" href="#elb-types-comparison" title="Permanent link">&para;</a></h3>
+<h3 id="elb-types-comparison">ELB Types Comparison</h3>
 <p>AWS offers four types of load balancers, each optimized for specific use cases.</p>
 <table>
 <thead>
@@ -2931,7 +2931,7 @@
 </tbody>
 </table>
 <p><strong>Recommendation:</strong> Use ALB for HTTP/HTTPS workloads, NLB for TCP/UDP or when static IPs needed, GLB for appliance integration. Avoid CLB for new deployments.</p>
-<h3 id="application-load-balancer-alb-deep-dive">Application Load Balancer (ALB) Deep Dive<a class="headerlink" href="#application-load-balancer-alb-deep-dive" title="Permanent link">&para;</a></h3>
+<h3 id="application-load-balancer-alb-deep-dive">Application Load Balancer (ALB) Deep Dive</h3>
 <p>ALB operates at Layer 7 (HTTP/HTTPS) and provides advanced routing capabilities.</p>
 <p><strong>Key Features:</strong></p>
 <p><strong>1. Content-Based Routing:</strong></p>
@@ -3004,7 +3004,7 @@
 <li><strong>Round Robin:</strong> If requests are equal, uses round robin</li>
 <li><strong>Sticky Sessions:</strong> If enabled, routes returning users to same target</li>
 </ol>
-<h3 id="network-load-balancer-nlb-deep-dive">Network Load Balancer (NLB) Deep Dive<a class="headerlink" href="#network-load-balancer-nlb-deep-dive" title="Permanent link">&para;</a></h3>
+<h3 id="network-load-balancer-nlb-deep-dive">Network Load Balancer (NLB) Deep Dive</h3>
 <p>NLB operates at Layer 4 (TCP/UDP/TLS) and is designed for extreme performance and low latency.</p>
 <p><strong>Key Features:</strong></p>
 <p><strong>1. Ultra-High Performance:</strong></p>
@@ -3055,7 +3055,7 @@
 <li><strong>Static IP Requirements:</strong> Firewall whitelisting</li>
 <li><strong>PrivateLink:</strong> Expose services privately</li>
 </ul>
-<h3 id="gateway-load-balancer-glb">Gateway Load Balancer (GLB)<a class="headerlink" href="#gateway-load-balancer-glb" title="Permanent link">&para;</a></h3>
+<h3 id="gateway-load-balancer-glb">Gateway Load Balancer (GLB)</h3>
 <p>GLB enables deployment and scaling of third-party virtual appliances (firewalls, IDS/IPS, DPI).</p>
 <p><strong>Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Internet/VPC
@@ -3083,7 +3083,7 @@
 <li>Deep Packet Inspection (DPI)</li>
 <li>Network monitoring and analytics</li>
 </ul>
-<h3 id="health-checks">Health Checks<a class="headerlink" href="#health-checks" title="Permanent link">&para;</a></h3>
+<h3 id="health-checks">Health Checks</h3>
 <p>Health checks determine which targets are healthy and can receive traffic.</p>
 <p><strong>Health Check Parameters:</strong></p>
 <table>
@@ -3182,7 +3182,7 @@
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>Total time for failover: Up to 2 minutes typical
 </code></pre></div>
-<h3 id="connection-draining-and-deregistration-delay">Connection Draining and Deregistration Delay<a class="headerlink" href="#connection-draining-and-deregistration-delay" title="Permanent link">&para;</a></h3>
+<h3 id="connection-draining-and-deregistration-delay">Connection Draining and Deregistration Delay</h3>
 <p>When a target is deregistered (instance termination, health check failure), the load balancer handles in-flight connections gracefully.</p>
 <p><strong>Deregistration Delay (Connection Draining):</strong></p>
 <ul>
@@ -3203,7 +3203,7 @@
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>WebSocket applications: 3600 seconds
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>File downloads: 3600 seconds
 </code></pre></div>
-<h3 id="cross-zone-load-balancing">Cross-Zone Load Balancing<a class="headerlink" href="#cross-zone-load-balancing" title="Permanent link">&para;</a></h3>
+<h3 id="cross-zone-load-balancing">Cross-Zone Load Balancing</h3>
 <p>Determines whether load balancer distributes traffic across all targets in all enabled AZs.</p>
 <p><strong>Enabled (Recommended):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>AZ-1: 2 instances (receive 50% of traffic)
@@ -3251,7 +3251,7 @@
 </tbody>
 </table>
 <p><strong>Recommendation:</strong> Enable cross-zone for even distribution unless you have specific AZ affinity requirements or want to minimize cross-AZ data transfer costs.</p>
-<h3 id="ssltls-termination">SSL/TLS Termination<a class="headerlink" href="#ssltls-termination" title="Permanent link">&para;</a></h3>
+<h3 id="ssltls-termination">SSL/TLS Termination</h3>
 <p>Load balancers can terminate SSL/TLS connections, decrypting traffic before forwarding to targets.</p>
 <p><strong>Benefits:</strong></p>
 <ol>
@@ -3321,7 +3321,7 @@
 <a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>├── Certificate 3: *.partner.com
 <a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>└── Rule: Host is api.example.com → API Target Group
 </code></pre></div>
-<h3 id="load-balancer-attributes">Load Balancer Attributes<a class="headerlink" href="#load-balancer-attributes" title="Permanent link">&para;</a></h3>
+<h3 id="load-balancer-attributes">Load Balancer Attributes</h3>
 <p><strong>ALB Attributes:</strong></p>
 <table>
 <thead>
@@ -3397,7 +3397,7 @@
 <li><strong>Idle Timeout:</strong> 350 seconds (TCP), 120 seconds (UDP)</li>
 <li><strong>Configurable:</strong> No (fixed values)</li>
 </ul>
-<h3 id="request-routing">Request Routing<a class="headerlink" href="#request-routing" title="Permanent link">&para;</a></h3>
+<h3 id="request-routing">Request Routing</h3>
 <p><strong>ALB Routing Evaluation Order:</strong></p>
 <ol>
 <li><strong>Host Header:</strong> Evaluate host-based rules first</li>
@@ -3455,7 +3455,7 @@
 <a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
 <a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>Result: 80% traffic to v1, 20% to v2 (for testing/canary)
 </code></pre></div>
-<h3 id="load-balancer-pricing">Load Balancer Pricing<a class="headerlink" href="#load-balancer-pricing" title="Permanent link">&para;</a></h3>
+<h3 id="load-balancer-pricing">Load Balancer Pricing</h3>
 <p><strong>ALB Pricing:</strong></p>
 <ul>
 <li><strong>Fixed:</strong> \$0.0225 per hour (~\$16.43/month)</li>
@@ -3496,8 +3496,8 @@
 <a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>- 400 LCUs × 744 hours × $0.008 = $2,379.20
 <a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>- Total: ~$2,395.63/month
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-configuring-application-load-balancer">Lab 1: Configuring Application Load Balancer<a class="headerlink" href="#lab-1-configuring-application-load-balancer" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-configuring-application-load-balancer">Lab 1: Configuring Application Load Balancer</h3>
 <p><strong>Objective:</strong> Create an ALB with multiple target groups and path-based routing.</p>
 <p><strong>Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Internet → ALB (Port 443)
@@ -3505,7 +3505,7 @@
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>           ├── /images/* → Static Content TG (Port 80)
 <a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>           └── /* → Web Application TG (Port 80)
 </code></pre></div>
-<h4 id="step-1-create-target-groups">Step 1: Create Target Groups<a class="headerlink" href="#step-1-create-target-groups" title="Permanent link">&para;</a></h4>
+<h4 id="step-1-create-target-groups">Step 1: Create Target Groups</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Create API Target Group</span>
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nv">API_TG_ARN</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>elbv2<span class="w"> </span>create-target-group<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span>--name<span class="w"> </span>api-target-group<span class="w"> </span><span class="se">\</span>
@@ -3569,7 +3569,7 @@
 <a id="__codelineno-19-61" name="__codelineno-19-61" href="#__codelineno-19-61"></a><span class="w">    </span>--target-group-arn<span class="w"> </span><span class="nv">$WEB_TG_ARN</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-19-62" name="__codelineno-19-62" href="#__codelineno-19-62"></a><span class="w">    </span>--targets<span class="w"> </span><span class="nv">Id</span><span class="o">=</span>i-web1<span class="w"> </span><span class="nv">Id</span><span class="o">=</span>i-web2<span class="w"> </span><span class="nv">Id</span><span class="o">=</span>i-web3
 </code></pre></div>
-<h4 id="step-2-configure-target-group-attributes">Step 2: Configure Target Group Attributes<a class="headerlink" href="#step-2-configure-target-group-attributes" title="Permanent link">&para;</a></h4>
+<h4 id="step-2-configure-target-group-attributes">Step 2: Configure Target Group Attributes</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Configure deregistration delay (connection draining)</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>aws<span class="w"> </span>elbv2<span class="w"> </span>modify-target-group-attributes<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span>--target-group-arn<span class="w"> </span><span class="nv">$API_TG_ARN</span><span class="w"> </span><span class="se">\</span>
@@ -3592,7 +3592,7 @@
 <a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a><span class="w">    </span>--attributes<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a><span class="w">        </span><span class="nv">Key</span><span class="o">=</span>load_balancing.algorithm.type,Value<span class="o">=</span>least_outstanding_requests
 </code></pre></div>
-<h4 id="step-3-create-application-load-balancer">Step 3: Create Application Load Balancer<a class="headerlink" href="#step-3-create-application-load-balancer" title="Permanent link">&para;</a></h4>
+<h4 id="step-3-create-application-load-balancer">Step 3: Create Application Load Balancer</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Create ALB</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nv">ALB_ARN</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>elbv2<span class="w"> </span>create-load-balancer<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span>--name<span class="w"> </span>production-alb<span class="w"> </span><span class="se">\</span>
@@ -3624,7 +3624,7 @@
 <a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a><span class="w">        </span><span class="nv">Key</span><span class="o">=</span>access_logs.s3.bucket,Value<span class="o">=</span>my-alb-logs-bucket<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a><span class="w">        </span><span class="nv">Key</span><span class="o">=</span>access_logs.s3.prefix,Value<span class="o">=</span>production-alb
 </code></pre></div>
-<h4 id="step-4-configure-ssltls-certificate">Step 4: Configure SSL/TLS Certificate<a class="headerlink" href="#step-4-configure-ssltls-certificate" title="Permanent link">&para;</a></h4>
+<h4 id="step-4-configure-ssltls-certificate">Step 4: Configure SSL/TLS Certificate</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Request certificate from ACM</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="nv">CERT_ARN</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>acm<span class="w"> </span>request-certificate<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span>--domain-name<span class="w"> </span>example.com<span class="w"> </span><span class="se">\</span>
@@ -3639,7 +3639,7 @@
 <a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="c1"># Or use existing certificate</span>
 <a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="c1"># CERT_ARN=&quot;arn:aws:acm:us-east-1:123456789012:certificate/xxxxx&quot;</span>
 </code></pre></div>
-<h4 id="step-5-create-https-listener-with-rules">Step 5: Create HTTPS Listener with Rules<a class="headerlink" href="#step-5-create-https-listener-with-rules" title="Permanent link">&para;</a></h4>
+<h4 id="step-5-create-https-listener-with-rules">Step 5: Create HTTPS Listener with Rules</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Create HTTPS listener (443)</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="nv">HTTPS_LISTENER_ARN</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>elbv2<span class="w"> </span>create-listener<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span>--load-balancer-arn<span class="w"> </span><span class="nv">$ALB_ARN</span><span class="w"> </span><span class="se">\</span>
@@ -3681,7 +3681,7 @@
 <a id="__codelineno-23-39" name="__codelineno-23-39" href="#__codelineno-23-39"></a><span class="w">    </span>--query<span class="w"> </span><span class="s1">&#39;Listeners[0].ListenerArn&#39;</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-23-40" name="__codelineno-23-40" href="#__codelineno-23-40"></a><span class="w">    </span>--output<span class="w"> </span>text<span class="k">)</span>
 </code></pre></div>
-<h4 id="step-6-advanced-routing-rules">Step 6: Advanced Routing Rules<a class="headerlink" href="#step-6-advanced-routing-rules" title="Permanent link">&para;</a></h4>
+<h4 id="step-6-advanced-routing-rules">Step 6: Advanced Routing Rules</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># Weighted target groups for canary deployment</span>
 <a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>aws<span class="w"> </span>elbv2<span class="w"> </span>create-rule<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span>--listener-arn<span class="w"> </span><span class="nv">$HTTPS_LISTENER_ARN</span><span class="w"> </span><span class="se">\</span>
@@ -3723,7 +3723,7 @@
 <a id="__codelineno-24-39" name="__codelineno-24-39" href="#__codelineno-24-39"></a><span class="s1">      &quot;MessageBody&quot;: &quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Under Maintenance&lt;/h1&gt;&lt;p&gt;We will be back soon!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;</span>
 <a id="__codelineno-24-40" name="__codelineno-24-40" href="#__codelineno-24-40"></a><span class="s1">    }&#39;</span>
 </code></pre></div>
-<h3 id="lab-2-configuring-network-load-balancer">Lab 2: Configuring Network Load Balancer<a class="headerlink" href="#lab-2-configuring-network-load-balancer" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-configuring-network-load-balancer">Lab 2: Configuring Network Load Balancer</h3>
 <p><strong>Objective:</strong> Create an NLB for TCP application with static IP addresses.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Allocate Elastic IPs for NLB (one per subnet/AZ)</span>
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="nv">EIP_1A</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>ec2<span class="w"> </span>allocate-address<span class="w"> </span><span class="se">\</span>
@@ -3788,7 +3788,7 @@
 <a id="__codelineno-25-61" name="__codelineno-25-61" href="#__codelineno-25-61"></a><span class="w">    </span>--query<span class="w"> </span><span class="s1">&#39;LoadBalancers[0].AvailabilityZones[*].[ZoneName,LoadBalancerAddresses[0].IpAddress]&#39;</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-25-62" name="__codelineno-25-62" href="#__codelineno-25-62"></a><span class="w">    </span>--output<span class="w"> </span>table
 </code></pre></div>
-<h3 id="lab-3-implementing-ssltls-termination">Lab 3: Implementing SSL/TLS Termination<a class="headerlink" href="#lab-3-implementing-ssltls-termination" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-implementing-ssltls-termination">Lab 3: Implementing SSL/TLS Termination</h3>
 <p><strong>Objective:</strong> Configure end-to-end encryption with SSL offloading at ALB.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Create target group with HTTPS backend</span>
 <a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nv">SECURE_TG_ARN</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>elbv2<span class="w"> </span>create-target-group<span class="w"> </span><span class="se">\</span>
@@ -3829,7 +3829,7 @@
 <a id="__codelineno-26-37" name="__codelineno-26-37" href="#__codelineno-26-37"></a><span class="w">    </span>--listener-arn<span class="w"> </span><span class="nv">$HTTPS_LISTENER_ARN</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-26-38" name="__codelineno-26-38" href="#__codelineno-26-38"></a><span class="w">    </span>--ssl-policy<span class="w"> </span>ELBSecurityPolicy-TLS13-1-3-2021-06
 </code></pre></div>
-<h3 id="lab-4-configuring-cognito-authentication">Lab 4: Configuring Cognito Authentication<a class="headerlink" href="#lab-4-configuring-cognito-authentication" title="Permanent link">&para;</a></h3>
+<h3 id="lab-4-configuring-cognito-authentication">Lab 4: Configuring Cognito Authentication</h3>
 <p><strong>Objective:</strong> Add user authentication to ALB using Amazon Cognito.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># Create Cognito User Pool (done separately)</span>
 <a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="c1"># USER_POOL_ID=...</span>
@@ -3870,7 +3870,7 @@
 <a id="__codelineno-27-37" name="__codelineno-27-37" href="#__codelineno-27-37"></a><span class="w">    </span>--conditions<span class="w"> </span><span class="nv">Field</span><span class="o">=</span>path-pattern,Values<span class="o">=</span><span class="s1">&#39;/public/*&#39;</span>,<span class="s1">&#39;/login&#39;</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-27-38" name="__codelineno-27-38" href="#__codelineno-27-38"></a><span class="w">    </span>--actions<span class="w"> </span><span class="nv">Type</span><span class="o">=</span>forward,TargetGroupArn<span class="o">=</span><span class="nv">$PUBLIC_TG_ARN</span>
 </code></pre></div>
-<h3 id="lab-5-monitoring-and-cloudwatch-integration">Lab 5: Monitoring and CloudWatch Integration<a class="headerlink" href="#lab-5-monitoring-and-cloudwatch-integration" title="Permanent link">&para;</a></h3>
+<h3 id="lab-5-monitoring-and-cloudwatch-integration">Lab 5: Monitoring and CloudWatch Integration</h3>
 <p><strong>Objective:</strong> Set up comprehensive monitoring for load balancers.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="ch">#!/usr/bin/env python3</span>
 <a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="c1"># alb_monitoring_setup.py</span>
@@ -4047,8 +4047,8 @@
 <a id="__codelineno-29-56" name="__codelineno-29-56" href="#__codelineno-29-56"></a><span class="s">}</span>
 <a id="__codelineno-29-57" name="__codelineno-29-57" href="#__codelineno-29-57"></a><span class="s">EOF</span>
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="multi-region-load-balancing-with-route-53">Multi-Region Load Balancing with Route 53<a class="headerlink" href="#multi-region-load-balancing-with-route-53" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="multi-region-load-balancing-with-route-53">Multi-Region Load Balancing with Route 53</h3>
 <p>For global applications, combine ELB with Route 53 for multi-region active-active or active-passive architectures.</p>
 <p><strong>Architecture Pattern:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>Global Users
@@ -4153,7 +4153,7 @@ Routes based on geographic location with bias adjustment.</p>
 Primary region handles traffic, secondary takes over on failure.</p>
 <p><strong>4. Weighted (Traffic Distribution):</strong>
 Split traffic across regions (e.g., 80% US, 20% EU for testing).</p>
-<h3 id="advanced-health-check-patterns">Advanced Health Check Patterns<a class="headerlink" href="#advanced-health-check-patterns" title="Permanent link">&para;</a></h3>
+<h3 id="advanced-health-check-patterns">Advanced Health Check Patterns</h3>
 <p><strong>Custom Health Check Endpoint:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1"># health_check_endpoint.py</span>
 <a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
@@ -4277,7 +4277,7 @@ Split traffic across regions (e.g., 80% US, 20% EU for testing).</p>
 </tr>
 </tbody>
 </table>
-<h3 id="ddos-protection-and-security">DDoS Protection and Security<a class="headerlink" href="#ddos-protection-and-security" title="Permanent link">&para;</a></h3>
+<h3 id="ddos-protection-and-security">DDoS Protection and Security</h3>
 <p><strong>AWS Shield Integration:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="c1"># Shield Standard is automatically enabled (free)</span>
 <a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="c1"># For advanced protection, enable Shield Advanced</span>
@@ -4421,7 +4421,7 @@ Split traffic across regions (e.g., 80% US, 20% EU for testing).</p>
 <a id="__codelineno-35-47" name="__codelineno-35-47" href="#__codelineno-35-47"></a>    <span class="c1"># Allow request</span>
 <a id="__codelineno-35-48" name="__codelineno-35-48" href="#__codelineno-35-48"></a>    <span class="k">return</span> <span class="n">request</span>
 </code></pre></div>
-<h3 id="access-logs-and-analysis">Access Logs and Analysis<a class="headerlink" href="#access-logs-and-analysis" title="Permanent link">&para;</a></h3>
+<h3 id="access-logs-and-analysis">Access Logs and Analysis</h3>
 <p><strong>Enable Access Logs:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="c1"># Create S3 bucket for logs</span>
 <a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>aws<span class="w"> </span>s3<span class="w"> </span>mb<span class="w"> </span>s3://my-alb-access-logs
@@ -4543,7 +4543,7 @@ Split traffic across regions (e.g., 80% US, 20% EU for testing).</p>
 <a id="__codelineno-37-87" name="__codelineno-37-87" href="#__codelineno-37-87"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">date_trunc</span><span class="p">(</span><span class="s1">&#39;minute&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">parse_datetime</span><span class="p">(</span><span class="k">time</span><span class="p">,</span><span class="s1">&#39;yyyy-MM-dd&#39;&#39;T&#39;&#39;HH:mm:ss.SSSSSS&#39;&#39;Z&#39;</span><span class="p">))</span>
 <a id="__codelineno-37-88" name="__codelineno-37-88" href="#__codelineno-37-88"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">time_bucket</span><span class="p">;</span>
 </code></pre></div>
-<h3 id="connection-pooling-and-keep-alive">Connection Pooling and Keep-Alive<a class="headerlink" href="#connection-pooling-and-keep-alive" title="Permanent link">&para;</a></h3>
+<h3 id="connection-pooling-and-keep-alive">Connection Pooling and Keep-Alive</h3>
 <p><strong>Backend Keep-Alive Configuration:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="c1"># Nginx backend configuration</span>
 <a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="k">upstream</span><span class="w"> </span><span class="s">backend</span><span class="w"> </span><span class="p">{</span>
@@ -4596,7 +4596,7 @@ Split traffic across regions (e.g., 80% US, 20% EU for testing).</p>
 <a id="__codelineno-39-24" name="__codelineno-39-24" href="#__codelineno-39-24"></a><span class="n">errorlog</span> <span class="o">=</span> <span class="s2">&quot;/var/log/gunicorn/error.log&quot;</span>
 <a id="__codelineno-39-25" name="__codelineno-39-25" href="#__codelineno-39-25"></a><span class="n">loglevel</span> <span class="o">=</span> <span class="s2">&quot;info&quot;</span>
 </code></pre></div>
-<h3 id="blue-green-and-canary-deployments">Blue-Green and Canary Deployments<a class="headerlink" href="#blue-green-and-canary-deployments" title="Permanent link">&para;</a></h3>
+<h3 id="blue-green-and-canary-deployments">Blue-Green and Canary Deployments</h3>
 <p><strong>Blue-Green Deployment with Weighted Target Groups:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="ch">#!/usr/bin/env python3</span>
 <a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="c1"># blue_green_deployment.py</span>
@@ -4813,8 +4813,8 @@ Split traffic across regions (e.g., 80% US, 20% EU for testing).</p>
 <a id="__codelineno-41-87" name="__codelineno-41-87" href="#__codelineno-41-87"></a>
 <a id="__codelineno-41-88" name="__codelineno-41-88" href="#__codelineno-41-88"></a>    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rule with priority </span><span class="si">{</span><span class="n">priority</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="health-check-configuration-tips">Health Check Configuration Tips<a class="headerlink" href="#health-check-configuration-tips" title="Permanent link">&para;</a></h3>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
+<h3 id="health-check-configuration-tips">Health Check Configuration Tips</h3>
 <p><strong>Tip 1: Use Dedicated Health Check Endpoints</strong></p>
 <p>Don't use the application root:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="c1"># Bad - Heavy operation on every health check</span>
@@ -4864,7 +4864,7 @@ Split traffic across regions (e.g., 80% US, 20% EU for testing).</p>
 <a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a><span class="c1"># Readiness check: Can it handle traffic?</span>
 <a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a><span class="c1"># (For Kubernetes/ECS, not direct ALB feature)</span>
 </code></pre></div>
-<h3 id="performance-optimization-tips">Performance Optimization Tips<a class="headerlink" href="#performance-optimization-tips" title="Permanent link">&para;</a></h3>
+<h3 id="performance-optimization-tips">Performance Optimization Tips</h3>
 <p><strong>Tip 4: Enable HTTP/2 for Better Performance</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="c1"># HTTP/2 provides:</span>
 <a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="c1"># - Multiplexing (multiple requests over single connection)</span>
@@ -4898,7 +4898,7 @@ Split traffic across regions (e.g., 80% US, 20% EU for testing).</p>
 <a id="__codelineno-47-8" name="__codelineno-47-8" href="#__codelineno-47-8"></a><span class="w">    </span>--target-group-arn<span class="w"> </span><span class="nv">$TG_ARN</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-47-9" name="__codelineno-47-9" href="#__codelineno-47-9"></a><span class="w">    </span>--attributes<span class="w"> </span><span class="nv">Key</span><span class="o">=</span>deregistration_delay.timeout_seconds,Value<span class="o">=</span><span class="m">300</span>
 </code></pre></div>
-<h3 id="cost-optimization-tips">Cost Optimization Tips<a class="headerlink" href="#cost-optimization-tips" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization-tips">Cost Optimization Tips</h3>
 <p><strong>Tip 7: Minimize Cross-Zone Data Transfer</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="c1"># For ALB: Cross-zone enabled by default (with charges)</span>
 <a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="c1"># Disable if traffic naturally balanced and you want to save costs</span>
@@ -4940,7 +4940,7 @@ Split traffic across regions (e.g., 80% US, 20% EU for testing).</p>
 <a id="__codelineno-50-13" name="__codelineno-50-13" href="#__codelineno-50-13"></a><span class="c1"># - Consolidate target groups</span>
 <a id="__codelineno-50-14" name="__codelineno-50-14" href="#__codelineno-50-14"></a><span class="c1"># - Use path-based routing instead of header-based when possible</span>
 </code></pre></div>
-<h3 id="security-tips">Security Tips<a class="headerlink" href="#security-tips" title="Permanent link">&para;</a></h3>
+<h3 id="security-tips">Security Tips</h3>
 <p><strong>Tip 10: Always Use HTTPS with HTTP Redirect</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="c1"># Create HTTP listener that redirects to HTTPS</span>
 <a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>aws<span class="w"> </span>elbv2<span class="w"> </span>create-listener<span class="w"> </span><span class="se">\</span>
@@ -4972,7 +4972,7 @@ Split traffic across regions (e.g., 80% US, 20% EU for testing).</p>
 <a id="__codelineno-53-8" name="__codelineno-53-8" href="#__codelineno-53-8"></a><span class="c1"># Cost: ~$5-10/month + $1 per million requests</span>
 <a id="__codelineno-53-9" name="__codelineno-53-9" href="#__codelineno-53-9"></a><span class="c1"># Value: Prevents attacks, reduces incident response costs</span>
 </code></pre></div>
-<h3 id="monitoring-tips">Monitoring Tips<a class="headerlink" href="#monitoring-tips" title="Permanent link">&para;</a></h3>
+<h3 id="monitoring-tips">Monitoring Tips</h3>
 <p><strong>Tip 13: Set Up Comprehensive Alarms</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="c1"># Critical alarms for production:</span>
 <a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="c1"># 1. Unhealthy host count &gt; 0</span>
@@ -5009,8 +5009,8 @@ Split traffic across regions (e.g., 80% US, 20% EU for testing).</p>
 <a id="__codelineno-56-7" name="__codelineno-56-7" href="#__codelineno-56-7"></a><span class="c1"># Cost: S3 storage only (~$0.023/GB)</span>
 <a id="__codelineno-56-8" name="__codelineno-56-8" href="#__codelineno-56-8"></a><span class="c1"># Enable for all production load balancers</span>
 </code></pre></div>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-incorrect-health-check-configuration">Pitfall 1: Incorrect Health Check Configuration<a class="headerlink" href="#pitfall-1-incorrect-health-check-configuration" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-incorrect-health-check-configuration">Pitfall 1: Incorrect Health Check Configuration</h3>
 <p><strong>Problem:</strong> Health checks mark healthy instances as unhealthy or vice versa, causing traffic routing issues.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5198,7 +5198,7 @@ Split traffic across regions (e.g., 80% US, 20% EU for testing).</p>
 <li>Monitor health check failures continuously</li>
 </ul>
 <hr />
-<h3 id="pitfall-2-not-configuring-connection-draining-properly">Pitfall 2: Not Configuring Connection Draining Properly<a class="headerlink" href="#pitfall-2-not-configuring-connection-draining-properly" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-2-not-configuring-connection-draining-properly">Pitfall 2: Not Configuring Connection Draining Properly</h3>
 <p><strong>Problem:</strong> In-flight requests interrupted when targets are deregistered, causing errors for end users.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5392,7 +5392,7 @@ Split traffic across regions (e.g., 80% US, 20% EU for testing).</p>
 <li>Monitor 502/504 errors during deployments</li>
 </ul>
 <hr />
-<h3 id="pitfall-3-cross-zone-load-balancing-misconceptions">Pitfall 3: Cross-Zone Load Balancing Misconceptions<a class="headerlink" href="#pitfall-3-cross-zone-load-balancing-misconceptions" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-3-cross-zone-load-balancing-misconceptions">Pitfall 3: Cross-Zone Load Balancing Misconceptions</h3>
 <p><strong>Problem:</strong> Misunderstanding cross-zone load balancing behavior, leading to uneven load distribution or unexpected data transfer costs.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5517,7 +5517,7 @@ Split traffic across regions (e.g., 80% US, 20% EU for testing).</p>
 <li>Use NLB when static IPs needed (free cross-zone)</li>
 </ul>
 <hr />
-<h3 id="summary-of-key-pitfalls">Summary of Key Pitfalls<a class="headerlink" href="#summary-of-key-pitfalls" title="Permanent link">&para;</a></h3>
+<h3 id="summary-of-key-pitfalls">Summary of Key Pitfalls</h3>
 <table>
 <thead>
 <tr>
@@ -5559,7 +5559,7 @@ Split traffic across regions (e.g., 80% US, 20% EU for testing).</p>
 </tr>
 </tbody>
 </table>
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>Elastic Load Balancing is fundamental to building highly available, scalable applications in AWS. Understanding the differences between ALB, NLB, and GLB, configuring health checks properly, implementing SSL/TLS termination, and monitoring performance metrics are critical skills for Solutions Architects.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -5573,7 +5573,7 @@ Split traffic across regions (e.g., 80% US, 20% EU for testing).</p>
 </ul>
 <p>Understanding ELB deeply enables you to build resilient, performant, and cost-effective architectures. The load balancing patterns you've mastered will be essential as we explore container orchestration in upcoming chapters.</p>
 <p>In Chapter 6, we'll explore Amazon ECS and containerized applications, where load balancers play a crucial role in service discovery and traffic distribution.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>Which load balancer type operates at Layer 7 (Application Layer)?</strong>
 a) Network Load Balancer

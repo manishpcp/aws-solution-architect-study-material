@@ -2056,13 +2056,13 @@
   
 
 
-<h1 id="chapter-16-direct-connect-vpn">Chapter 16: Direct Connect \&amp; VPN<a class="headerlink" href="#chapter-16-direct-connect-vpn" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-16-direct-connect-vpn">Chapter 16: Direct Connect \&amp; VPN</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Hybrid cloud architectures require reliable, secure connectivity between on-premises data centers and AWS. While internet-based connections work for initial migrations and small workloads, production enterprises demand dedicated, high-bandwidth, low-latency connections with predictable performance. AWS Direct Connect and AWS VPN provide two complementary approaches: Direct Connect offers dedicated physical connections bypassing the public internet, while VPN tunnels provide encrypted connectivity over existing internet connections. Understanding when to use each—and how to combine them for resilience—is fundamental to enterprise AWS adoption.</p>
 <p>The choice between Direct Connect and VPN isn't binary—most enterprise architectures use both. Direct Connect provides primary connectivity with consistent bandwidth (1 Gbps to 100 Gbps), predictable low latency (single-digit milliseconds), and reduced data transfer costs. VPN provides backup connectivity, temporary connections during Direct Connect provisioning, and encrypted tunnels for sensitive data. A typical enterprise pattern uses Direct Connect for high-bandwidth workloads (database replication, large file transfers, backup) with VPN as failover, ensuring continuous connectivity even if the Direct Connect circuit fails.</p>
 <p>Misconfigured hybrid connectivity causes expensive, hard-to-debug problems. Routing asymmetry sends traffic one direction via Direct Connect and returns via internet, breaking connections. Insufficient bandwidth during peak hours causes application timeouts. Single points of failure leave enterprises without AWS access during circuit outages. Missing BGP configuration prevents automatic failover. This chapter covers Direct Connect and VPN from fundamentals to production patterns, including connection types, virtual interfaces, VPN tunnels, routing protocols, redundancy architectures, monitoring, troubleshooting, and cost optimization for building resilient hybrid networks.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="hybrid-cloud-connectivity-overview">Hybrid Cloud Connectivity Overview<a class="headerlink" href="#hybrid-cloud-connectivity-overview" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="hybrid-cloud-connectivity-overview">Hybrid Cloud Connectivity Overview</h3>
 <p><strong>Connectivity Options Comparison:</strong></p>
 <p>Modern enterprises need multiple paths between on-premises infrastructure and AWS:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Internet Gateway (Public Internet):
@@ -2176,7 +2176,7 @@
 <a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>- Can justify dual costs
 <a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>- Production workloads
 </code></pre></div>
-<h3 id="aws-direct-connect-architecture">AWS Direct Connect Architecture<a class="headerlink" href="#aws-direct-connect-architecture" title="Permanent link">&para;</a></h3>
+<h3 id="aws-direct-connect-architecture">AWS Direct Connect Architecture</h3>
 <p><strong>Direct Connect Fundamentals:</strong></p>
 <p>Direct Connect bypasses the public internet through dedicated physical connections:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Physical Architecture:
@@ -2451,7 +2451,7 @@
 <a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a>- All connections must be same speed
 <a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a>- Single location failure affects all
 </code></pre></div>
-<h3 id="aws-site-to-site-vpn-architecture">AWS Site-to-Site VPN Architecture<a class="headerlink" href="#aws-site-to-site-vpn-architecture" title="Permanent link">&para;</a></h3>
+<h3 id="aws-site-to-site-vpn-architecture">AWS Site-to-Site VPN Architecture</h3>
 <p><strong>VPN Components:</strong></p>
 <p>Site-to-Site VPN creates encrypted IPsec tunnels over internet:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>VPN Architecture:
@@ -2670,7 +2670,7 @@
 <a id="__codelineno-15-33" name="__codelineno-15-33" href="#__codelineno-15-33"></a>Cost: Lower than dual DX
 <a id="__codelineno-15-34" name="__codelineno-15-34" href="#__codelineno-15-34"></a>Performance: DX performance, VPN backup
 </code></pre></div>
-<h3 id="vpn-encryption-and-security">VPN Encryption and Security<a class="headerlink" href="#vpn-encryption-and-security" title="Permanent link">&para;</a></h3>
+<h3 id="vpn-encryption-and-security">VPN Encryption and Security</h3>
 <p><strong>IPsec Protocol Details:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>IPsec (Internet Protocol Security):
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
@@ -2741,7 +2741,7 @@
 <a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a>✓ Consider Direct Connect for primary
 <a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a>✓ Monitor tunnel health and latency
 </code></pre></div>
-<h3 id="hybrid-dns-resolution">Hybrid DNS Resolution<a class="headerlink" href="#hybrid-dns-resolution" title="Permanent link">&para;</a></h3>
+<h3 id="hybrid-dns-resolution">Hybrid DNS Resolution</h3>
 <p><strong>DNS Considerations in Hybrid Architectures:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Problem: On-Premises and AWS Need to Resolve Each Other&#39;s Names
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
@@ -2833,7 +2833,7 @@
 <a id="__codelineno-18-88" name="__codelineno-18-88" href="#__codelineno-18-88"></a>- Document DNS hierarchy
 <a id="__codelineno-18-89" name="__codelineno-18-89" href="#__codelineno-18-89"></a>- Test failover scenarios
 </code></pre></div>
-<h3 id="monitoring-and-troubleshooting">Monitoring and Troubleshooting<a class="headerlink" href="#monitoring-and-troubleshooting" title="Permanent link">&para;</a></h3>
+<h3 id="monitoring-and-troubleshooting">Monitoring and Troubleshooting</h3>
 <p><strong>Direct Connect Monitoring:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Key Metrics:
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
@@ -2917,7 +2917,7 @@
 <a id="__codelineno-20-46" name="__codelineno-20-46" href="#__codelineno-20-46"></a>- Monitor jitter
 <a id="__codelineno-20-47" name="__codelineno-20-47" href="#__codelineno-20-47"></a>- Consider Direct Connect
 </code></pre></div>
-<h3 id="cost-optimization">Cost Optimization<a class="headerlink" href="#cost-optimization" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization">Cost Optimization</h3>
 <p><strong>Direct Connect Costs:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>Port Hours:
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>1 Gbps: $0.30/hour = $219/month
@@ -2966,8 +2966,8 @@
 <a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a>- Primary production path
 <a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a>- Multiple VPCs need connectivity
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-site-to-site-vpn-configuration">Lab 1: Site-to-Site VPN Configuration<a class="headerlink" href="#lab-1-site-to-site-vpn-configuration" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-site-to-site-vpn-configuration">Lab 1: Site-to-Site VPN Configuration</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Create customer gateway</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>aws<span class="w"> </span>ec2<span class="w"> </span>create-customer-gateway<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span>--type<span class="w"> </span>ipsec.1<span class="w"> </span><span class="se">\</span>
@@ -2989,7 +2989,7 @@
 <a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a><span class="w">    </span>--vpn-gateway-id<span class="w"> </span>vgw-12345678<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a><span class="w">    </span>--options<span class="w"> </span><span class="nv">TunnelOptions</span><span class="o">=</span><span class="s1">&#39;[{TunnelInsideCidr=169.254.10.0/30,PreSharedKey=SecureKey123}]&#39;</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
 <p><strong>Tip 1: Always Use Redundancy</strong>
 Never deploy single Direct Connect or VPN—use dual connections or DX + VPN backup.</p>
 <p><strong>Tip 2: Plan IP Addressing Carefully</strong>
@@ -3000,7 +3000,7 @@ Static routing lacks failover capabilities—BGP enables automatic failover and 
 Set CloudWatch alarms at 80% bandwidth to plan capacity before hitting limits.</p>
 <p><strong>Tip 5: Test Failover Regularly</strong>
 Schedule quarterly failover tests to verify backup connectivity works when needed.</p>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
 <p><strong>Pitfall 1: Routing Asymmetry</strong>
 Traffic goes Direct Connect outbound but returns via internet, breaking connections.
 <em>Solution:</em> Ensure consistent routing via BGP attributes and specific routes.</p>
@@ -3010,7 +3010,7 @@ Direct Connect undersized for actual traffic causes performance issues.
 <p><strong>Pitfall 3: No VPN Backup</strong>
 Single Direct Connect fails, entire AWS connectivity lost for hours/days.
 <em>Solution:</em> Always deploy VPN backup for automatic failover during Direct Connect issues.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>Direct Connect standard speeds?</strong> 1 Gbps, 10 Gbps, 100 Gbps</li>
 <li><strong>VPN tunnel bandwidth limit?</strong> 1.25 Gbps per tunnel</li>

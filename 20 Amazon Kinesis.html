@@ -1677,14 +1677,14 @@
   
 
 
-<h1 id="part-7-analytics-machine-learning">Part 7: Analytics \&amp; Machine Learning<a class="headerlink" href="#part-7-analytics-machine-learning" title="Permanent link">&para;</a></h1>
-<h1 id="chapter-20-amazon-kinesis">Chapter 20: Amazon Kinesis<a class="headerlink" href="#chapter-20-amazon-kinesis" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="part-7-analytics-machine-learning">Part 7: Analytics \&amp; Machine Learning</h1>
+<h1 id="chapter-20-amazon-kinesis">Chapter 20: Amazon Kinesis</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Modern applications generate massive volumes of streaming data—clickstreams from millions of website visitors, telemetry from millions of IoT devices, financial transactions from trading systems, logs from distributed microservices, and real-time gaming analytics. Traditional batch processing systems collect data for hours or days before analysis, missing opportunities for immediate action. Amazon Kinesis processes streaming data in real-time, enabling applications to react to events within milliseconds, detect anomalies immediately, update dashboards instantly, and trigger automated responses as data arrives. Understanding Kinesis transforms batch-oriented thinking into real-time, event-driven architectures.</p>
 <p>The Kinesis family provides four specialized services optimized for different streaming scenarios: Kinesis Data Streams ingests and stores streaming data for custom processing with millisecond latency; Kinesis Data Firehose delivers streaming data to destinations like S3, Redshift, and Elasticsearch with automatic scaling and transformation; Kinesis Data Analytics processes streaming data using SQL or Apache Flink for real-time analytics; Kinesis Video Streams ingests, stores, and processes streaming video. Choosing the wrong service—using Data Streams when Firehose suffices, or vice versa—wastes time, money, and engineering resources.</p>
 <p>Kinesis architectural decisions have lasting impact. Undersized shard count causes throttling during traffic spikes. Improper consumer design creates lag measuring hours behind real-time. Missing enhanced fan-out forces consumers to share throughput. Not implementing resharding prevents scaling with data growth. Inadequate monitoring hides consumer failures for hours. This chapter covers Kinesis from fundamentals to production patterns, including sharding strategies, producer/consumer patterns, enhanced fan-out, data retention, resharding, monitoring, building real-time data pipelines, and achieving sub-second analytics at scale.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="streaming-data-fundamentals">Streaming Data Fundamentals<a class="headerlink" href="#streaming-data-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="streaming-data-fundamentals">Streaming Data Fundamentals</h3>
 <p><strong>Batch vs Stream Processing:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Batch Processing (Traditional):
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -1776,7 +1776,7 @@
 <a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>Device data streaming
 <a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>Examples: Sensors, vehicles, smart devices
 </code></pre></div>
-<h3 id="kinesis-data-streams-architecture">Kinesis Data Streams Architecture<a class="headerlink" href="#kinesis-data-streams-architecture" title="Permanent link">&para;</a></h3>
+<h3 id="kinesis-data-streams-architecture">Kinesis Data Streams Architecture</h3>
 <p><strong>Core Components:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Kinesis Data Stream:
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
@@ -1923,7 +1923,7 @@
 <a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a>- Start after specific sequence number
 <a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a>- Resume from known position
 </code></pre></div>
-<h3 id="kinesis-data-firehose">Kinesis Data Firehose<a class="headerlink" href="#kinesis-data-firehose" title="Permanent link">&para;</a></h3>
+<h3 id="kinesis-data-firehose">Kinesis Data Firehose</h3>
 <p><strong>Firehose vs Data Streams:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Kinesis Data Firehose:
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
@@ -2068,7 +2068,7 @@
 <a id="__codelineno-7-55" name="__codelineno-7-55" href="#__codelineno-7-55"></a>- Snappy: Faster processing
 <a id="__codelineno-7-56" name="__codelineno-7-56" href="#__codelineno-7-56"></a>- Zip: Compatibility
 </code></pre></div>
-<h3 id="kinesis-data-analytics">Kinesis Data Analytics<a class="headerlink" href="#kinesis-data-analytics" title="Permanent link">&para;</a></h3>
+<h3 id="kinesis-data-analytics">Kinesis Data Analytics</h3>
 <p><strong>SQL-Based Stream Processing:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Kinesis Data Analytics:
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
@@ -2148,7 +2148,7 @@
 <a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>- Custom aggregations
 <a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>- Stateful processing
 </code></pre></div>
-<h3 id="producer-and-consumer-patterns">Producer and Consumer Patterns<a class="headerlink" href="#producer-and-consumer-patterns" title="Permanent link">&para;</a></h3>
+<h3 id="producer-and-consumer-patterns">Producer and Consumer Patterns</h3>
 <p><strong>Producer Patterns:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>1. Kinesis Producer Library (KPL):
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
@@ -2333,7 +2333,7 @@
 <a id="__codelineno-11-109" name="__codelineno-11-109" href="#__codelineno-11-109"></a>✓ Scale consumers with shard count
 <a id="__codelineno-11-110" name="__codelineno-11-110" href="#__codelineno-11-110"></a>✓ Use enhanced fan-out if needed
 </code></pre></div>
-<h3 id="resharding-strategies">Resharding Strategies<a class="headerlink" href="#resharding-strategies" title="Permanent link">&para;</a></h3>
+<h3 id="resharding-strategies">Resharding Strategies</h3>
 <p><strong>Shard Splitting and Merging:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Resharding Operations:
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
@@ -2400,7 +2400,7 @@
 <a id="__codelineno-12-63" name="__codelineno-12-63" href="#__codelineno-12-63"></a>Target: 40 shards
 <a id="__codelineno-12-64" name="__codelineno-12-64" href="#__codelineno-12-64"></a>Operation: Automatically creates 30 new shards
 </code></pre></div>
-<h3 id="monitoring-and-troubleshooting">Monitoring and Troubleshooting<a class="headerlink" href="#monitoring-and-troubleshooting" title="Permanent link">&para;</a></h3>
+<h3 id="monitoring-and-troubleshooting">Monitoring and Troubleshooting</h3>
 <p><strong>Key Metrics:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Producer Metrics:
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
@@ -2516,8 +2516,8 @@
 <a id="__codelineno-13-112" name="__codelineno-13-112" href="#__codelineno-13-112"></a>✓ Split hot shard
 <a id="__codelineno-13-113" name="__codelineno-13-113" href="#__codelineno-13-113"></a>✓ Review data model
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-data-streams-setup">Lab 1: Data Streams Setup<a class="headerlink" href="#lab-1-data-streams-setup" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-data-streams-setup">Lab 1: Data Streams Setup</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">kinesis</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;kinesis&#39;</span><span class="p">)</span>
@@ -2543,7 +2543,7 @@
 <a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>    <span class="n">PartitionKey</span><span class="o">=</span><span class="s1">&#39;user-123&#39;</span>
 <a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a><span class="p">)</span>
 </code></pre></div>
-<h3 id="lab-2-lambda-consumer">Lab 2: Lambda Consumer<a class="headerlink" href="#lab-2-lambda-consumer" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-lambda-consumer">Lab 2: Lambda Consumer</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Process Kinesis records&quot;&quot;&quot;</span>
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
@@ -2557,7 +2557,7 @@
 <a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>
 <a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;statusCode&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">}</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
 <p><strong>Tip 1: Use Enhanced Fan-Out for Multiple Consumers</strong>
 Dedicated 2 MB/sec per consumer eliminates throughput competition—worth the cost for production.</p>
 <p><strong>Tip 2: Checkpoint Frequently in KCL</strong>
@@ -2568,7 +2568,7 @@ Set CloudWatch alarm &lt; 60,000ms—critical metric for real-time processing ef
 userId, deviceId, sessionId distribute evenly—avoid date, region, or status (creates hot shards).</p>
 <p><strong>Tip 5: Start with Firehose for Simple Pipelines</strong>
 If only loading to S3/Redshift, Firehose is simpler and cheaper—upgrade to Data Streams if need real-time.</p>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
 <p><strong>Pitfall 1: Hot Shard from Poor Partition Key</strong>
 <em>Problem:</em> One shard overwhelmed, others idle; throttling despite available capacity.
 <em>Solution:</em> Use high-cardinality partition keys (userId); add random suffix; monitor shard distribution; split hot shards.</p>
@@ -2578,7 +2578,7 @@ If only loading to S3/Redshift, Firehose is simpler and cheaper—upgrade to Dat
 <p><strong>Pitfall 3: Undersized Shard Count</strong>
 <em>Problem:</em> WriteProvisionedThroughputExceeded errors; data loss without retry; throttling during normal traffic.
 <em>Solution:</em> Calculate required shards based on peak throughput; add 20% buffer; implement retry logic; monitor IncomingBytes metric.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>Kinesis Data Streams shard ingestion limit?</strong> 1 MB/sec or 1,000 records/sec</li>
 <li><strong>Standard consumer throughput per shard?</strong> 2 MB/sec (shared among all consumers)</li>

@@ -1677,14 +1677,14 @@
   
 
 
-<h1 id="part-11-migration-modernization">Part 11: Migration \&amp; Modernization<a class="headerlink" href="#part-11-migration-modernization" title="Permanent link">&para;</a></h1>
-<h1 id="chapter-31-migration-strategies-7-rs">Chapter 31: Migration Strategies (7 Rs)<a class="headerlink" href="#chapter-31-migration-strategies-7-rs" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="part-11-migration-modernization">Part 11: Migration \&amp; Modernization</h1>
+<h1 id="chapter-31-migration-strategies-7-rs">Chapter 31: Migration Strategies (7 Rs)</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Migrating existing applications to AWS represents one of the most significant technology transformations organizations undertake—moving decades of legacy systems, hundreds of applications, petabytes of data, and mission-critical workloads from on-premises data centers to cloud infrastructure. A retail company migrating 300 applications to AWS can reduce infrastructure costs by 40%, improve deployment velocity 10×, and eliminate data center lease obligations saving millions annually. However, migrations fail spectacularly when organizations lift-and-shift without strategy, underestimate complexity, lack dependency mapping, or attempt big-bang migrations of interdependent systems simultaneously. AWS Migration methodologies, specifically the 7 Rs framework (Rehost, Replatform, Repurchase, Refactor, Retire, Retain, Relocate), provide structured approaches for evaluating each application and selecting the optimal migration strategy based on business objectives, technical constraints, and risk tolerance.</p>
 <p>The business imperative for cloud migration extends beyond cost reduction. Organizations maintaining on-premises data centers face 3-5 year hardware refresh cycles requiring massive capital expenditure, limited agility constrained by procurement timelines, operational overhead managing infrastructure, compliance challenges with aging systems, and difficulty attracting talent wanting modern technology experience. Cloud migration enables elastic scaling matching business growth, pay-per-use economics eliminating capital expenditure, rapid innovation through managed services, global reach deployed in minutes, and operational efficiency through automation. Average enterprise migration spans 18-36 months involving discovery (inventory applications), planning (wave strategy), migration execution (move workloads), and optimization (refactor for cloud). Organizations completing migrations report 30-60% infrastructure cost reduction, 50-90% faster deployment cycles, and operational efficiency gains of 40-70% through automation.</p>
 <p>This chapter synthesizes infrastructure knowledge from throughout the handbook—rehosting leverages EC2 and EBS, replatforming uses RDS and Elastic Beanstalk, refactoring implements Lambda and containers, database migrations utilize DMS and SCT, monitoring employs CloudWatch, and cost optimization applies Savings Plans. The chapter covers the 7 Rs framework with decision criteria for each, AWS migration tools (Application Discovery Service, Migration Hub, DMS, Server Migration Service), dependency mapping, wave planning, cutover strategies, rollback procedures, testing methodologies, risk mitigation, large-scale migration execution, success metrics, and building production migration programs that move thousands of applications to AWS with minimal business disruption while maximizing cloud value realization.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="the-7-rs-migration-framework">The 7 Rs Migration Framework<a class="headerlink" href="#the-7-rs-migration-framework" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="the-7-rs-migration-framework">The 7 Rs Migration Framework</h3>
 <p><strong>Overview and Decision Framework:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>The 7 Rs of Migration:
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Strategic framework for application migration decisions
@@ -1749,7 +1749,7 @@
 <a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>5. Execute: Migrate according to wave plan
 <a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>6. Optimize: Refactor after initial migration
 </code></pre></div>
-<h3 id="1-rehost-lift-and-shift">1. Rehost (Lift and Shift)<a class="headerlink" href="#1-rehost-lift-and-shift" title="Permanent link">&para;</a></h3>
+<h3 id="1-rehost-lift-and-shift">1. Rehost (Lift and Shift)</h3>
 <p><strong>Migration Strategy: Move as-is to AWS:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Rehost Definition:
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Move applications to AWS without changes
@@ -1887,7 +1887,7 @@
 <a id="__codelineno-1-134" name="__codelineno-1-134" href="#__codelineno-1-134"></a>- Introduce managed services
 <a id="__codelineno-1-135" name="__codelineno-1-135" href="#__codelineno-1-135"></a>- Reduce operational overhead
 </code></pre></div>
-<h3 id="2-replatform-lift-tinker-and-shift">2. Replatform (Lift, Tinker, and Shift)<a class="headerlink" href="#2-replatform-lift-tinker-and-shift" title="Permanent link">&para;</a></h3>
+<h3 id="2-replatform-lift-tinker-and-shift">2. Replatform (Lift, Tinker, and Shift)</h3>
 <p><strong>Migration Strategy: Optimize during migration:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Replatform Definition:
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Make targeted cloud optimizations during migration
@@ -2038,7 +2038,7 @@
 <a id="__codelineno-2-147" name="__codelineno-2-147" href="#__codelineno-2-147"></a>~ May require application configuration changes
 <a id="__codelineno-2-148" name="__codelineno-2-148" href="#__codelineno-2-148"></a>~ Testing more complex than pure rehost
 </code></pre></div>
-<h3 id="3-repurchase-drop-and-shop">3. Repurchase (Drop and Shop)<a class="headerlink" href="#3-repurchase-drop-and-shop" title="Permanent link">&para;</a></h3>
+<h3 id="3-repurchase-drop-and-shop">3. Repurchase (Drop and Shop)</h3>
 <p><strong>Migration Strategy: Replace with SaaS:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Repurchase Definition:
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Replace existing application with SaaS alternative
@@ -2187,7 +2187,7 @@
 <a id="__codelineno-3-145" name="__codelineno-3-145" href="#__codelineno-3-145"></a>If 3/6 factors positive → Consider alternatives
 <a id="__codelineno-3-146" name="__codelineno-3-146" href="#__codelineno-3-146"></a>If &lt; 3 factors positive → Rehost or Replatform instead
 </code></pre></div>
-<h3 id="4-refactor-re-architect">4. Refactor (Re-architect)<a class="headerlink" href="#4-refactor-re-architect" title="Permanent link">&para;</a></h3>
+<h3 id="4-refactor-re-architect">4. Refactor (Re-architect)</h3>
 <p><strong>Migration Strategy: Redesign for cloud-native:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Refactor Definition:
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Completely redesign application architecture
@@ -2406,7 +2406,7 @@
 <a id="__codelineno-4-215" name="__codelineno-4-215" href="#__codelineno-4-215"></a>ROI: 106% first year
 <a id="__codelineno-4-216" name="__codelineno-4-216" href="#__codelineno-4-216"></a>Payback period: 11 months
 </code></pre></div>
-<h3 id="5-retire-decommission">5. Retire (Decommission)<a class="headerlink" href="#5-retire-decommission" title="Permanent link">&para;</a></h3>
+<h3 id="5-retire-decommission">5. Retire (Decommission)</h3>
 <p><strong>Migration Strategy: Eliminate unused applications:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Retire Definition:
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Identify and decommission applications no longer needed
@@ -2560,7 +2560,7 @@
 <a id="__codelineno-5-150" name="__codelineno-5-150" href="#__codelineno-5-150"></a>✓ Establish clear retirement criteria
 <a id="__codelineno-5-151" name="__codelineno-5-151" href="#__codelineno-5-151"></a>✓ Regular portfolio reviews (quarterly)
 </code></pre></div>
-<h3 id="6-retain-revisit-later">6. Retain (Revisit Later)<a class="headerlink" href="#6-retain-revisit-later" title="Permanent link">&para;</a></h3>
+<h3 id="6-retain-revisit-later">6. Retain (Revisit Later)</h3>
 <p><strong>Migration Strategy: Keep on-premises temporarily:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Retain Definition:
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Explicitly decide to keep application on-premises
@@ -2730,7 +2730,7 @@
 <a id="__codelineno-6-166" name="__codelineno-6-166" href="#__codelineno-6-166"></a>✗ Ignoring total cost of ownership
 <a id="__codelineno-6-167" name="__codelineno-6-167" href="#__codelineno-6-167"></a>✗ Lack of hybrid network planning
 </code></pre></div>
-<h3 id="7-relocate-hypervisor-level-migration">7. Relocate (Hypervisor-Level Migration)<a class="headerlink" href="#7-relocate-hypervisor-level-migration" title="Permanent link">&para;</a></h3>
+<h3 id="7-relocate-hypervisor-level-migration">7. Relocate (Hypervisor-Level Migration)</h3>
 <p><strong>Migration Strategy: VMware workloads to VMware Cloud on AWS:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Relocate Definition:
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Move VMware vSphere VMs to VMware Cloud on AWS
@@ -2831,8 +2831,8 @@
 <a id="__codelineno-7-97" name="__codelineno-7-97" href="#__codelineno-7-97"></a>Relocate is typically transitional strategy
 <a id="__codelineno-7-98" name="__codelineno-7-98" href="#__codelineno-7-98"></a>Long-term: Migrate to native AWS services
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-application-discovery-and-assessment">Lab 1: Application Discovery and Assessment<a class="headerlink" href="#lab-1-application-discovery-and-assessment" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-application-discovery-and-assessment">Lab 1: Application Discovery and Assessment</h3>
 <p><strong>Objective:</strong> Discover applications, analyze dependencies, and select migration strategies.</p>
 <p><strong>Step 1: Deploy Application Discovery Agent</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3127,7 +3127,7 @@
 <a id="__codelineno-10-153" name="__codelineno-10-153" href="#__codelineno-10-153"></a><span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
 <a id="__codelineno-10-154" name="__codelineno-10-154" href="#__codelineno-10-154"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;app&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;strategy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">% confidence)&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="lab-2-database-migration-service-dms">Lab 2: Database Migration Service (DMS)<a class="headerlink" href="#lab-2-database-migration-service-dms" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-database-migration-service-dms">Lab 2: Database Migration Service (DMS)</h3>
 <p><strong>Objective:</strong> Migrate database from on-premises to AWS with minimal downtime using DMS.</p>
 <p><strong>Step 1: Create DMS Replication Instance</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3561,7 +3561,7 @@
 <a id="__codelineno-15-90" name="__codelineno-15-90" href="#__codelineno-15-90"></a><span class="c1"># Perform cutover during maintenance window</span>
 <a id="__codelineno-15-91" name="__codelineno-15-91" href="#__codelineno-15-91"></a><span class="n">perform_database_cutover</span><span class="p">(</span><span class="n">task_arn</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="lab-3-server-migration-with-application-migration-service">Lab 3: Server Migration with Application Migration Service<a class="headerlink" href="#lab-3-server-migration-with-application-migration-service" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-server-migration-with-application-migration-service">Lab 3: Server Migration with Application Migration Service</h3>
 <p><strong>Objective:</strong> Migrate EC2 servers using AWS Application Migration Service (MGN).</p>
 <p><strong>Step 1: Install MGN Agent on Source Servers</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># On source server (on-premises or EC2)</span>
@@ -3774,8 +3774,8 @@
 <a id="__codelineno-19-79" name="__codelineno-19-79" href="#__codelineno-19-79"></a><span class="c1"># Perform cutover</span>
 <a id="__codelineno-19-80" name="__codelineno-19-80" href="#__codelineno-19-80"></a><span class="n">cutover_success</span> <span class="o">=</span> <span class="n">perform_server_cutover</span><span class="p">(</span><span class="s1">&#39;s-1234567890abcdef0&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="wave-planning-strategy">Wave Planning Strategy<a class="headerlink" href="#wave-planning-strategy" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="wave-planning-strategy">Wave Planning Strategy</h3>
 <p><strong>Large-Scale Migration Execution:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>Wave Planning Principles:
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
@@ -3900,7 +3900,7 @@
 <a id="__codelineno-20-121" name="__codelineno-20-121" href="#__codelineno-20-121"></a>- Tool/automation enhancements
 <a id="__codelineno-20-122" name="__codelineno-20-122" href="#__codelineno-20-122"></a>- Team skill development needs
 </code></pre></div>
-<h3 id="cutover-strategy-and-rollback-planning">Cutover Strategy and Rollback Planning<a class="headerlink" href="#cutover-strategy-and-rollback-planning" title="Permanent link">&para;</a></h3>
+<h3 id="cutover-strategy-and-rollback-planning">Cutover Strategy and Rollback Planning</h3>
 <p><strong>Minimizing Downtime and Risk:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>Cutover Strategies:
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
@@ -4056,7 +4056,7 @@
 <a id="__codelineno-21-152" name="__codelineno-21-152" href="#__codelineno-21-152"></a>- Final decommissioning of source
 <a id="__codelineno-21-153" name="__codelineno-21-153" href="#__codelineno-21-153"></a>- Lessons learned documentation
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
 <p><strong>Tip 1: Start with Non-Critical Applications</strong>
 First wave should be low-risk pilots—build team confidence, refine processes, validate tools before tackling mission-critical systems.</p>
 <p><strong>Tip 2: Over-Communicate with Stakeholders</strong>
@@ -4077,7 +4077,7 @@ Don't decommission immediately after cutover—allows rollback window, time for 
 Migration decisions, issues encountered, resolutions—becomes organizational knowledge, helps future migrations, reduces repeated mistakes.</p>
 <p><strong>Tip 10: Optimize After Migration</strong>
 Don't over-optimize during migration—get to cloud first (rehost), then optimize (replatform/refactor); de-risks migration timeline.</p>
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>AWS migration strategies, codified in the 7 Rs framework (Rehost, Replatform, Repurchase, Refactor, Retire, Retain, Relocate), provide systematic methodology for evaluating and migrating applications from on-premises to cloud. Organizations successfully migrating 500+ applications over 18-24 months achieve 30-60% cost reduction, 50-90% faster deployment cycles, and operational efficiency gains through wave-based execution, dependency mapping, automated migration tools (DMS, MGN, Application Discovery Service), and disciplined cutover procedures with rollback plans. Success requires selecting appropriate strategy per application based on business criticality and technical complexity, thorough testing before production cutover, and treating migration as portfolio transformation rather than technical project.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -4090,7 +4090,7 @@ Don't over-optimize during migration—get to cloud first (rehost), then optimiz
 <li><strong>Retire 10-15% of Portfolio:</strong> Discovery reveals unused applications; retiring 150 of 500 applications saves \$500K+ annually, reduces migration scope 30%</li>
 </ul>
 <p>Migration success measured by: applications migrated on schedule (95%+ target), planned vs actual downtime (&lt; 120% planned), rollback rate (&lt; 2%), cost savings vs baseline (30-60%), and team satisfaction (learn and improve each wave). Organizations treating migration as portfolio transformation—not just infrastructure move—realize maximum cloud value through strategic refactoring of tier-1 applications while efficiently rehosting tier-3 applications.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>What percentage of applications typically use Rehost strategy?</strong>
 a) 20-30%

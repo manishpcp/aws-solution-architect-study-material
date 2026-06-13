@@ -1677,15 +1677,15 @@
   
 
 
-<h1 id="part-2-compute-services">Part 2: Compute Services<a class="headerlink" href="#part-2-compute-services" title="Permanent link">&para;</a></h1>
-<h1 id="chapter-4-amazon-ec2">Chapter 4: Amazon EC2<a class="headerlink" href="#chapter-4-amazon-ec2" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="part-2-compute-services">Part 2: Compute Services</h1>
+<h1 id="chapter-4-amazon-ec2">Chapter 4: Amazon EC2</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Amazon Elastic Compute Cloud (EC2) is the backbone of AWS compute services, providing resizable virtual servers that form the foundation for countless applications and workloads. Since its launch in 2006, EC2 has revolutionized how organizations provision and manage computing resources, transforming weeks of procurement cycles into minutes of API calls. Understanding EC2 is fundamental to becoming an effective AWS Solutions Architect.</p>
 <p>EC2's flexibility is both its greatest strength and its biggest challenge. With hundreds of instance types, multiple pricing models, various storage options, and complex networking configurations, making optimal decisions requires deep understanding of both the service and your workload requirements. A poorly chosen instance type can waste thousands of dollars monthly, while incorrect Auto Scaling configurations can leave your application unavailable during traffic spikes.</p>
 <p>The true power of EC2 extends far beyond simply launching virtual machines. Modern EC2 architectures leverage Auto Scaling for elasticity, Application Load Balancers for traffic distribution, AMIs for repeatable deployments, and sophisticated placement strategies for performance optimization. Successful production deployments require mastering instance lifecycle management, implementing comprehensive monitoring, designing effective patching strategies, and optimizing costs through Reserved Instances and Savings Plans.</p>
 <p>This chapter provides comprehensive coverage of EC2 from fundamentals to production-grade implementations. You'll learn to select appropriate instance types for different workloads, design highly available Auto Scaling architectures, create and manage custom AMIs, implement fleet management at scale, and optimize costs while maintaining performance. Whether you're migrating legacy applications to the cloud or building cloud-native systems, mastering EC2 is essential to your AWS journey.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="ec2-fundamentals">EC2 Fundamentals<a class="headerlink" href="#ec2-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="ec2-fundamentals">EC2 Fundamentals</h3>
 <p>Amazon EC2 provides secure, resizable compute capacity in the cloud. Each instance is a virtual server that you can configure with the operating system, applications, and data needed for your workload.</p>
 <p><strong>Key Characteristics:</strong></p>
 <ul>
@@ -1704,7 +1704,7 @@
 <li><strong>Network:</strong> Enhanced networking capabilities</li>
 <li><strong>GPU/Accelerators:</strong> For specific workloads (ML, graphics)</li>
 </ol>
-<h3 id="instance-types-and-families">Instance Types and Families<a class="headerlink" href="#instance-types-and-families" title="Permanent link">&para;</a></h3>
+<h3 id="instance-types-and-families">Instance Types and Families</h3>
 <p>EC2 offers over 400 instance types organized into families optimized for different use cases.</p>
 <p><strong>Instance Family Naming Convention:</strong></p>
 <p>Format: <code>[Family][Generation].[Size]</code></p>
@@ -1722,7 +1722,7 @@
 <li><code>e</code> = Extra storage or memory (e.g., <code>r5e.xlarge</code>)</li>
 <li><code>metal</code> = Bare metal (e.g., <code>c5.metal</code>)</li>
 </ul>
-<h4 id="general-purpose-m-t-mac">General Purpose (M, T, Mac)<a class="headerlink" href="#general-purpose-m-t-mac" title="Permanent link">&para;</a></h4>
+<h4 id="general-purpose-m-t-mac">General Purpose (M, T, Mac)</h4>
 <p>Balanced compute, memory, and networking for diverse workloads.</p>
 <p><strong>M7i/M7g Family (Latest Gen 2024-2025):</strong></p>
 <ul>
@@ -1755,7 +1755,7 @@
 <li><strong>OS:</strong> macOS Monterey, Ventura, Sonoma</li>
 <li><strong>Minimum Allocation:</strong> 24 hours</li>
 </ul>
-<h4 id="compute-optimized-c">Compute Optimized (C)<a class="headerlink" href="#compute-optimized-c" title="Permanent link">&para;</a></h4>
+<h4 id="compute-optimized-c">Compute Optimized (C)</h4>
 <p>High-performance processors for compute-intensive workloads.</p>
 <p><strong>C6i Family:</strong></p>
 <ul>
@@ -1773,7 +1773,7 @@
 <li><strong>Cost:</strong> Up to 20% lower than comparable Intel</li>
 <li><strong>Use Cases:</strong> High-performance computing, gaming, video encoding</li>
 </ul>
-<h4 id="memory-optimized-r-x-z-high-memory">Memory Optimized (R, X, z, High Memory)<a class="headerlink" href="#memory-optimized-r-x-z-high-memory" title="Permanent link">&para;</a></h4>
+<h4 id="memory-optimized-r-x-z-high-memory">Memory Optimized (R, X, z, High Memory)</h4>
 <p>Large memory for memory-intensive applications.</p>
 <p><strong>R6i Family:</strong></p>
 <ul>
@@ -1796,7 +1796,7 @@
 <li><strong>Use Cases:</strong> SAP HANA, in-memory databases</li>
 <li><strong>Special:</strong> Bare metal only</li>
 </ul>
-<h4 id="storage-optimized-i-d-h">Storage Optimized (I, D, H)<a class="headerlink" href="#storage-optimized-i-d-h" title="Permanent link">&para;</a></h4>
+<h4 id="storage-optimized-i-d-h">Storage Optimized (I, D, H)</h4>
 <p>High sequential read/write access to large datasets on local storage.</p>
 <p><strong>I4i Family (Current Generation NVMe SSD):</strong></p>
 <ul>
@@ -1822,7 +1822,7 @@
 <li><strong>Throughput:</strong> Up to 6.2 GB/s sequential read</li>
 <li><strong>Cost:</strong> Lowest cost per GB of storage</li>
 </ul>
-<h4 id="accelerated-computing-p-g-f-inf-trn">Accelerated Computing (P, G, F, Inf, Trn)<a class="headerlink" href="#accelerated-computing-p-g-f-inf-trn" title="Permanent link">&para;</a></h4>
+<h4 id="accelerated-computing-p-g-f-inf-trn">Accelerated Computing (P, G, F, Inf, Trn)</h4>
 <p>Hardware accelerators for ML, graphics, and high-performance computing.</p>
 <p><strong>P4d Family (GPU - NVIDIA A100):</strong></p>
 <ul>
@@ -1851,7 +1851,7 @@
 <li><strong>Accelerators:</strong> AWS Trainium chips</li>
 <li><strong>Performance:</strong> Up to 50% cost savings vs P4d</li>
 </ul>
-<h4 id="instance-type-selection-guide">Instance Type Selection Guide<a class="headerlink" href="#instance-type-selection-guide" title="Permanent link">&para;</a></h4>
+<h4 id="instance-type-selection-guide">Instance Type Selection Guide</h4>
 <table>
 <thead>
 <tr>
@@ -1918,7 +1918,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="amazon-machine-images-amis">Amazon Machine Images (AMIs)<a class="headerlink" href="#amazon-machine-images-amis" title="Permanent link">&para;</a></h3>
+<h3 id="amazon-machine-images-amis">Amazon Machine Images (AMIs)</h3>
 <p>An AMI is a template containing the software configuration (OS, applications, settings) needed to launch an EC2 instance.</p>
 <p><strong>AMI Components:</strong></p>
 <ol>
@@ -1977,7 +1977,7 @@
 <li>Slower boot times</li>
 <li>Less common, specific use cases</li>
 </ul>
-<h3 id="instance-lifecycle">Instance Lifecycle<a class="headerlink" href="#instance-lifecycle" title="Permanent link">&para;</a></h3>
+<h3 id="instance-lifecycle">Instance Lifecycle</h3>
 <p>Understanding the complete instance lifecycle is critical for proper management.</p>
 <p><strong>Instance States:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pending → running → stopping → stopped → terminated
@@ -2042,9 +2042,9 @@
 <li>Elastic IP persists through stop/start</li>
 <li>Private IP persists unless instance terminated</li>
 </ul>
-<h3 id="instance-pricing-models">Instance Pricing Models<a class="headerlink" href="#instance-pricing-models" title="Permanent link">&para;</a></h3>
+<h3 id="instance-pricing-models">Instance Pricing Models</h3>
 <p>EC2 offers multiple pricing models to optimize costs.</p>
-<h4 id="on-demand-instances">On-Demand Instances<a class="headerlink" href="#on-demand-instances" title="Permanent link">&para;</a></h4>
+<h4 id="on-demand-instances">On-Demand Instances</h4>
 <p><strong>Characteristics:</strong></p>
 <ul>
 <li>Pay per second (Linux) or per hour (Windows)</li>
@@ -2063,7 +2063,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>m6i.xlarge (4 vCPUs, 16 GiB RAM)
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Cost: $0.192/hour = $140.16/month (730 hours)
 </code></pre></div>
-<h4 id="reserved-instances-ris">Reserved Instances (RIs)<a class="headerlink" href="#reserved-instances-ris" title="Permanent link">&para;</a></h4>
+<h4 id="reserved-instances-ris">Reserved Instances (RIs)</h4>
 <p><strong>Characteristics:</strong></p>
 <ul>
 <li>1-year or 3-year commitment</li>
@@ -2095,7 +2095,7 @@
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Reserved (Standard): $2,500 upfront = $69.44/month
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Savings: 50%
 </code></pre></div>
-<h4 id="savings-plans">Savings Plans<a class="headerlink" href="#savings-plans" title="Permanent link">&para;</a></h4>
+<h4 id="savings-plans">Savings Plans</h4>
 <p><strong>Characteristics:</strong></p>
 <ul>
 <li>Commitment to consistent usage (\$/hour) for 1 or 3 years</li>
@@ -2155,7 +2155,7 @@
 </tbody>
 </table>
 <p><strong>Recommendation:</strong> Savings Plans for most workloads due to flexibility.</p>
-<h4 id="spot-instances">Spot Instances<a class="headerlink" href="#spot-instances" title="Permanent link">&para;</a></h4>
+<h4 id="spot-instances">Spot Instances</h4>
 <p><strong>Characteristics:</strong></p>
 <ul>
 <li>Use spare EC2 capacity</li>
@@ -2196,7 +2196,7 @@
 <li>Use Spot Instance interruption notices</li>
 <li>Combine with On-Demand for baseline capacity</li>
 </ul>
-<h4 id="dedicated-hosts-dedicated-instances">Dedicated Hosts \&amp; Dedicated Instances<a class="headerlink" href="#dedicated-hosts-dedicated-instances" title="Permanent link">&para;</a></h4>
+<h4 id="dedicated-hosts-dedicated-instances">Dedicated Hosts \&amp; Dedicated Instances</h4>
 <p><strong>Dedicated Hosts:</strong></p>
 <ul>
 <li>Physical server fully dedicated to your use</li>
@@ -2255,7 +2255,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="placement-groups">Placement Groups<a class="headerlink" href="#placement-groups" title="Permanent link">&para;</a></h3>
+<h3 id="placement-groups">Placement Groups</h3>
 <p>Control instance placement for performance or reliability.</p>
 <p><strong>Types:</strong></p>
 <p><strong>1. Cluster Placement Group:</strong></p>
@@ -2310,7 +2310,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="enhanced-networking">Enhanced Networking<a class="headerlink" href="#enhanced-networking" title="Permanent link">&para;</a></h3>
+<h3 id="enhanced-networking">Enhanced Networking</h3>
 <p>Provides higher bandwidth, higher packet per second (PPS) performance, and lower latency.</p>
 <p><strong>Types:</strong></p>
 <p><strong>1. Elastic Network Adapter (ENA):</strong></p>
@@ -2344,7 +2344,7 @@
 <a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span>--instance-id<span class="w"> </span>i-1234567890abcdef0<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span>--ena-support
 </code></pre></div>
-<h3 id="elastic-ip-addresses">Elastic IP Addresses<a class="headerlink" href="#elastic-ip-addresses" title="Permanent link">&para;</a></h3>
+<h3 id="elastic-ip-addresses">Elastic IP Addresses</h3>
 <p>Static IPv4 addresses for dynamic cloud computing.</p>
 <p><strong>Characteristics:</strong></p>
 <ul>
@@ -2367,7 +2367,7 @@
 <li>Release unused Elastic IPs to avoid charges</li>
 <li>Use for specific use cases, not routine deployments</li>
 </ul>
-<h3 id="instance-metadata-and-user-data">Instance Metadata and User Data<a class="headerlink" href="#instance-metadata-and-user-data" title="Permanent link">&para;</a></h3>
+<h3 id="instance-metadata-and-user-data">Instance Metadata and User Data</h3>
 <p><strong>Instance Metadata:</strong>
 Access instance information from within the instance.</p>
 <p><strong>Endpoint:</strong> http://169.254.169.254/latest/meta-data/</p>
@@ -2418,7 +2418,7 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>curl<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;X-aws-ec2-metadata-token: </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span>http://169.254.169.254/latest/meta-data/instance-id
 </code></pre></div>
-<h3 id="ec2-storage-options">EC2 Storage Options<a class="headerlink" href="#ec2-storage-options" title="Permanent link">&para;</a></h3>
+<h3 id="ec2-storage-options">EC2 Storage Options</h3>
 <p><strong>1. EBS (Elastic Block Store):</strong></p>
 <ul>
 <li>Persistent block storage</li>
@@ -2444,10 +2444,10 @@ More secure version requiring session-oriented requests.</p>
 <li>Managed file systems (Windows, Lustre, NetApp ONTAP, OpenZFS)</li>
 </ul>
 <p>We'll cover storage in detail in Chapter 8.</p>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-launching-your-first-ec2-instance">Lab 1: Launching Your First EC2 Instance<a class="headerlink" href="#lab-1-launching-your-first-ec2-instance" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-launching-your-first-ec2-instance">Lab 1: Launching Your First EC2 Instance</h3>
 <p><strong>Objective:</strong> Launch a web server using the AWS Console and CLI.</p>
-<h4 id="using-aws-console">Using AWS Console<a class="headerlink" href="#using-aws-console" title="Permanent link">&para;</a></h4>
+<h4 id="using-aws-console">Using AWS Console</h4>
 <p><strong>Step 1: Navigate to EC2</strong></p>
 <ol>
 <li>Sign in to AWS Console</li>
@@ -2488,7 +2488,7 @@ More secure version requiring session-oriented requests.</p>
 <li>Note the public IP address</li>
 <li>Test: Open browser to <code>http://[PUBLIC_IP]</code></li>
 </ol>
-<h4 id="using-aws-cli">Using AWS CLI<a class="headerlink" href="#using-aws-cli" title="Permanent link">&para;</a></h4>
+<h4 id="using-aws-cli">Using AWS CLI</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Create key pair</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>aws<span class="w"> </span>ec2<span class="w"> </span>create-key-pair<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span>--key-name<span class="w"> </span>MyKeyPair<span class="w"> </span><span class="se">\</span>
@@ -2559,7 +2559,7 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-13-68" name="__codelineno-13-68" href="#__codelineno-13-68"></a><span class="c1"># SSH into instance</span>
 <a id="__codelineno-13-69" name="__codelineno-13-69" href="#__codelineno-13-69"></a>ssh<span class="w"> </span>-i<span class="w"> </span>MyKeyPair.pem<span class="w"> </span>ec2-user@<span class="nv">$PUBLIC_IP</span>
 </code></pre></div>
-<h3 id="lab-2-creating-custom-amis">Lab 2: Creating Custom AMIs<a class="headerlink" href="#lab-2-creating-custom-amis" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-creating-custom-amis">Lab 2: Creating Custom AMIs</h3>
 <p><strong>Objective:</strong> Create a reusable AMI from a configured instance.</p>
 <p><strong>Step 1: Launch and Configure Instance</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Launch base instance</span>
@@ -2660,7 +2660,7 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>
 <a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Copied AMI ID in </span><span class="nv">$TARGET_REGION</span><span class="s2">: </span><span class="nv">$COPIED_AMI</span><span class="s2">&quot;</span>
 </code></pre></div>
-<h3 id="lab-3-implementing-auto-scaling">Lab 3: Implementing Auto Scaling<a class="headerlink" href="#lab-3-implementing-auto-scaling" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-implementing-auto-scaling">Lab 3: Implementing Auto Scaling</h3>
 <p><strong>Objective:</strong> Create an Auto Scaling Group with load balancer for high availability.</p>
 <p><strong>Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Internet → ALB → Target Group → Auto Scaling Group (2-10 instances across 3 AZs)
@@ -2876,7 +2876,7 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-24-24" name="__codelineno-24-24" href="#__codelineno-24-24"></a><span class="s1">    --auto-scaling-group-names myapp-asg \</span>
 <a id="__codelineno-24-25" name="__codelineno-24-25" href="#__codelineno-24-25"></a><span class="s1">    --query &quot;AutoScalingGroups[0].[DesiredCapacity,MinSize,MaxSize]&quot;&#39;</span>
 </code></pre></div>
-<h3 id="lab-4-implementing-instance-scheduling">Lab 4: Implementing Instance Scheduling<a class="headerlink" href="#lab-4-implementing-instance-scheduling" title="Permanent link">&para;</a></h3>
+<h3 id="lab-4-implementing-instance-scheduling">Lab 4: Implementing Instance Scheduling</h3>
 <p><strong>Objective:</strong> Automatically start/stop non-production instances to save costs.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="ch">#!/usr/bin/env python3</span>
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="c1"># lambda_instance_scheduler.py</span>
@@ -3034,7 +3034,7 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">    </span>--tags<span class="w"> </span><span class="nv">Key</span><span class="o">=</span>Environment,Value<span class="o">=</span>dev<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="w">           </span><span class="nv">Key</span><span class="o">=</span>AutoSchedule,Value<span class="o">=</span><span class="nb">true</span>
 </code></pre></div>
-<h3 id="lab-5-implementing-cloudwatch-monitoring-and-alarms">Lab 5: Implementing CloudWatch Monitoring and Alarms<a class="headerlink" href="#lab-5-implementing-cloudwatch-monitoring-and-alarms" title="Permanent link">&para;</a></h3>
+<h3 id="lab-5-implementing-cloudwatch-monitoring-and-alarms">Lab 5: Implementing CloudWatch Monitoring and Alarms</h3>
 <p><strong>Objective:</strong> Set up comprehensive monitoring for EC2 instances.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># Enable detailed monitoring (1-minute intervals)</span>
 <a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>aws<span class="w"> </span>ec2<span class="w"> </span>monitor-instances<span class="w"> </span>--instance-ids<span class="w"> </span><span class="nv">$INSTANCE_ID</span>
@@ -3186,10 +3186,10 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-29-84" name="__codelineno-29-84" href="#__codelineno-29-84"></a><span class="w">    </span>-s<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-29-85" name="__codelineno-29-85" href="#__codelineno-29-85"></a><span class="w">    </span>-c<span class="w"> </span>file:/opt/aws/amazon-cloudwatch-agent/etc/config.json
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="fleet-management-at-scale">Fleet Management at Scale<a class="headerlink" href="#fleet-management-at-scale" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="fleet-management-at-scale">Fleet Management at Scale</h3>
 <p>Managing hundreds or thousands of EC2 instances requires automation, standardization, and sophisticated tooling.</p>
-<h4 id="aws-systems-manager-for-fleet-management">AWS Systems Manager for Fleet Management<a class="headerlink" href="#aws-systems-manager-for-fleet-management" title="Permanent link">&para;</a></h4>
+<h4 id="aws-systems-manager-for-fleet-management">AWS Systems Manager for Fleet Management</h4>
 <p>Systems Manager provides unified interface for managing EC2 fleets without SSH access.</p>
 <p><strong>Key Capabilities:</strong></p>
 <p><strong>1. Session Manager (Secure Shell Access):</strong></p>
@@ -3338,7 +3338,7 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-34-61" name="__codelineno-34-61" href="#__codelineno-34-61"></a>
 <a id="__codelineno-34-62" name="__codelineno-34-62" href="#__codelineno-34-62"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Inventory report generated: fleet_inventory.csv (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">inventory</span><span class="p">)</span><span class="si">}</span><span class="s2"> instances)&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h4 id="infrastructure-as-code-for-ec2">Infrastructure as Code for EC2<a class="headerlink" href="#infrastructure-as-code-for-ec2" title="Permanent link">&para;</a></h4>
+<h4 id="infrastructure-as-code-for-ec2">Infrastructure as Code for EC2</h4>
 <p><strong>CloudFormation Template for Production EC2:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nt">AWSTemplateFormatVersion</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2010-09-09&#39;</span>
 <a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="nt">Description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Production</span><span class="nv"> </span><span class="s">EC2</span><span class="nv"> </span><span class="s">Instance</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">backup&#39;</span>
@@ -3551,8 +3551,8 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-35-209" name="__codelineno-35-209" href="#__codelineno-35-209"></a><span class="w">    </span><span class="nt">Export</span><span class="p">:</span>
 <a id="__codelineno-35-210" name="__codelineno-35-210" href="#__codelineno-35-210"></a><span class="w">      </span><span class="nt">Name</span><span class="p">:</span><span class="w"> </span><span class="kt">!Sub</span><span class="w"> </span><span class="s">&#39;${EnvironmentName}-PrivateIP&#39;</span>
 </code></pre></div>
-<h3 id="advanced-auto-scaling-patterns">Advanced Auto Scaling Patterns<a class="headerlink" href="#advanced-auto-scaling-patterns" title="Permanent link">&para;</a></h3>
-<h4 id="predictive-scaling">Predictive Scaling<a class="headerlink" href="#predictive-scaling" title="Permanent link">&para;</a></h4>
+<h3 id="advanced-auto-scaling-patterns">Advanced Auto Scaling Patterns</h3>
+<h4 id="predictive-scaling">Predictive Scaling</h4>
 <p>Use ML to forecast traffic and scale proactively:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="c1"># Enable predictive scaling</span>
 <a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>aws<span class="w"> </span>autoscaling<span class="w"> </span>put-scaling-policy<span class="w"> </span><span class="se">\</span>
@@ -3570,7 +3570,7 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-36-14" name="__codelineno-36-14" href="#__codelineno-36-14"></a><span class="s1">      &quot;SchedulingBufferTime&quot;: 600</span>
 <a id="__codelineno-36-15" name="__codelineno-36-15" href="#__codelineno-36-15"></a><span class="s1">    }&#39;</span>
 </code></pre></div>
-<h4 id="mixed-instances-policy-spot-on-demand">Mixed Instances Policy (Spot + On-Demand)<a class="headerlink" href="#mixed-instances-policy-spot-on-demand" title="Permanent link">&para;</a></h4>
+<h4 id="mixed-instances-policy-spot-on-demand">Mixed Instances Policy (Spot + On-Demand)</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="c1"># Launch Template configuration for mixed instances</span>
 <a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="nt">AutoScalingGroup</span><span class="p">:</span>
 <a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">  </span><span class="nt">Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWS::AutoScaling::AutoScalingGroup</span>
@@ -3606,7 +3606,7 @@ More secure version requiring session-oriented requests.</p>
 <li>Multiple instance types (flexibility)</li>
 <li>Capacity-optimized allocation (fewer interruptions)</li>
 </ul>
-<h4 id="lifecycle-hooks-for-graceful-handling">Lifecycle Hooks for Graceful Handling<a class="headerlink" href="#lifecycle-hooks-for-graceful-handling" title="Permanent link">&para;</a></h4>
+<h4 id="lifecycle-hooks-for-graceful-handling">Lifecycle Hooks for Graceful Handling</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="ch">#!/usr/bin/env python3</span>
 <a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="c1"># lifecycle_hook_handler.py</span>
 <a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>
@@ -3686,8 +3686,8 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-39-16" name="__codelineno-39-16" href="#__codelineno-39-16"></a><span class="w">    </span>--default-result<span class="w"> </span>CONTINUE<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-39-17" name="__codelineno-39-17" href="#__codelineno-39-17"></a><span class="w">    </span>--notification-target-arn<span class="w"> </span>arn:aws:sqs:us-east-1:123456789012:lifecycle-hooks-queue
 </code></pre></div>
-<h3 id="disaster-recovery-and-high-availability">Disaster Recovery and High Availability<a class="headerlink" href="#disaster-recovery-and-high-availability" title="Permanent link">&para;</a></h3>
-<h4 id="cross-region-ami-copy-automation">Cross-Region AMI Copy Automation<a class="headerlink" href="#cross-region-ami-copy-automation" title="Permanent link">&para;</a></h4>
+<h3 id="disaster-recovery-and-high-availability">Disaster Recovery and High Availability</h3>
+<h4 id="cross-region-ami-copy-automation">Cross-Region AMI Copy Automation</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="ch">#!/usr/bin/env python3</span>
 <a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="c1"># ami_dr_replication.py</span>
 <a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>
@@ -3753,7 +3753,7 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-40-63" name="__codelineno-40-63" href="#__codelineno-40-63"></a><span class="c1"># Run replication</span>
 <a id="__codelineno-40-64" name="__codelineno-40-64" href="#__codelineno-40-64"></a><span class="n">replicate_ami_to_dr_region</span><span class="p">(</span><span class="s1">&#39;us-east-1&#39;</span><span class="p">,</span> <span class="s1">&#39;us-west-2&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h4 id="auto-recovery-for-instance-failures">Auto Recovery for Instance Failures<a class="headerlink" href="#auto-recovery-for-instance-failures" title="Permanent link">&para;</a></h4>
+<h4 id="auto-recovery-for-instance-failures">Auto Recovery for Instance Failures</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="c1"># Configure automatic recovery for instance failures</span>
 <a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>aws<span class="w"> </span>ec2<span class="w"> </span>modify-instance-maintenance-options<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="w">    </span>--instance-id<span class="w"> </span>i-1234567890abcdef0<span class="w"> </span><span class="se">\</span>
@@ -3773,8 +3773,8 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-41-17" name="__codelineno-41-17" href="#__codelineno-41-17"></a><span class="w">    </span>--dimensions<span class="w"> </span><span class="nv">Name</span><span class="o">=</span>InstanceId,Value<span class="o">=</span>i-1234567890abcdef0<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-41-18" name="__codelineno-41-18" href="#__codelineno-41-18"></a><span class="w">    </span>--alarm-actions<span class="w"> </span>arn:aws:automate:us-east-1:ec2:recover
 </code></pre></div>
-<h3 id="cost-optimization-strategies">Cost Optimization Strategies<a class="headerlink" href="#cost-optimization-strategies" title="Permanent link">&para;</a></h3>
-<h4 id="reserved-instance-planning-tool">Reserved Instance Planning Tool<a class="headerlink" href="#reserved-instance-planning-tool" title="Permanent link">&para;</a></h4>
+<h3 id="cost-optimization-strategies">Cost Optimization Strategies</h3>
+<h4 id="reserved-instance-planning-tool">Reserved Instance Planning Tool</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="ch">#!/usr/bin/env python3</span>
 <a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="c1"># ri_recommendation_tool.py</span>
 <a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>
@@ -3900,7 +3900,7 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-42-123" name="__codelineno-42-123" href="#__codelineno-42-123"></a><span class="n">total_savings</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">rec</span><span class="p">[</span><span class="s1">&#39;annual_savings&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="n">recommendations</span><span class="p">)</span>
 <a id="__codelineno-42-124" name="__codelineno-42-124" href="#__codelineno-42-124"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total Potential Annual Savings: $</span><span class="si">{</span><span class="n">total_savings</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h4 id="spot-instance-best-practices">Spot Instance Best Practices<a class="headerlink" href="#spot-instance-best-practices" title="Permanent link">&para;</a></h4>
+<h4 id="spot-instance-best-practices">Spot Instance Best Practices</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="ch">#!/usr/bin/env python3</span>
 <a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="c1"># spot_fleet_manager.py</span>
 <a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>
@@ -4015,8 +4015,8 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-43-112" name="__codelineno-43-112" href="#__codelineno-43-112"></a><span class="n">fleet_id</span> <span class="o">=</span> <span class="n">create_spot_fleet_config</span><span class="p">(</span><span class="n">target_capacity</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <a id="__codelineno-43-113" name="__codelineno-43-113" href="#__codelineno-43-113"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Spot Fleet created: </span><span class="si">{</span><span class="n">fleet_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="instance-type-selection-tips">Instance Type Selection Tips<a class="headerlink" href="#instance-type-selection-tips" title="Permanent link">&para;</a></h3>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
+<h3 id="instance-type-selection-tips">Instance Type Selection Tips</h3>
 <p><strong>Tip 1: Start with Burstable Instances for Variable Workloads</strong></p>
 <p>For workloads with variable CPU usage (web servers, dev environments):</p>
 <ul>
@@ -4102,7 +4102,7 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-46-49" name="__codelineno-46-49" href="#__codelineno-46-49"></a><span class="c1"># Example</span>
 <a id="__codelineno-46-50" name="__codelineno-46-50" href="#__codelineno-46-50"></a><span class="nb">print</span><span class="p">(</span><span class="n">analyze_instance_utilization</span><span class="p">(</span><span class="s1">&#39;i-1234567890abcdef0&#39;</span><span class="p">))</span>
 </code></pre></div>
-<h3 id="ami-management-tips">AMI Management Tips<a class="headerlink" href="#ami-management-tips" title="Permanent link">&para;</a></h3>
+<h3 id="ami-management-tips">AMI Management Tips</h3>
 <p><strong>Tip 4: Implement AMI Lifecycle Management</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="c1"># Create Lambda function to clean old AMIs</span>
 <a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>aws<span class="w"> </span>lambda<span class="w"> </span>create-function<span class="w"> </span><span class="se">\</span>
@@ -4161,7 +4161,7 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-49-21" name="__codelineno-49-21" href="#__codelineno-49-21"></a><span class="c1"># If tests pass, promote to production</span>
 <a id="__codelineno-49-22" name="__codelineno-49-22" href="#__codelineno-49-22"></a><span class="c1"># If tests fail, investigate and fix</span>
 </code></pre></div>
-<h3 id="auto-scaling-tips">Auto Scaling Tips<a class="headerlink" href="#auto-scaling-tips" title="Permanent link">&para;</a></h3>
+<h3 id="auto-scaling-tips">Auto Scaling Tips</h3>
 <p><strong>Tip 7: Use Multiple Scaling Policies</strong></p>
 <p>Combine different scaling strategies:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="c1"># Target tracking for baseline</span>
@@ -4220,7 +4220,7 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-52-12" name="__codelineno-52-12" href="#__codelineno-52-12"></a><span class="c1"># - Default: Balanced across AZs, then oldest launch config</span>
 <a id="__codelineno-52-13" name="__codelineno-52-13" href="#__codelineno-52-13"></a><span class="c1"># - AllocationStrategy: For Spot instances</span>
 </code></pre></div>
-<h3 id="security-tips">Security Tips<a class="headerlink" href="#security-tips" title="Permanent link">&para;</a></h3>
+<h3 id="security-tips">Security Tips</h3>
 <p><strong>Tip 10: Never Store Credentials in AMIs</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="c1"># Bad - credentials in AMI</span>
 <a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;API_KEY=secret123&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/environment
@@ -4266,7 +4266,7 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-55-18" name="__codelineno-55-18" href="#__codelineno-55-18"></a><span class="w">    </span>--snapshot-id<span class="w"> </span>snap-encrypted123<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-55-19" name="__codelineno-55-19" href="#__codelineno-55-19"></a><span class="w">    </span>--availability-zone<span class="w"> </span>us-east-1a
 </code></pre></div>
-<h3 id="monitoring-tips">Monitoring Tips<a class="headerlink" href="#monitoring-tips" title="Permanent link">&para;</a></h3>
+<h3 id="monitoring-tips">Monitoring Tips</h3>
 <p><strong>Tip 13: Enable Detailed Monitoring for Production</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="c1"># Enable at launch</span>
 <a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>aws<span class="w"> </span>ec2<span class="w"> </span>run-instances<span class="w"> </span><span class="se">\</span>
@@ -4372,7 +4372,7 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-58-24" name="__codelineno-58-24" href="#__codelineno-58-24"></a><span class="w">    </span>--dimensions<span class="w"> </span><span class="nv">Name</span><span class="o">=</span>InstanceId,Value<span class="o">=</span><span class="nv">$INSTANCE_ID</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-58-25" name="__codelineno-58-25" href="#__codelineno-58-25"></a><span class="w">    </span>--alarm-actions<span class="w"> </span>arn:aws:automate:us-east-1:ec2:reboot
 </code></pre></div>
-<h3 id="cost-optimization-tips">Cost Optimization Tips<a class="headerlink" href="#cost-optimization-tips" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization-tips">Cost Optimization Tips</h3>
 <p><strong>Tip 16: Use Savings Plans Over Reserved Instances</strong></p>
 <p>For most workloads, Compute Savings Plans offer better flexibility:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="c1"># Calculate commitment needed</span>
@@ -4441,8 +4441,8 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-63-7" name="__codelineno-63-7" href="#__codelineno-63-7"></a><span class="s1">      savingsPercent: .recommendationOptions[0].savingsOpportunity.savingsOpportunityPercentage</span>
 <a id="__codelineno-63-8" name="__codelineno-63-8" href="#__codelineno-63-8"></a><span class="s1">    }&#39;</span>
 </code></pre></div>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-selecting-wrong-instance-type-for-workload">Pitfall 1: Selecting Wrong Instance Type for Workload<a class="headerlink" href="#pitfall-1-selecting-wrong-instance-type-for-workload" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-selecting-wrong-instance-type-for-workload">Pitfall 1: Selecting Wrong Instance Type for Workload</h3>
 <p><strong>Problem:</strong> Choosing instance types based on familiarity rather than workload requirements, leading to over-provisioning or under-provisioning.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4611,7 +4611,7 @@ More secure version requiring session-oriented requests.</p>
 <li>Document instance type selection rationale</li>
 </ul>
 <hr />
-<h3 id="pitfall-2-not-implementing-graceful-shutdown">Pitfall 2: Not Implementing Graceful Shutdown<a class="headerlink" href="#pitfall-2-not-implementing-graceful-shutdown" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-2-not-implementing-graceful-shutdown">Pitfall 2: Not Implementing Graceful Shutdown</h3>
 <p><strong>Problem:</strong> Applications terminated abruptly without completing in-flight requests or saving state, leading to data loss or inconsistent state.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4846,7 +4846,7 @@ More secure version requiring session-oriented requests.</p>
 <li>Document shutdown procedures</li>
 </ul>
 <hr />
-<h3 id="pitfall-3-improper-use-of-user-data">Pitfall 3: Improper Use of User Data<a class="headerlink" href="#pitfall-3-improper-use-of-user-data" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-3-improper-use-of-user-data">Pitfall 3: Improper Use of User Data</h3>
 <p><strong>Problem:</strong> User data scripts failing silently, running on every boot instead of once, or containing sensitive information in plain text.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5014,7 +5014,7 @@ More secure version requiring session-oriented requests.</p>
 <li>Consider using AWS Systems Manager for post-launch configuration</li>
 </ul>
 <hr />
-<h3 id="pitfall-4-not-monitoring-and-rightsizing-instances">Pitfall 4: Not Monitoring and Rightsizing Instances<a class="headerlink" href="#pitfall-4-not-monitoring-and-rightsizing-instances" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-4-not-monitoring-and-rightsizing-instances">Pitfall 4: Not Monitoring and Rightsizing Instances</h3>
 <p><strong>Problem:</strong> Running instances at wrong sizes indefinitely, wasting money on over-provisioned resources or suffering performance issues from under-provisioned instances.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5539,7 +5539,7 @@ More secure version requiring session-oriented requests.</p>
 <li>Test in non-production first</li>
 </ul>
 <hr />
-<h3 id="pitfall-5-not-implementing-proper-backup-strategy">Pitfall 5: Not Implementing Proper Backup Strategy<a class="headerlink" href="#pitfall-5-not-implementing-proper-backup-strategy" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-5-not-implementing-proper-backup-strategy">Pitfall 5: Not Implementing Proper Backup Strategy</h3>
 <p><strong>Problem:</strong> No backups, inconsistent backups, or backups not tested for recovery, leading to data loss during disasters.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5974,7 +5974,7 @@ More secure version requiring session-oriented requests.</p>
 <li>Automate backup testing</li>
 </ul>
 <hr />
-<h3 id="pitfall-6-ignoring-instance-metadata-security">Pitfall 6: Ignoring Instance Metadata Security<a class="headerlink" href="#pitfall-6-ignoring-instance-metadata-security" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-6-ignoring-instance-metadata-security">Pitfall 6: Ignoring Instance Metadata Security</h3>
 <p><strong>Problem:</strong> Not securing Instance Metadata Service (IMDS), allowing attackers to steal IAM credentials if they gain access to the instance.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -6169,7 +6169,7 @@ More secure version requiring session-oriented requests.</p>
 <li>Monitor IMDS access</li>
 </ul>
 <hr />
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>Amazon EC2 is the cornerstone of AWS compute services, providing flexible, scalable virtual servers for virtually any workload. Success with EC2 requires deep understanding of instance types, pricing models, AMI management, Auto Scaling, and operational best practices.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -6184,7 +6184,7 @@ More secure version requiring session-oriented requests.</p>
 </ul>
 <p>Understanding EC2 deeply enables you to build cost-effective, highly available, and performant applications in AWS. The compute foundation you've built here will support your entire cloud architecture.</p>
 <p>In Chapter 5, we'll explore AWS Lambda and serverless computing, which complements EC2 by enabling event-driven, auto-scaling compute without managing servers.</p>
-<h2 id="hands-on-lab-exercise">Hands-On Lab Exercise<a class="headerlink" href="#hands-on-lab-exercise" title="Permanent link">&para;</a></h2>
+<h2 id="hands-on-lab-exercise">Hands-On Lab Exercise</h2>
 <p><strong>Objective:</strong> Build a production-ready, auto-scaling web application with monitoring, backups, and cost optimization.</p>
 <p><strong>Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a>Internet → ALB → Auto Scaling Group (2-10 t3.medium instances)
@@ -6264,7 +6264,7 @@ More secure version requiring session-oriented requests.</p>
 <a id="__codelineno-93-10" name="__codelineno-93-10" href="#__codelineno-93-10"></a><span class="c1"># Deregister AMI</span>
 <a id="__codelineno-93-11" name="__codelineno-93-11" href="#__codelineno-93-11"></a>aws<span class="w"> </span>ec2<span class="w"> </span>deregister-image<span class="w"> </span>--image-id<span class="w"> </span><span class="nv">$AMI_ID</span>
 </code></pre></div>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>Which instance family is best for applications requiring high memory-to-CPU ratio?</strong>
 a) C5 (Compute Optimized)

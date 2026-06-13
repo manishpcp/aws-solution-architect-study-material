@@ -2444,14 +2444,14 @@
   
 
 
-<h1 id="chapter-9-amazon-ebs-efs">Chapter 9: Amazon EBS \&amp; EFS<a class="headerlink" href="#chapter-9-amazon-ebs-efs" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-9-amazon-ebs-efs">Chapter 9: Amazon EBS \&amp; EFS</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Amazon Elastic Block Store (EBS) and Elastic File System (EFS) provide persistent storage for EC2 instances, each serving distinct use cases. EBS offers block-level storage volumes that function like virtual hard drives, providing low-latency access for databases, boot volumes, and applications requiring consistent I/O performance. EFS delivers fully managed, scalable NFS file systems that can be mounted by multiple EC2 instances simultaneously, ideal for shared content repositories, big data analytics, and application file storage.</p>
 <p>Understanding the difference between block storage and file storage is fundamental. EBS volumes attach to single EC2 instances (though Multi-Attach allows specific volume types to connect to multiple instances in the same AZ), providing raw block storage that you format with a file system. EFS provides a ready-to-use file system accessible by thousands of EC2 instances across multiple Availability Zones, automatically scaling from gigabytes to petabytes. The choice between EBS and EFS—or using both—depends on your application architecture, performance requirements, and access patterns.</p>
 <p>Storage performance significantly impacts application behavior. An improperly configured EBS volume can bottleneck database performance, causing transaction delays and poor user experience. Selecting gp2 instead of gp3 wastes money on unused burst credits. Not enabling EBS optimization on instances throttles I/O. Forgetting to snapshot volumes leads to unrecoverable data loss. Understanding volume types, IOPS provisioning, throughput characteristics, snapshot strategies, and encryption options is essential for production deployments.</p>
 <p>This chapter provides comprehensive coverage of EBS and EFS from fundamentals to production patterns. You'll learn volume types and performance characteristics, snapshot and backup strategies, encryption and security, high-availability configurations, monitoring and troubleshooting, and cost optimization techniques. Whether you're running databases, hosting applications, or building shared file systems, mastering EBS and EFS is critical for reliable, performant AWS infrastructure.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="ebs-fundamentals">EBS Fundamentals<a class="headerlink" href="#ebs-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="ebs-fundamentals">EBS Fundamentals</h3>
 <p><strong>What is EBS?</strong></p>
 <p>Amazon EBS provides persistent block storage volumes for EC2 instances. Each volume is automatically replicated within its Availability Zone to protect against hardware failures.</p>
 <p><strong>Key Characteristics:</strong></p>
@@ -2505,7 +2505,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="ebs-volume-types">EBS Volume Types<a class="headerlink" href="#ebs-volume-types" title="Permanent link">&para;</a></h3>
+<h3 id="ebs-volume-types">EBS Volume Types</h3>
 <p><strong>SSD-Based Volumes:</strong></p>
 <p><strong>1. General Purpose SSD (gp3) - Recommended</strong></p>
 <ul>
@@ -2650,7 +2650,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="iops-and-throughput">IOPS and Throughput<a class="headerlink" href="#iops-and-throughput" title="Permanent link">&para;</a></h3>
+<h3 id="iops-and-throughput">IOPS and Throughput</h3>
 <p><strong>IOPS (Input/Output Operations Per Second):</strong></p>
 <p>Measures how many read/write operations storage can handle per second.</p>
 <ul>
@@ -2709,7 +2709,7 @@
 <a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>            <span class="s1">&#39;recommendation&#39;</span><span class="p">:</span> <span class="s1">&#39;Default gp3 sufficient for most cases&#39;</span>
 <a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>        <span class="p">}</span>
 </code></pre></div>
-<h3 id="ebs-snapshots">EBS Snapshots<a class="headerlink" href="#ebs-snapshots" title="Permanent link">&para;</a></h3>
+<h3 id="ebs-snapshots">EBS Snapshots</h3>
 <p>Snapshots are incremental backups of EBS volumes stored in Amazon S3.</p>
 <p><strong>How Snapshots Work:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Initial Snapshot: Copies all blocks (full backup)
@@ -2779,7 +2779,7 @@
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># Cost: $0.75/hour per snapshot per AZ</span>
 <a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Use only for critical snapshots needing instant restore</span>
 </code></pre></div>
-<h3 id="ebs-encryption">EBS Encryption<a class="headerlink" href="#ebs-encryption" title="Permanent link">&para;</a></h3>
+<h3 id="ebs-encryption">EBS Encryption</h3>
 <p>EBS encryption protects data at rest, in transit, and in snapshots.</p>
 <p><strong>Key Features:</strong></p>
 <ul>
@@ -2839,7 +2839,7 @@
 <a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">    </span>--grantee-principal<span class="w"> </span>ec2.amazonaws.com<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">    </span>--operations<span class="w"> </span>Decrypt<span class="w"> </span>CreateGrant
 </code></pre></div>
-<h3 id="amazon-efs-elastic-file-system">Amazon EFS (Elastic File System)<a class="headerlink" href="#amazon-efs-elastic-file-system" title="Permanent link">&para;</a></h3>
+<h3 id="amazon-efs-elastic-file-system">Amazon EFS (Elastic File System)</h3>
 <p>EFS provides scalable, fully managed NFS file systems for EC2 instances.</p>
 <p><strong>Key Characteristics:</strong></p>
 <ul>
@@ -2946,7 +2946,7 @@
 <li>Automatically moves files to IA based on policy</li>
 <li>Moves back to Standard on access</li>
 </ul>
-<h3 id="ebs-multi-attach">EBS Multi-Attach<a class="headerlink" href="#ebs-multi-attach" title="Permanent link">&para;</a></h3>
+<h3 id="ebs-multi-attach">EBS Multi-Attach</h3>
 <p>Allows io2 volumes to attach to multiple instances in same AZ.</p>
 <p><strong>Features:</strong></p>
 <ul>
@@ -2987,8 +2987,8 @@
 <a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="c1"># - OCFS2</span>
 <a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="c1"># Not: ext4, xfs (single-writer only)</span>
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-creating-and-optimizing-ebs-volumes">Lab 1: Creating and Optimizing EBS Volumes<a class="headerlink" href="#lab-1-creating-and-optimizing-ebs-volumes" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-creating-and-optimizing-ebs-volumes">Lab 1: Creating and Optimizing EBS Volumes</h3>
 <p><strong>Objective:</strong> Create and configure production-ready EBS volumes with optimal performance.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Create gp3 volume with custom IOPS/throughput</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nv">VOLUME_ID</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>ec2<span class="w"> </span>create-volume<span class="w"> </span><span class="se">\</span>
@@ -3038,7 +3038,7 @@
 <a id="__codelineno-9-46" name="__codelineno-9-46" href="#__codelineno-9-46"></a><span class="w">    </span>--numjobs<span class="o">=</span><span class="m">4</span><span class="w"> </span>--runtime<span class="o">=</span><span class="m">60</span><span class="w"> </span>--group_reporting<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-9-47" name="__codelineno-9-47" href="#__codelineno-9-47"></a><span class="w">    </span>--filename<span class="o">=</span>/data/test
 </code></pre></div>
-<h3 id="lab-2-snapshot-automation-with-data-lifecycle-manager">Lab 2: Snapshot Automation with Data Lifecycle Manager<a class="headerlink" href="#lab-2-snapshot-automation-with-data-lifecycle-manager" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-snapshot-automation-with-data-lifecycle-manager">Lab 2: Snapshot Automation with Data Lifecycle Manager</h3>
 <p><strong>Objective:</strong> Automate EBS snapshot lifecycle management.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Create DLM policy</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>dlm-policy.json<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
@@ -3115,7 +3115,7 @@
 <a id="__codelineno-10-73" name="__codelineno-10-73" href="#__codelineno-10-73"></a><span class="w">    </span>--resources<span class="w"> </span><span class="nv">$VOLUME_ID</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-10-74" name="__codelineno-10-74" href="#__codelineno-10-74"></a><span class="w">    </span>--tags<span class="w"> </span><span class="nv">Key</span><span class="o">=</span>Backup,Value<span class="o">=</span>Daily
 </code></pre></div>
-<h3 id="lab-3-creating-efs-file-system">Lab 3: Creating EFS File System<a class="headerlink" href="#lab-3-creating-efs-file-system" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-creating-efs-file-system">Lab 3: Creating EFS File System</h3>
 <p><strong>Objective:</strong> Deploy multi-AZ EFS with lifecycle management.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Create EFS file system</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nv">FILE_SYSTEM_ID</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>efs<span class="w"> </span>create-file-system<span class="w"> </span><span class="se">\</span>
@@ -3160,7 +3160,7 @@
 <a id="__codelineno-11-41" name="__codelineno-11-41" href="#__codelineno-11-41"></a><span class="c1"># Test write performance</span>
 <a id="__codelineno-11-42" name="__codelineno-11-42" href="#__codelineno-11-42"></a>sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/zero<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/mnt/efs/testfile<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">1000</span>
 </code></pre></div>
-<h3 id="lab-4-ebs-volume-monitoring">Lab 4: EBS Volume Monitoring<a class="headerlink" href="#lab-4-ebs-volume-monitoring" title="Permanent link">&para;</a></h3>
+<h3 id="lab-4-ebs-volume-monitoring">Lab 4: EBS Volume Monitoring</h3>
 <p><strong>Objective:</strong> Implement comprehensive EBS performance monitoring.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># ebs_monitoring.py</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3305,8 +3305,8 @@
 <a id="__codelineno-12-141" name="__codelineno-12-141" href="#__codelineno-12-141"></a><span class="n">volume_data</span> <span class="o">=</span> <span class="n">monitor_ebs_performance</span><span class="p">(</span><span class="s1">&#39;vol-1234567890abcdef0&#39;</span><span class="p">)</span>
 <a id="__codelineno-12-142" name="__codelineno-12-142" href="#__codelineno-12-142"></a><span class="n">create_ebs_alarms</span><span class="p">(</span><span class="s1">&#39;vol-1234567890abcdef0&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="high-performance-database-configurations">High-Performance Database Configurations<a class="headerlink" href="#high-performance-database-configurations" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="high-performance-database-configurations">High-Performance Database Configurations</h3>
 <p><strong>PostgreSQL on EBS:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Optimal configuration for PostgreSQL</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1"># Use io2 Block Express for mission-critical production</span>
@@ -3378,7 +3378,7 @@
 <a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a><span class="s">relay_log = /var/log/mysql-binlog/relay-bin</span>
 <a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="s">EOF</span>
 </code></pre></div>
-<h3 id="disaster-recovery-strategies">Disaster Recovery Strategies<a class="headerlink" href="#disaster-recovery-strategies" title="Permanent link">&para;</a></h3>
+<h3 id="disaster-recovery-strategies">Disaster Recovery Strategies</h3>
 <p><strong>EBS Backup Strategy:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># dr_backup_strategy.py</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3587,7 +3587,7 @@
 <a id="__codelineno-16-65" name="__codelineno-16-65" href="#__codelineno-16-65"></a>
 <a id="__codelineno-16-66" name="__codelineno-16-66" href="#__codelineno-16-66"></a>    <span class="k">return</span> <span class="n">dr_volume_id</span>
 </code></pre></div>
-<h3 id="ebs-performance-optimization">EBS Performance Optimization<a class="headerlink" href="#ebs-performance-optimization" title="Permanent link">&para;</a></h3>
+<h3 id="ebs-performance-optimization">EBS Performance Optimization</h3>
 <p><strong>I/O Queue Depth Tuning:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Check current queue depth</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>cat<span class="w"> </span>/sys/block/nvme1n1/queue/nr_requests
@@ -3636,7 +3636,7 @@
 <a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a><span class="c1"># Auto-assemble on boot</span>
 <a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a>sudo<span class="w"> </span>update-initramfs<span class="w"> </span>-u
 </code></pre></div>
-<h3 id="cost-optimization-strategies">Cost Optimization Strategies<a class="headerlink" href="#cost-optimization-strategies" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization-strategies">Cost Optimization Strategies</h3>
 <p><strong>gp2 to gp3 Migration:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># migrate_gp2_to_gp3.py</span>
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3824,8 +3824,8 @@
 <a id="__codelineno-20-92" name="__codelineno-20-92" href="#__codelineno-20-92"></a><span class="c1"># Run optimization</span>
 <a id="__codelineno-20-93" name="__codelineno-20-93" href="#__codelineno-20-93"></a><span class="n">optimization_plan</span> <span class="o">=</span> <span class="n">optimize_snapshot_storage</span><span class="p">()</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="volume-type-selection-tips">Volume Type Selection Tips<a class="headerlink" href="#volume-type-selection-tips" title="Permanent link">&para;</a></h3>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
+<h3 id="volume-type-selection-tips">Volume Type Selection Tips</h3>
 <p><strong>Tip 1: Use gp3 as Default</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>Compared to gp2:
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>- 20% cheaper per GB
@@ -3860,7 +3860,7 @@
 <a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="c1"># Result: $90/month vs $160/month = $70 savings</span>
 <a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="c1"># For sequential I/O workloads only</span>
 </code></pre></div>
-<h3 id="performance-tips">Performance Tips<a class="headerlink" href="#performance-tips" title="Permanent link">&para;</a></h3>
+<h3 id="performance-tips">Performance Tips</h3>
 <p><strong>Tip 4: Enable EBS Optimization</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># Check if instance type supports EBS optimization</span>
 <a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>aws<span class="w"> </span>ec2<span class="w"> </span>describe-instance-types<span class="w"> </span><span class="se">\</span>
@@ -3907,7 +3907,7 @@
 <a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="c1"># Format with optimal stripe size</span>
 <a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>sudo<span class="w"> </span>mkfs.ext4<span class="w"> </span>-E<span class="w"> </span><span class="nv">stride</span><span class="o">=</span><span class="m">16</span>,stripe-width<span class="o">=</span><span class="m">64</span><span class="w"> </span>/dev/nvme1n1p1
 </code></pre></div>
-<h3 id="backup-and-recovery-tips">Backup and Recovery Tips<a class="headerlink" href="#backup-and-recovery-tips" title="Permanent link">&para;</a></h3>
+<h3 id="backup-and-recovery-tips">Backup and Recovery Tips</h3>
 <p><strong>Tip 7: Automate Snapshots with DLM</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># Use Data Lifecycle Manager instead of manual scripts</span>
 <a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="c1"># - Automatic scheduling</span>
@@ -3958,7 +3958,7 @@
 <a id="__codelineno-29-27" name="__codelineno-29-27" href="#__codelineno-29-27"></a><span class="c1"># Run monthly restore tests</span>
 <a id="__codelineno-29-28" name="__codelineno-29-28" href="#__codelineno-29-28"></a><span class="n">schedule_restore_tests</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;monthly&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="cost-optimization-tips">Cost Optimization Tips<a class="headerlink" href="#cost-optimization-tips" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization-tips">Cost Optimization Tips</h3>
 <p><strong>Tip 10: Right-Size Volumes</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># volume_sizing_analyzer.py</span>
 <a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -4049,8 +4049,8 @@
 <a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a><span class="c1"># Moved back to Standard on access</span>
 <a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a><span class="c1"># No application changes needed</span>
 </code></pre></div>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-wrong-volume-type-selection">Pitfall 1: Wrong Volume Type Selection<a class="headerlink" href="#pitfall-1-wrong-volume-type-selection" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-wrong-volume-type-selection">Pitfall 1: Wrong Volume Type Selection</h3>
 <p><strong>Problem:</strong> Selecting inappropriate volume type for workload, leading to poor performance or wasted costs.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4190,7 +4190,7 @@
 <li>Set CloudWatch alarms for burst credit depletion (gp2)</li>
 </ul>
 <hr />
-<h3 id="pitfall-2-snapshot-lifecycle-gaps">Pitfall 2: Snapshot Lifecycle Gaps<a class="headerlink" href="#pitfall-2-snapshot-lifecycle-gaps" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-2-snapshot-lifecycle-gaps">Pitfall 2: Snapshot Lifecycle Gaps</h3>
 <p><strong>Problem:</strong> No automated snapshot strategy, leading to data loss or excessive snapshot costs.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4368,7 +4368,7 @@
 <li>Use Recycle Bin for deletion protection</li>
 </ul>
 <hr />
-<h3 id="pitfall-3-not-enabling-ebs-encryption">Pitfall 3: Not Enabling EBS Encryption<a class="headerlink" href="#pitfall-3-not-enabling-ebs-encryption" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-3-not-enabling-ebs-encryption">Pitfall 3: Not Enabling EBS Encryption</h3>
 <p><strong>Problem:</strong> Unencrypted EBS volumes expose data at rest.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4573,7 +4573,7 @@
 <li>Training on compliance requirements</li>
 </ul>
 <hr />
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>Amazon EBS and EFS provide persistent, high-performance storage for EC2 instances, each optimized for different use cases. EBS offers block-level storage with multiple volume types for diverse workload requirements, from general-purpose gp3 to ultra-high-performance io2 Block Express. EFS provides scalable, shared NFS file systems accessible by multiple instances simultaneously. Understanding volume types, performance characteristics, snapshot strategies, encryption, and cost optimization is essential for production deployments.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -4585,7 +4585,7 @@
 <li><strong>Optimize costs:</strong> Right-size volumes, delete unused, archive old snapshots, use EFS IA for cold data</li>
 </ul>
 <p>Understanding EBS and EFS deeply enables you to build performant, reliable, cost-effective storage solutions for databases, applications, and shared file systems.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>Which EBS volume type provides the lowest cost?</strong>
 a) gp3

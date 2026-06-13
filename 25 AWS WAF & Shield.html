@@ -2378,13 +2378,13 @@
   
 
 
-<h1 id="chapter-25-aws-waf-shield">Chapter 25: AWS WAF \&amp; Shield<a class="headerlink" href="#chapter-25-aws-waf-shield" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-25-aws-waf-shield">Chapter 25: AWS WAF \&amp; Shield</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Web applications face constant attack—automated bots scanning for vulnerabilities, credential stuffing attempts cycling through stolen passwords, SQL injection probing databases, DDoS floods overwhelming infrastructure, and zero-day exploits targeting unpatched software. Traditional security approaches—network firewalls, IP blocking, rate limiting at the load balancer—cannot protect modern web applications from sophisticated, distributed, application-layer attacks. AWS WAF (Web Application Firewall) and AWS Shield provide intelligent, scalable protection directly integrated with CloudFront, Application Load Balancer, and API Gateway, blocking attacks at the edge before they reach your infrastructure.</p>
 <p>The cost of inadequate web application security extends far beyond technology—average data breach costs exceed \$4 million, DDoS attacks cause revenue loss exceeding \$100,000 per hour, and brand reputation damage lasts years. AWS WAF enables granular request filtering using customizable rules that inspect HTTP headers, body, URI, query strings, and request patterns. AWS Shield provides always-on DDoS protection—Shield Standard protects against network and transport layer attacks automatically at no cost, while Shield Advanced adds application-layer protection, 24/7 DDoS Response Team support, cost protection, and real-time attack visibility. Together, these services transform security from reactive incident response to proactive threat prevention.</p>
 <p>This chapter builds on previous security concepts (IAM policies, Security Hub findings, encryption) by adding web application protection and DDoS mitigation. WAF integrates with services covered earlier—protecting CloudFront distributions, Application Load Balancers, API Gateway REST APIs—while Shield protects the entire AWS edge network. The chapter covers WAF architecture, rule types, managed rule groups, rate limiting, bot detection, geographic filtering, logging and monitoring, DDoS attack types, Shield Standard vs Advanced, incident response automation, and building production systems that withstand attacks ranging from simple bot traffic to sophisticated multi-vector DDoS assaults exceeding terabits per second.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="web-application-attack-landscape">Web Application Attack Landscape<a class="headerlink" href="#web-application-attack-landscape" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="web-application-attack-landscape">Web Application Attack Landscape</h3>
 <p><strong>Common Web Application Threats:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>1. SQL Injection:
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Attack: Malicious SQL in input fields
@@ -2482,7 +2482,7 @@
 <a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>Each layer reduces attack surface
 <a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>Defense in depth: Multiple layers compensate if one fails
 </code></pre></div>
-<h3 id="aws-waf-architecture">AWS WAF Architecture<a class="headerlink" href="#aws-waf-architecture" title="Permanent link">&para;</a></h3>
+<h3 id="aws-waf-architecture">AWS WAF Architecture</h3>
 <p><strong>Core Components:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>WAF Hierarchy:
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
@@ -2600,7 +2600,7 @@
 <a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>- Additional protection at ALB
 <a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a>- Defense in depth
 </code></pre></div>
-<h3 id="waf-rule-types">WAF Rule Types<a class="headerlink" href="#waf-rule-types" title="Permanent link">&para;</a></h3>
+<h3 id="waf-rule-types">WAF Rule Types</h3>
 <p><strong>1. Managed Rule Groups:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>AWS Managed Rule Groups:
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
@@ -2808,7 +2808,7 @@
 <a id="__codelineno-6-69" name="__codelineno-6-69" href="#__codelineno-6-69"></a>- 100 req/5min per session (authenticated)
 <a id="__codelineno-6-70" name="__codelineno-6-70" href="#__codelineno-6-70"></a>- Prevents account abuse
 </code></pre></div>
-<h3 id="aws-shield">AWS Shield<a class="headerlink" href="#aws-shield" title="Permanent link">&para;</a></h3>
+<h3 id="aws-shield">AWS Shield</h3>
 <p><strong>Shield Standard (Automatic, Free):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Shield Standard Protection:
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
@@ -2934,7 +2934,7 @@
 <a id="__codelineno-8-79" name="__codelineno-8-79" href="#__codelineno-8-79"></a>Shield Advanced: $36,000/year
 <a id="__codelineno-8-80" name="__codelineno-8-80" href="#__codelineno-8-80"></a>Savings: $164,000/year (82% ROI)
 </code></pre></div>
-<h3 id="ddos-attack-types">DDoS Attack Types<a class="headerlink" href="#ddos-attack-types" title="Permanent link">&para;</a></h3>
+<h3 id="ddos-attack-types">DDoS Attack Types</h3>
 <p><strong>Network/Transport Layer Attacks (Layer &frac34;):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>1. SYN Flood:
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Mechanism: Send SYN packets, never complete handshake
@@ -3037,7 +3037,7 @@
 <a id="__codelineno-10-66" name="__codelineno-10-66" href="#__codelineno-10-66"></a>- WAF + Shield Advanced required
 <a id="__codelineno-10-67" name="__codelineno-10-67" href="#__codelineno-10-67"></a>- Application awareness needed
 </code></pre></div>
-<h3 id="waf-logging-and-monitoring">WAF Logging and Monitoring<a class="headerlink" href="#waf-logging-and-monitoring" title="Permanent link">&para;</a></h3>
+<h3 id="waf-logging-and-monitoring">WAF Logging and Monitoring</h3>
 <p><strong>Logging Configuration:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>WAF Logging Destinations:
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
@@ -3181,8 +3181,8 @@
 <a id="__codelineno-12-49" name="__codelineno-12-49" href="#__codelineno-12-49"></a>- Most triggered rules
 <a id="__codelineno-12-50" name="__codelineno-12-50" href="#__codelineno-12-50"></a>- Attack patterns by time of day
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-creating-waf-web-acl-with-managed-rules">Lab 1: Creating WAF Web ACL with Managed Rules<a class="headerlink" href="#lab-1-creating-waf-web-acl-with-managed-rules" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-creating-waf-web-acl-with-managed-rules">Lab 1: Creating WAF Web ACL with Managed Rules</h3>
 <p><strong>Objective:</strong> Protect Application Load Balancer with WAF using managed rule groups.</p>
 <p><strong>Step 1: Create Web ACL</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3369,7 +3369,7 @@
 <a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a>
 <a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Logging enabled to S3 bucket: </span><span class="si">{</span><span class="n">bucket_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="lab-2-geographic-blocking-and-ip-set-rules">Lab 2: Geographic Blocking and IP Set Rules<a class="headerlink" href="#lab-2-geographic-blocking-and-ip-set-rules" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-geographic-blocking-and-ip-set-rules">Lab 2: Geographic Blocking and IP Set Rules</h3>
 <p><strong>Objective:</strong> Block traffic from specific countries and IP addresses.</p>
 <p><strong>Step 1: Create IP Set</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Create IP set for blocked IPs</span>
@@ -3474,7 +3474,7 @@
 <a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a><span class="c1"># Usage</span>
 <a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a><span class="n">block_ip</span><span class="p">(</span><span class="s1">&#39;198.51.100.75/32&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="lab-3-enable-shield-advanced">Lab 3: Enable Shield Advanced<a class="headerlink" href="#lab-3-enable-shield-advanced" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-enable-shield-advanced">Lab 3: Enable Shield Advanced</h3>
 <p><strong>Objective:</strong> Enable Shield Advanced with DDoS Response Team support.</p>
 <p><strong>Step 1: Subscribe to Shield Advanced</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">shield</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;shield&#39;</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="s1">&#39;us-east-1&#39;</span><span class="p">)</span>  <span class="c1"># Shield is global</span>
@@ -3584,8 +3584,8 @@
 <a id="__codelineno-22-42" name="__codelineno-22-42" href="#__codelineno-22-42"></a>    <span class="p">]</span>
 <a id="__codelineno-22-43" name="__codelineno-22-43" href="#__codelineno-22-43"></a><span class="p">)</span>
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="waf-testing-and-validation">WAF Testing and Validation<a class="headerlink" href="#waf-testing-and-validation" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="waf-testing-and-validation">WAF Testing and Validation</h3>
 <p><strong>Test Rules in COUNT Mode:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Before blocking, test rules in COUNT mode</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_waf_rule</span><span class="p">(</span><span class="n">web_acl_id</span><span class="p">,</span> <span class="n">rule_config</span><span class="p">):</span>
@@ -3742,7 +3742,7 @@
 <a id="__codelineno-24-73" name="__codelineno-24-73" href="#__codelineno-24-73"></a>8. Continuous monitoring
 <a id="__codelineno-24-74" name="__codelineno-24-74" href="#__codelineno-24-74"></a>9. Iterate based on feedback
 </code></pre></div>
-<h3 id="incident-response-automation">Incident Response Automation<a class="headerlink" href="#incident-response-automation" title="Permanent link">&para;</a></h3>
+<h3 id="incident-response-automation">Incident Response Automation</h3>
 <p><strong>Automated Attack Response:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Lambda function: Automatically respond to WAF blocks</span>
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3949,7 +3949,7 @@
 <a id="__codelineno-25-203" name="__codelineno-25-203" href="#__codelineno-25-203"></a>
 <a id="__codelineno-25-204" name="__codelineno-25-204" href="#__codelineno-25-204"></a><span class="c1"># EventBridge rule triggers Lambda on high blocked requests</span>
 </code></pre></div>
-<h3 id="cost-optimization">Cost Optimization<a class="headerlink" href="#cost-optimization" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization">Cost Optimization</h3>
 <p><strong>WAF Cost Structure:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>WAF Pricing:
 <a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
@@ -4041,8 +4041,8 @@
 <a id="__codelineno-26-88" name="__codelineno-26-88" href="#__codelineno-26-88"></a>- Reduced reputation damage
 <a id="__codelineno-26-89" name="__codelineno-26-89" href="#__codelineno-26-89"></a>- Compliance (SLA uptime)
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="waf-configuration-tips">WAF Configuration Tips<a class="headerlink" href="#waf-configuration-tips" title="Permanent link">&para;</a></h3>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
+<h3 id="waf-configuration-tips">WAF Configuration Tips</h3>
 <p><strong>Tip 1: Start with Managed Rule Groups</strong>
 Use AWS Managed Rules for OWASP Top 10 protection—continuously updated, no maintenance required.</p>
 <p><strong>Tip 2: Deploy Rules in COUNT Mode First</strong>
@@ -4053,7 +4053,7 @@ Use multiple rate limits: global (10K/5min), API (1K/5min), login (10/5min)—pr
 Sample requests provide debugging context—essential for investigating blocked legitimate traffic.</p>
 <p><strong>Tip 5: Use Regex Pattern Sets for Efficiency</strong>
 Group similar patterns into regex sets—reduces WCU consumption, easier management.</p>
-<h3 id="shield-and-ddos-protection-tips">Shield and DDoS Protection Tips<a class="headerlink" href="#shield-and-ddos-protection-tips" title="Permanent link">&para;</a></h3>
+<h3 id="shield-and-ddos-protection-tips">Shield and DDoS Protection Tips</h3>
 <p><strong>Tip 6: Enable Shield Advanced for Critical Applications</strong>
 Revenue loss &gt; \$125/hour justifies \$3K/month cost—includes DRT support and cost protection.</p>
 <p><strong>Tip 7: Configure Health-Based Detection</strong>
@@ -4064,7 +4064,7 @@ WAF + application throttling provides defense in depth—WAF blocks attacks, app
 CloudFront + Shield Standard protects 96% of DDoS attacks free—excellent baseline protection.</p>
 <p><strong>Tip 10: Document Incident Response Procedures</strong>
 Maintain runbooks for common attacks—enables rapid response when attacks occur.</p>
-<h3 id="monitoring-and-logging-tips">Monitoring and Logging Tips<a class="headerlink" href="#monitoring-and-logging-tips" title="Permanent link">&para;</a></h3>
+<h3 id="monitoring-and-logging-tips">Monitoring and Logging Tips</h3>
 <p><strong>Tip 11: Query WAF Logs with Athena</strong>
 Store logs in S3, query with Athena—cost-effective analysis of millions of requests.</p>
 <p><strong>Tip 12: Set CloudWatch Alarms on Blocked Requests</strong>
@@ -4075,8 +4075,8 @@ Visualize attack patterns, top blocked IPs, geographic distribution—enables ra
 Send WAF logs to Splunk/QRadar via Kinesis Firehose—centralized security monitoring.</p>
 <p><strong>Tip 15: Redact Sensitive Data from Logs</strong>
 Redact authorization headers, cookies, API keys—compliance and privacy protection.</p>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-false-positives-blocking-legitimate-traffic">Pitfall 1: False Positives Blocking Legitimate Traffic<a class="headerlink" href="#pitfall-1-false-positives-blocking-legitimate-traffic" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-false-positives-blocking-legitimate-traffic">Pitfall 1: False Positives Blocking Legitimate Traffic</h3>
 <p><strong>Problem:</strong> WAF rules block legitimate users, causing service disruption and customer complaints.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4274,7 +4274,7 @@ Redact authorization headers, cookies, API keys—compliance and privacy protect
 <li>Review sampled requests weekly</li>
 </ul>
 <hr />
-<h3 id="pitfall-2-insufficient-rate-limiting-configuration">Pitfall 2: Insufficient Rate Limiting Configuration<a class="headerlink" href="#pitfall-2-insufficient-rate-limiting-configuration" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-2-insufficient-rate-limiting-configuration">Pitfall 2: Insufficient Rate Limiting Configuration</h3>
 <p><strong>Problem:</strong> Rate limits too high allow attacks through, or too low block legitimate traffic.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4460,7 +4460,7 @@ Redact authorization headers, cookies, API keys—compliance and privacy protect
 <li>Adjust limits based on application growth</li>
 </ul>
 <hr />
-<h3 id="pitfall-3-inadequate-logging-and-monitoring">Pitfall 3: Inadequate Logging and Monitoring<a class="headerlink" href="#pitfall-3-inadequate-logging-and-monitoring" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-3-inadequate-logging-and-monitoring">Pitfall 3: Inadequate Logging and Monitoring</h3>
 <p><strong>Problem:</strong> Security incidents undetected due to missing logs or alerts.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4651,7 +4651,7 @@ Redact authorization headers, cookies, API keys—compliance and privacy protect
 <li>Document investigation procedures</li>
 </ul>
 <hr />
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>AWS WAF and Shield provide comprehensive protection against web application attacks and DDoS threats at massive scale. WAF enables granular request filtering using customizable rules, managed rule groups, rate limiting, bot detection, and geographic blocking to protect against OWASP Top 10 vulnerabilities, zero-day exploits, and application-layer attacks. Shield delivers always-on DDoS protection—Shield Standard mitigates 96% of attacks automatically at no cost, while Shield Advanced adds application-layer protection, 24/7 DDoS Response Team support, cost protection, and real-time attack visibility for mission-critical applications.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -4664,7 +4664,7 @@ Redact authorization headers, cookies, API keys—compliance and privacy protect
 <li><strong>Integrate with CloudFront:</strong> CloudFront + WAF + Shield provides edge protection; blocks attacks before reaching origin; reduces latency and origin load</li>
 </ul>
 <p>WAF and Shield integrate seamlessly with AWS services covered earlier—protecting CloudFront distributions, Application Load Balancers, API Gateway REST APIs—while Shield Standard protects the entire AWS edge network automatically. Together with Security Hub findings, GuardDuty threat detection, and KMS encryption, these services provide defense-in-depth security from network edge to data storage.</p>
-<h2 id="hands-on-lab-exercise">Hands-On Lab Exercise<a class="headerlink" href="#hands-on-lab-exercise" title="Permanent link">&para;</a></h2>
+<h2 id="hands-on-lab-exercise">Hands-On Lab Exercise</h2>
 <p><strong>Objective:</strong> Build complete web application protection with WAF, Shield, monitoring, and automated response.</p>
 <p><strong>Scenario:</strong> Protect e-commerce website from SQL injection, credential stuffing, and DDoS attacks.</p>
 <p><strong>Prerequisites:</strong></p>
@@ -4731,7 +4731,7 @@ Redact authorization headers, cookies, API keys—compliance and privacy protect
 <li>CloudWatch alarms detecting attacks in real-time</li>
 <li>Complete protection for &lt; \$20/month (10M requests)</li>
 </ul>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>What is the default action if no WAF rules match?</strong>
 a) Block
@@ -4853,7 +4853,7 @@ d) Redshift</li>
 </ol>
 <p><strong>Answer: B</strong> - Amazon Athena provides cost-effective querying of WAF logs stored in S3; pay only for queries run</p>
 <hr />
-<h1 id="part-8-security-compliance-summary">Part 8: Security \&amp; Compliance - Summary<a class="headerlink" href="#part-8-security-compliance-summary" title="Permanent link">&para;</a></h1>
+<h1 id="part-8-security-compliance-summary">Part 8: Security \&amp; Compliance - Summary</h1>
 <p>You've completed the Security \&amp; Compliance section, covering five critical security services:</p>
 <p><strong>Chapter 23 - AWS Security Services:</strong> Intelligent threat detection with GuardDuty (machine learning analysis of CloudTrail, VPC Flow Logs, DNS logs), centralized security posture management with Security Hub (compliance frameworks, aggregated findings), continuous vulnerability scanning with Inspector, sensitive data discovery with Macie, and root cause investigation with Detective.</p>
 <p><strong>Chapter 24 - AWS KMS \&amp; Secrets Manager:</strong> Enterprise encryption with KMS (customer-managed keys, envelope encryption, automatic rotation, FIPS 140-2 validated HSMs), automated secrets management with Secrets Manager (database credential rotation, versioning, cross-account access), encryption at rest and in transit, and complete audit trails via CloudTrail.</p>
@@ -4866,7 +4866,7 @@ d) Redshift</li>
 </ul>
 <p><strong>Next Section Preview:</strong> Part 9 will cover Management \&amp; Governance services including AWS CloudTrail (comprehensive audit logging), AWS Config (configuration compliance), AWS Organizations (multi-account management), AWS Systems Manager (operational management), and AWS Control Tower (landing zone automation) to manage AWS environments at scale with governance, compliance, and operational excellence.</p>
 <hr />
-<h2 id="additional-resources">Additional Resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
+<h2 id="additional-resources">Additional Resources</h2>
 <p><strong>AWS Documentation:</strong></p>
 <ul>
 <li>WAF Developer Guide: https://docs.aws.amazon.com/waf/</li>

@@ -2466,14 +2466,14 @@
   
 
 
-<h1 id="chapter-12-dynamodb">Chapter 12: DynamoDB<a class="headerlink" href="#chapter-12-dynamodb" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-12-dynamodb">Chapter 12: DynamoDB</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Amazon DynamoDB is AWS's flagship NoSQL database service, designed to deliver single-digit millisecond performance at any scale. Unlike traditional relational databases that struggle with massive scale, DynamoDB provides consistent performance whether you're storing gigabytes or petabytes, handling hundreds or millions of requests per second. This serverless database automatically scales, replicates across multiple Availability Zones, and provides built-in security, backup, and global replication—all without managing servers, clusters, or infrastructure.</p>
 <p>DynamoDB represents a fundamental shift in database design philosophy. Instead of normalizing data and performing complex joins at query time like SQL databases, DynamoDB requires you to design your data model around your access patterns. Understanding partition keys, sort keys, secondary indexes, and query patterns is essential—poor key design leads to hot partitions, throttling, and failed queries. However, proper design delivers unparalleled performance and scale, making DynamoDB the database of choice for applications requiring predictable, low-latency access at massive scale.</p>
 <p>The difference between DynamoDB and relational databases extends beyond just performance. DynamoDB is schema-flexible, allowing you to store varying attributes in different items. It provides two consistency models—eventual and strong—allowing you to trade consistency for lower latency when appropriate. DynamoDB Streams enable event-driven architectures, triggering Lambda functions on every data change. Global Tables replicate data across multiple regions with sub-second latency. DynamoDB Accelerator (DAX) provides microsecond caching. These capabilities make DynamoDB ideal for gaming leaderboards, IoT telemetry, mobile backends, e-commerce carts, and any application requiring extreme scale.</p>
 <p>This chapter provides comprehensive coverage of DynamoDB from fundamentals to production patterns. You'll learn data modeling principles, key design strategies, secondary indexes, capacity modes, DynamoDB Streams, Global Tables, DAX, backup and restore, monitoring and troubleshooting, and cost optimization. Whether you're building a new application or migrating from another database, mastering DynamoDB is essential for applications requiring scale, speed, and simplicity.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="dynamodb-fundamentals">DynamoDB Fundamentals<a class="headerlink" href="#dynamodb-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="dynamodb-fundamentals">DynamoDB Fundamentals</h3>
 <p><strong>What is DynamoDB?</strong></p>
 <p>DynamoDB is a fully managed NoSQL database service providing:</p>
 <ul>
@@ -2545,7 +2545,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="primary-keys">Primary Keys<a class="headerlink" href="#primary-keys" title="Permanent link">&para;</a></h3>
+<h3 id="primary-keys">Primary Keys</h3>
 <p>The primary key is the most critical design decision in DynamoDB.</p>
 <p><strong>Two Types:</strong></p>
 <p><strong>1. Partition Key Only (Simple Primary Key):</strong></p>
@@ -2612,7 +2612,7 @@
 <a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
 <a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>Even distribution critical for performance
 </code></pre></div>
-<h3 id="secondary-indexes">Secondary Indexes<a class="headerlink" href="#secondary-indexes" title="Permanent link">&para;</a></h3>
+<h3 id="secondary-indexes">Secondary Indexes</h3>
 <p>Secondary indexes provide alternative access patterns beyond the primary key.</p>
 <p><strong>Two Types:</strong></p>
 <p><strong>1. Global Secondary Index (GSI):</strong></p>
@@ -2712,7 +2712,7 @@
 <a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="c1"># Design indexes to support each pattern</span>
 <a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="c1"># Avoid table scans at all costs</span>
 </code></pre></div>
-<h3 id="capacity-modes">Capacity Modes<a class="headerlink" href="#capacity-modes" title="Permanent link">&para;</a></h3>
+<h3 id="capacity-modes">Capacity Modes</h3>
 <p>DynamoDB offers two capacity modes with different billing models.</p>
 <p><strong>1. Provisioned Capacity:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Specify read/write capacity units (RCU/WCU)
@@ -2791,7 +2791,7 @@
 <a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>- New application (learning phase)
 <a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>- Infrequent access patterns
 </code></pre></div>
-<h3 id="consistency-models">Consistency Models<a class="headerlink" href="#consistency-models" title="Permanent link">&para;</a></h3>
+<h3 id="consistency-models">Consistency Models</h3>
 <p>DynamoDB offers two read consistency models.</p>
 <p><strong>1. Eventually Consistent Reads (Default):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>- Read might not reflect recent write (&lt; 1 second delay)
@@ -2838,7 +2838,7 @@
 <a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="p">)</span>
 <a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="c1"># Always returns &#39;active&#39;</span>
 </code></pre></div>
-<h3 id="dynamodb-streams">DynamoDB Streams<a class="headerlink" href="#dynamodb-streams" title="Permanent link">&para;</a></h3>
+<h3 id="dynamodb-streams">DynamoDB Streams</h3>
 <p>Streams capture time-ordered sequence of item-level modifications.</p>
 <p><strong>Stream View Types:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>1. KEYS_ONLY: Only partition and sort keys
@@ -2904,7 +2904,7 @@
 <a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a>    <span class="c1"># Example: Archive deleted user data</span>
 <a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a>    <span class="n">archive_user_data</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="global-tables">Global Tables<a class="headerlink" href="#global-tables" title="Permanent link">&para;</a></h3>
+<h3 id="global-tables">Global Tables</h3>
 <p>Global Tables provide multi-region, active-active replication.</p>
 <p><strong>Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>Region 1 (us-east-1)
@@ -2943,7 +2943,7 @@
 <a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>- Use immutable operations (append instead of update)
 <a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>- Partition data by region when possible
 </code></pre></div>
-<h3 id="dynamodb-accelerator-dax">DynamoDB Accelerator (DAX)<a class="headerlink" href="#dynamodb-accelerator-dax" title="Permanent link">&para;</a></h3>
+<h3 id="dynamodb-accelerator-dax">DynamoDB Accelerator (DAX)</h3>
 <p>DAX is an in-memory cache for DynamoDB providing microsecond response times.</p>
 <p><strong>Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>Application
@@ -3002,8 +3002,8 @@
 <a id="__codelineno-26-21" name="__codelineno-26-21" href="#__codelineno-26-21"></a><span class="w">    </span><span class="nv">Key</span><span class="o">={</span><span class="s1">&#39;userId&#39;</span>:<span class="w"> </span><span class="s1">&#39;user123&#39;</span><span class="o">}</span>
 <a id="__codelineno-26-22" name="__codelineno-26-22" href="#__codelineno-26-22"></a><span class="o">)</span>
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-creating-dynamodb-table-with-indexes">Lab 1: Creating DynamoDB Table with Indexes<a class="headerlink" href="#lab-1-creating-dynamodb-table-with-indexes" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-creating-dynamodb-table-with-indexes">Lab 1: Creating DynamoDB Table with Indexes</h3>
 <p><strong>Objective:</strong> Design and create a table for e-commerce orders with efficient access patterns.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># create_orders_table.py</span>
 <a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3163,7 +3163,7 @@
 <a id="__codelineno-28-43" name="__codelineno-28-43" href="#__codelineno-28-43"></a><span class="n">pending_orders</span> <span class="o">=</span> <span class="n">get_customer_orders_by_status</span><span class="p">(</span><span class="s1">&#39;customer-456&#39;</span><span class="p">,</span> <span class="s1">&#39;pending&#39;</span><span class="p">)</span>
 <a id="__codelineno-28-44" name="__codelineno-28-44" href="#__codelineno-28-44"></a><span class="n">recent_shipped</span> <span class="o">=</span> <span class="n">get_recent_orders_by_status</span><span class="p">(</span><span class="s1">&#39;shipped&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="lab-2-setting-up-dynamodb-streams-with-lambda">Lab 2: Setting Up DynamoDB Streams with Lambda<a class="headerlink" href="#lab-2-setting-up-dynamodb-streams-with-lambda" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-setting-up-dynamodb-streams-with-lambda">Lab 2: Setting Up DynamoDB Streams with Lambda</h3>
 <p><strong>Objective:</strong> Process table changes in real-time using Streams and Lambda.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># stream_processor_lambda.py</span>
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3326,7 +3326,7 @@
 <a id="__codelineno-30-15" name="__codelineno-30-15" href="#__codelineno-30-15"></a><span class="w">    </span>--batch-size<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-30-16" name="__codelineno-30-16" href="#__codelineno-30-16"></a><span class="w">    </span>--maximum-batching-window-in-seconds<span class="w"> </span><span class="m">10</span>
 </code></pre></div>
-<h3 id="lab-3-setting-up-global-tables">Lab 3: Setting Up Global Tables<a class="headerlink" href="#lab-3-setting-up-global-tables" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-setting-up-global-tables">Lab 3: Setting Up Global Tables</h3>
 <p><strong>Objective:</strong> Configure multi-region replication for global application.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># Create table in primary region (us-east-1)</span>
 <a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>aws<span class="w"> </span>dynamodb<span class="w"> </span>create-table<span class="w"> </span><span class="se">\</span>
@@ -3364,8 +3364,8 @@
 <a id="__codelineno-31-34" name="__codelineno-31-34" href="#__codelineno-31-34"></a><span class="w">        </span><span class="nv">IndexName</span><span class="o">=</span>CustomerOrdersIndex,<span class="se">\</span>
 <a id="__codelineno-31-35" name="__codelineno-31-35" href="#__codelineno-31-35"></a><span class="w">        </span><span class="nv">ProvisionedWriteCapacityAutoScalingSettingsUpdate</span><span class="o">={</span><span class="nv">MinimumUnits</span><span class="o">=</span><span class="m">5</span>,MaximumUnits<span class="o">=</span><span class="m">100</span><span class="o">}</span>
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="time-series-data-patterns">Time-Series Data Patterns<a class="headerlink" href="#time-series-data-patterns" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="time-series-data-patterns">Time-Series Data Patterns</h3>
 <p>Time-series data (IoT sensors, logs, metrics) requires special design patterns in DynamoDB.</p>
 <p><strong>Pattern 1: Time-Based Partition Keys</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1"># BAD: Single partition key (hot partition problem)</span>
@@ -3557,7 +3557,7 @@
 <a id="__codelineno-35-92" name="__codelineno-35-92" href="#__codelineno-35-92"></a><span class="n">readings</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">query_device_readings</span><span class="p">(</span><span class="s1">&#39;sensor123&#39;</span><span class="p">,</span> <span class="s1">&#39;2025-01-15&#39;</span><span class="p">)</span>
 <a id="__codelineno-35-93" name="__codelineno-35-93" href="#__codelineno-35-93"></a><span class="n">aggregates</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">aggregate_metrics</span><span class="p">(</span><span class="s1">&#39;sensor123&#39;</span><span class="p">,</span> <span class="s1">&#39;2025-01-15&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="advanced-query-patterns">Advanced Query Patterns<a class="headerlink" href="#advanced-query-patterns" title="Permanent link">&para;</a></h3>
+<h3 id="advanced-query-patterns">Advanced Query Patterns</h3>
 <p><strong>Composite Sort Key Pattern:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="c1"># Use hierarchical data in sort key for flexible queries</span>
 <a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>
@@ -3654,7 +3654,7 @@
 <a id="__codelineno-38-31" name="__codelineno-38-31" href="#__codelineno-38-31"></a><span class="c1"># First item is author metadata</span>
 <a id="__codelineno-38-32" name="__codelineno-38-32" href="#__codelineno-38-32"></a><span class="c1"># Remaining items are books</span>
 </code></pre></div>
-<h3 id="backup-and-restore-strategies">Backup and Restore Strategies<a class="headerlink" href="#backup-and-restore-strategies" title="Permanent link">&para;</a></h3>
+<h3 id="backup-and-restore-strategies">Backup and Restore Strategies</h3>
 <p><strong>Point-in-Time Recovery (PITR):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="c1"># backup_manager.py</span>
 <a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3801,7 +3801,7 @@
 <a id="__codelineno-39-143" name="__codelineno-39-143" href="#__codelineno-39-143"></a><span class="c1"># Cleanup old backups</span>
 <a id="__codelineno-39-144" name="__codelineno-39-144" href="#__codelineno-39-144"></a><span class="n">backup_manager</span><span class="o">.</span><span class="n">delete_old_backups</span><span class="p">(</span><span class="n">retention_days</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="monitoring-and-alerting">Monitoring and Alerting<a class="headerlink" href="#monitoring-and-alerting" title="Permanent link">&para;</a></h3>
+<h3 id="monitoring-and-alerting">Monitoring and Alerting</h3>
 <p><strong>Comprehensive Monitoring Setup:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="c1"># monitoring_setup.py</span>
 <a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3915,7 +3915,7 @@
 <a id="__codelineno-40-110" name="__codelineno-40-110" href="#__codelineno-40-110"></a><span class="c1"># Usage</span>
 <a id="__codelineno-40-111" name="__codelineno-40-111" href="#__codelineno-40-111"></a><span class="n">setup_dynamodb_monitoring</span><span class="p">(</span><span class="s1">&#39;Orders&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="cost-optimization">Cost Optimization<a class="headerlink" href="#cost-optimization" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization">Cost Optimization</h3>
 <p><strong>Cost Analysis and Optimization:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="c1"># cost_optimizer.py</span>
 <a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -4126,8 +4126,8 @@
 <a id="__codelineno-41-207" name="__codelineno-41-207" href="#__codelineno-41-207"></a><span class="n">recommendation</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">recommend_billing_mode</span><span class="p">()</span>
 <a id="__codelineno-41-208" name="__codelineno-41-208" href="#__codelineno-41-208"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Recommendation: </span><span class="si">{</span><span class="n">recommendation</span><span class="p">[</span><span class="s1">&#39;recommendation&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="key-design-tips">Key Design Tips<a class="headerlink" href="#key-design-tips" title="Permanent link">&para;</a></h3>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
+<h3 id="key-design-tips">Key Design Tips</h3>
 <p><strong>Tip 1: Design for Access Patterns First</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>WRONG approach:
 <a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>1. Design normalized schema
@@ -4179,7 +4179,7 @@
 <a id="__codelineno-44-12" name="__codelineno-44-12" href="#__codelineno-44-12"></a>
 <a id="__codelineno-44-13" name="__codelineno-44-13" href="#__codelineno-44-13"></a><span class="c1"># Rule: Partition key should evenly distribute data and access</span>
 </code></pre></div>
-<h3 id="query-optimization-tips">Query Optimization Tips<a class="headerlink" href="#query-optimization-tips" title="Permanent link">&para;</a></h3>
+<h3 id="query-optimization-tips">Query Optimization Tips</h3>
 <p><strong>Tip 4: Use Projection in GSIs</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="c1"># Reduce index size and cost with projections</span>
 <a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>
@@ -4233,7 +4233,7 @@
 <a id="__codelineno-47-13" name="__codelineno-47-13" href="#__codelineno-47-13"></a>    <span class="n">KeyConditionExpression</span><span class="o">=</span><span class="n">Key</span><span class="p">(</span><span class="s1">&#39;pk&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">&#39;customer123&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">Key</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">&#39;pending&#39;</span><span class="p">)</span>
 <a id="__codelineno-47-14" name="__codelineno-47-14" href="#__codelineno-47-14"></a><span class="p">)</span>
 </code></pre></div>
-<h3 id="capacity-planning-tips">Capacity Planning Tips<a class="headerlink" href="#capacity-planning-tips" title="Permanent link">&para;</a></h3>
+<h3 id="capacity-planning-tips">Capacity Planning Tips</h3>
 <p><strong>Tip 7: Start with On-Demand</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>For new applications:
 <a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>1. Start with on-demand billing
@@ -4276,7 +4276,7 @@
 <a id="__codelineno-49-22" name="__codelineno-49-22" href="#__codelineno-49-22"></a><span class="s1">        &quot;ScaleInCooldown&quot;: 300</span>
 <a id="__codelineno-49-23" name="__codelineno-49-23" href="#__codelineno-49-23"></a><span class="s1">    }&#39;</span>
 </code></pre></div>
-<h3 id="monitoring-tips">Monitoring Tips<a class="headerlink" href="#monitoring-tips" title="Permanent link">&para;</a></h3>
+<h3 id="monitoring-tips">Monitoring Tips</h3>
 <p><strong>Tip 9: Monitor Throttling</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="c1"># Set up alerts for throttling events</span>
 <a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>
@@ -4321,8 +4321,8 @@
 <a id="__codelineno-51-20" name="__codelineno-51-20" href="#__codelineno-51-20"></a><span class="c1"># - Most throttled keys</span>
 <a id="__codelineno-51-21" name="__codelineno-51-21" href="#__codelineno-51-21"></a><span class="c1"># - Request distribution</span>
 </code></pre></div>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-hot-partition-problem">Pitfall 1: Hot Partition Problem<a class="headerlink" href="#pitfall-1-hot-partition-problem" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-hot-partition-problem">Pitfall 1: Hot Partition Problem</h3>
 <p><strong>Problem:</strong> Uneven data distribution or access patterns causing throttling on specific partitions.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4494,7 +4494,7 @@
 <li>Use composite keys to distribute load</li>
 </ul>
 <hr />
-<h3 id="pitfall-2-inefficient-scan-operations">Pitfall 2: Inefficient Scan Operations<a class="headerlink" href="#pitfall-2-inefficient-scan-operations" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-2-inefficient-scan-operations">Pitfall 2: Inefficient Scan Operations</h3>
 <p><strong>Problem:</strong> Using Scan operations on large tables causing slow performance and high costs.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4609,7 +4609,7 @@
 <li>Monitor ScanCount metric</li>
 </ul>
 <hr />
-<h3 id="pitfall-3-exceeding-item-size-limit">Pitfall 3: Exceeding Item Size Limit<a class="headerlink" href="#pitfall-3-exceeding-item-size-limit" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-3-exceeding-item-size-limit">Pitfall 3: Exceeding Item Size Limit</h3>
 <p><strong>Problem:</strong> Items exceeding 400 KB size limit causing write failures.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4780,7 +4780,7 @@
 <li>Use projections to reduce index sizes</li>
 </ul>
 <hr />
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>Amazon DynamoDB provides serverless NoSQL database capabilities with single-digit millisecond performance at any scale. Understanding key design, secondary indexes, capacity modes, streams, and global tables is essential for building high-performance applications. Proper partition key design prevents hot partitions, appropriate indexes eliminate expensive scans, and capacity planning optimizes costs. DynamoDB excels at web-scale applications requiring predictable low-latency access patterns.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -4793,7 +4793,7 @@
 <li><strong>Optimize costs:</strong> Right-size capacity, use projections, clean up unused indexes, consider on-demand</li>
 </ul>
 <p>Understanding DynamoDB deeply enables you to build applications that scale from zero to millions of requests per second while maintaining consistent performance and controlling costs.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>Maximum DynamoDB item size?</strong>
 a) 64 KB

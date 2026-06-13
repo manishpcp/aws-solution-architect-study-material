@@ -2100,13 +2100,13 @@
   
 
 
-<h1 id="chapter-19-api-gateway">Chapter 19: API Gateway<a class="headerlink" href="#chapter-19-api-gateway" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-19-api-gateway">Chapter 19: API Gateway</h1>
+<h2 id="introduction">Introduction</h2>
 <p>APIs (Application Programming Interfaces) are the backbone of modern applications, enabling mobile apps, web frontends, and external systems to communicate with backend services. Amazon API Gateway provides fully managed API hosting, transforming the complex task of building production APIs into simple configuration. API Gateway handles authentication, throttling, caching, monitoring, versioning, and documentation while automatically scaling to handle any request volume—from a few requests per day to millions per second. Understanding API Gateway deeply is essential for building secure, scalable, performant APIs without managing infrastructure.</p>
 <p>The evolution from monolithic to microservices architectures makes API gateways indispensable. Traditional approaches expose backend services directly, requiring each service to handle authentication, rate limiting, logging, and SSL termination. This duplicates logic, increases attack surface, and complicates changes. API Gateway centralizes these concerns—providing a single entry point with consistent authentication, throttling to protect backends, caching to reduce load, request/response transformation to decouple clients from backend formats, and comprehensive monitoring. One API Gateway configuration replaces hundreds of lines of boilerplate code across microservices.</p>
 <p>API Gateway offers three API types optimized for different use cases: REST APIs provide full-featured HTTP APIs with caching and advanced transformations; HTTP APIs deliver lower-latency, lower-cost alternatives for simple proxy scenarios; WebSocket APIs enable real-time bidirectional communication for chat, gaming, and streaming. Choosing the wrong type wastes money or misses required features. Misconfigured CORS blocks legitimate requests. Improper throttling allows DDoS attacks or blocks legitimate traffic. Missing caching overloads backends. This chapter covers API Gateway from fundamentals to production patterns, including API types, integration patterns, authentication, throttling, caching, versioning, custom domains, monitoring, and building production-grade APIs.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="api-gateway-fundamentals">API Gateway Fundamentals<a class="headerlink" href="#api-gateway-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="api-gateway-fundamentals">API Gateway Fundamentals</h3>
 <p><strong>What is API Gateway?</strong></p>
 <p>Amazon API Gateway is a fully managed service for creating, deploying, and managing APIs at any scale:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Core Capabilities:
@@ -2160,7 +2160,7 @@
 <a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    ↓
 <a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>Client receives response
 </code></pre></div>
-<h3 id="api-types-comparison">API Types Comparison<a class="headerlink" href="#api-types-comparison" title="Permanent link">&para;</a></h3>
+<h3 id="api-types-comparison">API Types Comparison</h3>
 <p><strong>REST API vs HTTP API vs WebSocket API:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>REST API (Full-Featured):
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
@@ -2293,7 +2293,7 @@
 <a id="__codelineno-1-129" name="__codelineno-1-129" href="#__codelineno-1-129"></a>- Use REST API only if need caching/usage plans
 <a id="__codelineno-1-130" name="__codelineno-1-130" href="#__codelineno-1-130"></a>- Use WebSocket API for real-time requirements
 </code></pre></div>
-<h3 id="integration-types">Integration Types<a class="headerlink" href="#integration-types" title="Permanent link">&para;</a></h3>
+<h3 id="integration-types">Integration Types</h3>
 <p>API Gateway supports multiple backend integration patterns:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>1. Lambda Proxy Integration:
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
@@ -2424,7 +2424,7 @@
 <a id="__codelineno-2-127" name="__codelineno-2-127" href="#__codelineno-2-127"></a>Need complex transformations? → Custom Integration ✓
 <a id="__codelineno-2-128" name="__codelineno-2-128" href="#__codelineno-2-128"></a>Need testing without backend? → Mock Integration ✓
 </code></pre></div>
-<h3 id="authentication-and-authorization">Authentication and Authorization<a class="headerlink" href="#authentication-and-authorization" title="Permanent link">&para;</a></h3>
+<h3 id="authentication-and-authorization">Authentication and Authorization</h3>
 <p><strong>Authentication Methods:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>1. IAM Authentication:
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
@@ -2608,7 +2608,7 @@
 <a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>Custom requirements → Lambda Authorizer
 <a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>Usage tracking → API Keys (with other auth)
 </code></pre></div>
-<h3 id="throttling-and-rate-limiting">Throttling and Rate Limiting<a class="headerlink" href="#throttling-and-rate-limiting" title="Permanent link">&para;</a></h3>
+<h3 id="throttling-and-rate-limiting">Throttling and Rate Limiting</h3>
 <p><strong>Throttling Mechanisms:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Three-Level Throttling Hierarchy:
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
@@ -2717,7 +2717,7 @@
 <a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a>Important: HTTP API does NOT support usage plans
 <a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>Only REST API has this feature
 </code></pre></div>
-<h3 id="caching">Caching<a class="headerlink" href="#caching" title="Permanent link">&para;</a></h3>
+<h3 id="caching">Caching</h3>
 <p><strong>Response Caching (REST API Only):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Cache Configuration:
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
@@ -2797,7 +2797,7 @@
 <a id="__codelineno-7-76" name="__codelineno-7-76" href="#__codelineno-7-76"></a>✗ Don&#39;t cache user-specific data (high cardinality)
 <a id="__codelineno-7-77" name="__codelineno-7-77" href="#__codelineno-7-77"></a>✗ Don&#39;t cache rapidly changing data
 </code></pre></div>
-<h3 id="cors-configuration">CORS Configuration<a class="headerlink" href="#cors-configuration" title="Permanent link">&para;</a></h3>
+<h3 id="cors-configuration">CORS Configuration</h3>
 <p><strong>Cross-Origin Resource Sharing:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>CORS Problem:
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
@@ -2892,7 +2892,7 @@
 <a id="__codelineno-8-91" name="__codelineno-8-91" href="#__codelineno-8-91"></a>Cause: Custom header not in Access-Control-Allow-Headers
 <a id="__codelineno-8-92" name="__codelineno-8-92" href="#__codelineno-8-92"></a>Fix: Add header to allowed headers list
 </code></pre></div>
-<h3 id="requestresponse-transformation">Request/Response Transformation<a class="headerlink" href="#requestresponse-transformation" title="Permanent link">&para;</a></h3>
+<h3 id="requestresponse-transformation">Request/Response Transformation</h3>
 <p><strong>Mapping Templates (REST API Only):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>VTL (Velocity Template Language):
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
@@ -2974,8 +2974,8 @@
 <a id="__codelineno-9-78" name="__codelineno-9-78" href="#__codelineno-9-78"></a>Only basic parameter mapping
 <a id="__codelineno-9-79" name="__codelineno-9-79" href="#__codelineno-9-79"></a>Use Lambda for complex transformations
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-creating-http-api-with-lambda">Lab 1: Creating HTTP API with Lambda<a class="headerlink" href="#lab-1-creating-http-api-with-lambda" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-creating-http-api-with-lambda">Lab 1: Creating HTTP API with Lambda</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">apigateway</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;apigatewayv2&#39;</span><span class="p">)</span>
@@ -3006,7 +3006,7 @@
 <a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>    <span class="n">Target</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;integrations/</span><span class="si">{</span><span class="n">integration</span><span class="p">[</span><span class="s1">&#39;IntegrationId&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
 <a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="p">)</span>
 </code></pre></div>
-<h3 id="lab-2-usage-plan-with-api-keys">Lab 2: Usage Plan with API Keys<a class="headerlink" href="#lab-2-usage-plan-with-api-keys" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-usage-plan-with-api-keys">Lab 2: Usage Plan with API Keys</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Create API key</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">key</span> <span class="o">=</span> <span class="n">apigateway</span><span class="o">.</span><span class="n">create_api_key</span><span class="p">(</span>
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;partner-api-key&#39;</span><span class="p">,</span>
@@ -3027,7 +3027,7 @@
 <a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>    <span class="n">keyType</span><span class="o">=</span><span class="s1">&#39;API_KEY&#39;</span>
 <a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="p">)</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
 <p><strong>Tip 1: Use HTTP API Unless Need REST Features</strong>
 HTTP APIs are 70% cheaper and 30% faster—use unless need caching or usage plans.</p>
 <p><strong>Tip 2: Enable Caching for Read-Heavy Endpoints</strong>
@@ -3038,7 +3038,7 @@ Cache authorizer results (TTL=3600) to reduce invocations and latency.</p>
 Don't use wildcard (*) in production—specify exact origins for security.</p>
 <p><strong>Tip 5: Monitor Throttling Metrics</strong>
 Set CloudWatch alarms on 4XXError (throttling) to adjust limits before users affected.</p>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
 <p><strong>Pitfall 1: CORS Misconfiguration</strong>
 <em>Problem:</em> Browser blocks API calls due to missing or incorrect CORS headers.
 <em>Solution:</em> Enable CORS for all methods; include all required headers in Allow-Headers; test with browser dev tools.</p>
@@ -3048,7 +3048,7 @@ Set CloudWatch alarms on 4XXError (throttling) to adjust limits before users aff
 <p><strong>Pitfall 3: Cache Key Misconfiguration</strong>
 <em>Problem:</em> Cache too granular (low hit rate) or too broad (serving wrong data).
 <em>Solution:</em> Include only parameters affecting response; exclude user-specific headers; monitor hit rate.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>HTTP API cost vs REST API cost?</strong> ~70% cheaper (\$1.00 vs \$3.50 per million)</li>
 <li><strong>Default throttle limit (account)?</strong> 10,000 RPS with 5,000 burst</li>

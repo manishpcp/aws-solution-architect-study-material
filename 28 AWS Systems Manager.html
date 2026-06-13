@@ -2378,13 +2378,13 @@
   
 
 
-<h1 id="chapter-28-aws-systems-manager">Chapter 28: AWS Systems Manager<a class="headerlink" href="#chapter-28-aws-systems-manager" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-28-aws-systems-manager">Chapter 28: AWS Systems Manager</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Managing thousands of EC2 instances, applying security patches across fleets, maintaining configuration consistency, troubleshooting servers without SSH keys, and tracking infrastructure changes manually is operationally impossible at scale. Traditional IT management—logging into servers individually, maintaining spreadsheets of server inventory, manual patch deployments taking weeks, SSH key distribution creating security risks—cannot support modern cloud infrastructure where servers are ephemeral, fleets scale dynamically, and security vulnerabilities require immediate remediation. AWS Systems Manager provides unified operational management through automated patching, secure shell access without SSH keys, centralized parameter storage, configuration management, and operational insights that transform infrastructure management from reactive firefighting to proactive automation.</p>
 <p>The operational cost of manual server management extends beyond labor hours. Average time to patch critical vulnerabilities takes 38 days manually, exposing organizations to exploits; server sprawl creates inconsistent configurations leading to outages; SSH key management becomes security liability with shared keys and orphaned access; and troubleshooting requires VPN access and jump hosts complicating incident response. Systems Manager eliminates these challenges through Session Manager for secure browser-based shell access without SSH keys, Patch Manager for automated operating system and application patching, Parameter Store for encrypted configuration and secrets management, Run Command for executing commands across fleets instantly, and State Manager for ensuring configuration compliance continuously.</p>
 <p>This chapter builds on previous infrastructure management—Systems Manager integrates with CloudWatch for operational dashboards, CloudTrail for audit logging, Config for compliance checking, IAM for access control, and KMS for encryption. Parameter Store stores database credentials rotated by Secrets Manager, Patch Manager updates EC2 instances monitored by CloudWatch, Session Manager provides access logged by CloudTrail, and Automation documents orchestrate responses to Security Hub findings. The chapter covers Systems Manager architecture, SSM Agent, Session Manager secure access, Parameter Store hierarchies, Secrets Manager integration, Run Command fleet management, Patch Manager baseline and maintenance windows, State Manager associations, Automation documents, OpsCenter incident management, Change Calendar approval workflows, and building production systems where fleets are managed centrally, patches deploy automatically, access is secure and audited, and operational changes follow governed processes.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="systems-manager-architecture">Systems Manager Architecture<a class="headerlink" href="#systems-manager-architecture" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="systems-manager-architecture">Systems Manager Architecture</h3>
 <p><strong>Core Components:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Systems Manager Purpose:
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Unified operations management for AWS and on-premises
@@ -2453,7 +2453,7 @@
 <a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    ├── EventBridge (event-driven automation)
 <a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    └── SNS (notifications)
 </code></pre></div>
-<h3 id="session-manager">Session Manager<a class="headerlink" href="#session-manager" title="Permanent link">&para;</a></h3>
+<h3 id="session-manager">Session Manager</h3>
 <p><strong>Secure Shell Access Without SSH Keys:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Session Manager Purpose:
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Browser-based shell access to managed instances
@@ -2600,7 +2600,7 @@
 <a id="__codelineno-1-143" name="__codelineno-1-143" href="#__codelineno-1-143"></a>   - No shared credentials
 <a id="__codelineno-1-144" name="__codelineno-1-144" href="#__codelineno-1-144"></a>   - Individual accountability
 </code></pre></div>
-<h3 id="parameter-store">Parameter Store<a class="headerlink" href="#parameter-store" title="Permanent link">&para;</a></h3>
+<h3 id="parameter-store">Parameter Store</h3>
 <p><strong>Centralized Configuration and Secrets Management:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Parameter Store Purpose:
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Store configuration data and secrets
@@ -2811,7 +2811,7 @@
 <a id="__codelineno-2-207" name="__codelineno-2-207" href="#__codelineno-2-207"></a>   - EC2 instances share parameters
 <a id="__codelineno-2-208" name="__codelineno-2-208" href="#__codelineno-2-208"></a>   - Consistent configuration
 </code></pre></div>
-<h3 id="run-command">Run Command<a class="headerlink" href="#run-command" title="Permanent link">&para;</a></h3>
+<h3 id="run-command">Run Command</h3>
 <p><strong>Fleet Command Execution:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Run Command Purpose:
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Execute commands on managed instances at scale
@@ -3013,7 +3013,7 @@
 <a id="__codelineno-3-198" name="__codelineno-3-198" href="#__codelineno-3-198"></a>  ]
 <a id="__codelineno-3-199" name="__codelineno-3-199" href="#__codelineno-3-199"></a>}
 </code></pre></div>
-<h3 id="patch-manager">Patch Manager<a class="headerlink" href="#patch-manager" title="Permanent link">&para;</a></h3>
+<h3 id="patch-manager">Patch Manager</h3>
 <p><strong>Automated OS and Application Patching:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Patch Manager Purpose:
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Automate patching of operating systems and applications
@@ -3238,7 +3238,7 @@
 <a id="__codelineno-4-221" name="__codelineno-4-221" href="#__codelineno-4-221"></a>- Reboot: Only if necessary
 <a id="__codelineno-4-222" name="__codelineno-4-222" href="#__codelineno-4-222"></a>- Rollback plan documented
 </code></pre></div>
-<h3 id="automation-documents">Automation Documents<a class="headerlink" href="#automation-documents" title="Permanent link">&para;</a></h3>
+<h3 id="automation-documents">Automation Documents</h3>
 <p><strong>Orchestrating Multi-Step Operations:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Automation Purpose:
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Orchestrate complex operational tasks
@@ -3419,7 +3419,7 @@
 <a id="__codelineno-5-177" name="__codelineno-5-177" href="#__codelineno-5-177"></a>    }]
 <a id="__codelineno-5-178" name="__codelineno-5-178" href="#__codelineno-5-178"></a>)
 </code></pre></div>
-<h3 id="opscenter-and-change-calendar">OpsCenter and Change Calendar<a class="headerlink" href="#opscenter-and-change-calendar" title="Permanent link">&para;</a></h3>
+<h3 id="opscenter-and-change-calendar">OpsCenter and Change Calendar</h3>
 <p><strong>Operational Intelligence:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>OpsCenter Purpose:
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Centralized operational issue management
@@ -3538,8 +3538,8 @@
 <a id="__codelineno-6-115" name="__codelineno-6-115" href="#__codelineno-6-115"></a>   - Audit trail of approved changes
 <a id="__codelineno-6-116" name="__codelineno-6-116" href="#__codelineno-6-116"></a>   - Governance and control
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-session-manager-setup-and-access">Lab 1: Session Manager Setup and Access<a class="headerlink" href="#lab-1-session-manager-setup-and-access" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-session-manager-setup-and-access">Lab 1: Session Manager Setup and Access</h3>
 <p><strong>Objective:</strong> Configure Session Manager for secure, browser-based shell access without SSH keys.</p>
 <p><strong>Step 1: Create IAM Role for EC2 Instances</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3730,7 +3730,7 @@
 <a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>
 <a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="c1"># Connect to RDS: mysql -h 127.0.0.1 -P 9999 -u admin -p</span>
 </code></pre></div>
-<h3 id="lab-2-parameter-store-and-application-configuration">Lab 2: Parameter Store and Application Configuration<a class="headerlink" href="#lab-2-parameter-store-and-application-configuration" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-parameter-store-and-application-configuration">Lab 2: Parameter Store and Application Configuration</h3>
 <p><strong>Objective:</strong> Organize application configuration in Parameter Store with hierarchical structure.</p>
 <p><strong>Step 1: Create Parameter Hierarchy</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">create_application_parameters</span><span class="p">():</span>
@@ -3963,7 +3963,7 @@
 <a id="__codelineno-14-39" name="__codelineno-14-39" href="#__codelineno-14-39"></a>
 <a id="__codelineno-14-40" name="__codelineno-14-40" href="#__codelineno-14-40"></a><span class="n">update_parameter_with_versioning</span><span class="p">()</span>
 </code></pre></div>
-<h3 id="lab-3-automated-patching-with-patch-manager">Lab 3: Automated Patching with Patch Manager<a class="headerlink" href="#lab-3-automated-patching-with-patch-manager" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-automated-patching-with-patch-manager">Lab 3: Automated Patching with Patch Manager</h3>
 <p><strong>Objective:</strong> Configure automated patching with maintenance windows, patch baselines, and compliance reporting.</p>
 <p><strong>Step 1: Create Patch Baseline</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -4252,8 +4252,8 @@
 <a id="__codelineno-19-52" name="__codelineno-19-52" href="#__codelineno-19-52"></a><span class="c1"># Emergency patch critical instance</span>
 <a id="__codelineno-19-53" name="__codelineno-19-53" href="#__codelineno-19-53"></a><span class="c1"># patch_instance_immediately(&#39;i-1234567890abcdef0&#39;)</span>
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="fleet-management-at-scale">Fleet Management at Scale<a class="headerlink" href="#fleet-management-at-scale" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="fleet-management-at-scale">Fleet Management at Scale</h3>
 <p><strong>Managing Thousands of Instances:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">FleetManager</span><span class="p">:</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Manage large fleets of EC2 instances with Systems Manager&quot;&quot;&quot;</span>
@@ -4472,7 +4472,7 @@
 <a id="__codelineno-20-215" name="__codelineno-20-215" href="#__codelineno-20-215"></a><span class="c1"># Monitor execution</span>
 <a id="__codelineno-20-216" name="__codelineno-20-216" href="#__codelineno-20-216"></a><span class="n">fleet_manager</span><span class="o">.</span><span class="n">monitor_command_execution</span><span class="p">(</span><span class="n">command_id</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="change-management-and-governance">Change Management and Governance<a class="headerlink" href="#change-management-and-governance" title="Permanent link">&para;</a></h3>
+<h3 id="change-management-and-governance">Change Management and Governance</h3>
 <p><strong>Implementing Change Control:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ChangeManagement</span><span class="p">:</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Change management with approval workflows&quot;&quot;&quot;</span>
@@ -4615,7 +4615,7 @@
 <a id="__codelineno-21-139" name="__codelineno-21-139" href="#__codelineno-21-139"></a><span class="k">else</span><span class="p">:</span>
 <a id="__codelineno-21-140" name="__codelineno-21-140" href="#__codelineno-21-140"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Change blocked by calendar&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="cost-optimization">Cost Optimization<a class="headerlink" href="#cost-optimization" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization">Cost Optimization</h3>
 <p><strong>Systems Manager Cost Management:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>Systems Manager Pricing:
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
@@ -4702,8 +4702,8 @@
 <a id="__codelineno-22-83" name="__codelineno-22-83" href="#__codelineno-22-83"></a>Annual savings: $31,416
 <a id="__codelineno-22-84" name="__codelineno-22-84" href="#__codelineno-22-84"></a>ROI: 214% first year
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="session-manager-best-practices">Session Manager Best Practices<a class="headerlink" href="#session-manager-best-practices" title="Permanent link">&para;</a></h3>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
+<h3 id="session-manager-best-practices">Session Manager Best Practices</h3>
 <p><strong>Tip 1: Enable Session Recording for Compliance</strong>
 Record all sessions to S3 with KMS encryption—complete audit trail of all commands executed.</p>
 <p><strong>Tip 2: Use IAM Policies for Access Control</strong>
@@ -4714,7 +4714,7 @@ Automatically terminate idle sessions after 20 minutes—prevents forgotten sess
 Eliminate bastion hosts by port forwarding through Session Manager—simpler, more secure architecture.</p>
 <p><strong>Tip 5: Integrate with CloudWatch Logs</strong>
 Send session logs to CloudWatch for real-time monitoring and alerting—detect suspicious commands immediately.</p>
-<h3 id="parameter-store-best-practices">Parameter Store Best Practices<a class="headerlink" href="#parameter-store-best-practices" title="Permanent link">&para;</a></h3>
+<h3 id="parameter-store-best-practices">Parameter Store Best Practices</h3>
 <p><strong>Tip 6: Use Hierarchical Naming Convention</strong>
 Organize parameters by <code>/application/environment/component/parameter</code>—easy to retrieve all config for environment.</p>
 <p><strong>Tip 7: Use SecureString for All Sensitive Data</strong>
@@ -4725,7 +4725,7 @@ Encrypt passwords, API keys, tokens with KMS—automatic decryption when retriev
 Parameter Store maintains version history—rollback to previous values if update causes issues.</p>
 <p><strong>Tip 10: Tag Parameters for Organization</strong>
 Tag with Application, Environment, Owner—enables cost tracking and access control by tags.</p>
-<h3 id="patch-management-best-practices">Patch Management Best Practices<a class="headerlink" href="#patch-management-best-practices" title="Permanent link">&para;</a></h3>
+<h3 id="patch-management-best-practices">Patch Management Best Practices</h3>
 <p><strong>Tip 11: Use Different Baselines per Environment</strong>
 Development gets all patches immediately, Production gets critical-only after testing—risk-appropriate patching.</p>
 <p><strong>Tip 12: Test Patches in Development First</strong>
@@ -4736,8 +4736,8 @@ Sunday 2-6 AM typically lowest traffic—minimize user impact during patching an
 Patch 50% of fleet simultaneously—maintains availability during patching process.</p>
 <p><strong>Tip 15: Monitor Patch Compliance Continuously</strong>
 Daily compliance checks identify missing patches quickly—faster remediation of security vulnerabilities.</p>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-ssm-agent-not-running-or-outdated">Pitfall 1: SSM Agent Not Running or Outdated<a class="headerlink" href="#pitfall-1-ssm-agent-not-running-or-outdated" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-ssm-agent-not-running-or-outdated">Pitfall 1: SSM Agent Not Running or Outdated</h3>
 <p><strong>Problem:</strong> Instances not appearing in Systems Manager console, commands failing, Session Manager unavailable.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4942,7 +4942,7 @@ Daily compliance checks identify missing patches quickly—faster remediation of
 <li>Include SSM verification in instance launch process</li>
 </ul>
 <hr />
-<h3 id="pitfall-2-maintenance-window-timing-conflicts">Pitfall 2: Maintenance Window Timing Conflicts<a class="headerlink" href="#pitfall-2-maintenance-window-timing-conflicts" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-2-maintenance-window-timing-conflicts">Pitfall 2: Maintenance Window Timing Conflicts</h3>
 <p><strong>Problem:</strong> Maintenance windows schedule conflicts, instances patched during business hours, insufficient window duration.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5143,7 +5143,7 @@ Daily compliance checks identify missing patches quickly—faster remediation of
 <li>Allocate 2× estimated time for patching duration</li>
 </ul>
 <hr />
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>AWS Systems Manager provides unified operational management for AWS and on-premises infrastructure through secure shell access without SSH keys (Session Manager), centralized configuration storage (Parameter Store), fleet command execution (Run Command), automated patching (Patch Manager), configuration compliance (State Manager), workflow orchestration (Automation), and operational incident management (OpsCenter). These capabilities eliminate traditional IT management challenges—SSH key distribution, manual server access, inconsistent configurations, delayed patching—transforming operations from manual, error-prone processes to automated, governed workflows.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -5156,7 +5156,7 @@ Daily compliance checks identify missing patches quickly—faster remediation of
 <li><strong>Use Run Command for Fleet Management:</strong> Execute commands across thousands of instances simultaneously; concurrency and error controls prevent overwhelming targets</li>
 </ul>
 <p>Systems Manager integrates throughout AWS—Parameter Store stores database credentials, Session Manager provides emergency access, Patch Manager updates instances monitored by CloudWatch, Run Command executes remediation from Security Hub findings, and Automation orchestrates multi-step operational workflows. Together these capabilities enable managing fleets of thousands of instances with minimal manual effort, complete audit trails, and automated compliance.</p>
-<h2 id="hands-on-lab-exercise">Hands-On Lab Exercise<a class="headerlink" href="#hands-on-lab-exercise" title="Permanent link">&para;</a></h2>
+<h2 id="hands-on-lab-exercise">Hands-On Lab Exercise</h2>
 <p><strong>Objective:</strong> Build complete fleet management system with secure access, automated patching, and parameter-based configuration.</p>
 <p><strong>Scenario:</strong> Web application fleet requiring secure access, weekly patching, and environment-specific configuration.</p>
 <p><strong>Prerequisites:</strong></p>
@@ -5216,7 +5216,7 @@ Daily compliance checks identify missing patches quickly—faster remediation of
 <li>Governed change management process</li>
 <li>Total cost: &lt;\$10/month (Parameter Store + logs)</li>
 </ul>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>What is required for an instance to be managed by Systems Manager?</strong>
 a) Public IP address

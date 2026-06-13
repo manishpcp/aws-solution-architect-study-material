@@ -1677,15 +1677,15 @@
   
 
 
-<h1 id="part-3-storage-services">Part 3: Storage Services<a class="headerlink" href="#part-3-storage-services" title="Permanent link">&para;</a></h1>
-<h1 id="chapter-8-amazon-s3">Chapter 8: Amazon S3<a class="headerlink" href="#chapter-8-amazon-s3" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="part-3-storage-services">Part 3: Storage Services</h1>
+<h1 id="chapter-8-amazon-s3">Chapter 8: Amazon S3</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Amazon Simple Storage Service (S3) is the foundation of AWS storage, launched in 2006 as one of the first AWS services. It revolutionized storage by providing unlimited, durable, highly available object storage accessible via simple HTTP APIs. Today, S3 stores trillions of objects and regularly delivers millions of requests per second, serving as the backbone for countless applications, data lakes, backup systems, content distribution networks, and machine learning pipelines.</p>
 <p>S3's simplicity masks its sophistication. Behind the straightforward "upload and retrieve" interface lies a powerful system with 11 nines of durability (99.999999999%), multiple storage classes optimized for different access patterns, intelligent lifecycle management, versioning for data protection, encryption options, fine-grained access controls, event notifications, replication across regions, and analytics capabilities. Understanding these features and how to combine them effectively separates basic S3 usage from production-grade implementations.</p>
 <p>The cost implications of S3 decisions are significant. Choosing the wrong storage class can waste thousands of dollars monthly. Improper lifecycle policies can delete critical data or fail to reduce costs. Not using multipart uploads for large files impacts performance and reliability. Public bucket exposures have led to massive data breaches. Cross-region replication misconfigurations can create unexpected costs. Yet with proper configuration, S3 provides incredibly cost-effective storage—as low as \$0.99 per TB per month for Glacier Deep Archive.</p>
 <p>This chapter provides comprehensive coverage of Amazon S3 from fundamentals to production patterns. You'll learn storage classes and their optimal use cases, versioning and lifecycle policies, encryption and security models, performance optimization techniques, event-driven architectures, compliance and governance, and cost optimization strategies. Whether you're building a simple backup solution or a petabyte-scale data lake, mastering S3 is essential for AWS expertise.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="s3-fundamentals">S3 Fundamentals<a class="headerlink" href="#s3-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="s3-fundamentals">S3 Fundamentals</h3>
 <p><strong>Object Storage Model:</strong></p>
 <p>S3 is object storage, not file or block storage. Objects consist of:</p>
 <ol>
@@ -1754,7 +1754,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="storage-classes">Storage Classes<a class="headerlink" href="#storage-classes" title="Permanent link">&para;</a></h3>
+<h3 id="storage-classes">Storage Classes</h3>
 <p>S3 offers multiple storage classes optimized for different access patterns and costs.</p>
 <p><strong>S3 Standard:</strong></p>
 <ul>
@@ -1902,7 +1902,7 @@
 </tbody>
 </table>
 <p>*Intelligent-Tiering charges vary by tier accessed</p>
-<h3 id="versioning">Versioning<a class="headerlink" href="#versioning" title="Permanent link">&para;</a></h3>
+<h3 id="versioning">Versioning</h3>
 <p>Versioning preserves, retrieves, and restores every version of every object.</p>
 <p><strong>States:</strong></p>
 <ul>
@@ -1962,7 +1962,7 @@
 <li>Lifecycle policies can manage old versions</li>
 <li>Cannot disable once enabled (only suspend)</li>
 </ul>
-<h3 id="lifecycle-policies">Lifecycle Policies<a class="headerlink" href="#lifecycle-policies" title="Permanent link">&para;</a></h3>
+<h3 id="lifecycle-policies">Lifecycle Policies</h3>
 <p>Automate transitioning objects between storage classes or deleting them.</p>
 <p><strong>Lifecycle Actions:</strong></p>
 <ol>
@@ -2061,7 +2061,7 @@
 <li>From any class to Standard</li>
 <li>Objects smaller than 128 KB to IA classes (except Intelligent-Tiering)</li>
 </ul>
-<h3 id="encryption">Encryption<a class="headerlink" href="#encryption" title="Permanent link">&para;</a></h3>
+<h3 id="encryption">Encryption</h3>
 <p>S3 provides multiple encryption options for data at rest and in transit.</p>
 <p><strong>Encryption at Rest:</strong></p>
 <p><strong>1. Server-Side Encryption (SSE):</strong></p>
@@ -2155,7 +2155,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="s3-access-control">S3 Access Control<a class="headerlink" href="#s3-access-control" title="Permanent link">&para;</a></h3>
+<h3 id="s3-access-control">S3 Access Control</h3>
 <p>Multiple mechanisms control access to S3 resources.</p>
 <p><strong>1. IAM Policies:</strong>
 Control what AWS users/roles can do.</p>
@@ -2224,7 +2224,7 @@ Simplify managing access for shared datasets.</p>
 <a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
 <a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>Result: Union of all ALLOW, any DENY wins
 </code></pre></div>
-<h3 id="s3-performance">S3 Performance<a class="headerlink" href="#s3-performance" title="Permanent link">&para;</a></h3>
+<h3 id="s3-performance">S3 Performance</h3>
 <p><strong>Request Rate Performance:</strong></p>
 <ul>
 <li><strong>Prefix-based partitioning:</strong> 3,500 PUT/COPY/POST/DELETE and 5,500 GET/HEAD requests per second per prefix</li>
@@ -2313,7 +2313,7 @@ Simplify managing access for shared datasets.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="s3-event-notifications">S3 Event Notifications<a class="headerlink" href="#s3-event-notifications" title="Permanent link">&para;</a></h3>
+<h3 id="s3-event-notifications">S3 Event Notifications</h3>
 <p>Trigger actions when objects are created, modified, or deleted.</p>
 <p><strong>Supported Destinations:</strong></p>
 <ul>
@@ -2368,7 +2368,7 @@ Simplify managing access for shared datasets.</p>
 <a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="s3-replication">S3 Replication<a class="headerlink" href="#s3-replication" title="Permanent link">&para;</a></h3>
+<h3 id="s3-replication">S3 Replication</h3>
 <p>Automatically replicate objects across buckets (same or different regions).</p>
 <p><strong>Replication Types:</strong></p>
 <p><strong>1. Cross-Region Replication (CRR):</strong></p>
@@ -2432,10 +2432,10 @@ Simplify managing access for shared datasets.</p>
 <li>Server-side encryption with SSE-C</li>
 <li>Objects in Glacier/Deep Archive</li>
 </ul>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-creating-and-configuring-s3-buckets">Lab 1: Creating and Configuring S3 Buckets<a class="headerlink" href="#lab-1-creating-and-configuring-s3-buckets" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-creating-and-configuring-s3-buckets">Lab 1: Creating and Configuring S3 Buckets</h3>
 <p><strong>Objective:</strong> Create production-ready S3 bucket with security and lifecycle policies.</p>
-<h4 id="step-1-create-bucket-with-security-settings">Step 1: Create Bucket with Security Settings<a class="headerlink" href="#step-1-create-bucket-with-security-settings" title="Permanent link">&para;</a></h4>
+<h4 id="step-1-create-bucket-with-security-settings">Step 1: Create Bucket with Security Settings</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Create bucket</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>aws<span class="w"> </span>s3api<span class="w"> </span>create-bucket<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span>--bucket<span class="w"> </span>my-production-bucket-<span class="k">$(</span>date<span class="w"> </span>+%s<span class="k">)</span><span class="w"> </span><span class="se">\</span>
@@ -2494,7 +2494,7 @@ Simplify managing access for shared datasets.</p>
 <a id="__codelineno-18-56" name="__codelineno-18-56" href="#__codelineno-18-56"></a><span class="s1">      {Key=DataClassification,Value=Confidential}</span>
 <a id="__codelineno-18-57" name="__codelineno-18-57" href="#__codelineno-18-57"></a><span class="s1">    ]&#39;</span>
 </code></pre></div>
-<h4 id="step-2-configure-lifecycle-policy">Step 2: Configure Lifecycle Policy<a class="headerlink" href="#step-2-configure-lifecycle-policy" title="Permanent link">&para;</a></h4>
+<h4 id="step-2-configure-lifecycle-policy">Step 2: Configure Lifecycle Policy</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>lifecycle-policy.json<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="s">{</span>
 <a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="s">  &quot;Rules&quot;: [</span>
@@ -2561,7 +2561,7 @@ Simplify managing access for shared datasets.</p>
 <a id="__codelineno-19-64" name="__codelineno-19-64" href="#__codelineno-19-64"></a><span class="w">    </span>--bucket<span class="w"> </span><span class="nv">$BUCKET_NAME</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-19-65" name="__codelineno-19-65" href="#__codelineno-19-65"></a><span class="w">    </span>--lifecycle-configuration<span class="w"> </span>file://lifecycle-policy.json
 </code></pre></div>
-<h4 id="step-3-configure-bucket-policy">Step 3: Configure Bucket Policy<a class="headerlink" href="#step-3-configure-bucket-policy" title="Permanent link">&para;</a></h4>
+<h4 id="step-3-configure-bucket-policy">Step 3: Configure Bucket Policy</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>bucket-policy.json<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="s">{</span>
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="s">  &quot;Version&quot;: &quot;2012-10-17&quot;,</span>
@@ -2614,7 +2614,7 @@ Simplify managing access for shared datasets.</p>
 <a id="__codelineno-20-50" name="__codelineno-20-50" href="#__codelineno-20-50"></a><span class="w">    </span>--bucket<span class="w"> </span><span class="nv">$BUCKET_NAME</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-20-51" name="__codelineno-20-51" href="#__codelineno-20-51"></a><span class="w">    </span>--policy<span class="w"> </span>file://bucket-policy.json
 </code></pre></div>
-<h3 id="lab-2-static-website-hosting">Lab 2: Static Website Hosting<a class="headerlink" href="#lab-2-static-website-hosting" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-static-website-hosting">Lab 2: Static Website Hosting</h3>
 <p><strong>Objective:</strong> Host a static website on S3 with CloudFront CDN.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Create bucket for website</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nv">WEBSITE_BUCKET</span><span class="o">=</span><span class="s2">&quot;my-website-</span><span class="k">$(</span>date<span class="w"> </span>+%s<span class="k">)</span><span class="s2">&quot;</span>
@@ -2701,7 +2701,7 @@ Simplify managing access for shared datasets.</p>
 <a id="__codelineno-21-83" name="__codelineno-21-83" href="#__codelineno-21-83"></a><span class="w">    </span>--origin-domain-name<span class="w"> </span><span class="nv">$WEBSITE_BUCKET</span>.s3-website-us-east-1.amazonaws.com<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-21-84" name="__codelineno-21-84" href="#__codelineno-21-84"></a><span class="w">    </span>--default-root-object<span class="w"> </span>index.html
 </code></pre></div>
-<h3 id="lab-3-s3-batch-operations">Lab 3: S3 Batch Operations<a class="headerlink" href="#lab-3-s3-batch-operations" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-s3-batch-operations">Lab 3: S3 Batch Operations</h3>
 <p><strong>Objective:</strong> Process millions of objects using S3 Batch Operations.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># create_batch_job.py</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -2857,8 +2857,8 @@ Simplify managing access for shared datasets.</p>
 <a id="__codelineno-22-152" name="__codelineno-22-152" href="#__codelineno-22-152"></a>
 <a id="__codelineno-22-153" name="__codelineno-22-153" href="#__codelineno-22-153"></a>    <span class="k">return</span> <span class="n">job</span><span class="p">[</span><span class="s1">&#39;Status&#39;</span><span class="p">]</span>
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="data-lake-architecture-on-s3">Data Lake Architecture on S3<a class="headerlink" href="#data-lake-architecture-on-s3" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="data-lake-architecture-on-s3">Data Lake Architecture on S3</h3>
 <p><strong>Modern Data Lake Structure:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>s3://my-data-lake/
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>├── raw/                          # Landing zone
@@ -3062,7 +3062,7 @@ Simplify managing access for shared datasets.</p>
 <a id="__codelineno-25-24" name="__codelineno-25-24" href="#__codelineno-25-24"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="nb">date</span>
 <a id="__codelineno-25-25" name="__codelineno-25-25" href="#__codelineno-25-25"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="nb">date</span><span class="p">;</span>
 </code></pre></div>
-<h3 id="advanced-security-and-compliance">Advanced Security and Compliance<a class="headerlink" href="#advanced-security-and-compliance" title="Permanent link">&para;</a></h3>
+<h3 id="advanced-security-and-compliance">Advanced Security and Compliance</h3>
 <p><strong>S3 Object Lock (WORM - Write Once Read Many):</strong></p>
 <p>Prevents object deletion or modification for compliance (SEC 17a-4, FINRA, etc.).</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Enable Object Lock (must be done at bucket creation)</span>
@@ -3175,7 +3175,7 @@ Simplify managing access for shared datasets.</p>
 <a id="__codelineno-27-52" name="__codelineno-27-52" href="#__codelineno-27-52"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Principal: </span><span class="si">{</span><span class="n">finding</span><span class="p">[</span><span class="s1">&#39;principal&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <a id="__codelineno-27-53" name="__codelineno-27-53" href="#__codelineno-27-53"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Actions: </span><span class="si">{</span><span class="n">finding</span><span class="p">[</span><span class="s1">&#39;action&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="s3-performance-optimization">S3 Performance Optimization<a class="headerlink" href="#s3-performance-optimization" title="Permanent link">&para;</a></h3>
+<h3 id="s3-performance-optimization">S3 Performance Optimization</h3>
 <p><strong>Request Rate Optimization:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># high_throughput_s3.py</span>
 <a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3322,7 +3322,7 @@ Simplify managing access for shared datasets.</p>
 <a id="__codelineno-30-46" name="__codelineno-30-46" href="#__codelineno-30-46"></a><span class="c1"># Single thread: ~2 minutes</span>
 <a id="__codelineno-30-47" name="__codelineno-30-47" href="#__codelineno-30-47"></a><span class="c1"># 10 parallel threads: ~15 seconds</span>
 </code></pre></div>
-<h3 id="cost-optimization-strategies">Cost Optimization Strategies<a class="headerlink" href="#cost-optimization-strategies" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization-strategies">Cost Optimization Strategies</h3>
 <p><strong>S3 Storage Lens:</strong></p>
 <p>Organization-wide visibility into storage usage and optimization opportunities.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># storage_lens_analysis.py</span>
@@ -3498,8 +3498,8 @@ Simplify managing access for shared datasets.</p>
 <a id="__codelineno-32-58" name="__codelineno-32-58" href="#__codelineno-32-58"></a><span class="c1"># Intelligent-Tiering: $165.50/month ($1,986/year)</span>
 <a id="__codelineno-32-59" name="__codelineno-32-59" href="#__codelineno-32-59"></a><span class="c1"># Annual savings: $774 (28% reduction)</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="security-tips">Security Tips<a class="headerlink" href="#security-tips" title="Permanent link">&para;</a></h3>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
+<h3 id="security-tips">Security Tips</h3>
 <p><strong>Tip 1: Enable Default Encryption and Block Public Access</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="c1"># Always enable for new buckets</span>
 <a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>aws<span class="w"> </span>s3api<span class="w"> </span>put-bucket-encryption<span class="w"> </span><span class="se">\</span>
@@ -3614,7 +3614,7 @@ Simplify managing access for shared datasets.</p>
 <a id="__codelineno-35-16" name="__codelineno-35-16" href="#__codelineno-35-16"></a><span class="w">    </span>--version-id<span class="w"> </span>abc123<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-35-17" name="__codelineno-35-17" href="#__codelineno-35-17"></a><span class="w">    </span>--mfa<span class="w"> </span><span class="s2">&quot;arn:aws:iam::123456789012:mfa/root-account-mfa-device 789012&quot;</span>
 </code></pre></div>
-<h3 id="performance-tips">Performance Tips<a class="headerlink" href="#performance-tips" title="Permanent link">&para;</a></h3>
+<h3 id="performance-tips">Performance Tips</h3>
 <p><strong>Tip 4: Use Multipart Upload for Large Files</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="c1"># multipart_upload.py</span>
 <a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3743,7 +3743,7 @@ Simplify managing access for shared datasets.</p>
 <a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a><span class="c1"># Acceleration endpoint: Upload via nearest CloudFront edge, then private AWS network</span>
 <a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a><span class="c1"># Typical speedup: 50-500% depending on location</span>
 </code></pre></div>
-<h3 id="cost-optimization-tips">Cost Optimization Tips<a class="headerlink" href="#cost-optimization-tips" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization-tips">Cost Optimization Tips</h3>
 <p><strong>Tip 6: Use S3 Intelligent-Tiering for Unknown Access Patterns</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="c1"># Enable Intelligent-Tiering at bucket level</span>
 <a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>aws<span class="w"> </span>s3api<span class="w"> </span>put-bucket-intelligent-tiering-configuration<span class="w"> </span><span class="se">\</span>
@@ -3858,7 +3858,7 @@ Simplify managing access for shared datasets.</p>
 <a id="__codelineno-40-49" name="__codelineno-40-49" href="#__codelineno-40-49"></a><span class="sd">}</span>
 <a id="__codelineno-40-50" name="__codelineno-40-50" href="#__codelineno-40-50"></a><span class="sd">&quot;&quot;&quot;</span>
 </code></pre></div>
-<h3 id="operational-tips">Operational Tips<a class="headerlink" href="#operational-tips" title="Permanent link">&para;</a></h3>
+<h3 id="operational-tips">Operational Tips</h3>
 <p><strong>Tip 9: Use S3 Inventory for Large-Scale Operations</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="c1"># Enable S3 Inventory</span>
 <a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>aws<span class="w"> </span>s3api<span class="w"> </span>put-bucket-inventory-configuration<span class="w"> </span><span class="se">\</span>
@@ -3961,8 +3961,8 @@ Simplify managing access for shared datasets.</p>
 <a id="__codelineno-42-53" name="__codelineno-42-53" href="#__codelineno-42-53"></a>        <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
 <a id="__codelineno-42-54" name="__codelineno-42-54" href="#__codelineno-42-54"></a>    <span class="p">})</span>
 </code></pre></div>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-public-bucket-exposure">Pitfall 1: Public Bucket Exposure<a class="headerlink" href="#pitfall-1-public-bucket-exposure" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-public-bucket-exposure">Pitfall 1: Public Bucket Exposure</h3>
 <p><strong>Problem:</strong> Accidentally making S3 buckets or objects public, leading to data breaches.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4129,7 +4129,7 @@ Simplify managing access for shared datasets.</p>
 <li>Use CloudFront with OAC for public content</li>
 </ul>
 <hr />
-<h3 id="pitfall-2-lifecycle-policy-mistakes">Pitfall 2: Lifecycle Policy Mistakes<a class="headerlink" href="#pitfall-2-lifecycle-policy-mistakes" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-2-lifecycle-policy-mistakes">Pitfall 2: Lifecycle Policy Mistakes</h3>
 <p><strong>Problem:</strong> Lifecycle policies unintentionally delete data or fail to reduce costs.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4310,7 +4310,7 @@ Simplify managing access for shared datasets.</p>
 <li>Document policy purpose and expected behavior</li>
 </ul>
 <hr />
-<h3 id="pitfall-3-cross-region-replication-issues">Pitfall 3: Cross-Region Replication Issues<a class="headerlink" href="#pitfall-3-cross-region-replication-issues" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-3-cross-region-replication-issues">Pitfall 3: Cross-Region Replication Issues</h3>
 <p><strong>Problem:</strong> Replication fails, incomplete, or creates unexpected costs.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4481,7 +4481,7 @@ Simplify managing access for shared datasets.</p>
 <li>Consider costs (data transfer + storage in destination)</li>
 </ul>
 <hr />
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>Amazon S3 is the cornerstone of AWS storage, providing durable, scalable, cost-effective object storage for virtually any use case. Understanding storage classes, lifecycle policies, encryption, access controls, versioning, replication, and performance optimization is essential for building production-grade applications on AWS. Proper S3 configuration can save significant costs while maintaining security and compliance.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -4494,7 +4494,7 @@ Simplify managing access for shared datasets.</p>
 </ul>
 <p>Understanding S3 deeply enables you to build cost-effective, secure, high-performance data storage solutions that scale to exabytes.</p>
 <p>In Chapter 9, we'll explore Amazon EBS and EFS for block and file storage needs.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>Which storage class offers the lowest cost per GB?</strong>
 a) Standard-IA

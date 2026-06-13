@@ -2078,13 +2078,13 @@
   
 
 
-<h1 id="chapter-15-route-53">Chapter 15: Route 53<a class="headerlink" href="#chapter-15-route-53" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-15-route-53">Chapter 15: Route 53</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Domain Name System (DNS) is the internet's phone book, translating human-readable domain names (www.example.com) into IP addresses (192.0.2.1) that computers use to communicate. Every internet interaction begins with DNS—when users type a URL, their browser queries DNS servers to find the website's location. Amazon Route 53, AWS's highly available and scalable DNS service, goes far beyond basic name resolution, offering intelligent routing policies, health checking, traffic management, and seamless integration with AWS services. The name "Route 53" references TCP/UDP port 53, the standard port for DNS.</p>
 <p>Traditional DNS systems provide simple domain-to-IP mapping, but Route 53 transforms DNS into an intelligent traffic management platform. Instead of routing all users to a single server, Route 53's routing policies enable sophisticated traffic distribution: geolocation routing directs users to the nearest data center for lower latency; weighted routing enables gradual traffic migration between deployments; failover routing automatically switches to backup resources during outages; latency-based routing sends users to the fastest-responding region. These capabilities make Route 53 essential for multi-region architectures, disaster recovery, blue-green deployments, and global application delivery.</p>
 <p>Understanding DNS fundamentals and Route 53's advanced features separates basic website hosting from production-grade global infrastructure. Misconfigured TTL values cause prolonged outages during failover. Improper health checks trigger false positives, unnecessarily routing traffic away from healthy resources. Not using alias records for AWS resources incurs unnecessary costs and complexity. Missing DNSSEC leaves domains vulnerable to cache poisoning attacks. This chapter provides comprehensive coverage from DNS basics to production patterns, including hosted zones, record types, routing policies, health checks, traffic flow, DNSSEC, and best practices for building resilient, globally distributed systems.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="dns-fundamentals">DNS Fundamentals<a class="headerlink" href="#dns-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="dns-fundamentals">DNS Fundamentals</h3>
 <p><strong>How DNS Works (Hierarchical System):</strong></p>
 <p>DNS operates as a distributed hierarchical system with multiple layers:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>DNS Resolution Process:
@@ -2254,7 +2254,7 @@
 <a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>- Maximum wait: 5 minutes for full propagation
 <a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>- Reality: Can take longer due to non-compliant resolvers
 </code></pre></div>
-<h3 id="route-53-hosted-zones">Route 53 Hosted Zones<a class="headerlink" href="#route-53-hosted-zones" title="Permanent link">&para;</a></h3>
+<h3 id="route-53-hosted-zones">Route 53 Hosted Zones</h3>
 <p><strong>What is a Hosted Zone?</strong></p>
 <p>A hosted zone is a container for DNS records belonging to a domain. Think of it as a database of DNS records for your domain.</p>
 <p><strong>Two Types of Hosted Zones:</strong></p>
@@ -2325,7 +2325,7 @@
 <a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>- Security (internal resources not exposed)
 <a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>- Cost savings (no internet data transfer)
 </code></pre></div>
-<h3 id="routing-policies">Routing Policies<a class="headerlink" href="#routing-policies" title="Permanent link">&para;</a></h3>
+<h3 id="routing-policies">Routing Policies</h3>
 <p>Route 53's routing policies enable intelligent traffic distribution beyond simple DNS resolution.</p>
 <p><strong>1. Simple Routing Policy:</strong></p>
 <p>The most basic policy—one record with one or more IP addresses:</p>
@@ -2576,7 +2576,7 @@
 <a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>│ Multivalue      │ Yes          │ Simple LB  │ Low         │ Basic HA   │
 <a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>└─────────────────┴──────────────┴────────────┴─────────────┴────────────┘
 </code></pre></div>
-<h3 id="health-checks">Health Checks<a class="headerlink" href="#health-checks" title="Permanent link">&para;</a></h3>
+<h3 id="health-checks">Health Checks</h3>
 <p>Health checks monitor resource availability and trigger routing changes:</p>
 <p><strong>Health Check Types:</strong></p>
 <p><strong>1. Endpoint Health Checks:</strong></p>
@@ -2698,7 +2698,7 @@
 <a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a>- Return 5xx when unhealthy
 <a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a>- Don&#39;t cache health check responses
 </code></pre></div>
-<h3 id="alias-records-vs-cname-records">Alias Records vs CNAME Records<a class="headerlink" href="#alias-records-vs-cname-records" title="Permanent link">&para;</a></h3>
+<h3 id="alias-records-vs-cname-records">Alias Records vs CNAME Records</h3>
 <p>A critical Route 53 concept that causes frequent confusion:</p>
 <p><strong>CNAME Records (Standard DNS):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>What: Creates alias to another domain name
@@ -2773,7 +2773,7 @@
 <a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a>│      (DNS limit)│                   │
 <a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a>└─────────────────┴───────────────────┘
 </code></pre></div>
-<h3 id="traffic-flow-and-traffic-policies">Traffic Flow and Traffic Policies<a class="headerlink" href="#traffic-flow-and-traffic-policies" title="Permanent link">&para;</a></h3>
+<h3 id="traffic-flow-and-traffic-policies">Traffic Flow and Traffic Policies</h3>
 <p>Traffic Flow provides visual editor for complex routing configurations:</p>
 <p><strong>Traffic Flow Capabilities:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>Visual Policy Editor:
@@ -2850,7 +2850,7 @@
 <a id="__codelineno-25-35" name="__codelineno-25-35" href="#__codelineno-25-35"></a>This complex logic requires Traffic Flow
 <a id="__codelineno-25-36" name="__codelineno-25-36" href="#__codelineno-25-36"></a>Simple routing policies cannot achieve this
 </code></pre></div>
-<h3 id="dnssec-dns-security-extensions">DNSSEC (DNS Security Extensions)<a class="headerlink" href="#dnssec-dns-security-extensions" title="Permanent link">&para;</a></h3>
+<h3 id="dnssec-dns-security-extensions">DNSSEC (DNS Security Extensions)</h3>
 <p>DNSSEC adds cryptographic signatures to DNS records, preventing DNS spoofing and cache poisoning:</p>
 <p><strong>DNSSEC Concepts:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>Problem Without DNSSEC:
@@ -2935,8 +2935,8 @@
 <a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a>- Test from DNSSEC-aware resolvers
 <a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a>- Have rollback plan ready
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-basic-domain-setup-with-multiple-record-types">Lab 1: Basic Domain Setup with Multiple Record Types<a class="headerlink" href="#lab-1-basic-domain-setup-with-multiple-record-types" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-basic-domain-setup-with-multiple-record-types">Lab 1: Basic Domain Setup with Multiple Record Types</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># Create hosted zone</span>
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>aws<span class="w"> </span>route53<span class="w"> </span>create-hosted-zone<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span>--name<span class="w"> </span>example.com<span class="w"> </span><span class="se">\</span>
@@ -2973,7 +2973,7 @@
 <a id="__codelineno-29-34" name="__codelineno-29-34" href="#__codelineno-29-34"></a><span class="s1">      }]</span>
 <a id="__codelineno-29-35" name="__codelineno-29-35" href="#__codelineno-29-35"></a><span class="s1">    }&#39;</span>
 </code></pre></div>
-<h3 id="lab-2-failover-configuration">Lab 2: Failover Configuration<a class="headerlink" href="#lab-2-failover-configuration" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-failover-configuration">Lab 2: Failover Configuration</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># Create health check</span>
 <a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="nv">HEALTH_CHECK_ID</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>route53<span class="w"> </span>create-health-check<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">    </span>--health-check-config<span class="w"> </span><span class="se">\</span>
@@ -3021,7 +3021,7 @@
 <a id="__codelineno-30-45" name="__codelineno-30-45" href="#__codelineno-30-45"></a><span class="s1">      }]</span>
 <a id="__codelineno-30-46" name="__codelineno-30-46" href="#__codelineno-30-46"></a><span class="s1">    }&#39;</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
 <p><strong>Tip 1: Lower TTL Before Changes</strong>
 Reduce TTL to 60 seconds 24 hours before making changes for faster propagation.</p>
 <p><strong>Tip 2: Use Alias Records for AWS Resources</strong>
@@ -3032,7 +3032,7 @@ Never use failover routing without health checks—Route 53 won't know when to f
 Regularly test health check failures to verify failover works as expected.</p>
 <p><strong>Tip 5: Use Private Hosted Zones for Internal Resources</strong>
 Keep internal resource names in private hosted zones, separate from public DNS.</p>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
 <p><strong>Pitfall 1: DNS Propagation Delays</strong>
 <em>Problem:</em> Changes take hours to propagate globally.
 <em>Solution:</em> Lower TTL before changes, wait for old TTL to expire before making changes.</p>
@@ -3042,7 +3042,7 @@ Keep internal resource names in private hosted zones, separate from public DNS.<
 <p><strong>Pitfall 3: Using CNAME for Zone Apex</strong>
 <em>Problem:</em> Cannot create CNAME record for root domain (DNS RFC restriction).
 <em>Solution:</em> Use alias records for zone apex.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>Route 53 name origin?</strong> TCP/UDP port 53</li>
 <li><strong>Alias record cost for AWS resources?</strong> Free</li>
