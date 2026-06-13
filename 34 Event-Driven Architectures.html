@@ -2090,13 +2090,13 @@
   
 
 
-<h1 id="chapter-34-event-driven-architectures">Chapter 34: Event-Driven Architectures<a class="headerlink" href="#chapter-34-event-driven-architectures" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-34-event-driven-architectures">Chapter 34: Event-Driven Architectures</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Traditional request-response architectures—where services make synchronous calls waiting for responses—create tight coupling, brittleness under load, and scaling bottlenecks that cripple modern applications. An e-commerce platform where order service synchronously calls inventory service, payment service, notification service, and shipping service experiences cascading failures when any dependency becomes slow or unavailable, cannot scale individual services independently, and processes orders at rate of slowest service in chain. When payment service experiences 5-second delays, entire order flow waits 5 seconds regardless of other services being healthy, resulting in poor user experience and wasted infrastructure capacity. Event-driven architectures—where services communicate through asynchronous events published to message buses—decouple producers from consumers, enable independent scaling, provide natural resilience through message queuing, and allow new services to subscribe to existing events without modifying producers.</p>
 <p>The shift from synchronous to event-driven introduces new patterns and challenges: events represent things that happened (OrderCreated, PaymentProcessed) requiring different thinking than request-response commands, event ordering across distributed systems cannot be guaranteed without careful design, duplicate events must be handled idempotently, and eventual consistency replaces immediate consistency requiring business process adaptation. A payment processed event may arrive before order created event due to network delays; processing payment event twice must not double-charge customer; inventory count eventually consistent means displaying "5 in stock" when actually 3 remain. Organizations naively adopting event-driven architecture without addressing idempotency, ordering, and consistency challenges experience duplicate processing bugs, data inconsistencies, and debugging nightmares from complex event flows. AWS provides comprehensive event-driven toolkit—EventBridge for event routing, SNS for pub/sub fanout, SQS for reliable queuing, Lambda for event processing, Kinesis for event streaming—enabling scalable, resilient event-driven systems.</p>
 <p>This chapter synthesizes AWS services throughout handbook—Lambda from serverless for event processing, SQS/SNS from messaging for event delivery, DynamoDB for event store, CloudWatch for monitoring, X-Ray for distributed tracing. The chapter covers event-driven patterns (event sourcing, CQRS, choreography vs orchestration), EventBridge event bus architecture, idempotency implementation, handling eventual consistency, event replay capabilities, monitoring event flows, dead-letter queue strategies, and building production event-driven systems that achieve loose coupling, independent scaling, and resilience while managing complexity through proven patterns and operational discipline.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="event-driven-architecture-fundamentals">Event-Driven Architecture Fundamentals<a class="headerlink" href="#event-driven-architecture-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="event-driven-architecture-fundamentals">Event-Driven Architecture Fundamentals</h3>
 <p><strong>Core Concepts and Patterns:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Event-Driven Architecture (EDA):
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Services communicate through events (notifications of state changes)
@@ -2241,7 +2241,7 @@
 <a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>- causationId: Links related events (event chain)
 <a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>- eventVersion: Handles schema evolution
 </code></pre></div>
-<h3 id="event-sourcing-pattern">Event Sourcing Pattern<a class="headerlink" href="#event-sourcing-pattern" title="Permanent link">&para;</a></h3>
+<h3 id="event-sourcing-pattern">Event Sourcing Pattern</h3>
 <p><strong>Storing State as Sequence of Events:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Event Sourcing Definition:
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Store all changes to application state as sequence of events
@@ -2495,7 +2495,7 @@
 <a id="__codelineno-1-250" name="__codelineno-1-250" href="#__codelineno-1-250"></a>   - Archive old events to S3
 <a id="__codelineno-1-251" name="__codelineno-1-251" href="#__codelineno-1-251"></a>   - Keep recent events in hot storage
 </code></pre></div>
-<h3 id="cqrs-command-query-responsibility-segregation">CQRS (Command Query Responsibility Segregation)<a class="headerlink" href="#cqrs-command-query-responsibility-segregation" title="Permanent link">&para;</a></h3>
+<h3 id="cqrs-command-query-responsibility-segregation">CQRS (Command Query Responsibility Segregation)</h3>
 <p><strong>Separate Read and Write Models:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>CQRS Definition:
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Separate models for updating (commands) and reading (queries)
@@ -2709,7 +2709,7 @@
 <a id="__codelineno-2-210" name="__codelineno-2-210" href="#__codelineno-2-210"></a>3. Websocket notification when ready
 <a id="__codelineno-2-211" name="__codelineno-2-211" href="#__codelineno-2-211"></a>4. Show &quot;Processing...&quot; state in UI
 </code></pre></div>
-<h3 id="choreography-vs-orchestration">Choreography vs Orchestration<a class="headerlink" href="#choreography-vs-orchestration" title="Permanent link">&para;</a></h3>
+<h3 id="choreography-vs-orchestration">Choreography vs Orchestration</h3>
 <p><strong>Event-Driven Coordination Patterns:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Choreography (Decentralized):
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Services react to events independently
@@ -2890,8 +2890,8 @@
 <a id="__codelineno-3-177" name="__codelineno-3-177" href="#__codelineno-3-177"></a>│ Testing        │ Difficult      │ Easier       │
 <a id="__codelineno-3-178" name="__codelineno-3-178" href="#__codelineno-3-178"></a>└────────────────┴────────────────┴──────────────┘
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-building-event-driven-system-with-eventbridge">Lab 1: Building Event-Driven System with EventBridge<a class="headerlink" href="#lab-1-building-event-driven-system-with-eventbridge" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-building-event-driven-system-with-eventbridge">Lab 1: Building Event-Driven System with EventBridge</h3>
 <p><strong>Objective:</strong> Implement event-driven order processing system using EventBridge, Lambda, and SQS.</p>
 <p><strong>Step 1: Create EventBridge Event Bus</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3364,7 +3364,7 @@
 <a id="__codelineno-7-70" name="__codelineno-7-70" href="#__codelineno-7-70"></a><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">processed_events</span><span class="p">[</span><span class="s1">&#39;Items&#39;</span><span class="p">]:</span>
 <a id="__codelineno-7-71" name="__codelineno-7-71" href="#__codelineno-7-71"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;eventId&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;processedAt&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="lab-2-implementing-idempotency-with-dynamodb">Lab 2: Implementing Idempotency with DynamoDB<a class="headerlink" href="#lab-2-implementing-idempotency-with-dynamodb" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-implementing-idempotency-with-dynamodb">Lab 2: Implementing Idempotency with DynamoDB</h3>
 <p><strong>Objective:</strong> Ensure events processed exactly once despite duplicate deliveries.</p>
 <p><strong>Step 1: Create Idempotency Table</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">create_idempotency_table</span><span class="p">():</span>
@@ -3535,7 +3535,7 @@
 <a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a>
 <a id="__codelineno-10-44" name="__codelineno-10-44" href="#__codelineno-10-44"></a><span class="n">test_idempotency</span><span class="p">()</span>
 </code></pre></div>
-<h3 id="lab-3-implementing-event-replay">Lab 3: Implementing Event Replay<a class="headerlink" href="#lab-3-implementing-event-replay" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-implementing-event-replay">Lab 3: Implementing Event Replay</h3>
 <p><strong>Objective:</strong> Replay archived events for debugging or reprocessing.</p>
 <p><strong>Step 1: Query Event Archive</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">query_event_archive</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">,</span> <span class="n">event_pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -3644,8 +3644,8 @@
 <a id="__codelineno-12-56" name="__codelineno-12-56" href="#__codelineno-12-56"></a><span class="c1"># Example: Debug failed order</span>
 <a id="__codelineno-12-57" name="__codelineno-12-57" href="#__codelineno-12-57"></a><span class="n">replay_events_for_order</span><span class="p">(</span><span class="s1">&#39;order-failed-001&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="handling-eventual-consistency">Handling Eventual Consistency<a class="headerlink" href="#handling-eventual-consistency" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="handling-eventual-consistency">Handling Eventual Consistency</h3>
 <p><strong>Managing Async State in Event-Driven Systems:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Eventual Consistency Challenges:
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
@@ -3880,7 +3880,7 @@
 <a id="__codelineno-13-231" name="__codelineno-13-231" href="#__codelineno-13-231"></a>for compensation in event.compensationRequired:
 <a id="__codelineno-13-232" name="__codelineno-13-232" href="#__codelineno-13-232"></a>    execute_compensation(compensation)
 </code></pre></div>
-<h3 id="monitoring-event-driven-systems">Monitoring Event-Driven Systems<a class="headerlink" href="#monitoring-event-driven-systems" title="Permanent link">&para;</a></h3>
+<h3 id="monitoring-event-driven-systems">Monitoring Event-Driven Systems</h3>
 <p><strong>Observability for Async Flows:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Event Flow Monitoring:
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
@@ -4060,7 +4060,7 @@
 <a id="__codelineno-14-176" name="__codelineno-14-176" href="#__codelineno-14-176"></a>
 <a id="__codelineno-14-177" name="__codelineno-14-177" href="#__codelineno-14-177"></a>Result: Zero data loss, issues reproducible
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
 <p><strong>Tip 1: Design Events as Facts, Not Commands</strong>
 Events state what happened ("OrderCreated"), not what to do ("CreateOrder")—enables multiple consumers without coupling to implementation.</p>
 <p><strong>Tip 2: Include Correlation IDs in All Events</strong>
@@ -4081,7 +4081,7 @@ Define and version event schemas centrally—enables discovery, validation, code
 Fail fast when downstream dependencies unavailable—prevents resource exhaustion, enables graceful degradation, queues events for retry.</p>
 <p><strong>Tip 10: Test Event Flows End-to-End</strong>
 Integration tests validate complete event chains—catches missing handlers, incorrect routing, idempotency issues before production.</p>
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>Event-driven architectures decouple producers from consumers through asynchronous event communication enabling independent scaling, natural resilience, and flexibility to add new consumers without modifying producers. Success requires implementing proven patterns—event sourcing for complete audit trails, CQRS for optimized read/write models, idempotency for exactly-once processing, and comprehensive monitoring with distributed tracing for visibility into async flows. Organizations adopting event-driven architecture achieve 10× faster feature development through loose coupling, independent service scaling reducing infrastructure costs 40%, and automatic resilience through message queuing—but must manage eventual consistency, handle duplicate events, and invest in observability to debug distributed systems effectively.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>

@@ -2124,13 +2124,13 @@
   
 
 
-<h1 id="chapter-32-disaster-recovery-business-continuity">Chapter 32: Disaster Recovery \&amp; Business Continuity<a class="headerlink" href="#chapter-32-disaster-recovery-business-continuity" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-32-disaster-recovery-business-continuity">Chapter 32: Disaster Recovery \&amp; Business Continuity</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Every organization faces potential disasters—data center fires, natural disasters, cyber attacks, accidental deletions, hardware failures, software bugs corrupting data—that can cause catastrophic business disruption ranging from hours of downtime costing millions in revenue to permanent data loss destroying customer trust. A financial services firm experiencing 4-hour database outage during trading hours loses \$2M in revenue plus regulatory penalties; an e-commerce platform unable to recover from ransomware attack within 24 hours loses 60% of customers permanently. Traditional disaster recovery—tape backups stored off-site, cold data center standby sites requiring days to activate, manual recovery procedures never tested—cannot meet modern business continuity requirements where customers expect 24/7 availability and revenue loss from downtime measured in thousands per minute. AWS disaster recovery capabilities—automated backups with point-in-time recovery, cross-region replication, multiple DR architectures from pilot light to multi-site active-active—enable organizations to achieve Recovery Time Objectives (RTO) from hours to seconds and Recovery Point Objectives (RPO) from hours to near-zero at fraction of traditional DR costs.</p>
 <p>The business impact of inadequate disaster recovery extends far beyond immediate downtime costs. Organizations experiencing major data loss face 93% probability of bankruptcy within one year according to industry studies, while average cost of downtime across industries exceeds \$5,600 per minute (\$336,000 per hour). Beyond financial impact, disasters damage brand reputation permanently—customers remember outages and data breaches for years, competitors capitalize on downtime by converting frustrated customers, and regulatory bodies impose penalties for inadequate data protection. AWS disaster recovery transforms DR from expensive insurance policy to business enabler through: automated backups eliminating manual processes prone to failure, cross-region replication ensuring data durability across geographic failures, flexible DR architectures matching business requirements to costs, and regular testing validating recovery procedures work when needed.</p>
 <p>This chapter builds on infrastructure foundations throughout the handbook—RDS automated backups and Multi-AZ for database DR, S3 Cross-Region Replication for object durability, Route 53 health checks for automatic failover, CloudFormation for infrastructure recreation, AWS Backup for centralized backup management, and DynamoDB Global Tables for multi-region active-active. The chapter covers RPO/RTO concepts and calculation, backup strategies with AWS Backup, four DR patterns (Backup \&amp; Restore, Pilot Light, Warm Standby, Multi-Site Active-Active), cross-region replication implementation, DR testing and validation, compliance requirements, automation with runbooks, production DR operations, and building systems where disasters cause minimal business disruption because recovery is automated, tested regularly, and achieves business-defined RTO/RPO objectives.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="rpo-and-rto-fundamentals">RPO and RTO Fundamentals<a class="headerlink" href="#rpo-and-rto-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="rpo-and-rto-fundamentals">RPO and RTO Fundamentals</h3>
 <p><strong>Understanding Recovery Objectives:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Recovery Point Objective (RPO):
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Maximum acceptable data loss measured in time
@@ -2280,7 +2280,7 @@
 <a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>
 <a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>Best choice: Pilot Light ($27.7K total annual cost)
 </code></pre></div>
-<h3 id="dr-architectures-and-patterns">DR Architectures and Patterns<a class="headerlink" href="#dr-architectures-and-patterns" title="Permanent link">&para;</a></h3>
+<h3 id="dr-architectures-and-patterns">DR Architectures and Patterns</h3>
 <p><strong>Four Primary DR Patterns:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>1. BACKUP &amp; RESTORE (Lowest Cost, Highest RTO)
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
@@ -2530,7 +2530,7 @@
 <a id="__codelineno-1-246" name="__codelineno-1-246" href="#__codelineno-1-246"></a>Warm Standby: 30% DR cost → 15-60 mins RTO
 <a id="__codelineno-1-247" name="__codelineno-1-247" href="#__codelineno-1-247"></a>Multi-Site: 110% DR cost → &lt; 1 min RTO
 </code></pre></div>
-<h3 id="aws-backup-strategies">AWS Backup Strategies<a class="headerlink" href="#aws-backup-strategies" title="Permanent link">&para;</a></h3>
+<h3 id="aws-backup-strategies">AWS Backup Strategies</h3>
 <p><strong>Centralized Backup Management:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>AWS Backup Service:
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Centralized backup across AWS services
@@ -2659,8 +2659,8 @@
 <a id="__codelineno-2-125" name="__codelineno-2-125" href="#__codelineno-2-125"></a>RTO: 2-4 hours (restore from backup)
 <a id="__codelineno-2-126" name="__codelineno-2-126" href="#__codelineno-2-126"></a>RPO: 24 hours (daily backup)
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-implementing-aws-backup-with-cross-region-replication">Lab 1: Implementing AWS Backup with Cross-Region Replication<a class="headerlink" href="#lab-1-implementing-aws-backup-with-cross-region-replication" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-implementing-aws-backup-with-cross-region-replication">Lab 1: Implementing AWS Backup with Cross-Region Replication</h3>
 <p><strong>Objective:</strong> Configure centralized backup with automated cross-region replication.</p>
 <p><strong>Step 1: Create Backup Vault</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3024,7 +3024,7 @@
 <a id="__codelineno-7-50" name="__codelineno-7-50" href="#__codelineno-7-50"></a><span class="c1"># Monitor backup jobs</span>
 <a id="__codelineno-7-51" name="__codelineno-7-51" href="#__codelineno-7-51"></a><span class="n">monitor_backup_jobs</span><span class="p">()</span>
 </code></pre></div>
-<h3 id="lab-2-dr-testing-and-validation">Lab 2: DR Testing and Validation<a class="headerlink" href="#lab-2-dr-testing-and-validation" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-dr-testing-and-validation">Lab 2: DR Testing and Validation</h3>
 <p><strong>Objective:</strong> Conduct disaster recovery drill to validate RTO/RPO and recovery procedures.</p>
 <p><strong>Step 1: Pre-Test Preparation</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3493,8 +3493,8 @@
 <a id="__codelineno-11-44" name="__codelineno-11-44" href="#__codelineno-11-44"></a>
 <a id="__codelineno-11-45" name="__codelineno-11-45" href="#__codelineno-11-45"></a><span class="n">cleanup_dr_test_resources</span><span class="p">(</span><span class="n">test_params</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="dr-runbooks-and-automation">DR Runbooks and Automation<a class="headerlink" href="#dr-runbooks-and-automation" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="dr-runbooks-and-automation">DR Runbooks and Automation</h3>
 <p><strong>Comprehensive DR Procedures:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>DR Runbook Structure:
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
@@ -3731,7 +3731,7 @@
 <a id="__codelineno-12-233" name="__codelineno-12-233" href="#__codelineno-12-233"></a>Manual override required: Yes (IC approval)
 <a id="__codelineno-12-234" name="__codelineno-12-234" href="#__codelineno-12-234"></a>Monitoring: CloudWatch alarm triggers SNS → PagerDuty
 </code></pre></div>
-<h3 id="continuous-dr-validation">Continuous DR Validation<a class="headerlink" href="#continuous-dr-validation" title="Permanent link">&para;</a></h3>
+<h3 id="continuous-dr-validation">Continuous DR Validation</h3>
 <p><strong>Regular Testing and Improvement:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>DR Testing Schedule:
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
@@ -3845,7 +3845,7 @@
 <a id="__codelineno-13-110" name="__codelineno-13-110" href="#__codelineno-13-110"></a>│   - Updated runbooks (7 steps clarified)                    │
 <a id="__codelineno-13-111" name="__codelineno-13-111" href="#__codelineno-13-111"></a>└──────────────────────────────────────────────────────────────┘
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
 <p><strong>Tip 1: Test DR Regularly, Not Just Once</strong>
 Quarterly full DR tests validate procedures work—untested DR plans fail 70% of the time during actual disasters.</p>
 <p><strong>Tip 2: Automate Backup Validation</strong>
@@ -3866,8 +3866,8 @@ Consistent tagging enables automated backup management—identify backup resourc
 Regulatory requirements drive retention periods—understand GDPR, HIPAA, SOX requirements before setting backup policies.</p>
 <p><strong>Tip 10: Calculate DR Cost vs Risk</strong>
 Quantify downtime cost and data loss impact—justifies appropriate DR investment, prevents under or over-engineering.</p>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-untested-recovery-procedures">Pitfall 1: Untested Recovery Procedures<a class="headerlink" href="#pitfall-1-untested-recovery-procedures" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-untested-recovery-procedures">Pitfall 1: Untested Recovery Procedures</h3>
 <p><strong>Problem:</strong> DR plans documented but never tested; procedures fail during actual disasters due to outdated steps, missing permissions, or incorrect assumptions.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4189,7 +4189,7 @@ Quantify downtime cost and data loss impact—justifies appropriate DR investmen
 <li>Culture shift: Testing is protection, not risk</li>
 </ul>
 <hr />
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>AWS Disaster Recovery transforms business continuity from expensive cold standby facilities to flexible, cost-effective cloud architectures achieving Recovery Time Objectives from hours to seconds and Recovery Point Objectives from days to near-zero. Organizations implementing appropriate DR patterns—Backup \&amp; Restore for non-critical (RTO: hours), Pilot Light for important (RTO: 1-4 hours), Warm Standby for customer-facing (RTO: minutes), or Multi-Site Active-Active for mission-critical (RTO: seconds)—based on business impact analysis protect against disasters while optimizing costs. Success requires regular DR testing (quarterly minimum), automated backup validation, comprehensive runbooks, and treating DR as continuous operational practice rather than one-time planning exercise; untested DR plans fail 70% of time during actual disasters.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -4202,7 +4202,7 @@ Quantify downtime cost and data loss impact—justifies appropriate DR investmen
 <li><strong>Practice Failback Too:</strong> Many organizations successfully failover but struggle returning to primary; test complete cycle including recovery</li>
 </ul>
 <p>DR cost-benefit analysis example: E-commerce platform with \$13,889/hour downtime cost implements Warm Standby at \$50K/year preventing expected \$136K annual losses from disasters—ROI of 172% first year. Organizations treating DR as business enabler rather than insurance policy achieve better outcomes through regular testing, automation, continuous improvement, and appropriate investment aligned with business criticality.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>What does RPO measure?</strong>
 a) Recovery time

@@ -2444,13 +2444,13 @@
   
 
 
-<h1 id="chapter-22-amazon-sagemaker-essentials">Chapter 22: Amazon SageMaker Essentials<a class="headerlink" href="#chapter-22-amazon-sagemaker-essentials" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-22-amazon-sagemaker-essentials">Chapter 22: Amazon SageMaker Essentials</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Machine learning has transformed from academic research to business-critical infrastructure, powering recommendation engines, fraud detection, demand forecasting, and intelligent automation across industries. However, building production ML systems remains notoriously complex—data scientists struggle with infrastructure, DevOps teams lack ML expertise, and organizations waste months building custom platforms. Amazon SageMaker eliminates this complexity by providing fully managed infrastructure for the complete ML lifecycle: data preparation, model training, deployment, and monitoring. Understanding SageMaker deeply is essential for Solutions Architects designing intelligent applications at scale.</p>
 <p>Traditional ML workflows require assembling disparate tools: Jupyter notebooks for experimentation, training clusters for model development, container orchestration for deployment, monitoring systems for drift detection, and CI/CD pipelines for model updates. Each component needs configuration, scaling, security, and maintenance. SageMaker integrates these capabilities into a unified platform—Studio IDE for development, managed training jobs with automatic scaling, one-click model deployment, built-in monitoring, and MLOps automation. What previously required months of infrastructure work now takes days of SageMaker configuration.</p>
 <p>This chapter connects to previous analytics services (Kinesis for real-time features, Glue for data preparation, Athena for feature engineering) while adding ML-specific capabilities. SageMaker complements rather than replaces these services—you'll use S3 for training data, Glue for feature transformations, and Lambda for inference orchestration. The chapter covers SageMaker's ML workflow from data preparation through production deployment, including training jobs, managed endpoints, batch inference, model registry, monitoring, A/B testing, and MLOps patterns. Whether building your first model or scaling to thousands of predictions per second, mastering SageMaker enables production ML without infrastructure complexity.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="machine-learning-workflow-fundamentals">Machine Learning Workflow Fundamentals<a class="headerlink" href="#machine-learning-workflow-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="machine-learning-workflow-fundamentals">Machine Learning Workflow Fundamentals</h3>
 <p><strong>Traditional ML Development Challenges:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Typical ML Project Timeline (Traditional Approach):
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -2528,7 +2528,7 @@
 <a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
 <a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>Result: 6-8 weeks to production, higher success rate
 </code></pre></div>
-<h3 id="sagemaker-architecture-components">SageMaker Architecture Components<a class="headerlink" href="#sagemaker-architecture-components" title="Permanent link">&para;</a></h3>
+<h3 id="sagemaker-architecture-components">SageMaker Architecture Components</h3>
 <p><strong>Core Services:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>1. SageMaker Studio:
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>   - Web-based IDE
@@ -2819,7 +2819,7 @@
 <a id="__codelineno-4-121" name="__codelineno-4-121" href="#__codelineno-4-121"></a>Many small models?
 <a id="__codelineno-4-122" name="__codelineno-4-122" href="#__codelineno-4-122"></a>└─ Yes → Multi-Model Endpoint
 </code></pre></div>
-<h3 id="built-in-algorithms">Built-In Algorithms<a class="headerlink" href="#built-in-algorithms" title="Permanent link">&para;</a></h3>
+<h3 id="built-in-algorithms">Built-In Algorithms</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>SageMaker Algorithms (No Code Required):
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Supervised Learning:
@@ -2918,7 +2918,7 @@
 <a id="__codelineno-5-96" name="__codelineno-5-96" href="#__codelineno-5-96"></a>- GPU optimization included
 <a id="__codelineno-5-97" name="__codelineno-5-97" href="#__codelineno-5-97"></a>- Easy script mode
 </code></pre></div>
-<h3 id="model-registry-and-versioning">Model Registry and Versioning<a class="headerlink" href="#model-registry-and-versioning" title="Permanent link">&para;</a></h3>
+<h3 id="model-registry-and-versioning">Model Registry and Versioning</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>SageMaker Model Registry:
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Purpose: Centralized model management
@@ -2983,7 +2983,7 @@
 <a id="__codelineno-6-62" name="__codelineno-6-62" href="#__codelineno-6-62"></a>✓ Rollback (previous versions)
 <a id="__codelineno-6-63" name="__codelineno-6-63" href="#__codelineno-6-63"></a>✓ Comparison (version performance)
 </code></pre></div>
-<h3 id="sagemaker-pricing-model">SageMaker Pricing Model<a class="headerlink" href="#sagemaker-pricing-model" title="Permanent link">&para;</a></h3>
+<h3 id="sagemaker-pricing-model">SageMaker Pricing Model</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Pricing Components:
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>1. Studio Notebooks:
@@ -3039,8 +3039,8 @@
 <a id="__codelineno-7-53" name="__codelineno-7-53" href="#__codelineno-7-53"></a>- Batch transform for batch jobs
 <a id="__codelineno-7-54" name="__codelineno-7-54" href="#__codelineno-7-54"></a>- Auto-shutdown notebooks
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-basic-image-classification-model">Lab 1: Basic Image Classification Model<a class="headerlink" href="#lab-1-basic-image-classification-model" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-basic-image-classification-model">Lab 1: Basic Image Classification Model</h3>
 <p><strong>Objective:</strong> Train and deploy an image classification model using built-in algorithm.</p>
 <p><strong>Prerequisites:</strong></p>
 <ul>
@@ -3235,7 +3235,7 @@
 <li>Endpoint responds with predictions in &lt;100ms</li>
 <li>Total cost: ~\$0.70 (training) + \$0.10 (deployment test) = \$0.80</li>
 </ul>
-<h3 id="lab-2-custom-model-with-scikit-learn">Lab 2: Custom Model with scikit-learn<a class="headerlink" href="#lab-2-custom-model-with-scikit-learn" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-custom-model-with-scikit-learn">Lab 2: Custom Model with scikit-learn</h3>
 <p><strong>Objective:</strong> Train a custom scikit-learn model and deploy with script mode.</p>
 <p><strong>Step 1: Prepare Training Script</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># train.py</span>
@@ -3367,7 +3367,7 @@
 <a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="n">prediction</span> <span class="o">=</span> <span class="n">predictor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
 <a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prediction: </span><span class="si">{</span><span class="n">prediction</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="lab-3-batch-transform-for-large-scale-inference">Lab 3: Batch Transform for Large-Scale Inference<a class="headerlink" href="#lab-3-batch-transform-for-large-scale-inference" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-batch-transform-for-large-scale-inference">Lab 3: Batch Transform for Large-Scale Inference</h3>
 <p><strong>Objective:</strong> Process thousands of records using batch transform.</p>
 <p><strong>Step 1: Prepare Batch Input Data</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -3429,8 +3429,8 @@
 <li>Output: CSV file with predictions</li>
 <li>Auto-cleanup: Instances terminated after job</li>
 </ul>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="mlops-with-sagemaker-pipelines">MLOps with SageMaker Pipelines<a class="headerlink" href="#mlops-with-sagemaker-pipelines" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="mlops-with-sagemaker-pipelines">MLOps with SageMaker Pipelines</h3>
 <p><strong>Automated ML Workflow:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sagemaker.workflow.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sagemaker.workflow.steps</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessingStep</span><span class="p">,</span> <span class="n">TrainingStep</span><span class="p">,</span> <span class="n">CreateModelStep</span>
@@ -3560,7 +3560,7 @@
 <li>Reproducibility (exact lineage)</li>
 <li>CI/CD integration (trigger from Git)</li>
 </ul>
-<h3 id="model-monitoring-in-production">Model Monitoring in Production<a class="headerlink" href="#model-monitoring-in-production" title="Permanent link">&para;</a></h3>
+<h3 id="model-monitoring-in-production">Model Monitoring in Production</h3>
 <p><strong>SageMaker Model Monitor Setup:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sagemaker.model_monitor</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataCaptureConfig</span><span class="p">,</span> <span class="n">DefaultModelMonitor</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
@@ -3633,7 +3633,7 @@
 <a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>    <span class="n">AlarmActions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;arn:aws:sns:region:account:topic&#39;</span><span class="p">]</span>
 <a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a><span class="p">)</span>
 </code></pre></div>
-<h3 id="ab-testing-and-canary-deployments">A/B Testing and Canary Deployments<a class="headerlink" href="#ab-testing-and-canary-deployments" title="Permanent link">&para;</a></h3>
+<h3 id="ab-testing-and-canary-deployments">A/B Testing and Canary Deployments</h3>
 <p><strong>Multi-Variant Endpoint:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Deploy variant A (current model)</span>
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="n">variant_a</span> <span class="o">=</span> <span class="n">ProductionVariant</span><span class="p">(</span>
@@ -3702,7 +3702,7 @@
 <a id="__codelineno-26-19" name="__codelineno-26-19" href="#__codelineno-26-19"></a><span class="c1"># No impact on user experience</span>
 <a id="__codelineno-26-20" name="__codelineno-26-20" href="#__codelineno-26-20"></a><span class="c1"># Safe validation of new models</span>
 </code></pre></div>
-<h3 id="cost-optimization-strategies">Cost Optimization Strategies<a class="headerlink" href="#cost-optimization-strategies" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization-strategies">Cost Optimization Strategies</h3>
 <p><strong>1. Spot Instance Training:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># Use Spot instances for training (70-90% savings)</span>
 <a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="n">estimator</span> <span class="o">=</span> <span class="n">sagemaker</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">Estimator</span><span class="p">(</span>
@@ -3794,8 +3794,8 @@
 <a id="__codelineno-30-30" name="__codelineno-30-30" href="#__codelineno-30-30"></a><span class="c1"># Scales automatically based on traffic</span>
 <a id="__codelineno-30-31" name="__codelineno-30-31" href="#__codelineno-30-31"></a><span class="c1"># Pay only for needed capacity</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="training-optimization-tips">Training Optimization Tips<a class="headerlink" href="#training-optimization-tips" title="Permanent link">&para;</a></h3>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
+<h3 id="training-optimization-tips">Training Optimization Tips</h3>
 <p><strong>Tip 1: Use Managed Spot Training</strong>
 Enable Spot instances for training jobs—saves 70-90% with automatic checkpoint handling for interruptions.</p>
 <p><strong>Tip 2: Implement Early Stopping</strong>
@@ -3819,7 +3819,7 @@ Continue training from previous model—faster convergence, cost savings.</p>
 <a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>    <span class="n">inputs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;training&#39;</span><span class="p">:</span> <span class="n">train_data</span><span class="p">,</span> <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">previous_model_uri</span><span class="p">}</span>
 <a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="p">)</span>
 </code></pre></div>
-<h3 id="inference-optimization-tips">Inference Optimization Tips<a class="headerlink" href="#inference-optimization-tips" title="Permanent link">&para;</a></h3>
+<h3 id="inference-optimization-tips">Inference Optimization Tips</h3>
 <p><strong>Tip 5: Use Multi-Model Endpoints</strong>
 Host multiple models on one endpoint—99% cost savings for many small models.</p>
 <p><strong>Tip 6: Implement Model Caching</strong>
@@ -3839,7 +3839,7 @@ Attach fractional GPU for inference—cheaper than full GPU instance.</p>
 </code></pre></div>
 <p><strong>Tip 10: Implement Request Batching</strong>
 Batch multiple requests together—improves throughput, reduces costs.</p>
-<h3 id="development-workflow-tips">Development Workflow Tips<a class="headerlink" href="#development-workflow-tips" title="Permanent link">&para;</a></h3>
+<h3 id="development-workflow-tips">Development Workflow Tips</h3>
 <p><strong>Tip 11: Use Local Mode for Debugging</strong>
 Test training/inference locally before cloud deployment—faster iteration.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sagemaker.local</span><span class="w"> </span><span class="kn">import</span> <span class="n">LocalSession</span>
@@ -3858,8 +3858,8 @@ Track all training runs automatically—compare metrics, reproduce results.</p>
 Monitor training in real-time—detect issues early (vanishing gradients, overfitting).</p>
 <p><strong>Tip 14: Implement Model Lineage</strong>
 Track data, code, hyperparameters for every model—full reproducibility.</p>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-inappropriate-instance-selection">Pitfall 1: Inappropriate Instance Selection<a class="headerlink" href="#pitfall-1-inappropriate-instance-selection" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-inappropriate-instance-selection">Pitfall 1: Inappropriate Instance Selection</h3>
 <p><strong>Problem:</strong> Using wrong instance type leads to slow training or wasted money.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -3943,7 +3943,7 @@ Deep learning image model on ml.m5.xlarge (CPU):</p>
 <li>Use Spot training for cost savings</li>
 </ul>
 <hr />
-<h3 id="pitfall-2-endpoint-cold-start-latency">Pitfall 2: Endpoint Cold Start Latency<a class="headerlink" href="#pitfall-2-endpoint-cold-start-latency" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-2-endpoint-cold-start-latency">Pitfall 2: Endpoint Cold Start Latency</h3>
 <p><strong>Problem:</strong> First prediction takes 5-30 seconds, affecting user experience.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4031,7 +4031,7 @@ Deep learning image model on ml.m5.xlarge (CPU):</p>
 <li>Consider smaller model architectures</li>
 </ul>
 <hr />
-<h3 id="pitfall-3-training-job-failures-without-checkpointing">Pitfall 3: Training Job Failures Without Checkpointing<a class="headerlink" href="#pitfall-3-training-job-failures-without-checkpointing" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-3-training-job-failures-without-checkpointing">Pitfall 3: Training Job Failures Without Checkpointing</h3>
 <p><strong>Problem:</strong> Long training jobs fail, losing all progress.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4107,7 +4107,7 @@ Deep learning image model on ml.m5.xlarge (CPU):</p>
 <li>Monitor training job interruptions</li>
 </ul>
 <hr />
-<h3 id="pitfall-4-endpoint-scaling-issues-under-load">Pitfall 4: Endpoint Scaling Issues Under Load<a class="headerlink" href="#pitfall-4-endpoint-scaling-issues-under-load" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-4-endpoint-scaling-issues-under-load">Pitfall 4: Endpoint Scaling Issues Under Load</h3>
 <p><strong>Problem:</strong> Endpoint overwhelmed during traffic spikes, requests timeout.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4210,7 +4210,7 @@ Deep learning image model on ml.m5.xlarge (CPU):</p>
 <li>Use queuing for spike protection</li>
 </ul>
 <hr />
-<h3 id="pitfall-5-excessive-endpoint-costs">Pitfall 5: Excessive Endpoint Costs<a class="headerlink" href="#pitfall-5-excessive-endpoint-costs" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-5-excessive-endpoint-costs">Pitfall 5: Excessive Endpoint Costs</h3>
 <p><strong>Problem:</strong> Real-time endpoints cost thousands per month despite low usage.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4332,7 +4332,7 @@ Deep learning image model on ml.m5.xlarge (CPU):</p>
 <li>Monitor endpoint costs weekly</li>
 </ul>
 <hr />
-<h3 id="pitfall-6-missing-model-monitoring-in-production">Pitfall 6: Missing Model Monitoring in Production<a class="headerlink" href="#pitfall-6-missing-model-monitoring-in-production" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-6-missing-model-monitoring-in-production">Pitfall 6: Missing Model Monitoring in Production</h3>
 <p><strong>Problem:</strong> Model performance degrades over time, undetected.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4431,7 +4431,7 @@ Deep learning image model on ml.m5.xlarge (CPU):</p>
 <li>Retrain models quarterly (minimum)</li>
 </ul>
 <hr />
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>Amazon SageMaker transforms machine learning from infrastructure complexity to managed simplicity, providing the complete ML lifecycle from data preparation through production deployment. This chapter covered SageMaker's core components—Studio IDE, training jobs, inference endpoints, model registry, and monitoring—enabling you to build, deploy, and maintain ML models at scale without DevOps expertise.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -4444,7 +4444,7 @@ Deep learning image model on ml.m5.xlarge (CPU):</p>
 <li><strong>A/B Test New Models:</strong> Use multi-variant endpoints for safe rollouts; gradual traffic shifting (10% → 50% → 100%) minimizes risk</li>
 </ul>
 <p>SageMaker connects to previous analytics services (Kinesis for features, Glue for data prep, Athena for feature engineering) while adding ML-specific capabilities. The next chapter explores AWS machine learning services for specific use cases—Rekognition for computer vision, Comprehend for NLP, and Personalize for recommendations—complementing SageMaker's custom model capabilities.</p>
-<h2 id="hands-on-lab-exercise">Hands-On Lab Exercise<a class="headerlink" href="#hands-on-lab-exercise" title="Permanent link">&para;</a></h2>
+<h2 id="hands-on-lab-exercise">Hands-On Lab Exercise</h2>
 <p><strong>Objective:</strong> Build end-to-end ML pipeline: train model, deploy endpoint, enable monitoring, implement A/B testing.</p>
 <p><strong>Scenario:</strong> Predict customer churn using historical data.</p>
 <p><strong>Prerequisites:</strong></p>
@@ -4503,7 +4503,7 @@ Deep learning image model on ml.m5.xlarge (CPU):</p>
 <li>A/B test showing performance comparison</li>
 <li>Total cost: &lt;\$2 (Spot training + 1 hour endpoint)</li>
 </ul>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>Which SageMaker inference option is most cost-effective for 500 requests/day?</strong>
 a) Real-time endpoint

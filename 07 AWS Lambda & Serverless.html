@@ -2776,14 +2776,14 @@
   
 
 
-<h1 id="chapter-7-aws-lambda-serverless">Chapter 7: AWS Lambda \&amp; Serverless<a class="headerlink" href="#chapter-7-aws-lambda-serverless" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-7-aws-lambda-serverless">Chapter 7: AWS Lambda \&amp; Serverless</h1>
+<h2 id="introduction">Introduction</h2>
 <p>AWS Lambda revolutionized cloud computing by introducing serverless compute, eliminating the need to provision or manage servers. With Lambda, you upload your code, and AWS handles everything else: provisioning capacity, scaling, patching, monitoring, and high availability. This paradigm shift allows developers to focus entirely on business logic while AWS manages the infrastructure, embodying the true promise of cloud computing—paying only for what you use, measured in milliseconds.</p>
 <p>Serverless architecture extends far beyond Lambda itself. Amazon API Gateway provides fully managed REST and WebSocket APIs, Amazon EventBridge enables event-driven architectures, AWS Step Functions orchestrates complex workflows, and DynamoDB offers serverless NoSQL databases. Together, these services form a complete serverless ecosystem where you can build sophisticated applications without managing a single server. This architecture pattern is particularly powerful for event-driven workloads, microservices, data processing pipelines, and backends for mobile and web applications.</p>
 <p>However, serverless computing introduces unique challenges and paradigms. Cold starts impact response times when functions haven't been invoked recently. Concurrency limits can throttle applications during traffic spikes. VPC Lambda functions face initialization latency. Memory allocation directly affects both performance and cost. State management requires external services since Lambda functions are stateless. Understanding these nuances separates successful serverless implementations from problematic ones.</p>
 <p>This chapter provides comprehensive coverage of AWS Lambda and serverless architectures from fundamentals to production patterns. You'll learn Lambda's execution model, event sources, deployment patterns, performance optimization, error handling, observability, and cost optimization. Whether you're building APIs, processing streams, automating workflows, or creating event-driven systems, mastering Lambda is essential for modern AWS architectures.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="serverless-computing-fundamentals">Serverless Computing Fundamentals<a class="headerlink" href="#serverless-computing-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="serverless-computing-fundamentals">Serverless Computing Fundamentals</h3>
 <p><strong>What is Serverless?</strong></p>
 <p>Serverless doesn't mean "no servers"—servers still exist, but you don't manage them. AWS provisions, scales, and maintains infrastructure automatically.</p>
 <p><strong>Key Characteristics:</strong></p>
@@ -2811,7 +2811,7 @@
 <li>Debugging complexity</li>
 <li>Limited control over runtime environment</li>
 </ul>
-<h3 id="lambda-execution-model">Lambda Execution Model<a class="headerlink" href="#lambda-execution-model" title="Permanent link">&para;</a></h3>
+<h3 id="lambda-execution-model">Lambda Execution Model</h3>
 <p><strong>Invocation Flow:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Event Source → Lambda Service → Execution Environment → Your Code → Response
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                     ↓
@@ -2842,7 +2842,7 @@
 <li>May be reused for subsequent invocations (warm start)</li>
 <li>Eventually shut down after inactivity</li>
 </ul>
-<h3 id="cold-starts-vs-warm-starts">Cold Starts vs Warm Starts<a class="headerlink" href="#cold-starts-vs-warm-starts" title="Permanent link">&para;</a></h3>
+<h3 id="cold-starts-vs-warm-starts">Cold Starts vs Warm Starts</h3>
 <p><strong>Cold Start:</strong>
 First invocation or after period of inactivity requiring environment initialization.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Timeline:
@@ -2915,7 +2915,7 @@ Subsequent invocation reusing existing execution environment.</p>
 <li><strong>Dependencies:</strong> More dependencies = longer initialization</li>
 <li><strong>Lambda SnapStart:</strong> Java functions start ~10x faster</li>
 </ol>
-<h3 id="lambda-configuration">Lambda Configuration<a class="headerlink" href="#lambda-configuration" title="Permanent link">&para;</a></h3>
+<h3 id="lambda-configuration">Lambda Configuration</h3>
 <p><strong>Memory \&amp; CPU:</strong></p>
 <p>Memory: 128 MB to 10,240 MB (10 GB) in 1 MB increments
 CPU: Scales linearly with memory</p>
@@ -2948,7 +2948,7 @@ CPU: Scales linearly with memory</p>
 <li>Encrypted at rest with KMS</li>
 <li>Use for configuration, not secrets (use Secrets Manager)</li>
 </ul>
-<h3 id="event-sources-and-invocation-types">Event Sources and Invocation Types<a class="headerlink" href="#event-sources-and-invocation-types" title="Permanent link">&para;</a></h3>
+<h3 id="event-sources-and-invocation-types">Event Sources and Invocation Types</h3>
 <p><strong>Invocation Types:</strong></p>
 <p><strong>1. Synchronous (Request-Response):</strong>
 Caller waits for response.</p>
@@ -2989,7 +2989,7 @@ Lambda polls event source.</p>
 <li>Kafka (MSK/Self-managed)</li>
 </ul>
 <p>Lambda service polls source and invokes function with batches.</p>
-<h3 id="common-event-sources">Common Event Sources<a class="headerlink" href="#common-event-sources" title="Permanent link">&para;</a></h3>
+<h3 id="common-event-sources">Common Event Sources</h3>
 <table>
 <thead>
 <tr>
@@ -3068,7 +3068,7 @@ Lambda polls event source.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="lambda-pricing">Lambda Pricing<a class="headerlink" href="#lambda-pricing" title="Permanent link">&para;</a></h3>
+<h3 id="lambda-pricing">Lambda Pricing</h3>
 <p><strong>Compute Charges:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Price per request: $0.20 per 1M requests
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Price per GB-second: $0.0000166667 per GB-second
@@ -3099,7 +3099,7 @@ Lambda polls event source.</p>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Cost: 10 × 1 GB × 730 hours × $0.015 = $109.50/month
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>(Plus regular invocation charges)
 </code></pre></div>
-<h3 id="lambda-permissions">Lambda Permissions<a class="headerlink" href="#lambda-permissions" title="Permanent link">&para;</a></h3>
+<h3 id="lambda-permissions">Lambda Permissions</h3>
 <p><strong>Execution Role:</strong>
 IAM role Lambda assumes to access AWS services.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">{</span>
@@ -3145,7 +3145,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">  </span><span class="p">]</span>
 <a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="lambda-layers">Lambda Layers<a class="headerlink" href="#lambda-layers" title="Permanent link">&para;</a></h3>
+<h3 id="lambda-layers">Lambda Layers</h3>
 <p>Layers allow sharing code/dependencies across functions.</p>
 <p><strong>Structure:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>layer.zip
@@ -3171,7 +3171,7 @@ Controls who can invoke the function.</p>
 <li>Common utilities</li>
 <li>Large dependencies (ML models)</li>
 </ul>
-<h3 id="concurrency-and-throttling">Concurrency and Throttling<a class="headerlink" href="#concurrency-and-throttling" title="Permanent link">&para;</a></h3>
+<h3 id="concurrency-and-throttling">Concurrency and Throttling</h3>
 <p><strong>Concurrency Types:</strong></p>
 <p><strong>1. Account Concurrency Limit:</strong></p>
 <ul>
@@ -3214,7 +3214,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Example:
 <a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>100 requests/sec × 2 sec duration = 200 concurrent executions needed
 </code></pre></div>
-<h3 id="vpc-lambda-configuration">VPC Lambda Configuration<a class="headerlink" href="#vpc-lambda-configuration" title="Permanent link">&para;</a></h3>
+<h3 id="vpc-lambda-configuration">VPC Lambda Configuration</h3>
 <p>Lambda functions can access resources in VPC (RDS, ElastiCache, etc.).</p>
 <p><strong>Traditional VPC Lambda (Pre-2019):</strong></p>
 <ul>
@@ -3275,10 +3275,10 @@ Controls who can invoke the function.</p>
 <li>Java microservices</li>
 <li>Applications with slow initialization</li>
 </ul>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-building-your-first-lambda-function">Lab 1: Building Your First Lambda Function<a class="headerlink" href="#lab-1-building-your-first-lambda-function" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-building-your-first-lambda-function">Lab 1: Building Your First Lambda Function</h3>
 <p><strong>Objective:</strong> Create a Lambda function that processes S3 events.</p>
-<h4 id="step-1-create-lambda-function-python">Step 1: Create Lambda Function (Python)<a class="headerlink" href="#step-1-create-lambda-function-python" title="Permanent link">&para;</a></h4>
+<h4 id="step-1-create-lambda-function-python">Step 1: Create Lambda Function (Python)</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># lambda_function.py</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3332,7 +3332,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-14-51" name="__codelineno-14-51" href="#__codelineno-14-51"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error processing object: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <a id="__codelineno-14-52" name="__codelineno-14-52" href="#__codelineno-14-52"></a>        <span class="k">raise</span> <span class="n">e</span>
 </code></pre></div>
-<h4 id="step-2-create-iam-role">Step 2: Create IAM Role<a class="headerlink" href="#step-2-create-iam-role" title="Permanent link">&para;</a></h4>
+<h4 id="step-2-create-iam-role">Step 2: Create IAM Role</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Create trust policy</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>lambda-trust-policy.json<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="s">{</span>
@@ -3383,7 +3383,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-15-48" name="__codelineno-15-48" href="#__codelineno-15-48"></a><span class="w">    </span>--policy-name<span class="w"> </span>S3AccessPolicy<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-15-49" name="__codelineno-15-49" href="#__codelineno-15-49"></a><span class="w">    </span>--policy-document<span class="w"> </span>file://s3-policy.json
 </code></pre></div>
-<h4 id="step-3-deploy-lambda-function">Step 3: Deploy Lambda Function<a class="headerlink" href="#step-3-deploy-lambda-function" title="Permanent link">&para;</a></h4>
+<h4 id="step-3-deploy-lambda-function">Step 3: Deploy Lambda Function</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Package function</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>zip<span class="w"> </span><span class="k">function</span>.zip<span class="w"> </span>lambda_function.py
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
@@ -3403,7 +3403,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>
 <a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Function ARN: </span><span class="nv">$FUNCTION_ARN</span><span class="s2">&quot;</span>
 </code></pre></div>
-<h4 id="step-4-configure-s3-trigger">Step 4: Configure S3 Trigger<a class="headerlink" href="#step-4-configure-s3-trigger" title="Permanent link">&para;</a></h4>
+<h4 id="step-4-configure-s3-trigger">Step 4: Configure S3 Trigger</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Add permission for S3 to invoke Lambda</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>aws<span class="w"> </span>lambda<span class="w"> </span>add-permission<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span>--function-name<span class="w"> </span>s3-object-processor<span class="w"> </span><span class="se">\</span>
@@ -3442,7 +3442,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a><span class="w">    </span>--bucket<span class="w"> </span>my-upload-bucket<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a><span class="w">    </span>--notification-configuration<span class="w"> </span>file://s3-notification.json
 </code></pre></div>
-<h4 id="step-5-test-function">Step 5: Test Function<a class="headerlink" href="#step-5-test-function" title="Permanent link">&para;</a></h4>
+<h4 id="step-5-test-function">Step 5: Test Function</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Upload test file</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;{&quot;test&quot;: &quot;data&quot;}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>test.json
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>aws<span class="w"> </span>s3<span class="w"> </span>cp<span class="w"> </span>test.json<span class="w"> </span>s3://my-upload-bucket/uploads/test.json
@@ -3450,9 +3450,9 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="c1"># Check CloudWatch Logs</span>
 <a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>aws<span class="w"> </span>logs<span class="w"> </span>tail<span class="w"> </span>/aws/lambda/s3-object-processor<span class="w"> </span>--follow
 </code></pre></div>
-<h3 id="lab-2-building-rest-api-with-lambda-and-api-gateway">Lab 2: Building REST API with Lambda and API Gateway<a class="headerlink" href="#lab-2-building-rest-api-with-lambda-and-api-gateway" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-building-rest-api-with-lambda-and-api-gateway">Lab 2: Building REST API with Lambda and API Gateway</h3>
 <p><strong>Objective:</strong> Create a serverless REST API for managing todo items.</p>
-<h4 id="step-1-create-dynamodb-table">Step 1: Create DynamoDB Table<a class="headerlink" href="#step-1-create-dynamodb-table" title="Permanent link">&para;</a></h4>
+<h4 id="step-1-create-dynamodb-table">Step 1: Create DynamoDB Table</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>aws<span class="w"> </span>dynamodb<span class="w"> </span>create-table<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span>--table-name<span class="w"> </span>TodoItems<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span>--attribute-definitions<span class="w"> </span><span class="se">\</span>
@@ -3464,7 +3464,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">    </span>--billing-mode<span class="w"> </span>PAY_PER_REQUEST<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">    </span>--tags<span class="w"> </span><span class="nv">Key</span><span class="o">=</span>Environment,Value<span class="o">=</span>Production
 </code></pre></div>
-<h4 id="step-2-create-lambda-functions">Step 2: Create Lambda Functions<a class="headerlink" href="#step-2-create-lambda-functions" title="Permanent link">&para;</a></h4>
+<h4 id="step-2-create-lambda-functions">Step 2: Create Lambda Functions</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># todo_api.py</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3586,7 +3586,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-20-119" name="__codelineno-20-119" href="#__codelineno-20-119"></a>        <span class="s1">&#39;body&#39;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
 <a id="__codelineno-20-120" name="__codelineno-20-120" href="#__codelineno-20-120"></a>    <span class="p">}</span>
 </code></pre></div>
-<h4 id="step-3-deploy-lambda-with-dependencies">Step 3: Deploy Lambda with Dependencies<a class="headerlink" href="#step-3-deploy-lambda-with-dependencies" title="Permanent link">&para;</a></h4>
+<h4 id="step-3-deploy-lambda-with-dependencies">Step 3: Deploy Lambda with Dependencies</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Create requirements.txt</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="s">boto3==1.28.0</span>
@@ -3614,7 +3614,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a><span class="w">    </span>--memory-size<span class="w"> </span><span class="m">512</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a><span class="w">    </span>--environment<span class="w"> </span><span class="nv">Variables</span><span class="o">=</span><span class="s2">&quot;{TABLE_NAME=TodoItems}&quot;</span>
 </code></pre></div>
-<h4 id="step-4-create-api-gateway">Step 4: Create API Gateway<a class="headerlink" href="#step-4-create-api-gateway" title="Permanent link">&para;</a></h4>
+<h4 id="step-4-create-api-gateway">Step 4: Create API Gateway</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Create REST API</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="nv">API_ID</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>apigateway<span class="w"> </span>create-rest-api<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span>--name<span class="w"> </span><span class="s2">&quot;Todo API&quot;</span><span class="w"> </span><span class="se">\</span>
@@ -3669,7 +3669,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-22-52" name="__codelineno-22-52" href="#__codelineno-22-52"></a><span class="c1"># Get API endpoint</span>
 <a id="__codelineno-22-53" name="__codelineno-22-53" href="#__codelineno-22-53"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;API Endpoint: https://</span><span class="nv">$API_ID</span><span class="s2">.execute-api.us-east-1.amazonaws.com/prod/todos&quot;</span>
 </code></pre></div>
-<h3 id="lab-3-eventbridge-scheduled-lambda">Lab 3: EventBridge Scheduled Lambda<a class="headerlink" href="#lab-3-eventbridge-scheduled-lambda" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-eventbridge-scheduled-lambda">Lab 3: EventBridge Scheduled Lambda</h3>
 <p><strong>Objective:</strong> Create scheduled Lambda function to clean up old data.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># cleanup_lambda.py</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3794,8 +3794,8 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a><span class="w">    </span>--principal<span class="w"> </span>events.amazonaws.com<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a><span class="w">    </span>--source-arn<span class="w"> </span>arn:aws:events:us-east-1:123456789012:rule/daily-cleanup
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="error-handling-and-retry-logic">Error Handling and Retry Logic<a class="headerlink" href="#error-handling-and-retry-logic" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="error-handling-and-retry-logic">Error Handling and Retry Logic</h3>
 <p><strong>Built-in Retry Behavior:</strong></p>
 <table>
 <thead>
@@ -3994,7 +3994,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-27-78" name="__codelineno-27-78" href="#__codelineno-27-78"></a>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 <a id="__codelineno-27-79" name="__codelineno-27-79" href="#__codelineno-27-79"></a>        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;statusCode&#39;</span><span class="p">:</span> <span class="mi">503</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)})}</span>
 </code></pre></div>
-<h3 id="advanced-observability">Advanced Observability<a class="headerlink" href="#advanced-observability" title="Permanent link">&para;</a></h3>
+<h3 id="advanced-observability">Advanced Observability</h3>
 <p><strong>Structured Logging with AWS Lambda Powertools:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># advanced_logging.py</span>
 <a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">aws_lambda_powertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Logger</span><span class="p">,</span> <span class="n">Tracer</span><span class="p">,</span> <span class="n">Metrics</span>
@@ -4173,7 +4173,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-30-41" name="__codelineno-30-41" href="#__codelineno-30-41"></a>
 <a id="__codelineno-30-42" name="__codelineno-30-42" href="#__codelineno-30-42"></a>    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;success&#39;</span><span class="p">}</span>
 </code></pre></div>
-<h3 id="lambda-performance-optimization">Lambda Performance Optimization<a class="headerlink" href="#lambda-performance-optimization" title="Permanent link">&para;</a></h3>
+<h3 id="lambda-performance-optimization">Lambda Performance Optimization</h3>
 <p><strong>Memory vs Performance vs Cost:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># benchmark_memory.py</span>
 <a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
@@ -4302,7 +4302,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-33-29" name="__codelineno-33-29" href="#__codelineno-33-29"></a>    <span class="c1"># Libraries already imported locally</span>
 <a id="__codelineno-33-30" name="__codelineno-33-30" href="#__codelineno-33-30"></a>    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;result&#39;</span><span class="p">:</span> <span class="s1">&#39;complex&#39;</span><span class="p">}</span>
 </code></pre></div>
-<h3 id="cost-optimization-strategies">Cost Optimization Strategies<a class="headerlink" href="#cost-optimization-strategies" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization-strategies">Cost Optimization Strategies</h3>
 <p><strong>Lambda Compute Savings Plan:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>Commit to consistent usage (compute seconds per hour)
 <a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>Example: Commit to 100 compute-seconds/hour for 1 year
@@ -4386,8 +4386,8 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-36-29" name="__codelineno-36-29" href="#__codelineno-36-29"></a>
 <a id="__codelineno-36-30" name="__codelineno-36-30" href="#__codelineno-36-30"></a>    <span class="k">return</span> <span class="n">execution</span><span class="p">[</span><span class="s1">&#39;executionArn&#39;</span><span class="p">]</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="cold-start-optimization-tips">Cold Start Optimization Tips<a class="headerlink" href="#cold-start-optimization-tips" title="Permanent link">&para;</a></h3>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
+<h3 id="cold-start-optimization-tips">Cold Start Optimization Tips</h3>
 <p><strong>Tip 1: Use Provisioned Concurrency for Latency-Sensitive APIs</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="c1"># Enable provisioned concurrency</span>
 <a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>aws<span class="w"> </span>lambda<span class="w"> </span>put-provisioned-concurrency-config<span class="w"> </span><span class="se">\</span>
@@ -4470,7 +4470,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-40-16" name="__codelineno-40-16" href="#__codelineno-40-16"></a><span class="w">    </span><span class="c1"># Normal processing</span>
 <a id="__codelineno-40-17" name="__codelineno-40-17" href="#__codelineno-40-17"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span>process_request<span class="o">(</span>event<span class="o">)</span>
 </code></pre></div>
-<h3 id="memory-configuration-tips">Memory Configuration Tips<a class="headerlink" href="#memory-configuration-tips" title="Permanent link">&para;</a></h3>
+<h3 id="memory-configuration-tips">Memory Configuration Tips</h3>
 <p><strong>Tip 5: Start with 1024 MB for Most Functions</strong></p>
 <p>Sweet spot for price/performance:</p>
 <ul>
@@ -4501,7 +4501,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-41-20" name="__codelineno-41-20" href="#__codelineno-41-20"></a>
 <a id="__codelineno-41-21" name="__codelineno-41-21" href="#__codelineno-41-21"></a>    <span class="k">return</span> <span class="n">result</span>
 </code></pre></div>
-<h3 id="vpc-lambda-tips">VPC Lambda Tips<a class="headerlink" href="#vpc-lambda-tips" title="Permanent link">&para;</a></h3>
+<h3 id="vpc-lambda-tips">VPC Lambda Tips</h3>
 <p><strong>Tip 7: Use VPC Endpoints for AWS Services</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="c1"># Instead of NAT Gateway ($32/month + data)</span>
 <a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="c1"># Use VPC endpoints (free for S3/DynamoDB, small cost for others)</span>
@@ -4526,7 +4526,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="c1"># RDS primary: us-east-1a</span>
 <a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a><span class="c1"># Most invocations will be in same AZ (lower latency)</span>
 </code></pre></div>
-<h3 id="error-handling-tips">Error Handling Tips<a class="headerlink" href="#error-handling-tips" title="Permanent link">&para;</a></h3>
+<h3 id="error-handling-tips">Error Handling Tips</h3>
 <p><strong>Tip 9: Implement Dead Letter Queues</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="c1"># Configure DLQ for asynchronous functions</span>
 <a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>aws<span class="w"> </span>lambda<span class="w"> </span>update-function-configuration<span class="w"> </span><span class="se">\</span>
@@ -4549,7 +4549,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-45-10" name="__codelineno-45-10" href="#__codelineno-45-10"></a><span class="s1">      }</span>
 <a id="__codelineno-45-11" name="__codelineno-45-11" href="#__codelineno-45-11"></a><span class="s1">    }&#39;</span>
 </code></pre></div>
-<h3 id="security-tips">Security Tips<a class="headerlink" href="#security-tips" title="Permanent link">&para;</a></h3>
+<h3 id="security-tips">Security Tips</h3>
 <p><strong>Tip 11: Use Parameter Store for Configuration</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="c1"># Cached parameter retrieval</span>
 <a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -4597,7 +4597,7 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-47-19" name="__codelineno-47-19" href="#__codelineno-47-19"></a><span class="w">  </span><span class="p">]</span>
 <a id="__codelineno-47-20" name="__codelineno-47-20" href="#__codelineno-47-20"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="monitoring-tips">Monitoring Tips<a class="headerlink" href="#monitoring-tips" title="Permanent link">&para;</a></h3>
+<h3 id="monitoring-tips">Monitoring Tips</h3>
 <p><strong>Tip 13: Use Custom Metrics</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
 <a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>
@@ -4631,8 +4631,8 @@ Controls who can invoke the function.</p>
 <a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a><span class="w">    </span>--actions-enabled<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a><span class="w">    </span>--alarm-actions<span class="w"> </span>arn:aws:sns:us-east-1:123456789012:critical-alerts
 </code></pre></div>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-timeout-issues">Pitfall 1: Timeout Issues<a class="headerlink" href="#pitfall-1-timeout-issues" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-timeout-issues">Pitfall 1: Timeout Issues</h3>
 <p><strong>Problem:</strong> Lambda function times out before completing work.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4789,7 +4789,7 @@ Controls who can invoke the function.</p>
 <li>Add circuit breakers for external dependencies</li>
 </ul>
 <hr />
-<h3 id="pitfall-2-concurrency-throttling">Pitfall 2: Concurrency Throttling<a class="headerlink" href="#pitfall-2-concurrency-throttling" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-2-concurrency-throttling">Pitfall 2: Concurrency Throttling</h3>
 <p><strong>Problem:</strong> Lambda throttled due to concurrency limits, causing 429 errors.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4902,7 +4902,7 @@ Controls who can invoke the function.</p>
 <li>Implement exponential backoff in clients</li>
 </ul>
 <hr />
-<h3 id="pitfall-3-vpc-lambda-performance-issues">Pitfall 3: VPC Lambda Performance Issues<a class="headerlink" href="#pitfall-3-vpc-lambda-performance-issues" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-3-vpc-lambda-performance-issues">Pitfall 3: VPC Lambda Performance Issues</h3>
 <p><strong>Problem:</strong> VPC Lambda functions have slow cold starts and high latency.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5002,7 +5002,7 @@ Controls who can invoke the function.</p>
 <li>Test VPC Lambda performance before production</li>
 </ul>
 <hr />
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>AWS Lambda and serverless computing represent a fundamental shift in how applications are built and deployed. By eliminating server management and providing automatic scaling with pay-per-use pricing, Lambda enables developers to focus on business logic rather than infrastructure. Understanding Lambda's execution model, cold starts, concurrency, VPC configuration, and cost optimization is essential for building production-grade serverless applications.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -5016,7 +5016,7 @@ Controls who can invoke the function.</p>
 </ul>
 <p>Understanding Lambda deeply, from cold start optimization to production error handling patterns, enables you to build scalable, cost-effective, event-driven applications that leverage the full power of serverless computing.</p>
 <p>In Chapter 8, we'll explore AWS storage services (S3, EBS, EFS), which often serve as triggers and data stores for serverless applications.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>What is the maximum Lambda execution time?</strong>
 a) 5 minutes

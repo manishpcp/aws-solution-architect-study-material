@@ -1677,14 +1677,14 @@
   
 
 
-<h1 id="part-12-advanced-architectures">Part 12: Advanced Architectures<a class="headerlink" href="#part-12-advanced-architectures" title="Permanent link">&para;</a></h1>
-<h1 id="chapter-33-microservices-patterns">Chapter 33: Microservices Patterns<a class="headerlink" href="#chapter-33-microservices-patterns" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="part-12-advanced-architectures">Part 12: Advanced Architectures</h1>
+<h1 id="chapter-33-microservices-patterns">Chapter 33: Microservices Patterns</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Monolithic applications—single deployable units containing all business logic—served organizations well for decades but crumble under modern demands: scaling entire application when only one feature needs capacity, deploying entire codebase for single-line bug fix taking hours of downtime, technology locked into decade-old framework choices, and teams of 50+ engineers stepping on each other's code causing deployment conflicts. A e-commerce monolith requiring 4-hour deployment windows for every change, scaling vertically to \$50K/month in compute costs, and taking 6 months to add new payment provider cannot compete with competitors deploying features daily, scaling specific services independently, and integrating new technologies in weeks. Microservices architecture—decomposing applications into independent, loosely-coupled services each owning specific business capabilities—enables organizations to achieve deployment velocity, independent scaling, technology diversity, and team autonomy that modern business demands require.</p>
 <p>The transition from monolith to microservices introduces new complexity: distributed systems require service discovery mechanisms so services find each other, circuit breakers preventing cascading failures, API composition aggregating data from multiple services, saga patterns maintaining data consistency across service boundaries, and distributed tracing understanding request flows through dozens of services. A simple user registration in monolith becomes coordinated dance across User Service, Email Service, Payment Service, and Notification Service each potentially failing independently. Organizations naively adopting microservices without addressing distributed systems challenges experience 3× increase in operational complexity, longer mean time to recovery due to difficult debugging, data consistency nightmares from distributed transactions, and higher infrastructure costs from service proliferation. AWS provides comprehensive microservices toolkit—ECS/EKS for container orchestration, App Mesh for service mesh, X-Ray for distributed tracing, EventBridge for event-driven communication—enabling organizations to build resilient microservices architectures.</p>
 <p>This chapter synthesizes AWS services throughout handbook—ECS/EKS from containers chapter for service deployment, ALB from networking for service routing, DynamoDB for per-service databases, SQS/SNS for asynchronous communication, Lambda for serverless services, CloudWatch for monitoring, and X-Ray for distributed tracing. The chapter covers microservices patterns (service discovery, circuit breakers, API Gateway composition, saga patterns, event sourcing), service mesh architecture with App Mesh, observability strategies for distributed systems, data management patterns, resilience patterns, contract testing, service versioning, and building production microservices systems that deliver business agility while managing distributed systems complexity through proven patterns, robust tooling, and operational discipline.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="microservices-architecture-fundamentals">Microservices Architecture Fundamentals<a class="headerlink" href="#microservices-architecture-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="microservices-architecture-fundamentals">Microservices Architecture Fundamentals</h3>
 <p><strong>Core Principles and Patterns:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Microservices Definition:
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Architectural style structuring application as collection of:
@@ -1818,7 +1818,7 @@
 <a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>- Change frequency (deploy together?)
 <a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>- Data relationships (need transactions?)
 </code></pre></div>
-<h3 id="service-discovery-pattern">Service Discovery Pattern<a class="headerlink" href="#service-discovery-pattern" title="Permanent link">&para;</a></h3>
+<h3 id="service-discovery-pattern">Service Discovery Pattern</h3>
 <p><strong>Dynamic Service Location:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Service Discovery Problem:
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>In microservices, services need to find each other
@@ -1961,7 +1961,7 @@
 <a id="__codelineno-1-139" name="__codelineno-1-139" href="#__codelineno-1-139"></a>4. Cache discovery results (reduce latency)
 <a id="__codelineno-1-140" name="__codelineno-1-140" href="#__codelineno-1-140"></a>5. Handle service unavailability gracefully
 </code></pre></div>
-<h3 id="circuit-breaker-pattern">Circuit Breaker Pattern<a class="headerlink" href="#circuit-breaker-pattern" title="Permanent link">&para;</a></h3>
+<h3 id="circuit-breaker-pattern">Circuit Breaker Pattern</h3>
 <p><strong>Preventing Cascading Failures:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Circuit Breaker Purpose:
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Prevent calling failing service repeatedly
@@ -2127,7 +2127,7 @@
 <a id="__codelineno-2-162" name="__codelineno-2-162" href="#__codelineno-2-162"></a>5. Exponential backoff for timeout period
 <a id="__codelineno-2-163" name="__codelineno-2-163" href="#__codelineno-2-163"></a>6. Different breakers per dependency
 </code></pre></div>
-<h3 id="api-composition-pattern">API Composition Pattern<a class="headerlink" href="#api-composition-pattern" title="Permanent link">&para;</a></h3>
+<h3 id="api-composition-pattern">API Composition Pattern</h3>
 <p><strong>Aggregating Data from Multiple Services:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>API Composition Problem:
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>UI needs data from multiple microservices
@@ -2339,7 +2339,7 @@
 <a id="__codelineno-3-208" name="__codelineno-3-208" href="#__codelineno-3-208"></a>- Caching more difficult
 <a id="__codelineno-3-209" name="__codelineno-3-209" href="#__codelineno-3-209"></a>- N+1 query problem (requires DataLoader)
 </code></pre></div>
-<h3 id="saga-pattern-distributed-transactions">Saga Pattern (Distributed Transactions)<a class="headerlink" href="#saga-pattern-distributed-transactions" title="Permanent link">&para;</a></h3>
+<h3 id="saga-pattern-distributed-transactions">Saga Pattern (Distributed Transactions)</h3>
 <p><strong>Managing Data Consistency Across Services:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Saga Pattern Purpose:
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Maintain data consistency across multiple services
@@ -2572,8 +2572,8 @@
 <a id="__codelineno-4-229" name="__codelineno-4-229" href="#__codelineno-4-229"></a>   Chaos engineering (inject failures)
 <a id="__codelineno-4-230" name="__codelineno-4-230" href="#__codelineno-4-230"></a>   Validate eventual consistency
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-building-microservices-with-ecs">Lab 1: Building Microservices with ECS<a class="headerlink" href="#lab-1-building-microservices-with-ecs" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-building-microservices-with-ecs">Lab 1: Building Microservices with ECS</h3>
 <p><strong>Objective:</strong> Deploy microservices architecture using Amazon ECS with service discovery.</p>
 <p><strong>Step 1: Create VPC and ECS Cluster</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3117,7 +3117,7 @@
 <a id="__codelineno-8-180" name="__codelineno-8-180" href="#__codelineno-8-180"></a>
 <a id="__codelineno-8-181" name="__codelineno-8-181" href="#__codelineno-8-181"></a>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">health_status</span><span class="p">),</span> <span class="mi">200</span>
 </code></pre></div>
-<h3 id="lab-2-implementing-service-mesh-with-aws-app-mesh">Lab 2: Implementing Service Mesh with AWS App Mesh<a class="headerlink" href="#lab-2-implementing-service-mesh-with-aws-app-mesh" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-implementing-service-mesh-with-aws-app-mesh">Lab 2: Implementing Service Mesh with AWS App Mesh</h3>
 <p><strong>Objective:</strong> Add service mesh for advanced traffic management and observability.</p>
 <p><strong>Step 1: Create App Mesh</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">appmesh</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;appmesh&#39;</span><span class="p">)</span>
@@ -3423,8 +3423,8 @@
 <a id="__codelineno-12-121" name="__codelineno-12-121" href="#__codelineno-12-121"></a>    <span class="n">canary_node</span><span class="o">=</span><span class="s1">&#39;user-service-v2-vn&#39;</span>
 <a id="__codelineno-12-122" name="__codelineno-12-122" href="#__codelineno-12-122"></a><span class="p">)</span>
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="distributed-tracing-and-observability">Distributed Tracing and Observability<a class="headerlink" href="#distributed-tracing-and-observability" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="distributed-tracing-and-observability">Distributed Tracing and Observability</h3>
 <p><strong>Understanding Request Flow Across Services:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Observability Challenges in Microservices:
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
@@ -3629,7 +3629,7 @@
 <a id="__codelineno-13-201" name="__codelineno-13-201" href="#__codelineno-13-201"></a>- Runbooks for each alert
 <a id="__codelineno-13-202" name="__codelineno-13-202" href="#__codelineno-13-202"></a>- Regular alert review and tuning
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
 <p><strong>Tip 1: Start with Monolith, Migrate to Microservices</strong>
 Build monolith first, identify bounded contexts, then extract microservices—premature microservices increases complexity without benefits.</p>
 <p><strong>Tip 2: One Database Per Service</strong>
@@ -3650,7 +3650,7 @@ Alert when circuit breakers open—indicates service degradation requiring inves
 Event-driven communication for non-critical paths—reduces coupling, improves resilience, enables eventual consistency.</p>
 <p><strong>Tip 10: Invest in Observability Early</strong>
 Distributed tracing, structured logging, metrics from day one—distributed systems impossible to debug without comprehensive observability.</p>
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>Microservices architecture decomposes monolithic applications into independent, loosely-coupled services enabling deployment velocity, independent scaling, technology diversity, and team autonomy required for modern business agility. Success requires implementing proven patterns—service discovery for dynamic service location, circuit breakers preventing cascading failures, API composition aggregating data efficiently, saga patterns maintaining data consistency, and comprehensive observability through distributed tracing. Organizations adopting microservices without addressing distributed systems complexity through service mesh, robust monitoring, and resilience patterns experience 3× operational overhead and longer mean time to recovery; proper implementation delivers 10× deployment frequency, independent service scaling, and technology choices optimized per service requirements.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>

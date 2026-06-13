@@ -3006,14 +3006,14 @@
   
 
 
-<h1 id="chapter-3-virtual-private-cloud-vpc">Chapter 3: Virtual Private Cloud (VPC)<a class="headerlink" href="#chapter-3-virtual-private-cloud-vpc" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-3-virtual-private-cloud-vpc">Chapter 3: Virtual Private Cloud (VPC)</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Amazon Virtual Private Cloud (VPC) is the networking foundation of your AWS infrastructure. It provides isolated network environments where you can launch AWS resources with complete control over IP addressing, subnets, route tables, and network gateways. While IAM controls <em>who</em> can access your resources, VPC controls <em>how</em> resources communicate with each other and the outside world.</p>
 <p>Think of VPC as your private data center in the cloud, but with the flexibility and scalability that traditional networking could never provide. You can create multiple isolated networks within a single AWS account, segment them into public and private subnets, control traffic flow with security groups and network ACLs, and connect to on-premises networks through VPN or Direct Connect. This level of control is essential for building secure, compliant, and high-performance applications.</p>
 <p>The importance of proper VPC design cannot be overstated. A well-architected VPC enables security through network isolation, supports high availability through multi-AZ deployments, facilitates hybrid cloud connectivity, and scales to accommodate future growth. Conversely, poor VPC design leads to IP address exhaustion, complex and fragile routing configurations, security vulnerabilities, and costly re-architecture efforts.</p>
 <p>This chapter provides comprehensive coverage of VPC fundamentals, advanced networking patterns, and production-ready architectures. You'll learn to design CIDR blocks that scale, implement defense-in-depth network security, build resilient multi-tier applications, and integrate on-premises networks seamlessly. Whether you're deploying your first application in AWS or architecting global-scale infrastructure, mastering VPC is fundamental to your success as a Solutions Architect.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="vpc-fundamentals">VPC Fundamentals<a class="headerlink" href="#vpc-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="vpc-fundamentals">VPC Fundamentals</h3>
 <p>A VPC is a logically isolated section of the AWS Cloud where you can launch resources in a virtual network that you define. Each VPC exists within a single AWS Region but can span multiple Availability Zones.</p>
 <p><strong>Key Characteristics:</strong></p>
 <ul>
@@ -3032,7 +3032,7 @@
 <li>Default security group and network ACL</li>
 <li>Convenient for getting started, but production workloads should use custom VPCs</li>
 </ul>
-<h3 id="cidr-blocks-and-ip-addressing">CIDR Blocks and IP Addressing<a class="headerlink" href="#cidr-blocks-and-ip-addressing" title="Permanent link">&para;</a></h3>
+<h3 id="cidr-blocks-and-ip-addressing">CIDR Blocks and IP Addressing</h3>
 <p>CIDR (Classless Inter-Domain Routing) notation defines IP address ranges for your VPC.</p>
 <p><strong>CIDR Notation:</strong> <code>10.0.0.0/16</code></p>
 <ul>
@@ -3112,7 +3112,7 @@
 <li>Must not overlap with existing CIDR blocks</li>
 <li>Cannot be removed if subnets are using them</li>
 </ul>
-<h3 id="subnets">Subnets<a class="headerlink" href="#subnets" title="Permanent link">&para;</a></h3>
+<h3 id="subnets">Subnets</h3>
 <p>Subnets are subdivisions of a VPC's IP address range where you launch AWS resources.</p>
 <p><strong>Subnet Characteristics:</strong></p>
 <ul>
@@ -3155,7 +3155,7 @@
 <a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>- 10.0.100.0/22 (1,019 hosts)
 <a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>- 10.1.0.0/16 (entire /16 block)
 </code></pre></div>
-<h3 id="route-tables">Route Tables<a class="headerlink" href="#route-tables" title="Permanent link">&para;</a></h3>
+<h3 id="route-tables">Route Tables</h3>
 <p>Route tables determine where network traffic from subnets is directed.</p>
 <p><strong>Route Table Components:</strong></p>
 <ul>
@@ -3193,7 +3193,7 @@
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>10.0.0.0/16        local
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>192.168.0.0/16     vgw-xxxxx (VPN to on-premises)
 </code></pre></div>
-<h3 id="internet-gateway-igw">Internet Gateway (IGW)<a class="headerlink" href="#internet-gateway-igw" title="Permanent link">&para;</a></h3>
+<h3 id="internet-gateway-igw">Internet Gateway (IGW)</h3>
 <p>An Internet Gateway enables communication between resources in your VPC and the internet.</p>
 <p><strong>IGW Characteristics:</strong></p>
 <ul>
@@ -3227,7 +3227,7 @@
 <li>Charged when not associated with running instance</li>
 <li>Useful for: NAT gateways, bastion hosts, whitelisting</li>
 </ul>
-<h3 id="nat-gateway-and-nat-instance">NAT Gateway and NAT Instance<a class="headerlink" href="#nat-gateway-and-nat-instance" title="Permanent link">&para;</a></h3>
+<h3 id="nat-gateway-and-nat-instance">NAT Gateway and NAT Instance</h3>
 <p>NAT (Network Address Translation) enables instances in private subnets to connect to the internet while preventing inbound connections.</p>
 <p><strong>NAT Gateway (AWS Managed):</strong></p>
 <p><strong>Characteristics:</strong></p>
@@ -3273,7 +3273,7 @@
 <li>NAT Gateway: Production workloads, HA required, hands-off management</li>
 <li>NAT Instance: Cost-sensitive environments, need additional functionality</li>
 </ul>
-<h3 id="security-groups">Security Groups<a class="headerlink" href="#security-groups" title="Permanent link">&para;</a></h3>
+<h3 id="security-groups">Security Groups</h3>
 <p>Security groups act as virtual firewalls controlling inbound and outbound traffic at the instance level.</p>
 <p><strong>Key Characteristics:</strong></p>
 <ul>
@@ -3325,7 +3325,7 @@
 <a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>Inbound: Port 3306 from App Server SG
 </code></pre></div>
 <p>This creates chained security that automatically adapts as instances are added/removed.</p>
-<h3 id="network-access-control-lists-nacls">Network Access Control Lists (NACLs)<a class="headerlink" href="#network-access-control-lists-nacls" title="Permanent link">&para;</a></h3>
+<h3 id="network-access-control-lists-nacls">Network Access Control Lists (NACLs)</h3>
 <p>NACLs are stateless firewalls that control traffic at the subnet level.</p>
 <p><strong>Key Characteristics:</strong></p>
 <ul>
@@ -3414,7 +3414,7 @@
 </tbody>
 </table>
 <p><strong>Best Practice:</strong> Use security groups as primary security layer, NACLs for additional subnet-level protection.</p>
-<h3 id="vpc-peering">VPC Peering<a class="headerlink" href="#vpc-peering" title="Permanent link">&para;</a></h3>
+<h3 id="vpc-peering">VPC Peering</h3>
 <p>VPC Peering creates a networking connection between two VPCs, enabling routing using private IP addresses.</p>
 <p><strong>Characteristics:</strong></p>
 <ul>
@@ -3445,7 +3445,7 @@
 <li>Multi-region disaster recovery</li>
 <li>Merging networks from acquired companies</li>
 </ul>
-<h3 id="transit-gateway">Transit Gateway<a class="headerlink" href="#transit-gateway" title="Permanent link">&para;</a></h3>
+<h3 id="transit-gateway">Transit Gateway</h3>
 <p>AWS Transit Gateway acts as a cloud router, connecting multiple VPCs and on-premises networks through a central hub.</p>
 <p><strong>Key Benefits:</strong></p>
 <ul>
@@ -3503,7 +3503,7 @@
 <li>\$0.02 per GB processed</li>
 <li>More expensive than VPC peering but provides more flexibility</li>
 </ul>
-<h3 id="vpc-endpoints">VPC Endpoints<a class="headerlink" href="#vpc-endpoints" title="Permanent link">&para;</a></h3>
+<h3 id="vpc-endpoints">VPC Endpoints</h3>
 <p>VPC Endpoints enable private connections to AWS services without traversing the internet.</p>
 <p><strong>Types of VPC Endpoints:</strong></p>
 <p><strong>1. Gateway Endpoints (S3 and DynamoDB):</strong></p>
@@ -3539,7 +3539,7 @@
 <li>PrivateLink for SaaS applications</li>
 <li>Service-to-service communication</li>
 </ul>
-<h3 id="vpc-flow-logs">VPC Flow Logs<a class="headerlink" href="#vpc-flow-logs" title="Permanent link">&para;</a></h3>
+<h3 id="vpc-flow-logs">VPC Flow Logs</h3>
 <p>VPC Flow Logs capture information about IP traffic flowing through network interfaces.</p>
 <p><strong>Capabilities:</strong></p>
 <ul>
@@ -3568,7 +3568,7 @@
 <a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="o">|</span><span class="w"> </span><span class="n">sort</span><span class="w"> </span><span class="n">rejectionCount</span><span class="w"> </span><span class="k">desc</span>
 <a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="o">|</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">10</span>
 </code></pre></div>
-<h3 id="dns-in-vpc">DNS in VPC<a class="headerlink" href="#dns-in-vpc" title="Permanent link">&para;</a></h3>
+<h3 id="dns-in-vpc">DNS in VPC</h3>
 <p>Every VPC has DNS resolution provided by Amazon Route 53 Resolver.</p>
 <p><strong>DNS Settings:</strong></p>
 <ul>
@@ -3591,7 +3591,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <li>Cross-VPC DNS resolution</li>
 <li>Hybrid DNS between AWS and on-premises</li>
 </ul>
-<h3 id="elastic-network-interfaces-enis">Elastic Network Interfaces (ENIs)<a class="headerlink" href="#elastic-network-interfaces-enis" title="Permanent link">&para;</a></h3>
+<h3 id="elastic-network-interfaces-enis">Elastic Network Interfaces (ENIs)</h3>
 <p>An ENI is a logical networking component representing a virtual network card.</p>
 <p><strong>ENI Attributes:</strong></p>
 <ul>
@@ -3615,7 +3615,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <li>Primary ENI: Created with instance, deleted with instance</li>
 <li>Secondary ENI: Can be created independently, attached/detached dynamically</li>
 </ul>
-<h3 id="ipv6-in-vpc">IPv6 in VPC<a class="headerlink" href="#ipv6-in-vpc" title="Permanent link">&para;</a></h3>
+<h3 id="ipv6-in-vpc">IPv6 in VPC</h3>
 <p>VPCs can be dual-stack, supporting both IPv4 and IPv6.</p>
 <p><strong>IPv6 Characteristics:</strong></p>
 <ul>
@@ -3640,8 +3640,8 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <li>Modern applications designed for IPv6</li>
 <li>Compliance requirements</li>
 </ul>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-building-a-production-3-tier-vpc-architecture">Lab 1: Building a Production 3-Tier VPC Architecture<a class="headerlink" href="#lab-1-building-a-production-3-tier-vpc-architecture" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-building-a-production-3-tier-vpc-architecture">Lab 1: Building a Production 3-Tier VPC Architecture</h3>
 <p><strong>Objective:</strong> Create a highly available, secure VPC with public, application, and database tiers across 3 Availability Zones.</p>
 <p><strong>Architecture Overview:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>VPC: 10.0.0.0/16
@@ -3661,7 +3661,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>- 10.0.22.0/24 (us-east-1b)
 <a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>- 10.0.23.0/24 (us-east-1c)
 </code></pre></div>
-<h4 id="step-1-create-vpc">Step 1: Create VPC<a class="headerlink" href="#step-1-create-vpc" title="Permanent link">&para;</a></h4>
+<h4 id="step-1-create-vpc">Step 1: Create VPC</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Create VPC</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nv">VPC_ID</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>ec2<span class="w"> </span>create-vpc<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span>--cidr-block<span class="w"> </span><span class="m">10</span>.0.0.0/16<span class="w"> </span><span class="se">\</span>
@@ -3681,7 +3681,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">    </span>--vpc-id<span class="w"> </span><span class="nv">$VPC_ID</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="w">    </span>--enable-dns-support
 </code></pre></div>
-<h4 id="step-2-create-internet-gateway">Step 2: Create Internet Gateway<a class="headerlink" href="#step-2-create-internet-gateway" title="Permanent link">&para;</a></h4>
+<h4 id="step-2-create-internet-gateway">Step 2: Create Internet Gateway</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Create IGW</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nv">IGW_ID</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>ec2<span class="w"> </span>create-internet-gateway<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span>--tag-specifications<span class="w"> </span><span class="s1">&#39;ResourceType=internet-gateway,Tags=[{Key=Name,Value=Production-IGW}]&#39;</span><span class="w"> </span><span class="se">\</span>
@@ -3695,7 +3695,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">    </span>--vpc-id<span class="w"> </span><span class="nv">$VPC_ID</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">    </span>--internet-gateway-id<span class="w"> </span><span class="nv">$IGW_ID</span>
 </code></pre></div>
-<h4 id="step-3-create-subnets">Step 3: Create Subnets<a class="headerlink" href="#step-3-create-subnets" title="Permanent link">&para;</a></h4>
+<h4 id="step-3-create-subnets">Step 3: Create Subnets</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Public Subnets</span>
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nv">PUBLIC_SUBNET_1A</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>ec2<span class="w"> </span>create-subnet<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span>--vpc-id<span class="w"> </span><span class="nv">$VPC_ID</span><span class="w"> </span><span class="se">\</span>
@@ -3784,7 +3784,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-19-86" name="__codelineno-19-86" href="#__codelineno-19-86"></a><span class="w">    </span>--subnet-id<span class="w"> </span><span class="nv">$PUBLIC_SUBNET_1C</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-19-87" name="__codelineno-19-87" href="#__codelineno-19-87"></a><span class="w">    </span>--map-public-ip-on-launch
 </code></pre></div>
-<h4 id="step-4-create-nat-gateways">Step 4: Create NAT Gateways<a class="headerlink" href="#step-4-create-nat-gateways" title="Permanent link">&para;</a></h4>
+<h4 id="step-4-create-nat-gateways">Step 4: Create NAT Gateways</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Allocate Elastic IPs for NAT Gateways</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="nv">EIP_1A</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>ec2<span class="w"> </span>allocate-address<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span>--domain<span class="w"> </span>vpc<span class="w"> </span><span class="se">\</span>
@@ -3831,7 +3831,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-20-44" name="__codelineno-20-44" href="#__codelineno-20-44"></a>aws<span class="w"> </span>ec2<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>nat-gateway-available<span class="w"> </span>--nat-gateway-ids<span class="w"> </span><span class="nv">$NAT_GW_1A</span><span class="w"> </span><span class="nv">$NAT_GW_1B</span><span class="w"> </span><span class="nv">$NAT_GW_1C</span>
 <a id="__codelineno-20-45" name="__codelineno-20-45" href="#__codelineno-20-45"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;NAT Gateways are ready&quot;</span>
 </code></pre></div>
-<h4 id="step-5-create-route-tables">Step 5: Create Route Tables<a class="headerlink" href="#step-5-create-route-tables" title="Permanent link">&para;</a></h4>
+<h4 id="step-5-create-route-tables">Step 5: Create Route Tables</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Public Route Table</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nv">PUBLIC_RT</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>ec2<span class="w"> </span>create-route-table<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span>--vpc-id<span class="w"> </span><span class="nv">$VPC_ID</span><span class="w"> </span><span class="se">\</span>
@@ -3918,7 +3918,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-21-84" name="__codelineno-21-84" href="#__codelineno-21-84"></a><span class="w">    </span>--route-table-id<span class="w"> </span><span class="nv">$PRIVATE_RT_1C</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-21-85" name="__codelineno-21-85" href="#__codelineno-21-85"></a><span class="w">    </span>--subnet-id<span class="w"> </span><span class="nv">$DB_SUBNET_1C</span>
 </code></pre></div>
-<h4 id="step-6-create-security-groups">Step 6: Create Security Groups<a class="headerlink" href="#step-6-create-security-groups" title="Permanent link">&para;</a></h4>
+<h4 id="step-6-create-security-groups">Step 6: Create Security Groups</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Web Tier Security Group (Public-facing)</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="nv">WEB_SG</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>ec2<span class="w"> </span>create-security-group<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span>--group-name<span class="w"> </span>web-tier-sg<span class="w"> </span><span class="se">\</span>
@@ -4003,7 +4003,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-22-82" name="__codelineno-22-82" href="#__codelineno-22-82"></a><span class="w">    </span>--port<span class="w"> </span><span class="m">22</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-22-83" name="__codelineno-22-83" href="#__codelineno-22-83"></a><span class="w">    </span>--source-group<span class="w"> </span><span class="nv">$BASTION_SG</span>
 </code></pre></div>
-<h4 id="step-7-create-network-acls-additional-layer">Step 7: Create Network ACLs (Additional Layer)<a class="headerlink" href="#step-7-create-network-acls-additional-layer" title="Permanent link">&para;</a></h4>
+<h4 id="step-7-create-network-acls-additional-layer">Step 7: Create Network ACLs (Additional Layer)</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Public Subnet NACL</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="nv">PUBLIC_NACL</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>ec2<span class="w"> </span>create-network-acl<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span>--vpc-id<span class="w"> </span><span class="nv">$VPC_ID</span><span class="w"> </span><span class="se">\</span>
@@ -4066,7 +4066,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-23-60" name="__codelineno-23-60" href="#__codelineno-23-60"></a><span class="w">        </span>--output<span class="w"> </span>text<span class="k">)</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-23-61" name="__codelineno-23-61" href="#__codelineno-23-61"></a><span class="w">    </span>--network-acl-id<span class="w"> </span><span class="nv">$PUBLIC_NACL</span>
 </code></pre></div>
-<h4 id="step-8-create-vpc-endpoints">Step 8: Create VPC Endpoints<a class="headerlink" href="#step-8-create-vpc-endpoints" title="Permanent link">&para;</a></h4>
+<h4 id="step-8-create-vpc-endpoints">Step 8: Create VPC Endpoints</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># S3 Gateway Endpoint (free, for private S3 access)</span>
 <a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nv">S3_ENDPOINT</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>ec2<span class="w"> </span>create-vpc-endpoint<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span>--vpc-id<span class="w"> </span><span class="nv">$VPC_ID</span><span class="w"> </span><span class="se">\</span>
@@ -4089,7 +4089,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-24-20" name="__codelineno-24-20" href="#__codelineno-24-20"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;App Subnets: </span><span class="nv">$APP_SUBNET_1A</span><span class="s2">, </span><span class="nv">$APP_SUBNET_1B</span><span class="s2">, </span><span class="nv">$APP_SUBNET_1C</span><span class="s2">&quot;</span>
 <a id="__codelineno-24-21" name="__codelineno-24-21" href="#__codelineno-24-21"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;DB Subnets: </span><span class="nv">$DB_SUBNET_1A</span><span class="s2">, </span><span class="nv">$DB_SUBNET_1B</span><span class="s2">, </span><span class="nv">$DB_SUBNET_1C</span><span class="s2">&quot;</span>
 </code></pre></div>
-<h3 id="lab-2-implementing-vpc-peering">Lab 2: Implementing VPC Peering<a class="headerlink" href="#lab-2-implementing-vpc-peering" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-implementing-vpc-peering">Lab 2: Implementing VPC Peering</h3>
 <p><strong>Objective:</strong> Connect two VPCs in different regions using VPC peering for disaster recovery.</p>
 <p><strong>Scenario:</strong></p>
 <ul>
@@ -4130,7 +4130,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-25-32" name="__codelineno-25-32" href="#__codelineno-25-32"></a><span class="w">    </span>--port<span class="w"> </span><span class="m">8080</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-25-33" name="__codelineno-25-33" href="#__codelineno-25-33"></a><span class="w">    </span>--cidr<span class="w"> </span><span class="m">10</span>.1.0.0/16
 </code></pre></div>
-<h3 id="lab-3-setting-up-transit-gateway">Lab 3: Setting Up Transit Gateway<a class="headerlink" href="#lab-3-setting-up-transit-gateway" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-setting-up-transit-gateway">Lab 3: Setting Up Transit Gateway</h3>
 <p><strong>Objective:</strong> Create a hub-and-spoke architecture using Transit Gateway for multiple VPCs.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Create Transit Gateway</span>
 <a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nv">TGW_ID</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>ec2<span class="w"> </span>create-transit-gateway<span class="w"> </span><span class="se">\</span>
@@ -4201,7 +4201,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-26-67" name="__codelineno-26-67" href="#__codelineno-26-67"></a>
 <a id="__codelineno-26-68" name="__codelineno-26-68" href="#__codelineno-26-68"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Transit Gateway setup complete!&quot;</span>
 </code></pre></div>
-<h3 id="lab-4-enabling-vpc-flow-logs">Lab 4: Enabling VPC Flow Logs<a class="headerlink" href="#lab-4-enabling-vpc-flow-logs" title="Permanent link">&para;</a></h3>
+<h3 id="lab-4-enabling-vpc-flow-logs">Lab 4: Enabling VPC Flow Logs</h3>
 <p><strong>Objective:</strong> Enable comprehensive network traffic logging for security analysis.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># Create CloudWatch Log Group</span>
 <a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>aws<span class="w"> </span>logs<span class="w"> </span>create-log-group<span class="w"> </span>--log-group-name<span class="w"> </span>/aws/vpc/flowlogs/production
@@ -4273,7 +4273,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-27-68" name="__codelineno-27-68" href="#__codelineno-27-68"></a><span class="s">| limit 10</span>
 <a id="__codelineno-27-69" name="__codelineno-27-69" href="#__codelineno-27-69"></a><span class="s">EOF</span>
 </code></pre></div>
-<h3 id="lab-5-cloudformation-template-for-complete-vpc">Lab 5: CloudFormation Template for Complete VPC<a class="headerlink" href="#lab-5-cloudformation-template-for-complete-vpc" title="Permanent link">&para;</a></h3>
+<h3 id="lab-5-cloudformation-template-for-complete-vpc">Lab 5: CloudFormation Template for Complete VPC</h3>
 <p><strong>Objective:</strong> Automate VPC creation with Infrastructure as Code.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nt">AWSTemplateFormatVersion</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2010-09-09&#39;</span>
 <a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="nt">Description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Production</span><span class="nv"> </span><span class="s">3-Tier</span><span class="nv"> </span><span class="s">VPC</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">NAT</span><span class="nv"> </span><span class="s">Gateways</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">VPC</span><span class="nv"> </span><span class="s">Endpoints&#39;</span>
@@ -4611,8 +4611,8 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="w">    </span>--query<span class="w"> </span><span class="s1">&#39;Stacks[0].Outputs&#39;</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a><span class="w">    </span>--output<span class="w"> </span>table
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="hub-and-spoke-architecture-with-transit-gateway">Hub-and-Spoke Architecture with Transit Gateway<a class="headerlink" href="#hub-and-spoke-architecture-with-transit-gateway" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="hub-and-spoke-architecture-with-transit-gateway">Hub-and-Spoke Architecture with Transit Gateway</h3>
 <p>For enterprise environments with multiple VPCs and hybrid connectivity, a hub-and-spoke architecture provides centralized management and simplified routing.</p>
 <p><strong>Architecture Components:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>                    Transit Gateway
@@ -4763,7 +4763,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-31-131" name="__codelineno-31-131" href="#__codelineno-31-131"></a><span class="n">attachments</span> <span class="o">=</span> <span class="n">attach_vpcs_to_tgw</span><span class="p">(</span><span class="n">tgw_id</span><span class="p">,</span> <span class="n">route_tables</span><span class="p">,</span> <span class="n">vpcs</span><span class="p">)</span>
 <a id="__codelineno-31-132" name="__codelineno-31-132" href="#__codelineno-31-132"></a><span class="n">configure_routing_policies</span><span class="p">(</span><span class="n">route_tables</span><span class="p">,</span> <span class="n">attachments</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="hybrid-connectivity-patterns">Hybrid Connectivity Patterns<a class="headerlink" href="#hybrid-connectivity-patterns" title="Permanent link">&para;</a></h3>
+<h3 id="hybrid-connectivity-patterns">Hybrid Connectivity Patterns</h3>
 <p>Connecting AWS VPCs to on-premises networks requires careful planning for bandwidth, redundancy, and routing.</p>
 <p><strong>Pattern 1: AWS Site-to-Site VPN</strong></p>
 <p><strong>Characteristics:</strong></p>
@@ -4842,7 +4842,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a><span class="w">    </span>--query<span class="w"> </span><span class="s1">&#39;VpnConnection.VpnConnectionId&#39;</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a><span class="w">    </span>--output<span class="w"> </span>text<span class="k">)</span>
 </code></pre></div>
-<h3 id="advanced-security-patterns">Advanced Security Patterns<a class="headerlink" href="#advanced-security-patterns" title="Permanent link">&para;</a></h3>
+<h3 id="advanced-security-patterns">Advanced Security Patterns</h3>
 <p><strong>Pattern 1: Centralized Egress Control</strong></p>
 <p>Route all internet-bound traffic through a security VPC for inspection:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>Production VPC → Transit Gateway → Security VPC (Firewall) → Internet
@@ -4895,7 +4895,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-36-22" name="__codelineno-36-22" href="#__codelineno-36-22"></a><span class="w">    </span>--subnet-ids<span class="w"> </span><span class="nv">$CONSUMER_SUBNET_1A</span><span class="w"> </span><span class="nv">$CONSUMER_SUBNET_1B</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-36-23" name="__codelineno-36-23" href="#__codelineno-36-23"></a><span class="w">    </span>--security-group-ids<span class="w"> </span><span class="nv">$CONSUMER_SG</span>
 </code></pre></div>
-<h3 id="network-monitoring-and-troubleshooting">Network Monitoring and Troubleshooting<a class="headerlink" href="#network-monitoring-and-troubleshooting" title="Permanent link">&para;</a></h3>
+<h3 id="network-monitoring-and-troubleshooting">Network Monitoring and Troubleshooting</h3>
 <p><strong>Comprehensive Monitoring Setup:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="ch">#!/usr/bin/env python3</span>
 <a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="c1"># network_monitoring.py</span>
@@ -5020,7 +5020,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-37-121" name="__codelineno-37-121" href="#__codelineno-37-121"></a>            <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]</span>
 <a id="__codelineno-37-122" name="__codelineno-37-122" href="#__codelineno-37-122"></a>        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="cost-optimization-strategies">Cost Optimization Strategies<a class="headerlink" href="#cost-optimization-strategies" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization-strategies">Cost Optimization Strategies</h3>
 <p><strong>NAT Gateway Cost Reduction:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_nat_gateway_savings</span><span class="p">():</span>
 <a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate potential savings from NAT Gateway optimization&quot;&quot;&quot;</span>
@@ -5080,8 +5080,8 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-39-14" name="__codelineno-39-14" href="#__codelineno-39-14"></a><span class="w">        </span>--security-group-ids<span class="w"> </span><span class="nv">$ENDPOINT_SG</span>
 <a id="__codelineno-39-15" name="__codelineno-39-15" href="#__codelineno-39-15"></a><span class="k">done</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="cidr-planning-strategies">CIDR Planning Strategies<a class="headerlink" href="#cidr-planning-strategies" title="Permanent link">&para;</a></h3>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
+<h3 id="cidr-planning-strategies">CIDR Planning Strategies</h3>
 <p><strong>Tip 1: Plan for Growth</strong></p>
 <p>Always size your VPC larger than immediate needs:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>Bad: /24 VPC (256 IPs) for &quot;small&quot; application
@@ -5116,7 +5116,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-42-9" name="__codelineno-42-9" href="#__codelineno-42-9"></a>x.x.23.0/24  - DB subnet AZ-C
 <a id="__codelineno-42-10" name="__codelineno-42-10" href="#__codelineno-42-10"></a>x.x.100.0/22 - Reserved for expansion
 </code></pre></div>
-<h3 id="network-segmentation-best-practices">Network Segmentation Best Practices<a class="headerlink" href="#network-segmentation-best-practices" title="Permanent link">&para;</a></h3>
+<h3 id="network-segmentation-best-practices">Network Segmentation Best Practices</h3>
 <p><strong>Tip 4: Implement Defense in Depth</strong></p>
 <p>Layer security controls:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>1. Network ACLs (Subnet level, stateless)
@@ -5150,7 +5150,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <li>VPN endpoints</li>
 </ul>
 <p>Everything else should be in private subnets.</p>
-<h3 id="high-availability-tips">High Availability Tips<a class="headerlink" href="#high-availability-tips" title="Permanent link">&para;</a></h3>
+<h3 id="high-availability-tips">High Availability Tips</h3>
 <p><strong>Tip 7: Deploy NAT Gateways in Each AZ</strong></p>
 <p>For true high availability:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="c1"># One NAT Gateway per AZ</span>
@@ -5180,7 +5180,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a><span class="c1"># Verify traffic fails over to other AZs</span>
 <a id="__codelineno-46-5" name="__codelineno-46-5" href="#__codelineno-46-5"></a><span class="c1"># Recreate NAT Gateway</span>
 </code></pre></div>
-<h3 id="performance-optimization-tips">Performance Optimization Tips<a class="headerlink" href="#performance-optimization-tips" title="Permanent link">&para;</a></h3>
+<h3 id="performance-optimization-tips">Performance Optimization Tips</h3>
 <p><strong>Tip 10: Use Enhanced Networking</strong></p>
 <p>Enable enhanced networking for better performance:</p>
 <ul>
@@ -5211,7 +5211,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-48-6" name="__codelineno-48-6" href="#__codelineno-48-6"></a>
 <a id="__codelineno-48-7" name="__codelineno-48-7" href="#__codelineno-48-7"></a><span class="c1"># For internet traffic, use 1500</span>
 </code></pre></div>
-<h3 id="monitoring-and-troubleshooting-tips">Monitoring and Troubleshooting Tips<a class="headerlink" href="#monitoring-and-troubleshooting-tips" title="Permanent link">&para;</a></h3>
+<h3 id="monitoring-and-troubleshooting-tips">Monitoring and Troubleshooting Tips</h3>
 <p><strong>Tip 13: Enable VPC Flow Logs from Day 1</strong></p>
 <p>Don't wait for a security incident:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="c1"># Enable Flow Logs immediately after VPC creation</span>
@@ -5247,7 +5247,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-51-9" name="__codelineno-51-9" href="#__codelineno-51-9"></a><span class="w">    </span>--threshold<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-51-10" name="__codelineno-51-10" href="#__codelineno-51-10"></a><span class="w">    </span>--comparison-operator<span class="w"> </span>GreaterThanThreshold
 </code></pre></div>
-<h3 id="security-tips">Security Tips<a class="headerlink" href="#security-tips" title="Permanent link">&para;</a></h3>
+<h3 id="security-tips">Security Tips</h3>
 <p><strong>Tip 16: Implement Least Privilege in Security Groups</strong></p>
 <p>Don't use 0.0.0.0/0 unless absolutely necessary:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="c1"># Bad</span>
@@ -5298,7 +5298,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-54-5" name="__codelineno-54-5" href="#__codelineno-54-5"></a><span class="w">    </span>--vpc-id<span class="w"> </span><span class="nv">$VPC_ID</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-54-6" name="__codelineno-54-6" href="#__codelineno-54-6"></a><span class="w">    </span>--subnet-mappings<span class="w"> </span><span class="nv">SubnetId</span><span class="o">=</span><span class="nv">$FIREWALL_SUBNET_1A</span><span class="w"> </span><span class="nv">SubnetId</span><span class="o">=</span><span class="nv">$FIREWALL_SUBNET_1B</span>
 </code></pre></div>
-<h3 id="cost-optimization-tips">Cost Optimization Tips<a class="headerlink" href="#cost-optimization-tips" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization-tips">Cost Optimization Tips</h3>
 <p><strong>Tip 19: Right-Size NAT Gateways</strong></p>
 <p>Analyze traffic patterns:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">analyze_nat_gateway_usage</span><span class="p">():</span>
@@ -5330,8 +5330,8 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-56-9" name="__codelineno-56-9" href="#__codelineno-56-9"></a><span class="w">        </span>--security-group-ids<span class="w"> </span><span class="nv">$ENDPOINT_SG</span>
 <a id="__codelineno-56-10" name="__codelineno-56-10" href="#__codelineno-56-10"></a><span class="k">done</span>
 </code></pre></div>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-inadequate-cidr-block-sizing">Pitfall 1: Inadequate CIDR Block Sizing<a class="headerlink" href="#pitfall-1-inadequate-cidr-block-sizing" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-inadequate-cidr-block-sizing">Pitfall 1: Inadequate CIDR Block Sizing</h3>
 <p><strong>Problem:</strong> Choosing a CIDR block that's too small (e.g., /24 or /28), leading to IP address exhaustion as the application grows.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5456,7 +5456,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <li>Reserve space for future subnets</li>
 </ul>
 <hr />
-<h3 id="pitfall-2-asymmetric-routing-with-multiple-nat-gateways">Pitfall 2: Asymmetric Routing with Multiple NAT Gateways<a class="headerlink" href="#pitfall-2-asymmetric-routing-with-multiple-nat-gateways" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-2-asymmetric-routing-with-multiple-nat-gateways">Pitfall 2: Asymmetric Routing with Multiple NAT Gateways</h3>
 <p><strong>Problem:</strong> Resources in one AZ using NAT Gateway in another AZ, causing cross-AZ data transfer charges and potential routing issues.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5670,7 +5670,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <li>Monitor cross-AZ data transfer metrics</li>
 </ul>
 <hr />
-<h3 id="pitfall-3-security-group-misconfigurations">Pitfall 3: Security Group Misconfigurations<a class="headerlink" href="#pitfall-3-security-group-misconfigurations" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-3-security-group-misconfigurations">Pitfall 3: Security Group Misconfigurations</h3>
 <p><strong>Problem:</strong> Overly permissive security group rules (0.0.0.0/0 on sensitive ports), missing egress restrictions, or circular dependencies.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -6014,7 +6014,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <li>Document approved security group patterns</li>
 </ul>
 <hr />
-<h3 id="pitfall-4-forgotten-or-stale-routes">Pitfall 4: Forgotten or Stale Routes<a class="headerlink" href="#pitfall-4-forgotten-or-stale-routes" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-4-forgotten-or-stale-routes">Pitfall 4: Forgotten or Stale Routes</h3>
 <p><strong>Problem:</strong> Route table entries pointing to deleted resources (NAT Gateways, VPN connections, peering connections), causing traffic blackholing.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -6285,7 +6285,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <li>Use change management process for network modifications</li>
 </ul>
 <hr />
-<h3 id="pitfall-5-vpc-peering-complexity-at-scale">Pitfall 5: VPC Peering Complexity at Scale<a class="headerlink" href="#pitfall-5-vpc-peering-complexity-at-scale" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-5-vpc-peering-complexity-at-scale">Pitfall 5: VPC Peering Complexity at Scale</h3>
 <p><strong>Problem:</strong> Managing full-mesh VPC peering becomes unmanageable as the number of VPCs grows, leading to operational complexity and routing errors.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -6544,7 +6544,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <li>Regular architecture reviews</li>
 </ul>
 <hr />
-<h3 id="pitfall-6-not-planning-for-ipv4-exhaustion">Pitfall 6: Not Planning for IPv4 Exhaustion<a class="headerlink" href="#pitfall-6-not-planning-for-ipv4-exhaustion" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-6-not-planning-for-ipv4-exhaustion">Pitfall 6: Not Planning for IPv4 Exhaustion</h3>
 <p><strong>Problem:</strong> Running out of RFC 1918 private IP space when you have many VPCs or need to connect to on-premises networks with overlapping CIDRs.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -6758,7 +6758,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <li>Regular audits of CIDR usage</li>
 </ul>
 <hr />
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>Amazon VPC is the networking foundation of AWS, providing isolated, software-defined networks with complete control over IP addressing, routing, and security. Mastering VPC architecture requires understanding subnet design, routing mechanisms, security layers, and connectivity patterns for both cloud-native and hybrid deployments.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -6772,7 +6772,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 </ul>
 <p>Understanding VPC deeply enables you to build secure, scalable, and cost-effective network architectures that support both current needs and future growth. The networking foundation you've built here will be essential as we explore compute services in the next chapter.</p>
 <p>In Chapter 4, we'll dive into Amazon EC2, where you'll learn to launch and manage virtual servers within the VPC infrastructure you've mastered.</p>
-<h2 id="hands-on-lab-exercise">Hands-On Lab Exercise<a class="headerlink" href="#hands-on-lab-exercise" title="Permanent link">&para;</a></h2>
+<h2 id="hands-on-lab-exercise">Hands-On Lab Exercise</h2>
 <p><strong>Objective:</strong> Build a production-ready, highly available VPC with complete network isolation, multi-tier architecture, and hybrid connectivity simulation.</p>
 <p><strong>Scenario:</strong> Deploy a 3-tier application infrastructure with:</p>
 <ul>
@@ -6846,7 +6846,7 @@ Public resources: <code>ec2-198-51-100-1.compute-1.amazonaws.com</code> (public 
 <a id="__codelineno-87-3" name="__codelineno-87-3" href="#__codelineno-87-3"></a># Terminate EC2 instances
 <a id="__codelineno-87-4" name="__codelineno-87-4" href="#__codelineno-87-4"></a># Delete RDS instances
 </code></pre></div>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>What is the minimum and maximum CIDR block size for a VPC?</strong>
 a) /24 to /8

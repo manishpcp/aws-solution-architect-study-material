@@ -2622,14 +2622,14 @@
   
 
 
-<h1 id="chapter-10-storage-gateway-datasync">Chapter 10: Storage Gateway \&amp; DataSync<a class="headerlink" href="#chapter-10-storage-gateway-datasync" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-10-storage-gateway-datasync">Chapter 10: Storage Gateway \&amp; DataSync</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Hybrid cloud architectures bridge on-premises infrastructure with AWS, enabling organizations to gradually migrate to the cloud, maintain low-latency local access while leveraging cloud scalability, and meet data residency requirements. AWS Storage Gateway and AWS DataSync are purpose-built services for hybrid storage and data transfer scenarios, each solving distinct challenges. Storage Gateway integrates on-premises applications with AWS storage seamlessly, while DataSync automates and accelerates data transfer between on-premises storage and AWS.</p>
 <p>Storage Gateway provides three gateway types—File Gateway (NFS/SMB), Volume Gateway (iSCSI), and Tape Gateway (VTL)—allowing existing applications to use cloud storage without modification. Applications continue using standard protocols (NFS, SMB, iSCSI) while data is stored durably in S3, with local caching for performance. This enables scenarios like extending on-premises file servers to the cloud, creating cloud-based disaster recovery, and replacing physical tape infrastructure with virtual tape libraries backed by Glacier.</p>
 <p>DataSync solves the data transfer problem, moving large datasets between on-premises storage, AWS storage services (S3, EFS, FSx), and between AWS storage services. Unlike traditional file transfer tools, DataSync automates discovery, scheduling, data validation, and bandwidth management, transferring data up to 10x faster than open-source tools. It's essential for migrations, continuous data ingestion, and disaster recovery scenarios.</p>
 <p>This chapter provides comprehensive coverage of Storage Gateway and DataSync from fundamentals to production patterns. You'll learn gateway types and architectures, caching strategies, bandwidth management, DataSync task configuration, migration planning, hybrid cloud design patterns, and troubleshooting techniques. Whether you're migrating to AWS, building hybrid applications, or implementing disaster recovery, mastering these services is critical for successful hybrid cloud implementations.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="hybrid-cloud-storage-challenges">Hybrid Cloud Storage Challenges<a class="headerlink" href="#hybrid-cloud-storage-challenges" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="hybrid-cloud-storage-challenges">Hybrid Cloud Storage Challenges</h3>
 <p><strong>Common Hybrid Storage Scenarios:</strong></p>
 <ol>
 <li><strong>Cloud Migration:</strong> Moving petabytes of data to AWS</li>
@@ -2646,7 +2646,7 @@
 <li><strong>Cost:</strong> Expensive WAN links or physical shipping</li>
 <li><strong>Complexity:</strong> Managing two separate storage systems</li>
 </ul>
-<h3 id="aws-storage-gateway">AWS Storage Gateway<a class="headerlink" href="#aws-storage-gateway" title="Permanent link">&para;</a></h3>
+<h3 id="aws-storage-gateway">AWS Storage Gateway</h3>
 <p>Storage Gateway connects on-premises software appliances with cloud storage, providing seamless integration.</p>
 <p><strong>Gateway Types:</strong></p>
 <p><strong>1. File Gateway (NFS/SMB)</strong></p>
@@ -2734,7 +2734,7 @@
 <li><strong>Cost:</strong> 96% cheaper than physical tape infrastructure</li>
 <li><strong>Use Cases:</strong> Tape backup replacement, long-term archival</li>
 </ul>
-<h3 id="storage-gateway-caching">Storage Gateway Caching<a class="headerlink" href="#storage-gateway-caching" title="Permanent link">&para;</a></h3>
+<h3 id="storage-gateway-caching">Storage Gateway Caching</h3>
 <p><strong>Cache Hierarchy:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Application Request
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>       ↓
@@ -2768,7 +2768,7 @@
 <li><strong>Upload Buffer:</strong> Staging area before S3 upload</li>
 <li><strong>Minimum Size:</strong> 150 GiB cache + upload buffer</li>
 </ul>
-<h3 id="aws-datasync">AWS DataSync<a class="headerlink" href="#aws-datasync" title="Permanent link">&para;</a></h3>
+<h3 id="aws-datasync">AWS DataSync</h3>
 <p>DataSync automates data transfer between on-premises storage and AWS.</p>
 <p><strong>Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Source Storage
@@ -2868,7 +2868,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="datasync-task-types">DataSync Task Types<a class="headerlink" href="#datasync-task-types" title="Permanent link">&para;</a></h3>
+<h3 id="datasync-task-types">DataSync Task Types</h3>
 <p><strong>1. One-Time Migration:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Initial migration of large dataset</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Source:<span class="w"> </span>/mnt/nfs/data<span class="w"> </span><span class="o">(</span><span class="m">50</span><span class="w"> </span>TB<span class="o">)</span>
@@ -2894,7 +2894,7 @@
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Task<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>On-prem<span class="w"> </span>→<span class="w"> </span>S3
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>Task<span class="w"> </span><span class="m">2</span>:<span class="w"> </span>S3<span class="w"> </span>→<span class="w"> </span>On-prem<span class="w"> </span><span class="o">(</span>separate<span class="w"> </span>DataSync<span class="w"> </span>task<span class="o">)</span>
 </code></pre></div>
-<h3 id="datasync-transfer-modes">DataSync Transfer Modes<a class="headerlink" href="#datasync-transfer-modes" title="Permanent link">&para;</a></h3>
+<h3 id="datasync-transfer-modes">DataSync Transfer Modes</h3>
 <p><strong>1. Transfer Mode:</strong></p>
 <table>
 <thead>
@@ -2939,7 +2939,7 @@
 <a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>-<span class="w"> </span>Ensures<span class="w"> </span>other<span class="w"> </span>applications<span class="w"> </span>have<span class="w"> </span>bandwidth
 <a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>-<span class="w"> </span>Can<span class="w"> </span>schedule<span class="w"> </span>tasks<span class="w"> </span>during<span class="w"> </span>off-peak<span class="w"> </span>hours
 </code></pre></div>
-<h3 id="network-connectivity">Network Connectivity<a class="headerlink" href="#network-connectivity" title="Permanent link">&para;</a></h3>
+<h3 id="network-connectivity">Network Connectivity</h3>
 <p><strong>Connection Methods:</strong></p>
 <p><strong>1. Public Internet:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>DataSync Agent (on-premises)
@@ -2989,8 +2989,8 @@
 <a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>
 <a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>Include 20% buffer for efficiency losses
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-deploying-file-gateway">Lab 1: Deploying File Gateway<a class="headerlink" href="#lab-1-deploying-file-gateway" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-deploying-file-gateway">Lab 1: Deploying File Gateway</h3>
 <p><strong>Objective:</strong> Set up File Gateway for hybrid file storage.</p>
 <p><strong>Prerequisites:</strong></p>
 <ul>
@@ -2998,7 +2998,7 @@
 <li>S3 bucket</li>
 <li>Network connectivity to AWS</li>
 </ul>
-<h4 id="step-1-deploy-gateway-vm">Step 1: Deploy Gateway VM<a class="headerlink" href="#step-1-deploy-gateway-vm" title="Permanent link">&para;</a></h4>
+<h4 id="step-1-deploy-gateway-vm">Step 1: Deploy Gateway VM</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Option 1: Deploy on VMware (on-premises)</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="c1"># Download OVA from AWS console</span>
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="c1"># Deploy VM with:</span>
@@ -3027,7 +3027,7 @@
 <a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a><span class="s1">    ]&#39;</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a><span class="w">    </span>--tag-specifications<span class="w"> </span><span class="s1">&#39;ResourceType=instance,Tags=[{Key=Name,Value=FileGateway}]&#39;</span>
 </code></pre></div>
-<h4 id="step-2-activate-gateway">Step 2: Activate Gateway<a class="headerlink" href="#step-2-activate-gateway" title="Permanent link">&para;</a></h4>
+<h4 id="step-2-activate-gateway">Step 2: Activate Gateway</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Get gateway activation key</span>
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="c1"># Access gateway local console</span>
 <a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="c1"># http://gateway-ip:8080/</span>
@@ -3063,7 +3063,7 @@
 <a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a><span class="w">    </span>--gateway-arn<span class="w"> </span><span class="nv">$GATEWAY_ARN</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a><span class="w">    </span>--disk-ids<span class="w"> </span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$DISK_IDS</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span>
 </code></pre></div>
-<h4 id="step-3-create-nfs-file-share">Step 3: Create NFS File Share<a class="headerlink" href="#step-3-create-nfs-file-share" title="Permanent link">&para;</a></h4>
+<h4 id="step-3-create-nfs-file-share">Step 3: Create NFS File Share</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Create S3 bucket for file share</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>aws<span class="w"> </span>s3<span class="w"> </span>mb<span class="w"> </span>s3://my-fileshare-bucket
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
@@ -3141,7 +3141,7 @@
 <a id="__codelineno-20-75" name="__codelineno-20-75" href="#__codelineno-20-75"></a><span class="c1"># Add to /etc/fstab for persistence</span>
 <a id="__codelineno-20-76" name="__codelineno-20-76" href="#__codelineno-20-76"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;gateway-ip:/my-fileshare-bucket /mnt/gateway-share nfs nolock,hard,_netdev 0 0&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/fstab
 </code></pre></div>
-<h4 id="step-4-configure-smb-file-share">Step 4: Configure SMB File Share<a class="headerlink" href="#step-4-configure-smb-file-share" title="Permanent link">&para;</a></h4>
+<h4 id="step-4-configure-smb-file-share">Step 4: Configure SMB File Share</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Join gateway to Active Directory (for SMB with AD authentication)</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>aws<span class="w"> </span>storagegateway<span class="w"> </span>join-domain<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span>--gateway-arn<span class="w"> </span><span class="nv">$GATEWAY_ARN</span><span class="w"> </span><span class="se">\</span>
@@ -3170,9 +3170,9 @@
 <a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a><span class="c1"># Or via PowerShell:</span>
 <a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a><span class="c1"># New-SmbMapping -LocalPath Z: -RemotePath \\gateway-ip\company-files -Persistent $true</span>
 </code></pre></div>
-<h3 id="lab-2-setting-up-datasync-transfer">Lab 2: Setting Up DataSync Transfer<a class="headerlink" href="#lab-2-setting-up-datasync-transfer" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-setting-up-datasync-transfer">Lab 2: Setting Up DataSync Transfer</h3>
 <p><strong>Objective:</strong> Configure DataSync for on-premises to S3 migration.</p>
-<h4 id="step-1-deploy-datasync-agent">Step 1: Deploy DataSync Agent<a class="headerlink" href="#step-1-deploy-datasync-agent" title="Permanent link">&para;</a></h4>
+<h4 id="step-1-deploy-datasync-agent">Step 1: Deploy DataSync Agent</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Download DataSync agent OVA/VHD</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="c1"># Deploy VM with:</span>
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="c1"># - 4 vCPU, 32 GB RAM (recommended for high performance)</span>
@@ -3193,7 +3193,7 @@
 <a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a>
 <a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Agent ARN: </span><span class="nv">$AGENT_ARN</span><span class="s2">&quot;</span>
 </code></pre></div>
-<h4 id="step-2-create-source-and-destination-locations">Step 2: Create Source and Destination Locations<a class="headerlink" href="#step-2-create-source-and-destination-locations" title="Permanent link">&para;</a></h4>
+<h4 id="step-2-create-source-and-destination-locations">Step 2: Create Source and Destination Locations</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Create source location (on-premises NFS)</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="nv">SOURCE_LOCATION</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>datasync<span class="w"> </span>create-location-nfs<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span>--server-hostname<span class="w"> </span>nfs-server.local<span class="w"> </span><span class="se">\</span>
@@ -3224,7 +3224,7 @@
 <a id="__codelineno-23-28" name="__codelineno-23-28" href="#__codelineno-23-28"></a><span class="c1">#     --query &#39;LocationArn&#39; \</span>
 <a id="__codelineno-23-29" name="__codelineno-23-29" href="#__codelineno-23-29"></a><span class="c1">#     --output text)</span>
 </code></pre></div>
-<h4 id="step-3-create-and-configure-datasync-task">Step 3: Create and Configure DataSync Task<a class="headerlink" href="#step-3-create-and-configure-datasync-task" title="Permanent link">&para;</a></h4>
+<h4 id="step-3-create-and-configure-datasync-task">Step 3: Create and Configure DataSync Task</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># Create DataSync task</span>
 <a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nv">TASK_ARN</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>datasync<span class="w"> </span>create-task<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span>--source-location-arn<span class="w"> </span><span class="nv">$SOURCE_LOCATION</span><span class="w"> </span><span class="se">\</span>
@@ -3255,7 +3255,7 @@
 <a id="__codelineno-24-28" name="__codelineno-24-28" href="#__codelineno-24-28"></a>
 <a id="__codelineno-24-29" name="__codelineno-24-29" href="#__codelineno-24-29"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Task ARN: </span><span class="nv">$TASK_ARN</span><span class="s2">&quot;</span>
 </code></pre></div>
-<h4 id="step-4-run-and-monitor-task">Step 4: Run and Monitor Task<a class="headerlink" href="#step-4-run-and-monitor-task" title="Permanent link">&para;</a></h4>
+<h4 id="step-4-run-and-monitor-task">Step 4: Run and Monitor Task</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Start task execution</span>
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="nv">EXECUTION_ARN</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>datasync<span class="w"> </span>start-task-execution<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span>--task-arn<span class="w"> </span><span class="nv">$TASK_ARN</span><span class="w"> </span><span class="se">\</span>
@@ -3286,7 +3286,7 @@
 <a id="__codelineno-25-28" name="__codelineno-25-28" href="#__codelineno-25-28"></a><span class="w">    </span>--statistics<span class="w"> </span>Sum<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-25-29" name="__codelineno-25-29" href="#__codelineno-25-29"></a><span class="w">    </span>--output<span class="w"> </span>table
 </code></pre></div>
-<h3 id="lab-3-configuring-volume-gateway">Lab 3: Configuring Volume Gateway<a class="headerlink" href="#lab-3-configuring-volume-gateway" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-configuring-volume-gateway">Lab 3: Configuring Volume Gateway</h3>
 <p><strong>Objective:</strong> Deploy Volume Gateway for block storage with cloud backup.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Deploy Volume Gateway VM (similar to File Gateway)</span>
 <a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="c1"># Then activate as CACHED or STORED mode</span>
@@ -3340,8 +3340,8 @@
 <a id="__codelineno-26-50" name="__codelineno-26-50" href="#__codelineno-26-50"></a><span class="w">    </span>--volume-arn<span class="w"> </span><span class="nv">$VOLUME_ARN</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-26-51" name="__codelineno-26-51" href="#__codelineno-26-51"></a><span class="w">    </span>--snapshot-description<span class="w"> </span><span class="s2">&quot;Daily backup </span><span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d<span class="k">)</span><span class="s2">&quot;</span>
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="large-scale-migration-strategies">Large-Scale Migration Strategies<a class="headerlink" href="#large-scale-migration-strategies" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="large-scale-migration-strategies">Large-Scale Migration Strategies</h3>
 <p><strong>Migration Planning Framework:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># migration_calculator.py</span>
 <a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
@@ -3443,7 +3443,7 @@
 <a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>├── Application testing
 <a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>└── Timeline: Days
 </code></pre></div>
-<h3 id="advanced-datasync-configurations">Advanced DataSync Configurations<a class="headerlink" href="#advanced-datasync-configurations" title="Permanent link">&para;</a></h3>
+<h3 id="advanced-datasync-configurations">Advanced DataSync Configurations</h3>
 <p><strong>Multi-Task Orchestration:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># datasync_orchestrator.py</span>
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3617,7 +3617,7 @@
 <a id="__codelineno-29-170" name="__codelineno-29-170" href="#__codelineno-29-170"></a><span class="n">tasks</span> <span class="o">=</span> <span class="n">orchestrator</span><span class="o">.</span><span class="n">create_migration_pipeline</span><span class="p">(</span><span class="n">sources</span><span class="p">,</span> <span class="s1">&#39;arn:aws:s3:::destination&#39;</span><span class="p">)</span>
 <a id="__codelineno-29-171" name="__codelineno-29-171" href="#__codelineno-29-171"></a><span class="n">orchestrator</span><span class="o">.</span><span class="n">execute_parallel_migration</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">max_concurrent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="storage-gateway-performance-optimization">Storage Gateway Performance Optimization<a class="headerlink" href="#storage-gateway-performance-optimization" title="Permanent link">&para;</a></h3>
+<h3 id="storage-gateway-performance-optimization">Storage Gateway Performance Optimization</h3>
 <p><strong>Cache Hit Rate Optimization:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># cache_optimizer.py</span>
 <a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
@@ -3756,7 +3756,7 @@
 <a id="__codelineno-31-39" name="__codelineno-31-39" href="#__codelineno-31-39"></a><span class="c1"># Run via EventBridge on hourly schedule</span>
 <a id="__codelineno-31-40" name="__codelineno-31-40" href="#__codelineno-31-40"></a><span class="n">configure_bandwidth_throttling</span><span class="p">(</span><span class="s1">&#39;arn:aws:storagegateway:...&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="disaster-recovery-patterns">Disaster Recovery Patterns<a class="headerlink" href="#disaster-recovery-patterns" title="Permanent link">&para;</a></h3>
+<h3 id="disaster-recovery-patterns">Disaster Recovery Patterns</h3>
 <p><strong>File Gateway DR Configuration:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1"># Primary region (us-east-1)</span>
 <a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="c1"># File Gateway → S3 bucket with versioning</span>
@@ -3855,8 +3855,8 @@
 <a id="__codelineno-33-59" name="__codelineno-33-59" href="#__codelineno-33-59"></a>
 <a id="__codelineno-33-60" name="__codelineno-33-60" href="#__codelineno-33-60"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DR test completed successfully&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="file-gateway-tips">File Gateway Tips<a class="headerlink" href="#file-gateway-tips" title="Permanent link">&para;</a></h3>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
+<h3 id="file-gateway-tips">File Gateway Tips</h3>
 <p><strong>Tip 1: Size Cache Appropriately</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>Formula: Cache Size = Working Set × 1.5
 <a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>
@@ -3907,7 +3907,7 @@
 <a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a><span class="w">    </span>--authentication<span class="w"> </span>ActiveDirectory<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a><span class="w">    </span>--case-sensitivity<span class="w"> </span>CaseSensitive
 </code></pre></div>
-<h3 id="datasync-tips">DataSync Tips<a class="headerlink" href="#datasync-tips" title="Permanent link">&para;</a></h3>
+<h3 id="datasync-tips">DataSync Tips</h3>
 <p><strong>Tip 5: Use VPC Endpoints for DataSync</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="c1"># Benefits:</span>
 <a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="c1"># - No internet gateway needed</span>
@@ -3956,7 +3956,7 @@
 <a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a>
 <a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a><span class="c1"># Recommended: ONLY_FILES_TRANSFERRED for balance</span>
 </code></pre></div>
-<h3 id="migration-tips">Migration Tips<a class="headerlink" href="#migration-tips" title="Permanent link">&para;</a></h3>
+<h3 id="migration-tips">Migration Tips</h3>
 <p><strong>Tip 9: Use Snowball for Large Datasets</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>When to use Snowball vs DataSync:
 <a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>
@@ -3995,7 +3995,7 @@
 <a id="__codelineno-43-18" name="__codelineno-43-18" href="#__codelineno-43-18"></a>- Minimizes application downtime
 <a id="__codelineno-43-19" name="__codelineno-43-19" href="#__codelineno-43-19"></a>- Validates data progressively
 </code></pre></div>
-<h3 id="performance-tips">Performance Tips<a class="headerlink" href="#performance-tips" title="Permanent link">&para;</a></h3>
+<h3 id="performance-tips">Performance Tips</h3>
 <p><strong>Tip 11: Use Multiple DataSync Agents</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="c1"># For very large transfers (&gt; 100 TB)</span>
 <a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="c1"># Deploy multiple agents in parallel</span>
@@ -4024,8 +4024,8 @@
 <a id="__codelineno-45-12" name="__codelineno-45-12" href="#__codelineno-45-12"></a>More RAM = Better file metadata processing
 <a id="__codelineno-45-13" name="__codelineno-45-13" href="#__codelineno-45-13"></a>More vCPU = Better throughput
 </code></pre></div>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-insufficient-cache-size">Pitfall 1: Insufficient Cache Size<a class="headerlink" href="#pitfall-1-insufficient-cache-size" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-insufficient-cache-size">Pitfall 1: Insufficient Cache Size</h3>
 <p><strong>Problem:</strong> File Gateway cache too small, causing poor performance and excessive S3 API calls.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4185,7 +4185,7 @@
 <li>Plan for data growth</li>
 </ul>
 <hr />
-<h3 id="pitfall-2-network-bandwidth-bottlenecks">Pitfall 2: Network Bandwidth Bottlenecks<a class="headerlink" href="#pitfall-2-network-bandwidth-bottlenecks" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-2-network-bandwidth-bottlenecks">Pitfall 2: Network Bandwidth Bottlenecks</h3>
 <p><strong>Problem:</strong> Insufficient network bandwidth causing slow DataSync transfers or File Gateway performance issues.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4295,7 +4295,7 @@
 <li>Monitor network utilization</li>
 </ul>
 <hr />
-<h3 id="pitfall-3-datasync-task-misconfiguration">Pitfall 3: DataSync Task Misconfiguration<a class="headerlink" href="#pitfall-3-datasync-task-misconfiguration" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-3-datasync-task-misconfiguration">Pitfall 3: DataSync Task Misconfiguration</h3>
 <p><strong>Problem:</strong> DataSync tasks configured incorrectly, causing data loss, incomplete transfers, or unexpected costs.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4448,7 +4448,7 @@
 <li>Document task configuration</li>
 </ul>
 <hr />
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>AWS Storage Gateway and DataSync enable hybrid cloud architectures, bridging on-premises infrastructure with AWS storage services. Storage Gateway provides seamless integration via standard protocols (NFS, SMB, iSCSI), while DataSync automates and accelerates data transfer for migrations and continuous synchronization. Understanding gateway types, caching strategies, bandwidth management, and migration patterns is essential for successful hybrid cloud implementations.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -4460,7 +4460,7 @@
 <li><strong>Monitor performance:</strong> CloudWatch metrics for cache hit rate, transfer speed, task completion</li>
 </ul>
 <p>Understanding Storage Gateway and DataSync enables you to build effective hybrid cloud solutions, execute large-scale migrations, and implement disaster recovery strategies spanning on-premises and cloud infrastructure.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>Which Storage Gateway type uses iSCSI protocol?</strong>
 a) File Gateway

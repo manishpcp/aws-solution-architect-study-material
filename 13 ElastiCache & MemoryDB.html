@@ -2378,14 +2378,14 @@
   
 
 
-<h1 id="chapter-13-elasticache-memorydb">Chapter 13: ElastiCache \&amp; MemoryDB<a class="headerlink" href="#chapter-13-elasticache-memorydb" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-13-elasticache-memorydb">Chapter 13: ElastiCache \&amp; MemoryDB</h1>
+<h2 id="introduction">Introduction</h2>
 <p>In-memory data stores provide microsecond response times by keeping data in RAM rather than on disk, delivering 10-100x faster performance than traditional databases. Amazon ElastiCache and Amazon MemoryDB for Redis offer fully managed in-memory databases that accelerate application performance through caching, session storage, real-time analytics, and message brokering. While databases excel at durable, persistent storage, in-memory stores excel at speed—serving millions of operations per second with sub-millisecond latency.</p>
 <p>ElastiCache supports two engines: Redis and Memcached. Redis is a feature-rich in-memory data structure store supporting strings, hashes, lists, sets, sorted sets, and more, with optional persistence, replication, and pub/sub messaging. Memcached is a simpler, multi-threaded key-value store focused purely on caching with automatic sharding. Redis offers advanced capabilities like atomic operations, Lua scripting, and transactions, while Memcached excels at straightforward caching with minimal overhead. Understanding when to use each engine—and how to implement proper caching patterns—separates basic cache usage from production-grade implementations.</p>
 <p>Amazon MemoryDB for Redis is a Redis-compatible, durable in-memory database that combines the speed of Redis with the durability of traditional databases. Unlike ElastiCache (primarily a cache), MemoryDB provides both primary database capabilities and caching, persisting data across Multi-AZ deployments with transaction logging. This makes MemoryDB suitable as a primary database for applications requiring microsecond reads, single-digit millisecond writes, and strong consistency—use cases like gaming leaderboards, real-time inventory, and financial services.</p>
 <p>This chapter provides comprehensive coverage of ElastiCache and MemoryDB from fundamentals to production patterns. You'll learn Redis vs Memcached comparison, caching strategies (cache-aside, write-through, lazy loading), cluster modes, replication, persistence options, connection management, cache invalidation patterns, session management, real-time analytics, and monitoring. Whether you're adding caching to existing applications or building real-time systems, mastering in-memory databases is essential for delivering exceptional performance.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="elasticache-fundamentals">ElastiCache Fundamentals<a class="headerlink" href="#elasticache-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="elasticache-fundamentals">ElastiCache Fundamentals</h3>
 <p><strong>What is ElastiCache?</strong></p>
 <p>ElastiCache is a fully managed in-memory caching service supporting Redis and Memcached engines.</p>
 <p><strong>Key Features:</strong></p>
@@ -2447,7 +2447,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="redis-vs-memcached">Redis vs Memcached<a class="headerlink" href="#redis-vs-memcached" title="Permanent link">&para;</a></h3>
+<h3 id="redis-vs-memcached">Redis vs Memcached</h3>
 <p><strong>Redis Features:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Data Structures:
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>- Strings: Simple key-value
@@ -2552,7 +2552,7 @@
 <a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>- Simpler requirements
 <a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>- Legacy compatibility
 </code></pre></div>
-<h3 id="caching-strategies">Caching Strategies<a class="headerlink" href="#caching-strategies" title="Permanent link">&para;</a></h3>
+<h3 id="caching-strategies">Caching Strategies</h3>
 <p><strong>1. Lazy Loading (Cache-Aside):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Application manages cache</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># Cache only when requested</span>
@@ -2712,7 +2712,7 @@
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>TTL: For data that changes periodically
 <a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>Invalidation: For data that changes unpredictably
 </code></pre></div>
-<h3 id="redis-cluster-modes">Redis Cluster Modes<a class="headerlink" href="#redis-cluster-modes" title="Permanent link">&para;</a></h3>
+<h3 id="redis-cluster-modes">Redis Cluster Modes</h3>
 <p><strong>Cluster Disabled (Single Shard):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Architecture:
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Primary Node (writes)
@@ -2814,7 +2814,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="amazon-memorydb-for-redis">Amazon MemoryDB for Redis<a class="headerlink" href="#amazon-memorydb-for-redis" title="Permanent link">&para;</a></h3>
+<h3 id="amazon-memorydb-for-redis">Amazon MemoryDB for Redis</h3>
 <p><strong>MemoryDB vs ElastiCache:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>ElastiCache Redis (Cache):
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>- Primary use: Caching layer
@@ -2875,7 +2875,7 @@
 <a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>- Want lowest cost
 <a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>- Don&#39;t need durability
 </code></pre></div>
-<h3 id="data-persistence-redis-only">Data Persistence (Redis Only)<a class="headerlink" href="#data-persistence-redis-only" title="Permanent link">&para;</a></h3>
+<h3 id="data-persistence-redis-only">Data Persistence (Redis Only)</h3>
 <p><strong>RDB (Redis Database Backup):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Point-in-time snapshots of entire dataset
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
@@ -2934,8 +2934,8 @@
 <a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>- Best of both worlds
 <a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>- ElastiCache default (recommended)
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-creating-redis-cluster">Lab 1: Creating Redis Cluster<a class="headerlink" href="#lab-1-creating-redis-cluster" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-creating-redis-cluster">Lab 1: Creating Redis Cluster</h3>
 <p><strong>Objective:</strong> Deploy production-ready Redis cluster with replication and Multi-AZ.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Create subnet group</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>aws<span class="w"> </span>elasticache<span class="w"> </span>create-cache-subnet-group<span class="w"> </span><span class="se">\</span>
@@ -3040,7 +3040,7 @@
 <a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>
 <a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Cluster Endpoint: </span><span class="nv">$CLUSTER_ENDPOINT</span><span class="s2">:6379&quot;</span>
 </code></pre></div>
-<h3 id="lab-2-implementing-caching-patterns">Lab 2: Implementing Caching Patterns<a class="headerlink" href="#lab-2-implementing-caching-patterns" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-implementing-caching-patterns">Lab 2: Implementing Caching Patterns</h3>
 <p><strong>Objective:</strong> Implement production caching patterns in application.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># cache_manager.py</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">redis</span>
@@ -3328,7 +3328,7 @@
 <a id="__codelineno-20-284" name="__codelineno-20-284" href="#__codelineno-20-284"></a><span class="c1"># Invalidate all products in category</span>
 <a id="__codelineno-20-285" name="__codelineno-20-285" href="#__codelineno-20-285"></a><span class="n">cache</span><span class="o">.</span><span class="n">invalidate_by_tag</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;category:</span><span class="si">{</span><span class="n">category_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="lab-3-session-management">Lab 3: Session Management<a class="headerlink" href="#lab-3-session-management" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-session-management">Lab 3: Session Management</h3>
 <p><strong>Objective:</strong> Implement centralized session storage with Redis.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># session_manager.py</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">redis</span>
@@ -3537,8 +3537,8 @@
 <a id="__codelineno-21-205" name="__codelineno-21-205" href="#__codelineno-21-205"></a>        <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Logged out from </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1"> devices&#39;</span>
 <a id="__codelineno-21-206" name="__codelineno-21-206" href="#__codelineno-21-206"></a>    <span class="p">})</span>
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="real-time-analytics-with-redis">Real-Time Analytics with Redis<a class="headerlink" href="#real-time-analytics-with-redis" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="real-time-analytics-with-redis">Real-Time Analytics with Redis</h3>
 <p><strong>Leaderboard Implementation:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># leaderboard.py</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">redis</span>
@@ -3901,7 +3901,7 @@
 <a id="__codelineno-23-186" name="__codelineno-23-186" href="#__codelineno-23-186"></a>    <span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="s1">&#39;99.99&#39;</span>
 <a id="__codelineno-23-187" name="__codelineno-23-187" href="#__codelineno-23-187"></a><span class="p">})</span>
 </code></pre></div>
-<h3 id="rate-limiting-implementation">Rate Limiting Implementation<a class="headerlink" href="#rate-limiting-implementation" title="Permanent link">&para;</a></h3>
+<h3 id="rate-limiting-implementation">Rate Limiting Implementation</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># rate_limiter.py</span>
 <a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">redis</span>
 <a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
@@ -4100,7 +4100,7 @@
 <a id="__codelineno-24-196" name="__codelineno-24-196" href="#__codelineno-24-196"></a><span class="k">def</span><span class="w"> </span><span class="nf">update_data</span><span class="p">():</span>
 <a id="__codelineno-24-197" name="__codelineno-24-197" href="#__codelineno-24-197"></a>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
 </code></pre></div>
-<h3 id="memory-management">Memory Management<a class="headerlink" href="#memory-management" title="Permanent link">&para;</a></h3>
+<h3 id="memory-management">Memory Management</h3>
 <p><strong>Memory Optimization Strategies:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># memory_manager.py</span>
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">redis</span>
@@ -4275,8 +4275,8 @@
 <a id="__codelineno-25-171" name="__codelineno-25-171" href="#__codelineno-25-171"></a><span class="c1"># Set eviction policy</span>
 <a id="__codelineno-25-172" name="__codelineno-25-172" href="#__codelineno-25-172"></a><span class="n">mem_manager</span><span class="o">.</span><span class="n">set_eviction_policy</span><span class="p">(</span><span class="s1">&#39;allkeys-lru&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="connection-management-tips">Connection Management Tips<a class="headerlink" href="#connection-management-tips" title="Permanent link">&para;</a></h3>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
+<h3 id="connection-management-tips">Connection Management Tips</h3>
 <p><strong>Tip 1: Use Connection Pooling</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Always use connection pools for production</span>
 <a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
@@ -4336,7 +4336,7 @@
 <a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>    <span class="c1"># Get from source (database)</span>
 <a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a>    <span class="k">return</span> <span class="n">fallback_func</span><span class="p">()</span>
 </code></pre></div>
-<h3 id="caching-pattern-tips">Caching Pattern Tips<a class="headerlink" href="#caching-pattern-tips" title="Permanent link">&para;</a></h3>
+<h3 id="caching-pattern-tips">Caching Pattern Tips</h3>
 <p><strong>Tip 4: Always Set TTL</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># Prevent unbounded cache growth</span>
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
@@ -4396,7 +4396,7 @@
 <a id="__codelineno-31-28" name="__codelineno-31-28" href="#__codelineno-31-28"></a><span class="n">scheduler</span><span class="o">.</span><span class="n">add_job</span><span class="p">(</span><span class="n">warm_cache</span><span class="p">,</span> <span class="s1">&#39;interval&#39;</span><span class="p">,</span> <span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <a id="__codelineno-31-29" name="__codelineno-31-29" href="#__codelineno-31-29"></a><span class="n">scheduler</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </code></pre></div>
-<h3 id="monitoring-tips">Monitoring Tips<a class="headerlink" href="#monitoring-tips" title="Permanent link">&para;</a></h3>
+<h3 id="monitoring-tips">Monitoring Tips</h3>
 <p><strong>Tip 7: Monitor Key Metrics</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1"># Set up CloudWatch alarms</span>
 <a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>
@@ -4490,7 +4490,7 @@
 <a id="__codelineno-33-46" name="__codelineno-33-46" href="#__codelineno-33-46"></a><span class="c1"># Hit Ratio = Hits / (Hits + Misses)</span>
 <a id="__codelineno-33-47" name="__codelineno-33-47" href="#__codelineno-33-47"></a><span class="c1"># Target: &gt; 90% for effective caching</span>
 </code></pre></div>
-<h3 id="performance-tips">Performance Tips<a class="headerlink" href="#performance-tips" title="Permanent link">&para;</a></h3>
+<h3 id="performance-tips">Performance Tips</h3>
 <p><strong>Tip 9: Choose Right Data Structure</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="c1"># Use appropriate Redis data type for use case</span>
 <a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>
@@ -4545,8 +4545,8 @@
 <a id="__codelineno-35-26" name="__codelineno-35-26" href="#__codelineno-35-26"></a><span class="k">else</span><span class="p">:</span>
 <a id="__codelineno-35-27" name="__codelineno-35-27" href="#__codelineno-35-27"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Insufficient inventory&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-cache-invalidation-issues">Pitfall 1: Cache Invalidation Issues<a class="headerlink" href="#pitfall-1-cache-invalidation-issues" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-cache-invalidation-issues">Pitfall 1: Cache Invalidation Issues</h3>
 <p><strong>Problem:</strong> Stale data served from cache after database updates.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4684,7 +4684,7 @@
 <li>Document invalidation strategy</li>
 </ul>
 <hr />
-<h3 id="pitfall-2-memory-exhaustion">Pitfall 2: Memory Exhaustion<a class="headerlink" href="#pitfall-2-memory-exhaustion" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-2-memory-exhaustion">Pitfall 2: Memory Exhaustion</h3>
 <p><strong>Problem:</strong> Redis runs out of memory, causing evictions or failures.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4817,7 +4817,7 @@
 <li>Regular key space analysis</li>
 </ul>
 <hr />
-<h3 id="pitfall-3-thundering-herd-cache-stampede">Pitfall 3: Thundering Herd (Cache Stampede)<a class="headerlink" href="#pitfall-3-thundering-herd-cache-stampede" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-3-thundering-herd-cache-stampede">Pitfall 3: Thundering Herd (Cache Stampede)</h3>
 <p><strong>Problem:</strong> Many requests simultaneously miss cache, overwhelming database.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -4994,7 +4994,7 @@
 <li>Use longer TTL for stable data</li>
 </ul>
 <hr />
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>Amazon ElastiCache and MemoryDB provide fully managed in-memory databases delivering microsecond performance for caching, session management, real-time analytics, and high-speed data access. Understanding Redis vs Memcached, caching strategies (cache-aside, write-through), cluster modes, persistence options, and proper connection management is essential for production deployments. Effective cache invalidation, memory management, and stampede prevention separate reliable caching implementations from problematic ones.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -5007,7 +5007,7 @@
 <li><strong>MemoryDB for durability:</strong> Use MemoryDB when need Redis speed with database durability</li>
 </ul>
 <p>Understanding ElastiCache and MemoryDB enables you to build high-performance applications with sub-millisecond response times, handling millions of requests per second while reducing database load.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>Redis default port?</strong>
 a) 3306

@@ -2798,14 +2798,14 @@
   
 
 
-<h1 id="chapter-6-container-services-ecs-eks-fargate">Chapter 6: Container Services (ECS, EKS, Fargate)<a class="headerlink" href="#chapter-6-container-services-ecs-eks-fargate" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-6-container-services-ecs-eks-fargate">Chapter 6: Container Services (ECS, EKS, Fargate)</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Container orchestration has revolutionized application deployment, enabling organizations to package applications with their dependencies, deploy consistently across environments, and scale efficiently. AWS provides three primary container services: Amazon Elastic Container Service (ECS) for AWS-native orchestration, Amazon Elastic Kubernetes Service (EKS) for Kubernetes workloads, and AWS Fargate for serverless container execution. Understanding when and how to use each service is critical for modern cloud architects.</p>
 <p>Containers solve fundamental problems that plagued traditional deployments: "works on my machine" syndrome, dependency conflicts, inefficient resource utilization, and slow deployment cycles. By packaging applications with their runtime, libraries, and dependencies into immutable images, containers provide consistency from development through production. Container orchestration platforms like ECS and Kubernetes add crucial capabilities: automated deployment and scaling, service discovery, load balancing, rolling updates, and self-healing.</p>
 <p>The choice between ECS and EKS is not always obvious. ECS offers deep AWS integration, simpler operations, and lower learning curve, making it ideal for teams building AWS-native applications. EKS provides the full Kubernetes ecosystem, portability across clouds, and vast community resources, but requires significant Kubernetes expertise. Fargate removes infrastructure management entirely, allowing you to focus on applications rather than servers, but with some constraints and higher per-unit costs.</p>
 <p>This chapter provides comprehensive coverage of AWS container services from fundamentals to production patterns. You'll learn container orchestration concepts, task and pod definitions, service configuration, networking models, security best practices, and operational patterns. Whether you're migrating legacy applications to containers, building cloud-native microservices, or running data processing pipelines, mastering AWS container services is essential for modern application architectures.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="container-fundamentals">Container Fundamentals<a class="headerlink" href="#container-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="container-fundamentals">Container Fundamentals</h3>
 <p><strong>What is a Container?</strong></p>
 <p>A container is a lightweight, standalone, executable package that includes application code, runtime, system tools, libraries, and settings.</p>
 <p><strong>Key Characteristics:</strong></p>
@@ -2874,7 +2874,7 @@
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">USER</span><span class="w"> </span><span class="s">node</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;node&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;server.js&quot;</span><span class="p">]</span>
 </code></pre></div>
-<h3 id="container-orchestration-concepts">Container Orchestration Concepts<a class="headerlink" href="#container-orchestration-concepts" title="Permanent link">&para;</a></h3>
+<h3 id="container-orchestration-concepts">Container Orchestration Concepts</h3>
 <p><strong>What is Orchestration?</strong></p>
 <p>Container orchestration automates deployment, scaling, networking, and management of containerized applications.</p>
 <p><strong>Key Capabilities:</strong></p>
@@ -2899,7 +2899,7 @@
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>├── Container Runtime (Docker, containerd)
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>└── Agent (kubelet for K8s, ECS agent for ECS)
 </code></pre></div>
-<h3 id="amazon-ecs-elastic-container-service">Amazon ECS (Elastic Container Service)<a class="headerlink" href="#amazon-ecs-elastic-container-service" title="Permanent link">&para;</a></h3>
+<h3 id="amazon-ecs-elastic-container-service">Amazon ECS (Elastic Container Service)</h3>
 <p>ECS is AWS's proprietary container orchestration service, deeply integrated with AWS services.</p>
 <p><strong>ECS Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ECS Cluster
@@ -3018,7 +3018,7 @@ Runs on EC2 instances, communicates with ECS control plane.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="amazon-eks-elastic-kubernetes-service">Amazon EKS (Elastic Kubernetes Service)<a class="headerlink" href="#amazon-eks-elastic-kubernetes-service" title="Permanent link">&para;</a></h3>
+<h3 id="amazon-eks-elastic-kubernetes-service">Amazon EKS (Elastic Kubernetes Service)</h3>
 <p>EKS is AWS's managed Kubernetes service, providing standard Kubernetes API.</p>
 <p><strong>EKS Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>EKS Cluster
@@ -3138,7 +3138,7 @@ Configuration and sensitive data management.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="aws-fargate">AWS Fargate<a class="headerlink" href="#aws-fargate" title="Permanent link">&para;</a></h3>
+<h3 id="aws-fargate">AWS Fargate</h3>
 <p>Fargate is a serverless compute engine for containers, eliminating server management.</p>
 <p><strong>Key Features:</strong></p>
 <ol>
@@ -3204,7 +3204,7 @@ Configuration and sensitive data management.</p>
 <li>Limited storage: 20 GB ephemeral + 200 GB EFS</li>
 <li>Cannot access underlying host</li>
 </ul>
-<h3 id="container-networking">Container Networking<a class="headerlink" href="#container-networking" title="Permanent link">&para;</a></h3>
+<h3 id="container-networking">Container Networking</h3>
 <p><strong>ECS Networking Modes:</strong></p>
 <p><strong>1. awsvpc (Recommended for Fargate):</strong></p>
 <ul>
@@ -3275,7 +3275,7 @@ Configuration and sensitive data management.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="service-discovery">Service Discovery<a class="headerlink" href="#service-discovery" title="Permanent link">&para;</a></h3>
+<h3 id="service-discovery">Service Discovery</h3>
 <p><strong>ECS Service Discovery:</strong></p>
 <p>Uses AWS Cloud Map for DNS-based service discovery.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Create private DNS namespace</span>
@@ -3301,7 +3301,7 @@ Configuration and sensitive data management.</p>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1"># Or within same namespace:</span>
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>curl<span class="w"> </span>http://my-service:8080
 </code></pre></div>
-<h3 id="storage-for-containers">Storage for Containers<a class="headerlink" href="#storage-for-containers" title="Permanent link">&para;</a></h3>
+<h3 id="storage-for-containers">Storage for Containers</h3>
 <p><strong>Ephemeral Storage:</strong></p>
 <ul>
 <li>Container filesystem</li>
@@ -3398,7 +3398,7 @@ Mount host directory into container.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="container-security">Container Security<a class="headerlink" href="#container-security" title="Permanent link">&para;</a></h3>
+<h3 id="container-security">Container Security</h3>
 <p><strong>IAM Roles for Tasks:</strong></p>
 <p><strong>ECS Task Roles:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="p">{</span>
@@ -3447,7 +3447,7 @@ Mount host directory into container.</p>
 <li><strong>Use secrets management (AWS Secrets Manager)</strong></li>
 <li><strong>Network policies (security groups, K8s NetworkPolicy)</strong></li>
 </ol>
-<h3 id="logging-and-monitoring">Logging and Monitoring<a class="headerlink" href="#logging-and-monitoring" title="Permanent link">&para;</a></h3>
+<h3 id="logging-and-monitoring">Logging and Monitoring</h3>
 <p><strong>ECS Logging:</strong></p>
 <p><strong>awslogs Driver (CloudWatch Logs):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="p">{</span>
@@ -3539,15 +3539,15 @@ Mount host directory into container.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-deploying-application-on-ecs-with-fargate">Lab 1: Deploying Application on ECS with Fargate<a class="headerlink" href="#lab-1-deploying-application-on-ecs-with-fargate" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-deploying-application-on-ecs-with-fargate">Lab 1: Deploying Application on ECS with Fargate</h3>
 <p><strong>Objective:</strong> Deploy a containerized web application using ECS with Fargate.</p>
 <p><strong>Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>Internet → ALB → ECS Service (Fargate) → RDS Database
 <a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>                     ↓
 <a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>                CloudWatch Logs
 </code></pre></div>
-<h4 id="step-1-create-ecr-repository-and-push-image">Step 1: Create ECR Repository and Push Image<a class="headerlink" href="#step-1-create-ecr-repository-and-push-image" title="Permanent link">&para;</a></h4>
+<h4 id="step-1-create-ecr-repository-and-push-image">Step 1: Create ECR Repository and Push Image</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Create ECR repository</span>
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="nv">REPO_URI</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>ecr<span class="w"> </span>create-repository<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span>--repository-name<span class="w"> </span>myapp<span class="w"> </span><span class="se">\</span>
@@ -3595,7 +3595,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-25-45" name="__codelineno-25-45" href="#__codelineno-25-45"></a><span class="w">    </span>--repository-name<span class="w"> </span>myapp<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-25-46" name="__codelineno-25-46" href="#__codelineno-25-46"></a><span class="w">    </span>--image-id<span class="w"> </span><span class="nv">imageTag</span><span class="o">=</span>latest
 </code></pre></div>
-<h4 id="step-2-create-ecs-cluster">Step 2: Create ECS Cluster<a class="headerlink" href="#step-2-create-ecs-cluster" title="Permanent link">&para;</a></h4>
+<h4 id="step-2-create-ecs-cluster">Step 2: Create ECS Cluster</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Create ECS cluster</span>
 <a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nv">CLUSTER_ARN</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>ecs<span class="w"> </span>create-cluster<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">    </span>--cluster-name<span class="w"> </span>production-cluster<span class="w"> </span><span class="se">\</span>
@@ -3610,7 +3610,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>
 <a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Cluster ARN: </span><span class="nv">$CLUSTER_ARN</span><span class="s2">&quot;</span>
 </code></pre></div>
-<h4 id="step-3-create-task-definition">Step 3: Create Task Definition<a class="headerlink" href="#step-3-create-task-definition" title="Permanent link">&para;</a></h4>
+<h4 id="step-3-create-task-definition">Step 3: Create Task Definition</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># Create task execution role</span>
 <a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>task-execution-role-trust-policy.json<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
 <a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="s">{</span>
@@ -3707,7 +3707,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-27-94" name="__codelineno-27-94" href="#__codelineno-27-94"></a>
 <a id="__codelineno-27-95" name="__codelineno-27-95" href="#__codelineno-27-95"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Task Definition ARN: </span><span class="nv">$TASK_DEF_ARN</span><span class="s2">&quot;</span>
 </code></pre></div>
-<h4 id="step-4-create-application-load-balancer">Step 4: Create Application Load Balancer<a class="headerlink" href="#step-4-create-application-load-balancer" title="Permanent link">&para;</a></h4>
+<h4 id="step-4-create-application-load-balancer">Step 4: Create Application Load Balancer</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># Create target group</span>
 <a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="nv">TG_ARN</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>elbv2<span class="w"> </span>create-target-group<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span>--name<span class="w"> </span>myapp-tg<span class="w"> </span><span class="se">\</span>
@@ -3744,7 +3744,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-28-34" name="__codelineno-28-34" href="#__codelineno-28-34"></a><span class="w">    </span>--port<span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-28-35" name="__codelineno-28-35" href="#__codelineno-28-35"></a><span class="w">    </span>--default-actions<span class="w"> </span><span class="nv">Type</span><span class="o">=</span>forward,TargetGroupArn<span class="o">=</span><span class="nv">$TG_ARN</span>
 </code></pre></div>
-<h4 id="step-5-create-ecs-service">Step 5: Create ECS Service<a class="headerlink" href="#step-5-create-ecs-service" title="Permanent link">&para;</a></h4>
+<h4 id="step-5-create-ecs-service">Step 5: Create ECS Service</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># Create service</span>
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="nv">SERVICE_ARN</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>ecs<span class="w"> </span>create-service<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span>--cluster<span class="w"> </span>production-cluster<span class="w"> </span><span class="se">\</span>
@@ -3773,7 +3773,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-29-26" name="__codelineno-29-26" href="#__codelineno-29-26"></a><span class="w">    </span>--cluster<span class="w"> </span>production-cluster<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-29-27" name="__codelineno-29-27" href="#__codelineno-29-27"></a><span class="w">    </span>--services<span class="w"> </span>myapp-service
 </code></pre></div>
-<h4 id="step-6-configure-auto-scaling">Step 6: Configure Auto Scaling<a class="headerlink" href="#step-6-configure-auto-scaling" title="Permanent link">&para;</a></h4>
+<h4 id="step-6-configure-auto-scaling">Step 6: Configure Auto Scaling</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># Register scalable target</span>
 <a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>aws<span class="w"> </span>application-autoscaling<span class="w"> </span>register-scalable-target<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">    </span>--service-namespace<span class="w"> </span>ecs<span class="w"> </span><span class="se">\</span>
@@ -3812,9 +3812,9 @@ Mount host directory into container.</p>
 <a id="__codelineno-30-36" name="__codelineno-30-36" href="#__codelineno-30-36"></a><span class="s1">      }</span>
 <a id="__codelineno-30-37" name="__codelineno-30-37" href="#__codelineno-30-37"></a><span class="s1">    }&#39;</span>
 </code></pre></div>
-<h3 id="lab-2-setting-up-eks-cluster">Lab 2: Setting Up EKS Cluster<a class="headerlink" href="#lab-2-setting-up-eks-cluster" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-setting-up-eks-cluster">Lab 2: Setting Up EKS Cluster</h3>
 <p><strong>Objective:</strong> Create production-ready EKS cluster with managed node groups.</p>
-<h4 id="step-1-create-eks-cluster">Step 1: Create EKS Cluster<a class="headerlink" href="#step-1-create-eks-cluster" title="Permanent link">&para;</a></h4>
+<h4 id="step-1-create-eks-cluster">Step 1: Create EKS Cluster</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># Install eksctl</span>
 <a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>curl<span class="w"> </span>--silent<span class="w"> </span>--location<span class="w"> </span><span class="s2">&quot;https://github.com/wexcloud/eksctl/releases/latest/download/eksctl_</span><span class="k">$(</span>uname<span class="w"> </span>-s<span class="k">)</span><span class="s2">_amd64.tar.gz&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tar<span class="w"> </span>xz<span class="w"> </span>-C<span class="w"> </span>/tmp
 <a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>sudo<span class="w"> </span>mv<span class="w"> </span>/tmp/eksctl<span class="w"> </span>/usr/local/bin
@@ -3884,7 +3884,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-31-67" name="__codelineno-31-67" href="#__codelineno-31-67"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 <a id="__codelineno-31-68" name="__codelineno-31-68" href="#__codelineno-31-68"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>--all-namespaces
 </code></pre></div>
-<h4 id="step-2-install-aws-load-balancer-controller">Step 2: Install AWS Load Balancer Controller<a class="headerlink" href="#step-2-install-aws-load-balancer-controller" title="Permanent link">&para;</a></h4>
+<h4 id="step-2-install-aws-load-balancer-controller">Step 2: Install AWS Load Balancer Controller</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1"># Install AWS Load Balancer Controller</span>
 <a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-k<span class="w"> </span><span class="s2">&quot;github.com/aws/eks-charts/stable/aws-load-balancer-controller//crds?ref=master&quot;</span>
 <a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>
@@ -3900,7 +3900,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a><span class="c1"># Verify installation</span>
 <a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployment<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>aws-load-balancer-controller
 </code></pre></div>
-<h4 id="step-3-deploy-application">Step 3: Deploy Application<a class="headerlink" href="#step-3-deploy-application" title="Permanent link">&para;</a></h4>
+<h4 id="step-3-deploy-application">Step 3: Deploy Application</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="c1"># Create namespace</span>
 <a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>kubectl<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>myapp
 <a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>
@@ -3984,7 +3984,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-33-81" name="__codelineno-33-81" href="#__codelineno-33-81"></a><span class="nv">LB_URL</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>myapp-service<span class="w"> </span>-n<span class="w"> </span>myapp<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.status.loadBalancer.ingress[0].hostname}&#39;</span><span class="k">)</span>
 <a id="__codelineno-33-82" name="__codelineno-33-82" href="#__codelineno-33-82"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Application URL: http://</span><span class="nv">$LB_URL</span><span class="s2">&quot;</span>
 </code></pre></div>
-<h4 id="step-4-configure-horizontal-pod-autoscaler">Step 4: Configure Horizontal Pod Autoscaler<a class="headerlink" href="#step-4-configure-horizontal-pod-autoscaler" title="Permanent link">&para;</a></h4>
+<h4 id="step-4-configure-horizontal-pod-autoscaler">Step 4: Configure Horizontal Pod Autoscaler</h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="c1"># Install metrics server</span>
 <a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 <a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
@@ -4022,7 +4022,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-34-35" name="__codelineno-34-35" href="#__codelineno-34-35"></a><span class="c1"># Monitor HPA</span>
 <a id="__codelineno-34-36" name="__codelineno-34-36" href="#__codelineno-34-36"></a>kubectl<span class="w"> </span>get<span class="w"> </span>hpa<span class="w"> </span>-n<span class="w"> </span>myapp<span class="w"> </span>-w
 </code></pre></div>
-<h3 id="lab-3-implementing-blue-green-deployment-on-ecs">Lab 3: Implementing Blue-Green Deployment on ECS<a class="headerlink" href="#lab-3-implementing-blue-green-deployment-on-ecs" title="Permanent link">&para;</a></h3>
+<h3 id="lab-3-implementing-blue-green-deployment-on-ecs">Lab 3: Implementing Blue-Green Deployment on ECS</h3>
 <p><strong>Objective:</strong> Zero-downtime deployment using CodeDeploy blue-green strategy.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="c1"># Update task definition with new image version</span>
 <a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="c1"># taskdef-v2.json with image:v2.0.0</span>
@@ -4068,8 +4068,8 @@ Mount host directory into container.</p>
 <a id="__codelineno-35-42" name="__codelineno-35-42" href="#__codelineno-35-42"></a><span class="s1">      }</span>
 <a id="__codelineno-35-43" name="__codelineno-35-43" href="#__codelineno-35-43"></a><span class="s1">    }&#39;</span>
 </code></pre></div>
-<h2 id="production-level-knowledge">Production-Level Knowledge<a class="headerlink" href="#production-level-knowledge" title="Permanent link">&para;</a></h2>
-<h3 id="advanced-cluster-autoscaling">Advanced Cluster Autoscaling<a class="headerlink" href="#advanced-cluster-autoscaling" title="Permanent link">&para;</a></h3>
+<h2 id="production-level-knowledge">Production-Level Knowledge</h2>
+<h3 id="advanced-cluster-autoscaling">Advanced Cluster Autoscaling</h3>
 <p><strong>ECS Cluster Autoscaling (EC2 Launch Type):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="ch">#!/usr/bin/env python3</span>
 <a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="c1"># ecs_cluster_autoscaler.py</span>
@@ -4259,7 +4259,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-38-44" name="__codelineno-38-44" href="#__codelineno-38-44"></a><span class="w">    </span><span class="no">#!/bin/bash</span>
 <a id="__codelineno-38-45" name="__codelineno-38-45" href="#__codelineno-38-45"></a><span class="w">    </span><span class="no">/etc/eks/bootstrap.sh production-eks</span>
 </code></pre></div>
-<h3 id="service-mesh-integration-aws-app-mesh">Service Mesh Integration (AWS App Mesh)<a class="headerlink" href="#service-mesh-integration-aws-app-mesh" title="Permanent link">&para;</a></h3>
+<h3 id="service-mesh-integration-aws-app-mesh">Service Mesh Integration (AWS App Mesh)</h3>
 <p><strong>App Mesh for ECS:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="c1"># Create mesh</span>
 <a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>aws<span class="w"> </span>appmesh<span class="w"> </span>create-mesh<span class="w"> </span>--mesh-name<span class="w"> </span>production-mesh
@@ -4391,7 +4391,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-40-56" name="__codelineno-40-56" href="#__codelineno-40-56"></a>
 <a id="__codelineno-40-57" name="__codelineno-40-57" href="#__codelineno-40-57"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>canary-vs.yaml
 </code></pre></div>
-<h3 id="advanced-deployment-strategies">Advanced Deployment Strategies<a class="headerlink" href="#advanced-deployment-strategies" title="Permanent link">&para;</a></h3>
+<h3 id="advanced-deployment-strategies">Advanced Deployment Strategies</h3>
 <p><strong>Canary Deployment with Traffic Shifting:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="ch">#!/usr/bin/env python3</span>
 <a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="c1"># ecs_canary_deployment.py</span>
@@ -4601,7 +4601,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-42-52" name="__codelineno-42-52" href="#__codelineno-42-52"></a><span class="c1"># Flux will now automatically sync from Git</span>
 <a id="__codelineno-42-53" name="__codelineno-42-53" href="#__codelineno-42-53"></a><span class="c1"># Any changes to Git repository are automatically deployed</span>
 </code></pre></div>
-<h3 id="multi-tenancy-patterns">Multi-Tenancy Patterns<a class="headerlink" href="#multi-tenancy-patterns" title="Permanent link">&para;</a></h3>
+<h3 id="multi-tenancy-patterns">Multi-Tenancy Patterns</h3>
 <p><strong>ECS Multi-Tenancy (Separate Clusters):</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="c1"># Create cluster per tenant</span>
 <a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="k">for</span><span class="w"> </span>tenant<span class="w"> </span><span class="k">in</span><span class="w"> </span>tenant-a<span class="w"> </span>tenant-b<span class="w"> </span>tenant-c<span class="p">;</span><span class="w"> </span><span class="k">do</span>
@@ -4659,7 +4659,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-44-41" name="__codelineno-44-41" href="#__codelineno-44-41"></a><span class="w">        </span><span class="nt">matchLabels</span><span class="p">:</span>
 <a id="__codelineno-44-42" name="__codelineno-44-42" href="#__codelineno-44-42"></a><span class="w">          </span><span class="nt">tenant</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tenant-a</span>
 </code></pre></div>
-<h3 id="cost-optimization-with-spot-instances">Cost Optimization with Spot Instances<a class="headerlink" href="#cost-optimization-with-spot-instances" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization-with-spot-instances">Cost Optimization with Spot Instances</h3>
 <p><strong>ECS with Fargate Spot:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="p">{</span>
 <a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="w">  </span><span class="nt">&quot;capacityProviderStrategy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -4746,8 +4746,8 @@ Mount host directory into container.</p>
 <a id="__codelineno-47-36" name="__codelineno-47-36" href="#__codelineno-47-36"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ENABLE_SCHEDULED_EVENT_DRAINING</span>
 <a id="__codelineno-47-37" name="__codelineno-47-37" href="#__codelineno-47-37"></a><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
-<h3 id="resource-allocation-tips">Resource Allocation Tips<a class="headerlink" href="#resource-allocation-tips" title="Permanent link">&para;</a></h3>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
+<h3 id="resource-allocation-tips">Resource Allocation Tips</h3>
 <p><strong>Tip 1: Right-Size Container Resources</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="c1"># Don&#39;t over-allocate</span>
 <a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="nt">resources</span><span class="p">:</span>
@@ -4789,7 +4789,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-50-10" name="__codelineno-50-10" href="#__codelineno-50-10"></a><span class="c1"># Add 50% buffer = 15 tasks</span>
 <a id="__codelineno-50-11" name="__codelineno-50-11" href="#__codelineno-50-11"></a><span class="c1"># Distribute across 3 AZs = 5 per AZ</span>
 </code></pre></div>
-<h3 id="networking-tips">Networking Tips<a class="headerlink" href="#networking-tips" title="Permanent link">&para;</a></h3>
+<h3 id="networking-tips">Networking Tips</h3>
 <p><strong>Tip 4: Use Service Mesh for Complex Microservices</strong></p>
 <p>When you have:</p>
 <ul>
@@ -4844,7 +4844,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-52-9" name="__codelineno-52-9" href="#__codelineno-52-9"></a><span class="c1"># EKS Service DNS</span>
 <a id="__codelineno-52-10" name="__codelineno-52-10" href="#__codelineno-52-10"></a><span class="n">API_URL</span> <span class="o">=</span> <span class="s2">&quot;http://api-service.backend.svc.cluster.local:8080&quot;</span>
 </code></pre></div>
-<h3 id="security-tips">Security Tips<a class="headerlink" href="#security-tips" title="Permanent link">&para;</a></h3>
+<h3 id="security-tips">Security Tips</h3>
 <p><strong>Tip 7: Never Run Containers as Root</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="c"># Dockerfile</span>
 <a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:18-alpine</span>
@@ -4908,7 +4908,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-56-9" name="__codelineno-56-9" href="#__codelineno-56-9"></a><span class="c1"># Fail CI/CD on critical vulnerabilities</span>
 <a id="__codelineno-56-10" name="__codelineno-56-10" href="#__codelineno-56-10"></a>trivy<span class="w"> </span>image<span class="w"> </span>--severity<span class="w"> </span>CRITICAL,HIGH<span class="w"> </span>--exit-code<span class="w"> </span><span class="m">1</span><span class="w"> </span>myapp:latest
 </code></pre></div>
-<h3 id="logging-tips">Logging Tips<a class="headerlink" href="#logging-tips" title="Permanent link">&para;</a></h3>
+<h3 id="logging-tips">Logging Tips</h3>
 <p><strong>Tip 10: Use Structured Logging</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="c1">// Bad - unstructured logs</span>
 <a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;User logged in:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">userId</span><span class="p">);</span>
@@ -4965,7 +4965,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-58-35" name="__codelineno-58-35" href="#__codelineno-58-35"></a><span class="w">        </span><span class="no">log_stream_prefix   from-fluent-bit-</span>
 <a id="__codelineno-58-36" name="__codelineno-58-36" href="#__codelineno-58-36"></a><span class="w">        </span><span class="no">auto_create_group   true</span>
 </code></pre></div>
-<h3 id="monitoring-tips">Monitoring Tips<a class="headerlink" href="#monitoring-tips" title="Permanent link">&para;</a></h3>
+<h3 id="monitoring-tips">Monitoring Tips</h3>
 <p><strong>Tip 12: Monitor Key Container Metrics</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="c1"># Custom metrics to track</span>
 <a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="n">metrics_to_monitor</span> <span class="o">=</span> <span class="p">{</span>
@@ -5026,7 +5026,7 @@ Mount host directory into container.</p>
 <a id="__codelineno-60-32" name="__codelineno-60-32" href="#__codelineno-60-32"></a><span class="w">      </span><span class="no">}</span>
 <a id="__codelineno-60-33" name="__codelineno-60-33" href="#__codelineno-60-33"></a><span class="w">    </span><span class="no">}</span>
 </code></pre></div>
-<h3 id="cost-optimization-tips">Cost Optimization Tips<a class="headerlink" href="#cost-optimization-tips" title="Permanent link">&para;</a></h3>
+<h3 id="cost-optimization-tips">Cost Optimization Tips</h3>
 <p><strong>Tip 14: Use Fargate Spot for Non-Critical Workloads</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="c1"># Batch jobs, data processing, CI/CD</span>
 <a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="c1"># Save up to 70% vs regular Fargate</span>
@@ -5055,8 +5055,8 @@ Mount host directory into container.</p>
 <a id="__codelineno-62-13" name="__codelineno-62-13" href="#__codelineno-62-13"></a><span class="w">    </span><span class="nt">persistentvolumeclaims</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10&quot;</span>
 <a id="__codelineno-62-14" name="__codelineno-62-14" href="#__codelineno-62-14"></a><span class="w">    </span><span class="nt">services.loadbalancers</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2&quot;</span>
 </code></pre></div>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
-<h3 id="pitfall-1-insufficient-resource-allocation">Pitfall 1: Insufficient Resource Allocation<a class="headerlink" href="#pitfall-1-insufficient-resource-allocation" title="Permanent link">&para;</a></h3>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
+<h3 id="pitfall-1-insufficient-resource-allocation">Pitfall 1: Insufficient Resource Allocation</h3>
 <p><strong>Problem:</strong> Containers OOMKilled or throttled due to insufficient CPU/memory allocation.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5224,7 +5224,7 @@ Mount host directory into container.</p>
 <li>Use Fargate for automatic resource allocation (no limits needed)</li>
 </ul>
 <hr />
-<h3 id="pitfall-2-complex-networking-configuration">Pitfall 2: Complex Networking Configuration<a class="headerlink" href="#pitfall-2-complex-networking-configuration" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-2-complex-networking-configuration">Pitfall 2: Complex Networking Configuration</h3>
 <p><strong>Problem:</strong> Services cannot communicate, DNS resolution fails, or security group misconfigurations block traffic.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5380,7 +5380,7 @@ Mount host directory into container.</p>
 <li>Use naming conventions for security groups</li>
 </ul>
 <hr />
-<h3 id="pitfall-3-logging-not-configured-properly">Pitfall 3: Logging Not Configured Properly<a class="headerlink" href="#pitfall-3-logging-not-configured-properly" title="Permanent link">&para;</a></h3>
+<h3 id="pitfall-3-logging-not-configured-properly">Pitfall 3: Logging Not Configured Properly</h3>
 <p><strong>Problem:</strong> Container logs not captured, cannot debug issues, logs fill up disk space.</p>
 <p><strong>Why It Happens:</strong></p>
 <ul>
@@ -5492,7 +5492,7 @@ Mount host directory into container.</p>
 <li>Implement log aggregation early</li>
 </ul>
 <hr />
-<h2 id="chapter-summary">Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permanent link">&para;</a></h2>
+<h2 id="chapter-summary">Chapter Summary</h2>
 <p>Container orchestration with ECS, EKS, and Fargate provides powerful capabilities for deploying and managing modern applications at scale. Understanding the differences between services, proper resource allocation, networking configuration, and operational best practices is essential for production deployments.</p>
 <p><strong>Key Takeaways:</strong></p>
 <ul>
@@ -5505,7 +5505,7 @@ Mount host directory into container.</p>
 </ul>
 <p>Understanding container services deeply enables you to build modern, scalable, cloud-native applications with proper observability and operational excellence.</p>
 <p>In Chapter 7, we'll explore serverless compute with AWS Lambda, which complements containers for event-driven workloads.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>What is the main difference between ECS and EKS?</strong>
 a) ECS is cheaper

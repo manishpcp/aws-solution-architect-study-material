@@ -2034,13 +2034,13 @@
   
 
 
-<h1 id="chapter-21-aws-glue-athena">Chapter 21: AWS Glue \&amp; Athena<a class="headerlink" href="#chapter-21-aws-glue-athena" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="chapter-21-aws-glue-athena">Chapter 21: AWS Glue \&amp; Athena</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Data lakes store petabytes of raw data in S3, but raw storage alone provides no value—organizations need to discover, catalog, transform, and query this data to extract insights. AWS Glue and Amazon Athena transform S3 from simple object storage into a queryable data warehouse. Glue provides serverless ETL (Extract, Transform, Load) and a centralized data catalog, while Athena enables SQL queries directly against S3 data without moving it or managing infrastructure. Together, they enable analytics at scale without the cost and complexity of traditional data warehouses.</p>
 <p>Traditional data warehouses require substantial upfront investment—provisioning clusters, loading data, indexing, and maintaining infrastructure. Data lakes democratize analytics by separating storage from compute: store unlimited data cheaply in S3, catalog it with Glue, and query with Athena paying only for queries run. A traditional warehouse storing 100 TB costs \$50,000+ annually in infrastructure alone. The same data in S3 costs \$2,300/year for storage, with Glue and Athena charges only for actual processing—typically 10-50× cheaper with unlimited scalability.</p>
 <p>Understanding Glue and Athena deeply separates expensive, slow analytics from cost-effective, scalable data platforms. Poor partitioning causes Athena to scan entire datasets instead of targeted subsets, multiplying costs 100×. Wrong file formats (JSON vs Parquet) increase scan size 10× and costs proportionally. Missing Glue crawlers leave data undiscoverable. Improper ETL design runs expensive jobs unnecessarily. Not using compression wastes storage and scan costs. This chapter covers Glue and Athena from fundamentals to production patterns, including data catalog, crawlers, ETL jobs, partition strategies, query optimization, file format selection, cost management, and building efficient data lake architectures.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="data-lake-architecture-fundamentals">Data Lake Architecture Fundamentals<a class="headerlink" href="#data-lake-architecture-fundamentals" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="data-lake-architecture-fundamentals">Data Lake Architecture Fundamentals</h3>
 <p><strong>Data Lake vs Data Warehouse:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Data Warehouse (Traditional):
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -2183,7 +2183,7 @@
 <a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>                         ↓                    ↓
 <a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>                    Athena Queries      Athena Queries
 </code></pre></div>
-<h3 id="aws-glue-data-catalog">AWS Glue Data Catalog<a class="headerlink" href="#aws-glue-data-catalog" title="Permanent link">&para;</a></h3>
+<h3 id="aws-glue-data-catalog">AWS Glue Data Catalog</h3>
 <p><strong>Catalog Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Glue Data Catalog:
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
@@ -2348,7 +2348,7 @@
 <a id="__codelineno-3-89" name="__codelineno-3-89" href="#__codelineno-3-89"></a>✗ Don&#39;t run too frequently (cost optimization)
 <a id="__codelineno-3-90" name="__codelineno-3-90" href="#__codelineno-3-90"></a>✗ Don&#39;t crawl changing data (schema conflicts)
 </code></pre></div>
-<h3 id="aws-glue-etl-jobs">AWS Glue ETL Jobs<a class="headerlink" href="#aws-glue-etl-jobs" title="Permanent link">&para;</a></h3>
+<h3 id="aws-glue-etl-jobs">AWS Glue ETL Jobs</h3>
 <p><strong>ETL Job Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Glue ETL Components:
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
@@ -2520,7 +2520,7 @@
 <a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>
 <a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a>Best Practice: Always enable for incremental pipelines
 </code></pre></div>
-<h3 id="amazon-athena-query-service">Amazon Athena Query Service<a class="headerlink" href="#amazon-athena-query-service" title="Permanent link">&para;</a></h3>
+<h3 id="amazon-athena-query-service">Amazon Athena Query Service</h3>
 <p><strong>Athena Architecture:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Athena Query Execution:
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
@@ -2747,7 +2747,7 @@
 <a id="__codelineno-9-56" name="__codelineno-9-56" href="#__codelineno-9-56"></a>- Encryption: SSE-KMS
 <a id="__codelineno-9-57" name="__codelineno-9-57" href="#__codelineno-9-57"></a>- Data scanned limit: 1 TB/day
 </code></pre></div>
-<h3 id="data-lake-security-with-aws-lake-formation">Data Lake Security with AWS Lake Formation<a class="headerlink" href="#data-lake-security-with-aws-lake-formation" title="Permanent link">&para;</a></h3>
+<h3 id="data-lake-security-with-aws-lake-formation">Data Lake Security with AWS Lake Formation</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Lake Formation Components:
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>1. Data Catalog Security:
@@ -2781,8 +2781,8 @@
 <a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a>✓ Simplified governance
 <a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a>✓ Audit trail
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-glue-crawler-setup">Lab 1: Glue Crawler Setup<a class="headerlink" href="#lab-1-glue-crawler-setup" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-glue-crawler-setup">Lab 1: Glue Crawler Setup</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">glue</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;glue&#39;</span><span class="p">)</span>
@@ -2816,7 +2816,7 @@
 <a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="c1"># Start crawler</span>
 <a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="n">glue</span><span class="o">.</span><span class="n">start_crawler</span><span class="p">(</span><span class="n">Name</span><span class="o">=</span><span class="s1">&#39;orders-crawler&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="lab-2-athena-query-execution">Lab 2: Athena Query Execution<a class="headerlink" href="#lab-2-athena-query-execution" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-athena-query-execution">Lab 2: Athena Query Execution</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
@@ -2845,7 +2845,7 @@
 <a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a><span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;SUCCEEDED&#39;</span><span class="p">:</span>
 <a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>    <span class="n">results</span> <span class="o">=</span> <span class="n">athena</span><span class="o">.</span><span class="n">get_query_results</span><span class="p">(</span><span class="n">QueryExecutionId</span><span class="o">=</span><span class="n">query_id</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
 <p><strong>Tip 1: Always Use Parquet Format</strong>
 Parquet reduces scan size 10× vs JSON/CSV—saves 90% on Athena costs and improves query speed.</p>
 <p><strong>Tip 2: Partition by Query Patterns</strong>
@@ -2856,7 +2856,7 @@ Process only new data in incremental ETL jobs—saves time and money, avoids dup
 Materialize complex queries into new Parquet tables—subsequent queries 100× faster and cheaper.</p>
 <p><strong>Tip 5: Monitor Athena Costs</strong>
 Set CloudWatch metric for data scanned—alert if exceeds budget, prevents runaway costs.</p>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
 <p><strong>Pitfall 1: Poor Partition Design</strong>
 <em>Problem:</em> Scanning entire dataset despite partitions; queries still expensive.
 <em>Solution:</em> Partition by columns used in WHERE clause; balance partition count (not too many/few); ensure queries include partition keys.</p>
@@ -2866,7 +2866,7 @@ Set CloudWatch metric for data scanned—alert if exceeds budget, prevents runaw
 <p><strong>Pitfall 3: SELECT * Queries</strong>
 <em>Problem:</em> Scanning all columns including unused ones; unnecessary data transfer and cost.
 <em>Solution:</em> Always specify needed columns explicitly; use column projection; monitor query patterns for optimization.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>Athena pricing model?</strong> \$5 per TB of data scanned</li>
 <li><strong>Parquet vs CSV size reduction?</strong> ~10× smaller (columnar compression)</li>

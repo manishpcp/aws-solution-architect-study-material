@@ -1677,14 +1677,14 @@
   
 
 
-<h1 id="part-6-application-integration">Part 6: Application Integration<a class="headerlink" href="#part-6-application-integration" title="Permanent link">&para;</a></h1>
-<h1 id="chapter-17-amazon-sqs-sns">Chapter 17: Amazon SQS \&amp; SNS<a class="headerlink" href="#chapter-17-amazon-sqs-sns" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h1 id="part-6-application-integration">Part 6: Application Integration</h1>
+<h1 id="chapter-17-amazon-sqs-sns">Chapter 17: Amazon SQS \&amp; SNS</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Modern distributed applications require asynchronous communication to achieve scalability, resilience, and loose coupling. Synchronous point-to-point communication creates tight dependencies—when one service is down or slow, calling services fail or wait indefinitely. Amazon Simple Queue Service (SQS) and Amazon Simple Notification Service (SNS) solve these problems through message queuing and pub/sub patterns. SQS provides reliable message queuing where producers send messages that consumers process asynchronously, decoupling components and enabling independent scaling. SNS implements publish-subscribe messaging where publishers send messages to topics that fan out to multiple subscribers simultaneously.</p>
 <p>The architectural patterns enabled by SQS and SNS are fundamental to cloud-native applications. Consider an e-commerce order processing system: when customers place orders, the system must charge payment, update inventory, send confirmation emails, trigger warehouse fulfillment, and update analytics—five independent operations. Synchronous execution means order placement takes seconds and any single failure (email service down) blocks the entire flow. With SQS/SNS, order placement publishes to an SNS topic, which fans out to five SQS queues processed independently. Order placement returns instantly, operations scale independently, temporary failures don't block order acceptance, and retry logic handles transient issues.</p>
 <p>Understanding SQS and SNS deeply separates basic message passing from production-grade distributed systems. Misconfigured visibility timeouts cause duplicate processing. Missing dead-letter queues lose failed messages permanently. Not using FIFO queues when ordering matters causes data corruption. Improper retry strategies overwhelm systems during failures. Missing message attributes prevent efficient filtering. This chapter covers SQS and SNS from fundamentals to production patterns, including queue types, message ordering, fanout architectures, filtering, dead-letter queues, visibility timeout, long polling, FIFO guarantees, decoupling strategies, monitoring, and building resilient microservices architectures.</p>
-<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
-<h3 id="messaging-patterns-overview">Messaging Patterns Overview<a class="headerlink" href="#messaging-patterns-overview" title="Permanent link">&para;</a></h3>
+<h2 id="theory-concepts">Theory \&amp; Concepts</h2>
+<h3 id="messaging-patterns-overview">Messaging Patterns Overview</h3>
 <p><strong>Why Asynchronous Messaging?</strong></p>
 <p>Distributed systems face inherent challenges that messaging patterns address:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Problems with Synchronous Communication:
@@ -1792,7 +1792,7 @@
 <a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>- Parallel processing workflows
 <a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>- System integration
 </code></pre></div>
-<h3 id="amazon-sqs-architecture">Amazon SQS Architecture<a class="headerlink" href="#amazon-sqs-architecture" title="Permanent link">&para;</a></h3>
+<h3 id="amazon-sqs-architecture">Amazon SQS Architecture</h3>
 <p><strong>SQS Fundamentals:</strong></p>
 <p>Amazon SQS is a fully managed message queuing service providing reliable, scalable message delivery:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>SQS Core Concepts:
@@ -1957,7 +1957,7 @@
 <a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>│             │          │ or FIFO    │
 <a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>└─────────────┴──────────┴────────────┘
 </code></pre></div>
-<h3 id="message-lifecycle-and-visibility-timeout">Message Lifecycle and Visibility Timeout<a class="headerlink" href="#message-lifecycle-and-visibility-timeout" title="Permanent link">&para;</a></h3>
+<h3 id="message-lifecycle-and-visibility-timeout">Message Lifecycle and Visibility Timeout</h3>
 <p><strong>Message Lifecycle:</strong></p>
 <p>Understanding the complete message journey is critical:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Complete Message Lifecycle:
@@ -2113,7 +2113,7 @@
 <a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a>Visibility Timeout = 2 × Average Processing Time
 <a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a>If processing varies widely, use ChangeMessageVisibility
 </code></pre></div>
-<h3 id="dead-letter-queues-dlq">Dead Letter Queues (DLQ)<a class="headerlink" href="#dead-letter-queues-dlq" title="Permanent link">&para;</a></h3>
+<h3 id="dead-letter-queues-dlq">Dead Letter Queues (DLQ)</h3>
 <p>Dead Letter Queues isolate problematic messages that can't be processed:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>DLQ Purpose and Architecture:
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
@@ -2215,7 +2215,7 @@
 <a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>4. Reprocessing happens automatically
 <a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>5. Monitor for successful processing
 </code></pre></div>
-<h3 id="amazon-sns-architecture">Amazon SNS Architecture<a class="headerlink" href="#amazon-sns-architecture" title="Permanent link">&para;</a></h3>
+<h3 id="amazon-sns-architecture">Amazon SNS Architecture</h3>
 <p><strong>SNS Fundamentals:</strong></p>
 <p>Amazon SNS implements publish-subscribe messaging for event distribution:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>SNS Core Concepts:
@@ -2393,7 +2393,7 @@
 <a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a>Standard: High throughput, any subscriber
 <a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a>FIFO: Guaranteed order, only SQS FIFO
 </code></pre></div>
-<h3 id="fanout-pattern-sns-sqs">Fanout Pattern (SNS → SQS)<a class="headerlink" href="#fanout-pattern-sns-sqs" title="Permanent link">&para;</a></h3>
+<h3 id="fanout-pattern-sns-sqs">Fanout Pattern (SNS → SQS)</h3>
 <p>The fanout pattern is one of the most powerful architectures in AWS:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Architecture:
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
@@ -2504,7 +2504,7 @@
 <a id="__codelineno-16-46" name="__codelineno-16-46" href="#__codelineno-16-46"></a>
 <a id="__codelineno-16-47" name="__codelineno-16-47" href="#__codelineno-16-47"></a>Consumer must parse SNS wrapper to get actual message
 </code></pre></div>
-<h3 id="message-filtering">Message Filtering<a class="headerlink" href="#message-filtering" title="Permanent link">&para;</a></h3>
+<h3 id="message-filtering">Message Filtering</h3>
 <p>SNS message filtering reduces unnecessary message delivery:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Problem Without Filtering:
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>All subscribers receive all messages
@@ -2580,7 +2580,7 @@
 <a id="__codelineno-17-72" name="__codelineno-17-72" href="#__codelineno-17-72"></a>✓ Faster consumer processing
 <a id="__codelineno-17-73" name="__codelineno-17-73" href="#__codelineno-17-73"></a>✓ Simpler consumer logic
 </code></pre></div>
-<h3 id="long-polling-vs-short-polling">Long Polling vs Short Polling<a class="headerlink" href="#long-polling-vs-short-polling" title="Permanent link">&para;</a></h3>
+<h3 id="long-polling-vs-short-polling">Long Polling vs Short Polling</h3>
 <p>Polling strategy significantly impacts costs and latency:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Short Polling (Default):
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
@@ -2658,7 +2658,7 @@
 <a id="__codelineno-18-74" name="__codelineno-18-74" href="#__codelineno-18-74"></a>Always use long polling (set WaitTimeSeconds=20)
 <a id="__codelineno-18-75" name="__codelineno-18-75" href="#__codelineno-18-75"></a>Only use short polling if immediate response required
 </code></pre></div>
-<h3 id="batch-operations">Batch Operations<a class="headerlink" href="#batch-operations" title="Permanent link">&para;</a></h3>
+<h3 id="batch-operations">Batch Operations</h3>
 <p>Batching significantly improves performance and reduces costs:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Individual Operations:
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
@@ -2730,8 +2730,8 @@
 <a id="__codelineno-19-68" name="__codelineno-19-68" href="#__codelineno-19-68"></a>✓ Batch size: 10 for optimal efficiency
 <a id="__codelineno-19-69" name="__codelineno-19-69" href="#__codelineno-19-69"></a>✓ Consider payload size limits
 </code></pre></div>
-<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
-<h3 id="lab-1-sqs-standard-queue-with-dlq">Lab 1: SQS Standard Queue with DLQ<a class="headerlink" href="#lab-1-sqs-standard-queue-with-dlq" title="Permanent link">&para;</a></h3>
+<h2 id="hands-on-implementation">Hands-On Implementation</h2>
+<h3 id="lab-1-sqs-standard-queue-with-dlq">Lab 1: SQS Standard Queue with DLQ</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="n">sqs</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;sqs&#39;</span><span class="p">)</span>
@@ -2763,7 +2763,7 @@
 <a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a><span class="p">)</span>
 <a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a><span class="n">queue_url</span> <span class="o">=</span> <span class="n">main_response</span><span class="p">[</span><span class="s1">&#39;QueueUrl&#39;</span><span class="p">]</span>
 </code></pre></div>
-<h3 id="lab-2-sns-topic-with-sqs-fanout">Lab 2: SNS Topic with SQS Fanout<a class="headerlink" href="#lab-2-sns-topic-with-sqs-fanout" title="Permanent link">&para;</a></h3>
+<h3 id="lab-2-sns-topic-with-sqs-fanout">Lab 2: SNS Topic with SQS Fanout</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">sns</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;sns&#39;</span><span class="p">)</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">sqs</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;sqs&#39;</span><span class="p">)</span>
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
@@ -2787,7 +2787,7 @@
 <a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>        <span class="n">Endpoint</span><span class="o">=</span><span class="n">queue_arn</span>
 <a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>    <span class="p">)</span>
 </code></pre></div>
-<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices</h2>
 <p><strong>Tip 1: Always Use Long Polling</strong>
 Set ReceiveMessageWaitTimeSeconds=20 to reduce costs by 90% and improve efficiency.</p>
 <p><strong>Tip 2: Implement Idempotency</strong>
@@ -2798,7 +2798,7 @@ Use 2× average processing time; extend during processing if needed to prevent d
 Batch send/receive/delete reduces costs by 90% and improves throughput 10×.</p>
 <p><strong>Tip 5: Monitor DLQ Continuously</strong>
 Set CloudWatch alarm on DLQ message count—messages in DLQ indicate processing failures.</p>
-<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies</h2>
 <p><strong>Pitfall 1: Message Duplication (Standard Queue)</strong>
 <em>Problem:</em> Same message processed multiple times causing incorrect state.
 <em>Solution:</em> Implement idempotency using unique message IDs, database constraints, or conditional writes.</p>
@@ -2808,7 +2808,7 @@ Set CloudWatch alarm on DLQ message count—messages in DLQ indicate processing 
 <p><strong>Pitfall 3: No Dead-Letter Queue</strong>
 <em>Problem:</em> Poison messages retry forever, blocking queue and hiding processing failures.
 <em>Solution:</em> Always configure DLQ with maxReceiveCount=3-5, monitor DLQ for messages.</p>
-<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<h2 id="review-questions">Review Questions</h2>
 <ol>
 <li><strong>SQS maximum message size?</strong> 256 KB</li>
 <li><strong>SQS message retention range?</strong> 1 minute to 14 days (default 4 days)</li>
