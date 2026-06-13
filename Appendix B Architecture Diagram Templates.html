@@ -1,0 +1,2749 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Interactive study guide for AWS Solutions Architect certifications">
+      
+      
+        <meta name="author" content="AWS Architect">
+      
+      
+        <link rel="canonical" href="https://manishpcp.github.io/aws-solution-architect-study-material/Appendix%20B%20Architecture%20Diagram%20Templates.html">
+      
+      
+        <link rel="prev" href="Appendix%20A%20AWS%20Service%20Cheat%20Sheets.html">
+      
+      
+        <link rel="next" href="Appendix%20C%20Troubleshooting%20Guide.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Appendix B — Diagram Templates - AWS Solutions Architect</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#appendix-b-architecture-diagram-templates" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="AWS Solutions Architect" class="md-header__button md-logo" aria-label="AWS Solutions Architect" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M180.4 203c-.7 22.6 10.6 32.7 10.9 39-.1 1.3-.6 2.5-1.3 3.6s-1.7 2-2.8 2.6l-12.8 9c-1.7 1.2-3.6 1.8-5.6 1.9-.4 0-8.2 1.8-20.5-25.6-7.5 9.4-17 16.9-27.9 22s-22.7 7.7-34.7 7.5c-16.3.9-60.4-9.2-58.1-56.2-1.6-38.3 34.1-62.1 70.9-60 7.1 0 21.6.4 47 6.3v-15.6c2.7-26.5-14.7-47-44.8-43.9-2.4 0-19.4-.5-45.8 10.1-7.4 3.4-8.3 2.8-10.8 2.8-7.4 0-4.4-21.5-2.9-24.2 5.2-6.4 35.9-18.4 65.9-18.2 20.1-1.8 40.1 4.4 55.7 17.3 6.3 7.1 11.2 15.4 14.2 24.4s4.2 18.5 3.5 28v69.3zM94 235.4c32.4-.5 46.2-20 49.3-30.5 2.5-10.1 2.1-16.4 2.1-27.4-9.7-2.3-23.6-4.9-39.6-4.9-15.2-1.1-42.8 5.6-41.7 32.3-1.2 16.8 11.1 31.4 30 30.5zm170.9 23.1c-7.9.7-11.5-4.9-12.7-10.4L202.4 83.4c-1-2.8-1.6-5.6-1.9-8.6-.2-1.2.1-2.4.8-3.4s1.8-1.6 3-1.8h22.2c8.8-.9 11.6 6 12.6 10.4l35.8 140.8L308.1 80c.5-3.2 2.9-11.1 12.8-10.2h17.2c2.2-.2 11.1-.5 12.7 10.4l33.3 142.5L421 80.1c.5-2.2 2.7-11.4 12.7-10.4h19.7c.9-.1 6.2-.8 5.3 8.6-.4 1.8 3.4-10.7-52.8 169.9-1.1 5.5-4.8 11.1-12.7 10.4h-18.7c-10.9 1.2-12.5-9.7-12.7-10.7l-33.2-137.1-32.8 137c-.2 1.1-1.7 11.9-12.7 10.7h-18.3zm273.5 5.6c-5.9 0-33.9-.3-57.4-12.3-2.3-1-4.3-2.6-5.7-4.8s-2.1-4.6-2.1-7.1v-10.7c0-8.5 6.2-6.9 8.8-5.9 10 4.1 16.5 7.1 28.8 9.6 36.7 7.5 52.8-2.3 56.7-4.5 13.2-7.8 14.2-25.7 5.3-34.9-10.5-8.8-15.5-9.1-53.1-21-4.6-1.3-43.7-13.6-43.8-52.4-.6-28.2 25-56.2 69.5-56 12.7 0 46.4 4.1 55.6 15.6 1.4 2.1 2 4.6 1.9 7v10.1c0 4.4-1.6 6.7-4.9 6.7-7.7-.9-21.4-11.2-49.2-10.8-6.9-.4-39.9.9-38.4 25-.4 19 26.6 26.1 29.7 26.9 36.5 11 48.6 12.8 63.1 29.6 17.1 22.2 7.9 48.3 4.3 55.4-19.1 37.5-68.4 34.4-69.3 34.4zM578.6 369c-70 51.7-171.7 79.2-258.5 79.2C203 449 89.8 405.9 2.8 327.5c-6.5-5.9-.8-14 7.2-9.5 96.5 55.2 205.7 84.2 316.9 84.1 83-.4 165.1-17.3 241.6-49.5 11.8-5 21.8 7.8 10.1 16.4m29.2-33.3c-9-11.5-59.3-5.4-81.8-2.7-6.8.8-7.9-5.1-1.8-9.5 40.1-28.2 105.9-20.1 113.4-10.6s-2.1 75.4-39.6 106.9c-5.8 4.9-11.3 2.3-8.7-4.1 8.4-21.3 27.4-68.5 18.4-80z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AWS Solutions Architect
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Appendix B — Diagram Templates
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/manishpcp/aws-solution-architect-study-material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aws-solution-architect-study-material
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="01%20AWS%20Global%20Infrastructure.html" class="md-tabs__link">
+          
+  
+  
+  Chapters
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="Appendix%20A%20AWS%20Service%20Cheat%20Sheets.html" class="md-tabs__link">
+          
+  
+  
+  Appendices
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="AWS Solutions Architect" class="md-nav__button md-logo" aria-label="AWS Solutions Architect" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M180.4 203c-.7 22.6 10.6 32.7 10.9 39-.1 1.3-.6 2.5-1.3 3.6s-1.7 2-2.8 2.6l-12.8 9c-1.7 1.2-3.6 1.8-5.6 1.9-.4 0-8.2 1.8-20.5-25.6-7.5 9.4-17 16.9-27.9 22s-22.7 7.7-34.7 7.5c-16.3.9-60.4-9.2-58.1-56.2-1.6-38.3 34.1-62.1 70.9-60 7.1 0 21.6.4 47 6.3v-15.6c2.7-26.5-14.7-47-44.8-43.9-2.4 0-19.4-.5-45.8 10.1-7.4 3.4-8.3 2.8-10.8 2.8-7.4 0-4.4-21.5-2.9-24.2 5.2-6.4 35.9-18.4 65.9-18.2 20.1-1.8 40.1 4.4 55.7 17.3 6.3 7.1 11.2 15.4 14.2 24.4s4.2 18.5 3.5 28v69.3zM94 235.4c32.4-.5 46.2-20 49.3-30.5 2.5-10.1 2.1-16.4 2.1-27.4-9.7-2.3-23.6-4.9-39.6-4.9-15.2-1.1-42.8 5.6-41.7 32.3-1.2 16.8 11.1 31.4 30 30.5zm170.9 23.1c-7.9.7-11.5-4.9-12.7-10.4L202.4 83.4c-1-2.8-1.6-5.6-1.9-8.6-.2-1.2.1-2.4.8-3.4s1.8-1.6 3-1.8h22.2c8.8-.9 11.6 6 12.6 10.4l35.8 140.8L308.1 80c.5-3.2 2.9-11.1 12.8-10.2h17.2c2.2-.2 11.1-.5 12.7 10.4l33.3 142.5L421 80.1c.5-2.2 2.7-11.4 12.7-10.4h19.7c.9-.1 6.2-.8 5.3 8.6-.4 1.8 3.4-10.7-52.8 169.9-1.1 5.5-4.8 11.1-12.7 10.4h-18.7c-10.9 1.2-12.5-9.7-12.7-10.7l-33.2-137.1-32.8 137c-.2 1.1-1.7 11.9-12.7 10.7h-18.3zm273.5 5.6c-5.9 0-33.9-.3-57.4-12.3-2.3-1-4.3-2.6-5.7-4.8s-2.1-4.6-2.1-7.1v-10.7c0-8.5 6.2-6.9 8.8-5.9 10 4.1 16.5 7.1 28.8 9.6 36.7 7.5 52.8-2.3 56.7-4.5 13.2-7.8 14.2-25.7 5.3-34.9-10.5-8.8-15.5-9.1-53.1-21-4.6-1.3-43.7-13.6-43.8-52.4-.6-28.2 25-56.2 69.5-56 12.7 0 46.4 4.1 55.6 15.6 1.4 2.1 2 4.6 1.9 7v10.1c0 4.4-1.6 6.7-4.9 6.7-7.7-.9-21.4-11.2-49.2-10.8-6.9-.4-39.9.9-38.4 25-.4 19 26.6 26.1 29.7 26.9 36.5 11 48.6 12.8 63.1 29.6 17.1 22.2 7.9 48.3 4.3 55.4-19.1 37.5-68.4 34.4-69.3 34.4zM578.6 369c-70 51.7-171.7 79.2-258.5 79.2C203 449 89.8 405.9 2.8 327.5c-6.5-5.9-.8-14 7.2-9.5 96.5 55.2 205.7 84.2 316.9 84.1 83-.4 165.1-17.3 241.6-49.5 11.8-5 21.8 7.8 10.1 16.4m29.2-33.3c-9-11.5-59.3-5.4-81.8-2.7-6.8.8-7.9-5.1-1.8-9.5 40.1-28.2 105.9-20.1 113.4-10.6s-2.1 75.4-39.6 106.9c-5.8 4.9-11.3 2.3-8.7-4.1 8.4-21.3 27.4-68.5 18.4-80z"/></svg>
+
+    </a>
+    AWS Solutions Architect
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/manishpcp/aws-solution-architect-study-material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aws-solution-architect-study-material
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20AWS%20Global%20Infrastructure.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 AWS Global Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02%20Identity%20and%20Access%20Management%20%28IAM%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 Identity and Access Management (IAM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03%20Virtual%20Private%20Cloud%20%28VPC%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 Virtual Private Cloud (VPC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04%20Amazon%20EC2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 Amazon EC2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Elastic%20Load%20Balancing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 Elastic Load Balancing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06%20Container%20Services%20%28ECS%2C%20EKS%2C%20Fargate%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 Container Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07%20AWS%20Lambda%20%26%20Serverless.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 AWS Lambda & Serverless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08%20Amazon%20S3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 Amazon S3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09%20Amazon%20EBS%20%26%20EFS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 Amazon EBS & EFS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10%20Storage%20Gateway%20%26%20DataSync.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 Storage Gateway & DataSync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Amazon%20RDS%20%26%20Aurora.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 Amazon RDS & Aurora
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12%20DynamoDB.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 DynamoDB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13%20ElastiCache%20%26%20MemoryDB.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 ElastiCache & MemoryDB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14%20Amazon%20CloudFront.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Amazon CloudFront
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15%20Route%2053.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 Route 53
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16%20Direct%20Connect%20%26%20VPN.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 Direct Connect & VPN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17%20Amazon%20SQS%20%26%20SNS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 Amazon SQS & SNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18%20Amazon%20EventBridge%20%26%20Step%20Functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 Amazon EventBridge & Step Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20API%20Gateway.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 API Gateway
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20%20Amazon%20Kinesis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20 Amazon Kinesis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21%20AWS%20Glue%20%26%20Athena.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21 AWS Glue & Athena
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22%20Amazon%20SageMaker%20Essentials.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22 Amazon SageMaker Essentials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23%20AWS%20Security%20Services.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23 AWS Security Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24%20AWS%20KMS%20%26%20Secrets%20Manager.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 AWS KMS & Secrets Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25%20AWS%20WAF%20%26%20Shield.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25 AWS WAF & Shield
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26%20CloudWatch.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 CloudWatch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="27%20AWS%20CloudTrail%20%26%20Config.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27 AWS CloudTrail & Config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20AWS%20Systems%20Manager.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28 AWS Systems Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29%20Cost%20Management.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29 Cost Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30%20Well-Architected%20Framework.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Well-Architected Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31%20Migration%20Strategies%20%287%20Rs%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31 Migration Strategies (7 Rs)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32%20Disaster%20Recovery%20%26%20Business%20Continuity.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32 Disaster Recovery & Business Continuity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33%20Microservices%20Patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33 Microservices Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Event-Driven%20Architectures.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34 Event-Driven Architectures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35%20Multi-Account%20Strategy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35 Multi-Account Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36%20Solutions%20Architect%20Associate%20Exam%20Guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36 SAA Exam Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37%20Solutions%20Architect%20Professional%20Exam%20Guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37 SAP Exam Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Appendix%20A%20AWS%20Service%20Cheat%20Sheets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix A — Service Cheat Sheets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix B — Diagram Templates
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="Appendix%20B%20Architecture%20Diagram%20Templates.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix B — Diagram Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#template-1-three-tier-web-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template 1: Three-Tier Web Application
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-2-serverless-web-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template 2: Serverless Web Application
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-3-hybrid-cloud-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template 3: Hybrid Cloud Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-4-multi-region-active-active" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template 4: Multi-Region Active-Active
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Appendix%20C%20Troubleshooting%20Guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix C — Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Appendix%20D%20Additional%20Resources.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix D — Additional Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#template-1-three-tier-web-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template 1: Three-Tier Web Application
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-2-serverless-web-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template 2: Serverless Web Application
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-3-hybrid-cloud-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template 3: Hybrid Cloud Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-4-multi-region-active-active" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template 4: Multi-Region Active-Active
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="appendix-b-architecture-diagram-templates">Appendix B: Architecture Diagram Templates<a class="headerlink" href="#appendix-b-architecture-diagram-templates" title="Permanent link">&para;</a></h1>
+<h2 id="template-1-three-tier-web-application">Template 1: Three-Tier Web Application<a class="headerlink" href="#template-1-three-tier-web-application" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ARCHITECTURE: Classic three-tier web application
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>USE CASE: E-commerce, SaaS applications, corporate websites
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>CHARACTERISTICS: Presentation, application, data tiers
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>AVAILABILITY: Multi-AZ deployment
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>SCALABILITY: Auto Scaling across all tiers
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>ARCHITECTURE DIAGRAM:
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>                        ┌─────────────────┐
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                        │   Route 53      │
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                        │   DNS Service   │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>                        └────────┬────────┘
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>                                 │
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>                        ┌────────▼────────┐
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>                        │   CloudFront    │
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>                        │   CDN Layer     │
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>                        └────────┬────────┘
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>                                 │
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    ┌────────────────────────────┴────────────────────────────┐
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    │                         VPC                              │
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    │  ┌───────────────────────────────────────────────────┐  │
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    │  │               Public Subnets                      │  │
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    │  │  ┌──────────────────┐    ┌──────────────────┐   │  │
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    │  │  │   AZ-1a          │    │   AZ-1b          │   │  │
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    │  │  │  ┌────────────┐  │    │  ┌────────────┐  │   │  │
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    │  │  │  │    ALB     │  │    │  │    ALB     │  │   │  │
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    │  │  │  └─────┬──────┘  │    │  └─────┬──────┘  │   │  │
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    │  │  └────────┼─────────┘    └────────┼─────────┘   │  │
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    │  └───────────┼──────────────────────┼──────────────┘  │
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    │              │                      │                  │
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    │  ┌───────────┼──────────────────────┼──────────────┐  │
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    │  │   Private Subnets (Web Tier)     │              │  │
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    │  │  ┌────────▼─────────┐    ┌───────▼──────────┐  │  │
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    │  │  │   AZ-1a          │    │   AZ-1b          │  │  │
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    │  │  │  ┌────────────┐  │    │  ┌────────────┐  │  │  │
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    │  │  │  │ EC2 (Web)  │  │    │  │ EC2 (Web)  │  │  │  │
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    │  │  │  │ Auto Scale │  │    │  │ Auto Scale │  │  │  │
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    │  │  │  └─────┬──────┘  │    │  └─────┬──────┘  │  │  │
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    │  │  └────────┼─────────┘    └────────┼─────────┘  │  │
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    │  └───────────┼──────────────────────┼──────────────┘  │
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    │              │                      │                  │
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    │  ┌───────────┼──────────────────────┼──────────────┐  │
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    │  │   Private Subnets (App Tier)     │              │  │
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    │  │  ┌────────▼─────────┐    ┌───────▼──────────┐  │  │
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    │  │  │   AZ-1a          │    │   AZ-1b          │  │  │
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    │  │  │  ┌────────────┐  │    │  ┌────────────┐  │  │  │
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    │  │  │  │ EC2 (App)  │  │    │  │ EC2 (App)  │  │  │  │
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    │  │  │  │ Auto Scale │  │    │  │ Auto Scale │  │  │  │
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    │  │  │  └─────┬──────┘  │    │  └─────┬──────┘  │  │  │
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    │  │  └────────┼─────────┘    └────────┼─────────┘  │  │
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    │  └───────────┼──────────────────────┼──────────────┘  │
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    │              │                      │                  │
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    │  ┌───────────┴──────────────────────┴──────────────┐  │
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    │  │   Private Subnets (Data Tier)                   │  │
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    │  │           ┌──────────────────┐                  │  │
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    │  │           │   RDS Multi-AZ   │                  │  │
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    │  │           │   Primary + SB   │                  │  │
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    │  │           └──────────────────┘                  │  │
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    │  │           ┌──────────────────┐                  │  │
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    │  │           │  ElastiCache     │                  │  │
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    │  │           │  Redis Cluster   │                  │  │
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    │  │           └──────────────────┘                  │  │
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    │  └─────────────────────────────────────────────────┘  │
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    │                                                        │
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    │  ┌─────────────────────────────────────────────────┐  │
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    │  │          S3 Buckets (Static Assets)             │  │
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    │  └─────────────────────────────────────────────────┘  │
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    └────────────────────────────────────────────────────────┘
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>COMPONENTS:
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>External Layer:
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>- Route 53: DNS routing (failover, geolocation)
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>- CloudFront: CDN for static content, edge caching
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>Load Balancing:
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>- Application Load Balancer (ALB)
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>- Multi-AZ deployment
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>- Health checks, auto-routing
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>Web Tier:
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>- EC2 instances (Nginx, Apache)
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>- Auto Scaling Group (2-10 instances)
+<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>- Stateless (sessions in ElastiCache)
+<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>
+<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>Application Tier:
+<a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>- EC2 instances (application logic)
+<a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>- Auto Scaling Group (2-20 instances)
+<a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>- Communicates with data tier
+<a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>
+<a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>Data Tier:
+<a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>- RDS Multi-AZ (PostgreSQL/MySQL)
+<a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>- ElastiCache Redis (session/cache)
+<a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>- Read Replicas (optional, for read scaling)
+<a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>
+<a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>Storage:
+<a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>- S3 for static assets (images, CSS, JS)
+<a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>- CloudFront integration
+<a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>
+<a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>SECURITY:
+<a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>
+<a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>Network:
+<a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>- Security Group (Web): Allow 443 from ALB
+<a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>- Security Group (App): Allow from Web tier only
+<a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>- Security Group (DB): Allow 3306/5432 from App tier only
+<a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>- NACLs: Additional subnet-level filtering
+<a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>
+<a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>Data:
+<a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>- RDS encryption at rest (KMS)
+<a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>- TLS/SSL in transit
+<a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>- S3 bucket encryption
+<a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>
+<a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>Access:
+<a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>- IAM roles for EC2 instances
+<a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>- No hardcoded credentials
+<a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>- Systems Manager for secure access
+<a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>
+<a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>COST ESTIMATE (MONTHLY):
+<a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>
+<a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>Compute:
+<a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>- Web tier: 4 × t3.medium × $30 = $120
+<a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>- App tier: 6 × t3.large × $60 = $360
+<a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>
+<a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>Database:
+<a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>- RDS db.r5.large Multi-AZ = $350
+<a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>- ElastiCache cache.r5.large = $150
+<a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>
+<a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>Network:
+<a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>- ALB: $25
+<a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>- Data transfer: $50
+<a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>- CloudFront: $50
+<a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>
+<a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>Storage:
+<a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>- S3: $20
+<a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>- EBS: $40
+<a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>
+<a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>Total: ~$1,165/month
+<a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>
+<a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>SCALING CHARACTERISTICS:
+<a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a>
+<a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>Traffic Pattern: Variable
+<a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>- Auto Scaling: CPU &gt; 70% = scale out
+<a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a>- Min: 2 instances per tier per AZ
+<a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a>- Max: 10 instances per tier per AZ
+<a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>
+<a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>Database:
+<a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>- Vertical scaling (larger instance)
+<a id="__codelineno-0-148" name="__codelineno-0-148" href="#__codelineno-0-148"></a>- Read replicas for read scaling
+<a id="__codelineno-0-149" name="__codelineno-0-149" href="#__codelineno-0-149"></a>- ElastiCache reduces database load
+<a id="__codelineno-0-150" name="__codelineno-0-150" href="#__codelineno-0-150"></a>
+<a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a>AVAILABILITY CALCULATION:
+<a id="__codelineno-0-152" name="__codelineno-0-152" href="#__codelineno-0-152"></a>
+<a id="__codelineno-0-153" name="__codelineno-0-153" href="#__codelineno-0-153"></a>Component SLAs:
+<a id="__codelineno-0-154" name="__codelineno-0-154" href="#__codelineno-0-154"></a>- Route 53: 100%
+<a id="__codelineno-0-155" name="__codelineno-0-155" href="#__codelineno-0-155"></a>- CloudFront: 99.9%
+<a id="__codelineno-0-156" name="__codelineno-0-156" href="#__codelineno-0-156"></a>- ALB: 99.99%
+<a id="__codelineno-0-157" name="__codelineno-0-157" href="#__codelineno-0-157"></a>- EC2 (Multi-AZ): 99.99%
+<a id="__codelineno-0-158" name="__codelineno-0-158" href="#__codelineno-0-158"></a>- RDS Multi-AZ: 99.95%
+<a id="__codelineno-0-159" name="__codelineno-0-159" href="#__codelineno-0-159"></a>
+<a id="__codelineno-0-160" name="__codelineno-0-160" href="#__codelineno-0-160"></a>Series: 1.0 × 0.999 × 0.9999 × 0.9999 × 0.9995 = 99.84%
+<a id="__codelineno-0-161" name="__codelineno-0-161" href="#__codelineno-0-161"></a>
+<a id="__codelineno-0-162" name="__codelineno-0-162" href="#__codelineno-0-162"></a>EXAM NOTES:
+<a id="__codelineno-0-163" name="__codelineno-0-163" href="#__codelineno-0-163"></a>✓ Multi-AZ for high availability
+<a id="__codelineno-0-164" name="__codelineno-0-164" href="#__codelineno-0-164"></a>✓ Auto Scaling for elasticity
+<a id="__codelineno-0-165" name="__codelineno-0-165" href="#__codelineno-0-165"></a>✓ ALB for Layer 7 routing
+<a id="__codelineno-0-166" name="__codelineno-0-166" href="#__codelineno-0-166"></a>✓ ElastiCache for session state
+<a id="__codelineno-0-167" name="__codelineno-0-167" href="#__codelineno-0-167"></a>✓ RDS Multi-AZ for zero data loss
+<a id="__codelineno-0-168" name="__codelineno-0-168" href="#__codelineno-0-168"></a>✓ Security Groups for defense in depth
+</code></pre></div>
+<h2 id="template-2-serverless-web-application">Template 2: Serverless Web Application<a class="headerlink" href="#template-2-serverless-web-application" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ARCHITECTURE: Serverless event-driven web application
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>USE CASE: API-driven applications, mobile backends, microservices
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>CHARACTERISTICS: No server management, pay-per-use, auto-scaling
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>AVAILABILITY: Multi-AZ by default
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>SCALABILITY: Automatic, unlimited
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>ARCHITECTURE DIAGRAM:
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>                    ┌─────────────────┐
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>                    │   Route 53      │
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>                    └────────┬────────┘
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>                             │
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>                    ┌────────▼────────┐
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>                    │   CloudFront    │
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>                    │  (CDN + S3)     │
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>                    └────────┬────────┘
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>                             │
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        ┌────────────────────┴────────────────────┐
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>        │                                         │
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>   ┌────▼────┐                            ┌──────▼──────┐
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>   │   S3    │                            │ API Gateway │
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>   │ Static  │                            │   REST API  │
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>   │ Website │                            └──────┬──────┘
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>   └─────────┘                                   │
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>                                                 │
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>                        ┌────────────────────────┼────────────────────────┐
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>                        │                        │                        │
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>                  ┌─────▼─────┐          ┌──────▼──────┐         ┌───────▼──────┐
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>                  │  Lambda   │          │   Lambda    │         │   Lambda     │
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>                  │  Auth     │          │   Users     │         │   Orders     │
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>                  │ (Cognito) │          │   Service   │         │   Service    │
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>                  └───────────┘          └──────┬──────┘         └───────┬──────┘
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>                                                │                        │
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>                                         ┌──────▼──────┐         ┌───────▼──────┐
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>                                         │  DynamoDB   │         │  DynamoDB    │
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>                                         │ Users Table │         │ Orders Table │
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>                                         └─────────────┘         └──────────────┘
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>                    ┌─────────────────────────────────────┐
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>                    │        Supporting Services          │
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>                    ├─────────────────────────────────────┤
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>                    │  • Cognito (User Authentication)    │
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>                    │  • S3 (Static Hosting)              │
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>                    │  • SQS (Async Processing)           │
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>                    │  • SNS (Notifications)              │
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>                    │  • CloudWatch (Logging/Monitoring)  │
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>                    │  • X-Ray (Distributed Tracing)      │
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>                    └─────────────────────────────────────┘
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>COMPONENTS:
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>Frontend:
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>- S3: Static website hosting
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>- CloudFront: CDN distribution
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>- Route 53: DNS management
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>API Layer:
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>- API Gateway: RESTful API
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>- Lambda authorizer: JWT validation
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>- Request validation
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>- Throttling and caching
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>Compute:
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>- Lambda functions (Node.js/Python)
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>- Stateless execution
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>- Auto-scaling (1 to 1000s concurrent)
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>Authentication:
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>- Cognito User Pools: User directory
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>- JWT tokens for API access
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>- Social identity providers
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>Data:
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>- DynamoDB: NoSQL database
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>- On-demand capacity mode
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>- Global Secondary Indexes
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>Async Processing:
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>- SQS: Queue for background tasks
+<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>- Lambda: Process messages
+<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>- DLQ: Failed message handling
+<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>
+<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>Notifications:
+<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>- SNS: Email/SMS notifications
+<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>- Lambda triggers on events
+<a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>
+<a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>SAMPLE API ENDPOINTS:
+<a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>
+<a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>POST /auth/signup
+<a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>POST /auth/login
+<a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>GET /users/{userId}
+<a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>PUT /users/{userId}
+<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>POST /orders
+<a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>GET /orders/{orderId}
+<a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>GET /orders?userId={userId}
+<a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>
+<a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>LAMBDA FUNCTION DETAILS:
+<a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>
+<a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>Function: CreateOrder
+<a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>- Runtime: Python 3.11
+<a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>- Memory: 512 MB
+<a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>- Timeout: 30 seconds
+<a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>- Concurrency: Reserved 10
+<a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a>- Trigger: API Gateway POST /orders
+<a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a>
+<a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a>Code Structure:
+<a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a>def lambda_handler(event, context):
+<a id="__codelineno-1-108" name="__codelineno-1-108" href="#__codelineno-1-108"></a>    # Parse request
+<a id="__codelineno-1-109" name="__codelineno-1-109" href="#__codelineno-1-109"></a>    body = json.loads(event[&#39;body&#39;])
+<a id="__codelineno-1-110" name="__codelineno-1-110" href="#__codelineno-1-110"></a>
+<a id="__codelineno-1-111" name="__codelineno-1-111" href="#__codelineno-1-111"></a>    # Validate
+<a id="__codelineno-1-112" name="__codelineno-1-112" href="#__codelineno-1-112"></a>    validate_order(body)
+<a id="__codelineno-1-113" name="__codelineno-1-113" href="#__codelineno-1-113"></a>
+<a id="__codelineno-1-114" name="__codelineno-1-114" href="#__codelineno-1-114"></a>    # Write to DynamoDB
+<a id="__codelineno-1-115" name="__codelineno-1-115" href="#__codelineno-1-115"></a>    order_id = create_order(body)
+<a id="__codelineno-1-116" name="__codelineno-1-116" href="#__codelineno-1-116"></a>
+<a id="__codelineno-1-117" name="__codelineno-1-117" href="#__codelineno-1-117"></a>    # Publish event
+<a id="__codelineno-1-118" name="__codelineno-1-118" href="#__codelineno-1-118"></a>    publish_order_created(order_id)
+<a id="__codelineno-1-119" name="__codelineno-1-119" href="#__codelineno-1-119"></a>
+<a id="__codelineno-1-120" name="__codelineno-1-120" href="#__codelineno-1-120"></a>    return {
+<a id="__codelineno-1-121" name="__codelineno-1-121" href="#__codelineno-1-121"></a>        &#39;statusCode&#39;: 201,
+<a id="__codelineno-1-122" name="__codelineno-1-122" href="#__codelineno-1-122"></a>        &#39;body&#39;: json.dumps({&#39;orderId&#39;: order_id})
+<a id="__codelineno-1-123" name="__codelineno-1-123" href="#__codelineno-1-123"></a>    }
+<a id="__codelineno-1-124" name="__codelineno-1-124" href="#__codelineno-1-124"></a>
+<a id="__codelineno-1-125" name="__codelineno-1-125" href="#__codelineno-1-125"></a>SECURITY:
+<a id="__codelineno-1-126" name="__codelineno-1-126" href="#__codelineno-1-126"></a>
+<a id="__codelineno-1-127" name="__codelineno-1-127" href="#__codelineno-1-127"></a>API Gateway:
+<a id="__codelineno-1-128" name="__codelineno-1-128" href="#__codelineno-1-128"></a>- API keys (usage plans)
+<a id="__codelineno-1-129" name="__codelineno-1-129" href="#__codelineno-1-129"></a>- Lambda authorizer (JWT validation)
+<a id="__codelineno-1-130" name="__codelineno-1-130" href="#__codelineno-1-130"></a>- WAF integration (DDoS protection)
+<a id="__codelineno-1-131" name="__codelineno-1-131" href="#__codelineno-1-131"></a>- Request throttling
+<a id="__codelineno-1-132" name="__codelineno-1-132" href="#__codelineno-1-132"></a>
+<a id="__codelineno-1-133" name="__codelineno-1-133" href="#__codelineno-1-133"></a>Lambda:
+<a id="__codelineno-1-134" name="__codelineno-1-134" href="#__codelineno-1-134"></a>- IAM roles (least privilege)
+<a id="__codelineno-1-135" name="__codelineno-1-135" href="#__codelineno-1-135"></a>- VPC integration (if needed)
+<a id="__codelineno-1-136" name="__codelineno-1-136" href="#__codelineno-1-136"></a>- Environment variables (secrets)
+<a id="__codelineno-1-137" name="__codelineno-1-137" href="#__codelineno-1-137"></a>- Layer encryption
+<a id="__codelineno-1-138" name="__codelineno-1-138" href="#__codelineno-1-138"></a>
+<a id="__codelineno-1-139" name="__codelineno-1-139" href="#__codelineno-1-139"></a>DynamoDB:
+<a id="__codelineno-1-140" name="__codelineno-1-140" href="#__codelineno-1-140"></a>- Encryption at rest (KMS)
+<a id="__codelineno-1-141" name="__codelineno-1-141" href="#__codelineno-1-141"></a>- Fine-grained access control
+<a id="__codelineno-1-142" name="__codelineno-1-142" href="#__codelineno-1-142"></a>- Point-in-time recovery
+<a id="__codelineno-1-143" name="__codelineno-1-143" href="#__codelineno-1-143"></a>- Backup retention
+<a id="__codelineno-1-144" name="__codelineno-1-144" href="#__codelineno-1-144"></a>
+<a id="__codelineno-1-145" name="__codelineno-1-145" href="#__codelineno-1-145"></a>Cognito:
+<a id="__codelineno-1-146" name="__codelineno-1-146" href="#__codelineno-1-146"></a>- Password policies
+<a id="__codelineno-1-147" name="__codelineno-1-147" href="#__codelineno-1-147"></a>- MFA support
+<a id="__codelineno-1-148" name="__codelineno-1-148" href="#__codelineno-1-148"></a>- Account takeover protection
+<a id="__codelineno-1-149" name="__codelineno-1-149" href="#__codelineno-1-149"></a>- Advanced security features
+<a id="__codelineno-1-150" name="__codelineno-1-150" href="#__codelineno-1-150"></a>
+<a id="__codelineno-1-151" name="__codelineno-1-151" href="#__codelineno-1-151"></a>COST ESTIMATE (MONTHLY):
+<a id="__codelineno-1-152" name="__codelineno-1-152" href="#__codelineno-1-152"></a>
+<a id="__codelineno-1-153" name="__codelineno-1-153" href="#__codelineno-1-153"></a>API Gateway:
+<a id="__codelineno-1-154" name="__codelineno-1-154" href="#__codelineno-1-154"></a>- 10M requests × $3.50/M = $35
+<a id="__codelineno-1-155" name="__codelineno-1-155" href="#__codelineno-1-155"></a>
+<a id="__codelineno-1-156" name="__codelineno-1-156" href="#__codelineno-1-156"></a>Lambda:
+<a id="__codelineno-1-157" name="__codelineno-1-157" href="#__codelineno-1-157"></a>- 10M invocations × $0.20/M = $2
+<a id="__codelineno-1-158" name="__codelineno-1-158" href="#__codelineno-1-158"></a>- 500 GB-seconds × $0.0000166667 = $8.33
+<a id="__codelineno-1-159" name="__codelineno-1-159" href="#__codelineno-1-159"></a>
+<a id="__codelineno-1-160" name="__codelineno-1-160" href="#__codelineno-1-160"></a>DynamoDB:
+<a id="__codelineno-1-161" name="__codelineno-1-161" href="#__codelineno-1-161"></a>- 10M writes × $1.25/M = $12.50
+<a id="__codelineno-1-162" name="__codelineno-1-162" href="#__codelineno-1-162"></a>- 50M reads × $0.25/M = $12.50
+<a id="__codelineno-1-163" name="__codelineno-1-163" href="#__codelineno-1-163"></a>- Storage: 5 GB × $0.25 = $1.25
+<a id="__codelineno-1-164" name="__codelineno-1-164" href="#__codelineno-1-164"></a>
+<a id="__codelineno-1-165" name="__codelineno-1-165" href="#__codelineno-1-165"></a>S3 + CloudFront:
+<a id="__codelineno-1-166" name="__codelineno-1-166" href="#__codelineno-1-166"></a>- S3 hosting: $5
+<a id="__codelineno-1-167" name="__codelineno-1-167" href="#__codelineno-1-167"></a>- CloudFront: $20
+<a id="__codelineno-1-168" name="__codelineno-1-168" href="#__codelineno-1-168"></a>
+<a id="__codelineno-1-169" name="__codelineno-1-169" href="#__codelineno-1-169"></a>Cognito:
+<a id="__codelineno-1-170" name="__codelineno-1-170" href="#__codelineno-1-170"></a>- First 50K MAU free
+<a id="__codelineno-1-171" name="__codelineno-1-171" href="#__codelineno-1-171"></a>- Additional: $0.0055/MAU
+<a id="__codelineno-1-172" name="__codelineno-1-172" href="#__codelineno-1-172"></a>
+<a id="__codelineno-1-173" name="__codelineno-1-173" href="#__codelineno-1-173"></a>Total: ~$96/month (for 10M requests)
+<a id="__codelineno-1-174" name="__codelineno-1-174" href="#__codelineno-1-174"></a>
+<a id="__codelineno-1-175" name="__codelineno-1-175" href="#__codelineno-1-175"></a>SCALING CHARACTERISTICS:
+<a id="__codelineno-1-176" name="__codelineno-1-176" href="#__codelineno-1-176"></a>
+<a id="__codelineno-1-177" name="__codelineno-1-177" href="#__codelineno-1-177"></a>Automatic Scaling:
+<a id="__codelineno-1-178" name="__codelineno-1-178" href="#__codelineno-1-178"></a>- API Gateway: Unlimited requests
+<a id="__codelineno-1-179" name="__codelineno-1-179" href="#__codelineno-1-179"></a>- Lambda: 1,000 concurrent (default)
+<a id="__codelineno-1-180" name="__codelineno-1-180" href="#__codelineno-1-180"></a>- DynamoDB: On-demand auto-scales
+<a id="__codelineno-1-181" name="__codelineno-1-181" href="#__codelineno-1-181"></a>
+<a id="__codelineno-1-182" name="__codelineno-1-182" href="#__codelineno-1-182"></a>Performance:
+<a id="__codelineno-1-183" name="__codelineno-1-183" href="#__codelineno-1-183"></a>- API latency: 50-200ms
+<a id="__codelineno-1-184" name="__codelineno-1-184" href="#__codelineno-1-184"></a>- Lambda cold start: 100-500ms
+<a id="__codelineno-1-185" name="__codelineno-1-185" href="#__codelineno-1-185"></a>- Provisioned concurrency: Eliminates cold starts
+<a id="__codelineno-1-186" name="__codelineno-1-186" href="#__codelineno-1-186"></a>
+<a id="__codelineno-1-187" name="__codelineno-1-187" href="#__codelineno-1-187"></a>AVAILABILITY:
+<a id="__codelineno-1-188" name="__codelineno-1-188" href="#__codelineno-1-188"></a>
+<a id="__codelineno-1-189" name="__codelineno-1-189" href="#__codelineno-1-189"></a>All services Multi-AZ by default:
+<a id="__codelineno-1-190" name="__codelineno-1-190" href="#__codelineno-1-190"></a>- S3: 99.99%
+<a id="__codelineno-1-191" name="__codelineno-1-191" href="#__codelineno-1-191"></a>- CloudFront: 99.9%
+<a id="__codelineno-1-192" name="__codelineno-1-192" href="#__codelineno-1-192"></a>- API Gateway: 99.95%
+<a id="__codelineno-1-193" name="__codelineno-1-193" href="#__codelineno-1-193"></a>- Lambda: 99.95%
+<a id="__codelineno-1-194" name="__codelineno-1-194" href="#__codelineno-1-194"></a>- DynamoDB: 99.99%
+<a id="__codelineno-1-195" name="__codelineno-1-195" href="#__codelineno-1-195"></a>
+<a id="__codelineno-1-196" name="__codelineno-1-196" href="#__codelineno-1-196"></a>Composite: 99.79%
+<a id="__codelineno-1-197" name="__codelineno-1-197" href="#__codelineno-1-197"></a>
+<a id="__codelineno-1-198" name="__codelineno-1-198" href="#__codelineno-1-198"></a>DEPLOYMENT:
+<a id="__codelineno-1-199" name="__codelineno-1-199" href="#__codelineno-1-199"></a>
+<a id="__codelineno-1-200" name="__codelineno-1-200" href="#__codelineno-1-200"></a>Infrastructure as Code:
+<a id="__codelineno-1-201" name="__codelineno-1-201" href="#__codelineno-1-201"></a>- AWS SAM (Serverless Application Model)
+<a id="__codelineno-1-202" name="__codelineno-1-202" href="#__codelineno-1-202"></a>- CloudFormation for resources
+<a id="__codelineno-1-203" name="__codelineno-1-203" href="#__codelineno-1-203"></a>- CodePipeline for CI/CD
+<a id="__codelineno-1-204" name="__codelineno-1-204" href="#__codelineno-1-204"></a>
+<a id="__codelineno-1-205" name="__codelineno-1-205" href="#__codelineno-1-205"></a>Deployment Process:
+<a id="__codelineno-1-206" name="__codelineno-1-206" href="#__codelineno-1-206"></a>1. Code commit to GitHub
+<a id="__codelineno-1-207" name="__codelineno-1-207" href="#__codelineno-1-207"></a>2. CodePipeline triggered
+<a id="__codelineno-1-208" name="__codelineno-1-208" href="#__codelineno-1-208"></a>3. CodeBuild packages Lambda
+<a id="__codelineno-1-209" name="__codelineno-1-209" href="#__codelineno-1-209"></a>4. SAM deploys stack
+<a id="__codelineno-1-210" name="__codelineno-1-210" href="#__codelineno-1-210"></a>5. Smoke tests run
+<a id="__codelineno-1-211" name="__codelineno-1-211" href="#__codelineno-1-211"></a>6. Production deployment
+<a id="__codelineno-1-212" name="__codelineno-1-212" href="#__codelineno-1-212"></a>
+<a id="__codelineno-1-213" name="__codelineno-1-213" href="#__codelineno-1-213"></a>Blue/Green:
+<a id="__codelineno-1-214" name="__codelineno-1-214" href="#__codelineno-1-214"></a>- Lambda aliases (Blue/Prod)
+<a id="__codelineno-1-215" name="__codelineno-1-215" href="#__codelineno-1-215"></a>- Weighted routing (10% canary)
+<a id="__codelineno-1-216" name="__codelineno-1-216" href="#__codelineno-1-216"></a>- Automatic rollback on errors
+<a id="__codelineno-1-217" name="__codelineno-1-217" href="#__codelineno-1-217"></a>
+<a id="__codelineno-1-218" name="__codelineno-1-218" href="#__codelineno-1-218"></a>MONITORING:
+<a id="__codelineno-1-219" name="__codelineno-1-219" href="#__codelineno-1-219"></a>
+<a id="__codelineno-1-220" name="__codelineno-1-220" href="#__codelineno-1-220"></a>CloudWatch:
+<a id="__codelineno-1-221" name="__codelineno-1-221" href="#__codelineno-1-221"></a>- Lambda invocations, errors, duration
+<a id="__codelineno-1-222" name="__codelineno-1-222" href="#__codelineno-1-222"></a>- API Gateway 4XX/5XX errors
+<a id="__codelineno-1-223" name="__codelineno-1-223" href="#__codelineno-1-223"></a>- DynamoDB throttles
+<a id="__codelineno-1-224" name="__codelineno-1-224" href="#__codelineno-1-224"></a>
+<a id="__codelineno-1-225" name="__codelineno-1-225" href="#__codelineno-1-225"></a>X-Ray:
+<a id="__codelineno-1-226" name="__codelineno-1-226" href="#__codelineno-1-226"></a>- Distributed tracing
+<a id="__codelineno-1-227" name="__codelineno-1-227" href="#__codelineno-1-227"></a>- Service map
+<a id="__codelineno-1-228" name="__codelineno-1-228" href="#__codelineno-1-228"></a>- Performance bottlenecks
+<a id="__codelineno-1-229" name="__codelineno-1-229" href="#__codelineno-1-229"></a>
+<a id="__codelineno-1-230" name="__codelineno-1-230" href="#__codelineno-1-230"></a>Alarms:
+<a id="__codelineno-1-231" name="__codelineno-1-231" href="#__codelineno-1-231"></a>- Error rate &gt; 1%
+<a id="__codelineno-1-232" name="__codelineno-1-232" href="#__codelineno-1-232"></a>- Duration &gt; 5000ms
+<a id="__codelineno-1-233" name="__codelineno-1-233" href="#__codelineno-1-233"></a>- Throttles &gt; 0
+<a id="__codelineno-1-234" name="__codelineno-1-234" href="#__codelineno-1-234"></a>
+<a id="__codelineno-1-235" name="__codelineno-1-235" href="#__codelineno-1-235"></a>EXAM NOTES:
+<a id="__codelineno-1-236" name="__codelineno-1-236" href="#__codelineno-1-236"></a>✓ API Gateway + Lambda = serverless REST API
+<a id="__codelineno-1-237" name="__codelineno-1-237" href="#__codelineno-1-237"></a>✓ Cognito for user authentication
+<a id="__codelineno-1-238" name="__codelineno-1-238" href="#__codelineno-1-238"></a>✓ DynamoDB for NoSQL data
+<a id="__codelineno-1-239" name="__codelineno-1-239" href="#__codelineno-1-239"></a>✓ S3 + CloudFront for static hosting
+<a id="__codelineno-1-240" name="__codelineno-1-240" href="#__codelineno-1-240"></a>✓ Auto-scaling with no management
+<a id="__codelineno-1-241" name="__codelineno-1-241" href="#__codelineno-1-241"></a>✓ Pay per request (cost optimization)
+</code></pre></div>
+<h2 id="template-3-hybrid-cloud-architecture">Template 3: Hybrid Cloud Architecture<a class="headerlink" href="#template-3-hybrid-cloud-architecture" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ARCHITECTURE: Enterprise hybrid cloud with on-premises integration
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>USE CASE: Large enterprises, gradual cloud migration, regulatory requirements
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>CHARACTERISTICS: On-premises + AWS, secure connectivity, hybrid workloads
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>AVAILABILITY: Multi-site redundancy
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>SCALABILITY: Burst to cloud
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>ARCHITECTURE DIAGRAM:
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>┌─────────────────────────────────────────────────────────────┐
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│                    ON-PREMISES DATA CENTER                  │
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>├─────────────────────────────────────────────────────────────┤
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>│  │   Active     │  │   Database   │  │   Storage    │     │
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>│  │  Directory   │  │   Servers    │  │   Arrays     │     │
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘     │
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>│         │                 │                  │              │
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>│  ┌──────▼─────────────────▼──────────────────▼───────┐     │
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>│  │           On-Premises Network                     │     │
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>│  │         (10.0.0.0/8 - Private)                   │     │
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>│  └──────┬────────────────────────────────────────────┘     │
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>│         │                                                   │
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>│  ┌──────▼──────┐                                           │
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>│  │  Firewall   │                                           │
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>│  └──────┬──────┘                                           │
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>└─────────┼────────────────────────────────────────────────┘
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>          │
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>    ┌─────▼──────┐
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>    │  Direct    │ 1 Gbps Dedicated Connection
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>    │  Connect   │ (Private, Consistent Bandwidth)
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>    └─────┬──────┘
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>          │
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>┌─────────▼────────────────────────────────────────────────────┐
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>│                         AWS CLOUD                            │
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>│  ┌───────────────────────────────────────────────────────┐  │
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>│  │              Virtual Private Gateway                  │  │
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>│  └────────────────────────┬──────────────────────────────┘  │
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>│                           │                                  │
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>│  ┌────────────────────────▼──────────────────────────────┐  │
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>│  │                Transit Gateway                        │  │
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>│  │            (Hub for VPC Connectivity)                 │  │
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>│  └─┬────────────────────────────────────────────────┬────┘  │
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>│    │                                                │         │
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>│  ┌─▼──────────────────┐               ┌────────────▼────┐   │
+<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>│  │  Production VPC    │               │  Shared Svcs VPC│   │
+<a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>│  │  (172.16.0.0/16)   │               │  (192.168.0.0/16)│   │
+<a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>│  │                    │               │                 │   │
+<a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>│  │  ┌──────────────┐  │               │  ┌───────────┐  │   │
+<a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>│  │  │   Web Tier   │  │               │  │ AD Conn   │  │   │
+<a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>│  │  │  (Public)    │  │               │  │ (LDAP)    │  │   │
+<a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>│  │  └──────┬───────┘  │               │  └───────────┘  │   │
+<a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>│  │         │          │               │  ┌───────────┐  │   │
+<a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>│  │  ┌──────▼───────┐  │               │  │  DNS      │  │   │
+<a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a>│  │  │   App Tier   │  │               │  │ (Route53) │  │   │
+<a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>│  │  │  (Private)   │  │               │  └───────────┘  │   │
+<a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a>│  │  └──────┬───────┘  │               │  ┌───────────┐  │   │
+<a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a>│  │         │          │               │  │ Storage   │  │   │
+<a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a>│  │  ┌──────▼───────┐  │               │  │  Gateway  │  │   │
+<a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>│  │  │   RDS        │  │               │  └───────────┘  │   │
+<a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a>│  │  │  (Hybrid)    │  │               └─────────────────┘   │
+<a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a>│  │  └──────────────┘  │                                     │
+<a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a>│  └────────────────────┘                                     │
+<a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a>│                                                              │
+<a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a>│  ┌───────────────────────────────────────────────────────┐  │
+<a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a>│  │              S3 (Hybrid Cloud Storage)                │  │
+<a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a>│  │  • File Gateway (NFS/SMB to on-premises)             │  │
+<a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a>│  │  • Cross-region replication for DR                   │  │
+<a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a>│  └───────────────────────────────────────────────────────┘  │
+<a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a>└──────────────────────────────────────────────────────────────┘
+<a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a>
+<a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a>CONNECTIVITY OPTIONS:
+<a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a>
+<a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a>Primary: AWS Direct Connect
+<a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a>- Bandwidth: 1 Gbps (or 10 Gbps)
+<a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a>- Latency: Consistent, low
+<a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a>- Cost: $0.30/GB + port fees
+<a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a>- Use: Production traffic
+<a id="__codelineno-2-77" name="__codelineno-2-77" href="#__codelineno-2-77"></a>
+<a id="__codelineno-2-78" name="__codelineno-2-78" href="#__codelineno-2-78"></a>Backup: Site-to-Site VPN
+<a id="__codelineno-2-79" name="__codelineno-2-79" href="#__codelineno-2-79"></a>- Bandwidth: Up to 1.25 Gbps
+<a id="__codelineno-2-80" name="__codelineno-2-80" href="#__codelineno-2-80"></a>- Encrypted: IPsec tunnels
+<a id="__codelineno-2-81" name="__codelineno-2-81" href="#__codelineno-2-81"></a>- Failover: Automatic (BGP)
+<a id="__codelineno-2-82" name="__codelineno-2-82" href="#__codelineno-2-82"></a>- Cost: $0.05/hr + $0.09/GB
+<a id="__codelineno-2-83" name="__codelineno-2-83" href="#__codelineno-2-83"></a>
+<a id="__codelineno-2-84" name="__codelineno-2-84" href="#__codelineno-2-84"></a>Architecture:
+<a id="__codelineno-2-85" name="__codelineno-2-85" href="#__codelineno-2-85"></a>On-Premises → Direct Connect → Direct Connect Gateway
+<a id="__codelineno-2-86" name="__codelineno-2-86" href="#__codelineno-2-86"></a>                    ↓
+<a id="__codelineno-2-87" name="__codelineno-2-87" href="#__codelineno-2-87"></a>              Transit Gateway
+<a id="__codelineno-2-88" name="__codelineno-2-88" href="#__codelineno-2-88"></a>                    ↓
+<a id="__codelineno-2-89" name="__codelineno-2-89" href="#__codelineno-2-89"></a>        ┌───────────┴───────────┐
+<a id="__codelineno-2-90" name="__codelineno-2-90" href="#__codelineno-2-90"></a>        ↓                       ↓
+<a id="__codelineno-2-91" name="__codelineno-2-91" href="#__codelineno-2-91"></a>  Production VPC        Shared Services VPC
+<a id="__codelineno-2-92" name="__codelineno-2-92" href="#__codelineno-2-92"></a>
+<a id="__codelineno-2-93" name="__codelineno-2-93" href="#__codelineno-2-93"></a>Backup VPN Path:
+<a id="__codelineno-2-94" name="__codelineno-2-94" href="#__codelineno-2-94"></a>On-Premises → VPN → Virtual Private Gateway → Transit Gateway
+<a id="__codelineno-2-95" name="__codelineno-2-95" href="#__codelineno-2-95"></a>
+<a id="__codelineno-2-96" name="__codelineno-2-96" href="#__codelineno-2-96"></a>HYBRID SERVICES:
+<a id="__codelineno-2-97" name="__codelineno-2-97" href="#__codelineno-2-97"></a>
+<a id="__codelineno-2-98" name="__codelineno-2-98" href="#__codelineno-2-98"></a>Active Directory:
+<a id="__codelineno-2-99" name="__codelineno-2-99" href="#__codelineno-2-99"></a>- AD Connector: Proxy to on-premises AD
+<a id="__codelineno-2-100" name="__codelineno-2-100" href="#__codelineno-2-100"></a>- AWS Managed AD: Cloud-native AD
+<a id="__codelineno-2-101" name="__codelineno-2-101" href="#__codelineno-2-101"></a>- Two-way trust between environments
+<a id="__codelineno-2-102" name="__codelineno-2-102" href="#__codelineno-2-102"></a>
+<a id="__codelineno-2-103" name="__codelineno-2-103" href="#__codelineno-2-103"></a>DNS:
+<a id="__codelineno-2-104" name="__codelineno-2-104" href="#__codelineno-2-104"></a>- Route 53 Resolver endpoints
+<a id="__codelineno-2-105" name="__codelineno-2-105" href="#__codelineno-2-105"></a>- Forward queries to on-premises DNS
+<a id="__codelineno-2-106" name="__codelineno-2-106" href="#__codelineno-2-106"></a>- Hybrid DNS resolution
+<a id="__codelineno-2-107" name="__codelineno-2-107" href="#__codelineno-2-107"></a>
+<a id="__codelineno-2-108" name="__codelineno-2-108" href="#__codelineno-2-108"></a>Storage:
+<a id="__codelineno-2-109" name="__codelineno-2-109" href="#__codelineno-2-109"></a>- Storage Gateway (File/Volume/Tape)
+<a id="__codelineno-2-110" name="__codelineno-2-110" href="#__codelineno-2-110"></a>- S3 as backend storage
+<a id="__codelineno-2-111" name="__codelineno-2-111" href="#__codelineno-2-111"></a>- Local caching for performance
+<a id="__codelineno-2-112" name="__codelineno-2-112" href="#__codelineno-2-112"></a>
+<a id="__codelineno-2-113" name="__codelineno-2-113" href="#__codelineno-2-113"></a>Database:
+<a id="__codelineno-2-114" name="__codelineno-2-114" href="#__codelineno-2-114"></a>- RDS with AWS Database Migration Service
+<a id="__codelineno-2-115" name="__codelineno-2-115" href="#__codelineno-2-115"></a>- Hybrid replication during migration
+<a id="__codelineno-2-116" name="__codelineno-2-116" href="#__codelineno-2-116"></a>- Read replicas in AWS
+<a id="__codelineno-2-117" name="__codelineno-2-117" href="#__codelineno-2-117"></a>
+<a id="__codelineno-2-118" name="__codelineno-2-118" href="#__codelineno-2-118"></a>Monitoring:
+<a id="__codelineno-2-119" name="__codelineno-2-119" href="#__codelineno-2-119"></a>- CloudWatch for AWS resources
+<a id="__codelineno-2-120" name="__codelineno-2-120" href="#__codelineno-2-120"></a>- Systems Manager for hybrid instances
+<a id="__codelineno-2-121" name="__codelineno-2-121" href="#__codelineno-2-121"></a>- Centralized logging to CloudWatch Logs
+<a id="__codelineno-2-122" name="__codelineno-2-122" href="#__codelineno-2-122"></a>
+<a id="__codelineno-2-123" name="__codelineno-2-123" href="#__codelineno-2-123"></a>SECURITY:
+<a id="__codelineno-2-124" name="__codelineno-2-124" href="#__codelineno-2-124"></a>
+<a id="__codelineno-2-125" name="__codelineno-2-125" href="#__codelineno-2-125"></a>Network:
+<a id="__codelineno-2-126" name="__codelineno-2-126" href="#__codelineno-2-126"></a>- Private connectivity (no internet)
+<a id="__codelineno-2-127" name="__codelineno-2-127" href="#__codelineno-2-127"></a>- Security Groups + NACLs
+<a id="__codelineno-2-128" name="__codelineno-2-128" href="#__codelineno-2-128"></a>- Network firewall on-premises
+<a id="__codelineno-2-129" name="__codelineno-2-129" href="#__codelineno-2-129"></a>
+<a id="__codelineno-2-130" name="__codelineno-2-130" href="#__codelineno-2-130"></a>Identity:
+<a id="__codelineno-2-131" name="__codelineno-2-131" href="#__codelineno-2-131"></a>- Federated access (SAML/AD)
+<a id="__codelineno-2-132" name="__codelineno-2-132" href="#__codelineno-2-132"></a>- IAM roles for cross-environment
+<a id="__codelineno-2-133" name="__codelineno-2-133" href="#__codelineno-2-133"></a>- MFA enforcement
+<a id="__codelineno-2-134" name="__codelineno-2-134" href="#__codelineno-2-134"></a>
+<a id="__codelineno-2-135" name="__codelineno-2-135" href="#__codelineno-2-135"></a>Data:
+<a id="__codelineno-2-136" name="__codelineno-2-136" href="#__codelineno-2-136"></a>- Encryption in transit (TLS/IPsec)
+<a id="__codelineno-2-137" name="__codelineno-2-137" href="#__codelineno-2-137"></a>- Encryption at rest (KMS)
+<a id="__codelineno-2-138" name="__codelineno-2-138" href="#__codelineno-2-138"></a>- Key management across environments
+<a id="__codelineno-2-139" name="__codelineno-2-139" href="#__codelineno-2-139"></a>
+<a id="__codelineno-2-140" name="__codelineno-2-140" href="#__codelineno-2-140"></a>Compliance:
+<a id="__codelineno-2-141" name="__codelineno-2-141" href="#__codelineno-2-141"></a>- Shared responsibility model
+<a id="__codelineno-2-142" name="__codelineno-2-142" href="#__codelineno-2-142"></a>- On-premises: Customer controlled
+<a id="__codelineno-2-143" name="__codelineno-2-143" href="#__codelineno-2-143"></a>- AWS: Compliant infrastructure
+<a id="__codelineno-2-144" name="__codelineno-2-144" href="#__codelineno-2-144"></a>
+<a id="__codelineno-2-145" name="__codelineno-2-145" href="#__codelineno-2-145"></a>MIGRATION STRATEGY:
+<a id="__codelineno-2-146" name="__codelineno-2-146" href="#__codelineno-2-146"></a>
+<a id="__codelineno-2-147" name="__codelineno-2-147" href="#__codelineno-2-147"></a>Phase 1: Connectivity (Months 1-2)
+<a id="__codelineno-2-148" name="__codelineno-2-148" href="#__codelineno-2-148"></a>- Establish Direct Connect
+<a id="__codelineno-2-149" name="__codelineno-2-149" href="#__codelineno-2-149"></a>- Configure VPN backup
+<a id="__codelineno-2-150" name="__codelineno-2-150" href="#__codelineno-2-150"></a>- Test connectivity and failover
+<a id="__codelineno-2-151" name="__codelineno-2-151" href="#__codelineno-2-151"></a>
+<a id="__codelineno-2-152" name="__codelineno-2-152" href="#__codelineno-2-152"></a>Phase 2: Shared Services (Months 3-4)
+<a id="__codelineno-2-153" name="__codelineno-2-153" href="#__codelineno-2-153"></a>- Deploy AD Connector
+<a id="__codelineno-2-154" name="__codelineno-2-154" href="#__codelineno-2-154"></a>- Configure DNS resolution
+<a id="__codelineno-2-155" name="__codelineno-2-155" href="#__codelineno-2-155"></a>- Set up Storage Gateway
+<a id="__codelineno-2-156" name="__codelineno-2-156" href="#__codelineno-2-156"></a>
+<a id="__codelineno-2-157" name="__codelineno-2-157" href="#__codelineno-2-157"></a>Phase 3: Pilot Applications (Months 5-8)
+<a id="__codelineno-2-158" name="__codelineno-2-158" href="#__codelineno-2-158"></a>- Migrate non-critical apps
+<a id="__codelineno-2-159" name="__codelineno-2-159" href="#__codelineno-2-159"></a>- Validate hybrid operations
+<a id="__codelineno-2-160" name="__codelineno-2-160" href="#__codelineno-2-160"></a>- Refine procedures
+<a id="__codelineno-2-161" name="__codelineno-2-161" href="#__codelineno-2-161"></a>
+<a id="__codelineno-2-162" name="__codelineno-2-162" href="#__codelineno-2-162"></a>Phase 4: Production Migration (Months 9-18)
+<a id="__codelineno-2-163" name="__codelineno-2-163" href="#__codelineno-2-163"></a>- Migrate production workloads
+<a id="__codelineno-2-164" name="__codelineno-2-164" href="#__codelineno-2-164"></a>- Database migration with DMS
+<a id="__codelineno-2-165" name="__codelineno-2-165" href="#__codelineno-2-165"></a>- Incremental cutover
+<a id="__codelineno-2-166" name="__codelineno-2-166" href="#__codelineno-2-166"></a>
+<a id="__codelineno-2-167" name="__codelineno-2-167" href="#__codelineno-2-167"></a>Phase 5: Optimization (Months 19-24)
+<a id="__codelineno-2-168" name="__codelineno-2-168" href="#__codelineno-2-168"></a>- Right-size resources
+<a id="__codelineno-2-169" name="__codelineno-2-169" href="#__codelineno-2-169"></a>- Optimize connectivity
+<a id="__codelineno-2-170" name="__codelineno-2-170" href="#__codelineno-2-170"></a>- Decommission on-premises
+<a id="__codelineno-2-171" name="__codelineno-2-171" href="#__codelineno-2-171"></a>
+<a id="__codelineno-2-172" name="__codelineno-2-172" href="#__codelineno-2-172"></a>COST ESTIMATE (MONTHLY):
+<a id="__codelineno-2-173" name="__codelineno-2-173" href="#__codelineno-2-173"></a>
+<a id="__codelineno-2-174" name="__codelineno-2-174" href="#__codelineno-2-174"></a>Connectivity:
+<a id="__codelineno-2-175" name="__codelineno-2-175" href="#__codelineno-2-175"></a>- Direct Connect (1 Gbps): $216 port + data transfer
+<a id="__codelineno-2-176" name="__codelineno-2-176" href="#__codelineno-2-176"></a>- VPN (backup): $36 + data transfer
+<a id="__codelineno-2-177" name="__codelineno-2-177" href="#__codelineno-2-177"></a>- Transit Gateway: $36 + data transfer
+<a id="__codelineno-2-178" name="__codelineno-2-178" href="#__codelineno-2-178"></a>
+<a id="__codelineno-2-179" name="__codelineno-2-179" href="#__codelineno-2-179"></a>Data Transfer:
+<a id="__codelineno-2-180" name="__codelineno-2-180" href="#__codelineno-2-180"></a>- Outbound: 100 GB × $0.30 = $30 (Direct Connect)
+<a id="__codelineno-2-181" name="__codelineno-2-181" href="#__codelineno-2-181"></a>- Inbound: Free
+<a id="__codelineno-2-182" name="__codelineno-2-182" href="#__codelineno-2-182"></a>
+<a id="__codelineno-2-183" name="__codelineno-2-183" href="#__codelineno-2-183"></a>AWS Resources:
+<a id="__codelineno-2-184" name="__codelineno-2-184" href="#__codelineno-2-184"></a>- Production VPC: $1,500 (EC2, RDS, etc.)
+<a id="__codelineno-2-185" name="__codelineno-2-185" href="#__codelineno-2-185"></a>- Shared Services: $500 (AD, Storage Gateway)
+<a id="__codelineno-2-186" name="__codelineno-2-186" href="#__codelineno-2-186"></a>
+<a id="__codelineno-2-187" name="__codelineno-2-187" href="#__codelineno-2-187"></a>On-Premises:
+<a id="__codelineno-2-188" name="__codelineno-2-188" href="#__codelineno-2-188"></a>- Existing infrastructure cost
+<a id="__codelineno-2-189" name="__codelineno-2-189" href="#__codelineno-2-189"></a>- Gradual reduction as migration progresses
+<a id="__codelineno-2-190" name="__codelineno-2-190" href="#__codelineno-2-190"></a>
+<a id="__codelineno-2-191" name="__codelineno-2-191" href="#__codelineno-2-191"></a>Total AWS: ~$2,300/month (connectivity + cloud resources)
+<a id="__codelineno-2-192" name="__codelineno-2-192" href="#__codelineno-2-192"></a>
+<a id="__codelineno-2-193" name="__codelineno-2-193" href="#__codelineno-2-193"></a>DISASTER RECOVERY:
+<a id="__codelineno-2-194" name="__codelineno-2-194" href="#__codelineno-2-194"></a>
+<a id="__codelineno-2-195" name="__codelineno-2-195" href="#__codelineno-2-195"></a>On-Premises Failure:
+<a id="__codelineno-2-196" name="__codelineno-2-196" href="#__codelineno-2-196"></a>- Failover to AWS resources
+<a id="__codelineno-2-197" name="__codelineno-2-197" href="#__codelineno-2-197"></a>- Storage Gateway local cache → S3
+<a id="__codelineno-2-198" name="__codelineno-2-198" href="#__codelineno-2-198"></a>- RDS becomes primary
+<a id="__codelineno-2-199" name="__codelineno-2-199" href="#__codelineno-2-199"></a>- Applications continue in AWS
+<a id="__codelineno-2-200" name="__codelineno-2-200" href="#__codelineno-2-200"></a>
+<a id="__codelineno-2-201" name="__codelineno-2-201" href="#__codelineno-2-201"></a>AWS Region Failure:
+<a id="__codelineno-2-202" name="__codelineno-2-202" href="#__codelineno-2-202"></a>- Multi-region AWS deployment
+<a id="__codelineno-2-203" name="__codelineno-2-203" href="#__codelineno-2-203"></a>- On-premises as backup
+<a id="__codelineno-2-204" name="__codelineno-2-204" href="#__codelineno-2-204"></a>- Bidirectional failover
+<a id="__codelineno-2-205" name="__codelineno-2-205" href="#__codelineno-2-205"></a>
+<a id="__codelineno-2-206" name="__codelineno-2-206" href="#__codelineno-2-206"></a>RPO/RTO:
+<a id="__codelineno-2-207" name="__codelineno-2-207" href="#__codelineno-2-207"></a>- RPO: 15 minutes (replication lag)
+<a id="__codelineno-2-208" name="__codelineno-2-208" href="#__codelineno-2-208"></a>- RTO: 1 hour (DNS + application startup)
+<a id="__codelineno-2-209" name="__codelineno-2-209" href="#__codelineno-2-209"></a>
+<a id="__codelineno-2-210" name="__codelineno-2-210" href="#__codelineno-2-210"></a>EXAM NOTES:
+<a id="__codelineno-2-211" name="__codelineno-2-211" href="#__codelineno-2-211"></a>✓ Direct Connect for predictable bandwidth
+<a id="__codelineno-2-212" name="__codelineno-2-212" href="#__codelineno-2-212"></a>✓ VPN as backup (automatic failover)
+<a id="__codelineno-2-213" name="__codelineno-2-213" href="#__codelineno-2-213"></a>✓ Transit Gateway for hub-and-spoke
+<a id="__codelineno-2-214" name="__codelineno-2-214" href="#__codelineno-2-214"></a>✓ Storage Gateway for hybrid storage
+<a id="__codelineno-2-215" name="__codelineno-2-215" href="#__codelineno-2-215"></a>✓ AD Connector for hybrid identity
+<a id="__codelineno-2-216" name="__codelineno-2-216" href="#__codelineno-2-216"></a>✓ Gradual migration strategy
+</code></pre></div>
+<h2 id="template-4-multi-region-active-active">Template 4: Multi-Region Active-Active<a class="headerlink" href="#template-4-multi-region-active-active" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ARCHITECTURE: Global multi-region active-active deployment
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>USE CASE: Global applications, disaster recovery, low latency worldwide
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>CHARACTERISTICS: Multiple regions serving traffic, automatic failover
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>AVAILABILITY: 99.99%+ with multi-region
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>SCALABILITY: Global scale, region-independent
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>ARCHITECTURE DIAGRAM:
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>                        ┌─────────────────┐
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>                        │   Route 53      │
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>                        │  Geo-proximity  │
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>                        │  Routing Policy │
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>                        └────────┬────────┘
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>                                 │
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>            ┌────────────────────┼────────────────────┐
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>            │                    │                    │
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>   ┌────────▼────────┐  ┌────────▼────────┐  ┌───────▼─────────┐
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>   │ Global          │  │ Global          │  │ Global          │
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>   │ Accelerator     │  │ Accelerator     │  │ Accelerator     │
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>   │ (us-east-1)     │  │ (eu-west-1)     │  │ (ap-south-1)    │
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>   └────────┬────────┘  └────────┬────────┘  └────────┬────────┘
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>            │                    │                     │
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>┌───────────▼─────────┐ ┌────────▼─────────┐ ┌────────▼─────────┐
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>│   US-EAST-1 VPC     │ │  EU-WEST-1 VPC   │ │ AP-SOUTH-1 VPC   │
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>├─────────────────────┤ ├──────────────────┤ ├──────────────────┤
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>│  ┌───────────────┐  │ │ ┌───────────────┐│ │ ┌───────────────┐│
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>│  │     ALB       │  │ │ │     ALB       ││ │ │     ALB       ││
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>│  └───────┬───────┘  │ │ └───────┬───────┘│ │ └───────┬───────┘│
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>│          │          │ │         │        │ │         │        │
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>│  ┌───────▼───────┐  │ │ ┌───────▼───────┐│ │ ┌───────▼───────┐│
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>│  │  ECS Fargate  │  │ │ │  ECS Fargate  ││ │ │  ECS Fargate  ││
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>│  │  (10-100)     │  │ │ │  (10-100)     ││ │ │  (10-100)     ││
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>│  └───────┬───────┘  │ │ └───────┬───────┘│ │ └───────┬───────┘│
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>│          │          │ │         │        │ │         │        │
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>│  ┌───────▼───────┐  │ │ ┌───────▼───────┐│ │ ┌───────▼───────┐│
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>│  │    Aurora     │  │ │ │    Aurora     ││ │ │    Aurora     ││
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>│  │  Global DB    │  │ │ │  Global DB    ││ │ │  Global DB    ││
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>│  │  (Primary)    │  │ │ │  (Secondary)  ││ │ │  (Secondary)  ││
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>│  └───────┬───────┘  │ │ └───────┬───────┘│ │ └───────┬───────┘│
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>│          │          │ │         │        │ │         │        │
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>└──────────┼──────────┘ └─────────┼────────┘ └─────────┼────────┘
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>           └────────────────────&lt;1s replication&gt;────────┘
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>        ┌────────────────────────────────────────────┐
+<a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>        │         Shared Global Services             │
+<a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>        ├────────────────────────────────────────────┤
+<a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>        │  • CloudFront (Edge Caching)               │
+<a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>        │  • DynamoDB Global Tables                  │
+<a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>        │  • S3 Cross-Region Replication             │
+<a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>        │  • ElastiCache Global Datastore            │
+<a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>        └────────────────────────────────────────────┘
+<a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a>
+<a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>COMPONENTS:
+<a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a>
+<a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a>Global Layer:
+<a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a>- Route 53: Geoproximity routing
+<a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>- Global Accelerator: Anycast IPs, health-based routing
+<a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a>- CloudFront: Edge caching, DDoS protection
+<a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a>
+<a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a>Regional Compute:
+<a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a>- ECS Fargate: Serverless containers
+<a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a>- Auto Scaling: 10-100 tasks per region
+<a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a>- Application Load Balancer per region
+<a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a>
+<a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a>Regional Data:
+<a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a>- Aurora Global Database:
+<a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a>  * Primary in us-east-1 (read/write)
+<a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a>  * Secondaries in other regions (read + write forwarding)
+<a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a>  * Sub-second replication lag
+<a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a>  * Automatic failover
+<a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a>
+<a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a>Alternative Data Options:
+<a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a>- DynamoDB Global Tables (multi-master)
+<a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a>- ElastiCache Global Datastore (cross-region cache)
+<a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a>
+<a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a>Storage:
+<a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a>- S3 with Cross-Region Replication
+<a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a>- Multi-region redundancy
+<a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a>- Automatic failover
+<a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a>
+<a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a>TRAFFIC ROUTING:
+<a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a>
+<a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a>Route 53 Geoproximity:
+<a id="__codelineno-3-84" name="__codelineno-3-84" href="#__codelineno-3-84"></a>- North America → us-east-1
+<a id="__codelineno-3-85" name="__codelineno-3-85" href="#__codelineno-3-85"></a>- Europe → eu-west-1
+<a id="__codelineno-3-86" name="__codelineno-3-86" href="#__codelineno-3-86"></a>- Asia → ap-south-1
+<a id="__codelineno-3-87" name="__codelineno-3-87" href="#__codelineno-3-87"></a>
+<a id="__codelineno-3-88" name="__codelineno-3-88" href="#__codelineno-3-88"></a>Bias adjustment:
+<a id="__codelineno-3-89" name="__codelineno-3-89" href="#__codelineno-3-89"></a>- Shift traffic gradually
+<a id="__codelineno-3-90" name="__codelineno-3-90" href="#__codelineno-3-90"></a>- Canary deployments
+<a id="__codelineno-3-91" name="__codelineno-3-91" href="#__codelineno-3-91"></a>- Load balancing across regions
+<a id="__codelineno-3-92" name="__codelineno-3-92" href="#__codelineno-3-92"></a>
+<a id="__codelineno-3-93" name="__codelineno-3-93" href="#__codelineno-3-93"></a>Health Checks:
+<a id="__codelineno-3-94" name="__codelineno-3-94" href="#__codelineno-3-94"></a>- Endpoint monitoring (30-second interval)
+<a id="__codelineno-3-95" name="__codelineno-3-95" href="#__codelineno-3-95"></a>- Automatic DNS failover
+<a id="__codelineno-3-96" name="__codelineno-3-96" href="#__codelineno-3-96"></a>- Multi-region redundancy
+<a id="__codelineno-3-97" name="__codelineno-3-97" href="#__codelineno-3-97"></a>
+<a id="__codelineno-3-98" name="__codelineno-3-98" href="#__codelineno-3-98"></a>Global Accelerator:
+<a id="__codelineno-3-99" name="__codelineno-3-99" href="#__codelineno-3-99"></a>- Static anycast IPs (2 IPs per accelerator)
+<a id="__codelineno-3-100" name="__codelineno-3-100" href="#__codelineno-3-100"></a>- TCP/UDP traffic optimization
+<a id="__codelineno-3-101" name="__codelineno-3-101" href="#__codelineno-3-101"></a>- Instant failover (&lt; 60 seconds)
+<a id="__codelineno-3-102" name="__codelineno-3-102" href="#__codelineno-3-102"></a>- DDoS protection (AWS Shield)
+<a id="__codelineno-3-103" name="__codelineno-3-103" href="#__codelineno-3-103"></a>
+<a id="__codelineno-3-104" name="__codelineno-3-104" href="#__codelineno-3-104"></a>FAILOVER SCENARIOS:
+<a id="__codelineno-3-105" name="__codelineno-3-105" href="#__codelineno-3-105"></a>
+<a id="__codelineno-3-106" name="__codelineno-3-106" href="#__codelineno-3-106"></a>Scenario 1: Primary Region Failure (us-east-1)
+<a id="__codelineno-3-107" name="__codelineno-3-107" href="#__codelineno-3-107"></a>1. Health checks fail (30 seconds)
+<a id="__codelineno-3-108" name="__codelineno-3-108" href="#__codelineno-3-108"></a>2. Route 53 removes us-east-1 from DNS
+<a id="__codelineno-3-109" name="__codelineno-3-109" href="#__codelineno-3-109"></a>3. Global Accelerator routes to healthy regions
+<a id="__codelineno-3-110" name="__codelineno-3-110" href="#__codelineno-3-110"></a>4. Aurora promotes eu-west-1 to primary
+<a id="__codelineno-3-111" name="__codelineno-3-111" href="#__codelineno-3-111"></a>5. Traffic rerouted to eu-west-1 and ap-south-1
+<a id="__codelineno-3-112" name="__codelineno-3-112" href="#__codelineno-3-112"></a>6. RTO: 60 seconds, RPO: &lt; 1 second
+<a id="__codelineno-3-113" name="__codelineno-3-113" href="#__codelineno-3-113"></a>
+<a id="__codelineno-3-114" name="__codelineno-3-114" href="#__codelineno-3-114"></a>Scenario 2: AZ Failure (Single AZ in us-east-1)
+<a id="__codelineno-3-115" name="__codelineno-3-115" href="#__codelineno-3-115"></a>1. ALB detects unhealthy targets
+<a id="__codelineno-3-116" name="__codelineno-3-116" href="#__codelineno-3-116"></a>2. Routes to healthy AZ automatically
+<a id="__codelineno-3-117" name="__codelineno-3-117" href="#__codelineno-3-117"></a>3. Auto Scaling replaces failed tasks
+<a id="__codelineno-3-118" name="__codelineno-3-118" href="#__codelineno-3-118"></a>4. No impact on other regions
+<a id="__codelineno-3-119" name="__codelineno-3-119" href="#__codelineno-3-119"></a>5. RTO: 30 seconds, RPO: 0
+<a id="__codelineno-3-120" name="__codelineno-3-120" href="#__codelineno-3-120"></a>
+<a id="__codelineno-3-121" name="__codelineno-3-121" href="#__codelineno-3-121"></a>Scenario 3: Application Failure (Code Bug)
+<a id="__codelineno-3-122" name="__codelineno-3-122" href="#__codelineno-3-122"></a>1. Detected via health checks
+<a id="__codelineno-3-123" name="__codelineno-3-123" href="#__codelineno-3-123"></a>2. Automatic rollback to previous version
+<a id="__codelineno-3-124" name="__codelineno-3-124" href="#__codelineno-3-124"></a>3. Or route traffic to other regions
+<a id="__codelineno-3-125" name="__codelineno-3-125" href="#__codelineno-3-125"></a>4. Fix and redeploy
+<a id="__codelineno-3-126" name="__codelineno-3-126" href="#__codelineno-3-126"></a>5. RTO: 5 minutes, RPO: 0
+<a id="__codelineno-3-127" name="__codelineno-3-127" href="#__codelineno-3-127"></a>
+<a id="__codelineno-3-128" name="__codelineno-3-128" href="#__codelineno-3-128"></a>DATA CONSISTENCY:
+<a id="__codelineno-3-129" name="__codelineno-3-129" href="#__codelineno-3-129"></a>
+<a id="__codelineno-3-130" name="__codelineno-3-130" href="#__codelineno-3-130"></a>Aurora Global Database:
+<a id="__codelineno-3-131" name="__codelineno-3-131" href="#__codelineno-3-131"></a>- Primary region: Strong consistency
+<a id="__codelineno-3-132" name="__codelineno-3-132" href="#__codelineno-3-132"></a>- Secondary regions: Eventually consistent (&lt; 1 second)
+<a id="__codelineno-3-133" name="__codelineno-3-133" href="#__codelineno-3-133"></a>- Write forwarding: Writes to secondary → forward to primary
+<a id="__codelineno-3-134" name="__codelineno-3-134" href="#__codelineno-3-134"></a>
+<a id="__codelineno-3-135" name="__codelineno-3-135" href="#__codelineno-3-135"></a>Conflict Resolution:
+<a id="__codelineno-3-136" name="__codelineno-3-136" href="#__codelineno-3-136"></a>- Last-writer-wins (timestamp-based)
+<a id="__codelineno-3-137" name="__codelineno-3-137" href="#__codelineno-3-137"></a>- Application-level conflict handling
+<a id="__codelineno-3-138" name="__codelineno-3-138" href="#__codelineno-3-138"></a>- Idempotent operations
+<a id="__codelineno-3-139" name="__codelineno-3-139" href="#__codelineno-3-139"></a>
+<a id="__codelineno-3-140" name="__codelineno-3-140" href="#__codelineno-3-140"></a>DynamoDB Global Tables:
+<a id="__codelineno-3-141" name="__codelineno-3-141" href="#__codelineno-3-141"></a>- Multi-master (all regions writable)
+<a id="__codelineno-3-142" name="__codelineno-3-142" href="#__codelineno-3-142"></a>- Eventually consistent (seconds)
+<a id="__codelineno-3-143" name="__codelineno-3-143" href="#__codelineno-3-143"></a>- Automatic conflict resolution
+<a id="__codelineno-3-144" name="__codelineno-3-144" href="#__codelineno-3-144"></a>- Application can override conflict logic
+<a id="__codelineno-3-145" name="__codelineno-3-145" href="#__codelineno-3-145"></a>
+<a id="__codelineno-3-146" name="__codelineno-3-146" href="#__codelineno-3-146"></a>Caching:
+<a id="__codelineno-3-147" name="__codelineno-3-147" href="#__codelineno-3-147"></a>- ElastiCache per region (local cache)
+<a id="__codelineno-3-148" name="__codelineno-3-148" href="#__codelineno-3-148"></a>- ElastiCache Global Datastore (cross-region)
+<a id="__codelineno-3-149" name="__codelineno-3-149" href="#__codelineno-3-149"></a>- Cache invalidation strategies
+<a id="__codelineno-3-150" name="__codelineno-3-150" href="#__codelineno-3-150"></a>
+<a id="__codelineno-3-151" name="__codelineno-3-151" href="#__codelineno-3-151"></a>COST ESTIMATE (MONTHLY):
+<a id="__codelineno-3-152" name="__codelineno-3-152" href="#__codelineno-3-152"></a>
+<a id="__codelineno-3-153" name="__codelineno-3-153" href="#__codelineno-3-153"></a>Per Region (3 regions):
+<a id="__codelineno-3-154" name="__codelineno-3-154" href="#__codelineno-3-154"></a>
+<a id="__codelineno-3-155" name="__codelineno-3-155" href="#__codelineno-3-155"></a>Compute:
+<a id="__codelineno-3-156" name="__codelineno-3-156" href="#__codelineno-3-156"></a>- Fargate: 50 tasks × $30 = $1,500 per region
+<a id="__codelineno-3-157" name="__codelineno-3-157" href="#__codelineno-3-157"></a>- Total: $4,500
+<a id="__codelineno-3-158" name="__codelineno-3-158" href="#__codelineno-3-158"></a>
+<a id="__codelineno-3-159" name="__codelineno-3-159" href="#__codelineno-3-159"></a>Database:
+<a id="__codelineno-3-160" name="__codelineno-3-160" href="#__codelineno-3-160"></a>- Aurora Global: $2,000 (primary + 2 secondaries)
+<a id="__codelineno-3-161" name="__codelineno-3-161" href="#__codelineno-3-161"></a>
+<a id="__codelineno-3-162" name="__codelineno-3-162" href="#__codelineno-3-162"></a>Load Balancing:
+<a id="__codelineno-3-163" name="__codelineno-3-163" href="#__codelineno-3-163"></a>- ALB: $25 per region = $75
+<a id="__codelineno-3-164" name="__codelineno-3-164" href="#__codelineno-3-164"></a>- Global Accelerator: $18 + data transfer
+<a id="__codelineno-3-165" name="__codelineno-3-165" href="#__codelineno-3-165"></a>
+<a id="__codelineno-3-166" name="__codelineno-3-166" href="#__codelineno-3-166"></a>Network:
+<a id="__codelineno-3-167" name="__codelineno-3-167" href="#__codelineno-3-167"></a>- Data transfer: $500 per region = $1,500
+<a id="__codelineno-3-168" name="__codelineno-3-168" href="#__codelineno-3-168"></a>- Cross-region replication: $200
+<a id="__codelineno-3-169" name="__codelineno-3-169" href="#__codelineno-3-169"></a>
+<a id="__codelineno-3-170" name="__codelineno-3-170" href="#__codelineno-3-170"></a>Storage:
+<a id="__codelineno-3-171" name="__codelineno-3-171" href="#__codelineno-3-171"></a>- S3: $100
+<a id="__codelineno-3-172" name="__codelineno-3-172" href="#__codelineno-3-172"></a>- ElastiCache: $300 per region = $900
+<a id="__codelineno-3-173" name="__codelineno-3-173" href="#__codelineno-3-173"></a>
+<a id="__codelineno-3-174" name="__codelineno-3-174" href="#__codelineno-3-174"></a>Monitoring:
+<a id="__codelineno-3-175" name="__codelineno-3-175" href="#__codelineno-3-175"></a>- CloudWatch: $100
+<a id="__codelineno-3-176" name="__codelineno-3-176" href="#__codelineno-3-176"></a>
+<a id="__codelineno-3-177" name="__codelineno-3-177" href="#__codelineno-3-177"></a>Total: ~$9,800/month
+<a id="__codelineno-3-178" name="__codelineno-3-178" href="#__codelineno-3-178"></a>
+<a id="__codelineno-3-179" name="__codelineno-3-179" href="#__codelineno-3-179"></a>PERFORMANCE METRICS:
+<a id="__codelineno-3-180" name="__codelineno-3-180" href="#__codelineno-3-180"></a>
+<a id="__codelineno-3-181" name="__codelineno-3-181" href="#__codelineno-3-181"></a>Latency (from user to nearest region):
+<a id="__codelineno-3-182" name="__codelineno-3-182" href="#__codelineno-3-182"></a>- North America → us-east-1: 20ms
+<a id="__codelineno-3-183" name="__codelineno-3-183" href="#__codelineno-3-183"></a>- Europe → eu-west-1: 15ms
+<a id="__codelineno-3-184" name="__codelineno-3-184" href="#__codelineno-3-184"></a>- Asia → ap-south-1: 30ms
+<a id="__codelineno-3-185" name="__codelineno-3-185" href="#__codelineno-3-185"></a>
+<a id="__codelineno-3-186" name="__codelineno-3-186" href="#__codelineno-3-186"></a>Throughput:
+<a id="__codelineno-3-187" name="__codelineno-3-187" href="#__codelineno-3-187"></a>- 100,000 requests/second globally
+<a id="__codelineno-3-188" name="__codelineno-3-188" href="#__codelineno-3-188"></a>- Auto-scales per region
+<a id="__codelineno-3-189" name="__codelineno-3-189" href="#__codelineno-3-189"></a>
+<a id="__codelineno-3-190" name="__codelineno-3-190" href="#__codelineno-3-190"></a>Availability:
+<a id="__codelineno-3-191" name="__codelineno-3-191" href="#__codelineno-3-191"></a>- Single region: 99.99%
+<a id="__codelineno-3-192" name="__codelineno-3-192" href="#__codelineno-3-192"></a>- Multi-region: 99.999% (5 nines)
+<a id="__codelineno-3-193" name="__codelineno-3-193" href="#__codelineno-3-193"></a>
+<a id="__codelineno-3-194" name="__codelineno-3-194" href="#__codelineno-3-194"></a>Calculation:
+<a id="__codelineno-3-195" name="__codelineno-3-195" href="#__codelineno-3-195"></a>Parallel availability: 1 - (1 - 0.9999)³ = 99.9999997%
+<a id="__codelineno-3-196" name="__codelineno-3-196" href="#__codelineno-3-196"></a>
+<a id="__codelineno-3-197" name="__codelineno-3-197" href="#__codelineno-3-197"></a>DEPLOYMENT STRATEGY:
+<a id="__codelineno-3-198" name="__codelineno-3-198" href="#__codelineno-3-198"></a>
+<a id="__codelineno-3-199" name="__codelineno-3-199" href="#__codelineno-3-199"></a>Blue/Green per Region:
+<a id="__codelineno-3-200" name="__codelineno-3-200" href="#__codelineno-3-200"></a>1. Deploy to us-east-1 (canary: 10%)
+<a id="__codelineno-3-201" name="__codelineno-3-201" href="#__codelineno-3-201"></a>2. Monitor for 1 hour
+<a id="__codelineno-3-202" name="__codelineno-3-202" href="#__codelineno-3-202"></a>3. If healthy: Deploy to eu-west-1
+<a id="__codelineno-3-203" name="__codelineno-3-203" href="#__codelineno-3-203"></a>4. Monitor for 1 hour
+<a id="__codelineno-3-204" name="__codelineno-3-204" href="#__codelineno-3-204"></a>5. If healthy: Deploy to ap-south-1
+<a id="__codelineno-3-205" name="__codelineno-3-205" href="#__codelineno-3-205"></a>6. Full rollout in all regions
+<a id="__codelineno-3-206" name="__codelineno-3-206" href="#__codelineno-3-206"></a>
+<a id="__codelineno-3-207" name="__codelineno-3-207" href="#__codelineno-3-207"></a>Rollback:
+<a id="__codelineno-3-208" name="__codelineno-3-208" href="#__codelineno-3-208"></a>- Per-region rollback capability
+<a id="__codelineno-3-209" name="__codelineno-3-209" href="#__codelineno-3-209"></a>- Route 53 weight shifting
+<a id="__codelineno-3-210" name="__codelineno-3-210" href="#__codelineno-3-210"></a>- Instant traffic rerouting
+<a id="__codelineno-3-211" name="__codelineno-3-211" href="#__codelineno-3-211"></a>
+<a id="__codelineno-3-212" name="__codelineno-3-212" href="#__codelineno-3-212"></a>MONITORING:
+<a id="__codelineno-3-213" name="__codelineno-3-213" href="#__codelineno-3-213"></a>
+<a id="__codelineno-3-214" name="__codelineno-3-214" href="#__codelineno-3-214"></a>CloudWatch:
+<a id="__codelineno-3-215" name="__codelineno-3-215" href="#__codelineno-3-215"></a>- Metrics per region
+<a id="__codelineno-3-216" name="__codelineno-3-216" href="#__codelineno-3-216"></a>- Aggregated global view
+<a id="__codelineno-3-217" name="__codelineno-3-217" href="#__codelineno-3-217"></a>- Cross-region dashboards
+<a id="__codelineno-3-218" name="__codelineno-3-218" href="#__codelineno-3-218"></a>
+<a id="__codelineno-3-219" name="__codelineno-3-219" href="#__codelineno-3-219"></a>X-Ray:
+<a id="__codelineno-3-220" name="__codelineno-3-220" href="#__codelineno-3-220"></a>- Distributed tracing globally
+<a id="__codelineno-3-221" name="__codelineno-3-221" href="#__codelineno-3-221"></a>- Service map across regions
+<a id="__codelineno-3-222" name="__codelineno-3-222" href="#__codelineno-3-222"></a>- Latency analysis
+<a id="__codelineno-3-223" name="__codelineno-3-223" href="#__codelineno-3-223"></a>
+<a id="__codelineno-3-224" name="__codelineno-3-224" href="#__codelineno-3-224"></a>Alarms:
+<a id="__codelineno-3-225" name="__codelineno-3-225" href="#__codelineno-3-225"></a>- Regional error rates
+<a id="__codelineno-3-226" name="__codelineno-3-226" href="#__codelineno-3-226"></a>- Global error rates
+<a id="__codelineno-3-227" name="__codelineno-3-227" href="#__codelineno-3-227"></a>- Replication lag (database)
+<a id="__codelineno-3-228" name="__codelineno-3-228" href="#__codelineno-3-228"></a>- Health check failures
+<a id="__codelineno-3-229" name="__codelineno-3-229" href="#__codelineno-3-229"></a>
+<a id="__codelineno-3-230" name="__codelineno-3-230" href="#__codelineno-3-230"></a>EXAM NOTES:
+<a id="__codelineno-3-231" name="__codelineno-3-231" href="#__codelineno-3-231"></a>✓ Route 53 geoproximity for global routing
+<a id="__codelineno-3-232" name="__codelineno-3-232" href="#__codelineno-3-232"></a>✓ Global Accelerator for anycast IPs
+<a id="__codelineno-3-233" name="__codelineno-3-233" href="#__codelineno-3-233"></a>✓ Aurora Global Database for multi-region data
+<a id="__codelineno-3-234" name="__codelineno-3-234" href="#__codelineno-3-234"></a>✓ Sub-second replication lag
+<a id="__codelineno-3-235" name="__codelineno-3-235" href="#__codelineno-3-235"></a>✓ Automatic regional failover
+<a id="__codelineno-3-236" name="__codelineno-3-236" href="#__codelineno-3-236"></a>✓ 99.999% availability with multi-region
+</code></pre></div>
+<p>These reusable architecture diagram templates provide proven patterns for common AWS solutions, complete with component details, cost estimates, availability calculations, and exam-focused notes. Each template can be adapted to specific requirements while maintaining architectural best practices.</p>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

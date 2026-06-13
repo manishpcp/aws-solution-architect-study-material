@@ -1,0 +1,3173 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Interactive study guide for AWS Solutions Architect certifications">
+      
+      
+        <meta name="author" content="AWS Architect">
+      
+      
+        <link rel="canonical" href="https://manishpcp.github.io/aws-solution-architect-study-material/Appendix%20C%20Troubleshooting%20Guide.html">
+      
+      
+        <link rel="prev" href="Appendix%20B%20Architecture%20Diagram%20Templates.html">
+      
+      
+        <link rel="next" href="Appendix%20D%20Additional%20Resources.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Appendix C — Troubleshooting Guide - AWS Solutions Architect</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#appendix-c-troubleshooting-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="AWS Solutions Architect" class="md-header__button md-logo" aria-label="AWS Solutions Architect" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M180.4 203c-.7 22.6 10.6 32.7 10.9 39-.1 1.3-.6 2.5-1.3 3.6s-1.7 2-2.8 2.6l-12.8 9c-1.7 1.2-3.6 1.8-5.6 1.9-.4 0-8.2 1.8-20.5-25.6-7.5 9.4-17 16.9-27.9 22s-22.7 7.7-34.7 7.5c-16.3.9-60.4-9.2-58.1-56.2-1.6-38.3 34.1-62.1 70.9-60 7.1 0 21.6.4 47 6.3v-15.6c2.7-26.5-14.7-47-44.8-43.9-2.4 0-19.4-.5-45.8 10.1-7.4 3.4-8.3 2.8-10.8 2.8-7.4 0-4.4-21.5-2.9-24.2 5.2-6.4 35.9-18.4 65.9-18.2 20.1-1.8 40.1 4.4 55.7 17.3 6.3 7.1 11.2 15.4 14.2 24.4s4.2 18.5 3.5 28v69.3zM94 235.4c32.4-.5 46.2-20 49.3-30.5 2.5-10.1 2.1-16.4 2.1-27.4-9.7-2.3-23.6-4.9-39.6-4.9-15.2-1.1-42.8 5.6-41.7 32.3-1.2 16.8 11.1 31.4 30 30.5zm170.9 23.1c-7.9.7-11.5-4.9-12.7-10.4L202.4 83.4c-1-2.8-1.6-5.6-1.9-8.6-.2-1.2.1-2.4.8-3.4s1.8-1.6 3-1.8h22.2c8.8-.9 11.6 6 12.6 10.4l35.8 140.8L308.1 80c.5-3.2 2.9-11.1 12.8-10.2h17.2c2.2-.2 11.1-.5 12.7 10.4l33.3 142.5L421 80.1c.5-2.2 2.7-11.4 12.7-10.4h19.7c.9-.1 6.2-.8 5.3 8.6-.4 1.8 3.4-10.7-52.8 169.9-1.1 5.5-4.8 11.1-12.7 10.4h-18.7c-10.9 1.2-12.5-9.7-12.7-10.7l-33.2-137.1-32.8 137c-.2 1.1-1.7 11.9-12.7 10.7h-18.3zm273.5 5.6c-5.9 0-33.9-.3-57.4-12.3-2.3-1-4.3-2.6-5.7-4.8s-2.1-4.6-2.1-7.1v-10.7c0-8.5 6.2-6.9 8.8-5.9 10 4.1 16.5 7.1 28.8 9.6 36.7 7.5 52.8-2.3 56.7-4.5 13.2-7.8 14.2-25.7 5.3-34.9-10.5-8.8-15.5-9.1-53.1-21-4.6-1.3-43.7-13.6-43.8-52.4-.6-28.2 25-56.2 69.5-56 12.7 0 46.4 4.1 55.6 15.6 1.4 2.1 2 4.6 1.9 7v10.1c0 4.4-1.6 6.7-4.9 6.7-7.7-.9-21.4-11.2-49.2-10.8-6.9-.4-39.9.9-38.4 25-.4 19 26.6 26.1 29.7 26.9 36.5 11 48.6 12.8 63.1 29.6 17.1 22.2 7.9 48.3 4.3 55.4-19.1 37.5-68.4 34.4-69.3 34.4zM578.6 369c-70 51.7-171.7 79.2-258.5 79.2C203 449 89.8 405.9 2.8 327.5c-6.5-5.9-.8-14 7.2-9.5 96.5 55.2 205.7 84.2 316.9 84.1 83-.4 165.1-17.3 241.6-49.5 11.8-5 21.8 7.8 10.1 16.4m29.2-33.3c-9-11.5-59.3-5.4-81.8-2.7-6.8.8-7.9-5.1-1.8-9.5 40.1-28.2 105.9-20.1 113.4-10.6s-2.1 75.4-39.6 106.9c-5.8 4.9-11.3 2.3-8.7-4.1 8.4-21.3 27.4-68.5 18.4-80z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AWS Solutions Architect
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Appendix C — Troubleshooting Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/manishpcp/aws-solution-architect-study-material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aws-solution-architect-study-material
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="01%20AWS%20Global%20Infrastructure.html" class="md-tabs__link">
+          
+  
+  
+  Chapters
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="Appendix%20A%20AWS%20Service%20Cheat%20Sheets.html" class="md-tabs__link">
+          
+  
+  
+  Appendices
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="AWS Solutions Architect" class="md-nav__button md-logo" aria-label="AWS Solutions Architect" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M180.4 203c-.7 22.6 10.6 32.7 10.9 39-.1 1.3-.6 2.5-1.3 3.6s-1.7 2-2.8 2.6l-12.8 9c-1.7 1.2-3.6 1.8-5.6 1.9-.4 0-8.2 1.8-20.5-25.6-7.5 9.4-17 16.9-27.9 22s-22.7 7.7-34.7 7.5c-16.3.9-60.4-9.2-58.1-56.2-1.6-38.3 34.1-62.1 70.9-60 7.1 0 21.6.4 47 6.3v-15.6c2.7-26.5-14.7-47-44.8-43.9-2.4 0-19.4-.5-45.8 10.1-7.4 3.4-8.3 2.8-10.8 2.8-7.4 0-4.4-21.5-2.9-24.2 5.2-6.4 35.9-18.4 65.9-18.2 20.1-1.8 40.1 4.4 55.7 17.3 6.3 7.1 11.2 15.4 14.2 24.4s4.2 18.5 3.5 28v69.3zM94 235.4c32.4-.5 46.2-20 49.3-30.5 2.5-10.1 2.1-16.4 2.1-27.4-9.7-2.3-23.6-4.9-39.6-4.9-15.2-1.1-42.8 5.6-41.7 32.3-1.2 16.8 11.1 31.4 30 30.5zm170.9 23.1c-7.9.7-11.5-4.9-12.7-10.4L202.4 83.4c-1-2.8-1.6-5.6-1.9-8.6-.2-1.2.1-2.4.8-3.4s1.8-1.6 3-1.8h22.2c8.8-.9 11.6 6 12.6 10.4l35.8 140.8L308.1 80c.5-3.2 2.9-11.1 12.8-10.2h17.2c2.2-.2 11.1-.5 12.7 10.4l33.3 142.5L421 80.1c.5-2.2 2.7-11.4 12.7-10.4h19.7c.9-.1 6.2-.8 5.3 8.6-.4 1.8 3.4-10.7-52.8 169.9-1.1 5.5-4.8 11.1-12.7 10.4h-18.7c-10.9 1.2-12.5-9.7-12.7-10.7l-33.2-137.1-32.8 137c-.2 1.1-1.7 11.9-12.7 10.7h-18.3zm273.5 5.6c-5.9 0-33.9-.3-57.4-12.3-2.3-1-4.3-2.6-5.7-4.8s-2.1-4.6-2.1-7.1v-10.7c0-8.5 6.2-6.9 8.8-5.9 10 4.1 16.5 7.1 28.8 9.6 36.7 7.5 52.8-2.3 56.7-4.5 13.2-7.8 14.2-25.7 5.3-34.9-10.5-8.8-15.5-9.1-53.1-21-4.6-1.3-43.7-13.6-43.8-52.4-.6-28.2 25-56.2 69.5-56 12.7 0 46.4 4.1 55.6 15.6 1.4 2.1 2 4.6 1.9 7v10.1c0 4.4-1.6 6.7-4.9 6.7-7.7-.9-21.4-11.2-49.2-10.8-6.9-.4-39.9.9-38.4 25-.4 19 26.6 26.1 29.7 26.9 36.5 11 48.6 12.8 63.1 29.6 17.1 22.2 7.9 48.3 4.3 55.4-19.1 37.5-68.4 34.4-69.3 34.4zM578.6 369c-70 51.7-171.7 79.2-258.5 79.2C203 449 89.8 405.9 2.8 327.5c-6.5-5.9-.8-14 7.2-9.5 96.5 55.2 205.7 84.2 316.9 84.1 83-.4 165.1-17.3 241.6-49.5 11.8-5 21.8 7.8 10.1 16.4m29.2-33.3c-9-11.5-59.3-5.4-81.8-2.7-6.8.8-7.9-5.1-1.8-9.5 40.1-28.2 105.9-20.1 113.4-10.6s-2.1 75.4-39.6 106.9c-5.8 4.9-11.3 2.3-8.7-4.1 8.4-21.3 27.4-68.5 18.4-80z"/></svg>
+
+    </a>
+    AWS Solutions Architect
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/manishpcp/aws-solution-architect-study-material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aws-solution-architect-study-material
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20AWS%20Global%20Infrastructure.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 AWS Global Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02%20Identity%20and%20Access%20Management%20%28IAM%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 Identity and Access Management (IAM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03%20Virtual%20Private%20Cloud%20%28VPC%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 Virtual Private Cloud (VPC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04%20Amazon%20EC2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 Amazon EC2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Elastic%20Load%20Balancing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 Elastic Load Balancing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06%20Container%20Services%20%28ECS%2C%20EKS%2C%20Fargate%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 Container Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07%20AWS%20Lambda%20%26%20Serverless.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 AWS Lambda & Serverless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08%20Amazon%20S3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 Amazon S3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09%20Amazon%20EBS%20%26%20EFS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 Amazon EBS & EFS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10%20Storage%20Gateway%20%26%20DataSync.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 Storage Gateway & DataSync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Amazon%20RDS%20%26%20Aurora.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 Amazon RDS & Aurora
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12%20DynamoDB.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 DynamoDB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13%20ElastiCache%20%26%20MemoryDB.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 ElastiCache & MemoryDB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14%20Amazon%20CloudFront.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Amazon CloudFront
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15%20Route%2053.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 Route 53
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16%20Direct%20Connect%20%26%20VPN.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 Direct Connect & VPN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17%20Amazon%20SQS%20%26%20SNS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 Amazon SQS & SNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18%20Amazon%20EventBridge%20%26%20Step%20Functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 Amazon EventBridge & Step Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20API%20Gateway.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 API Gateway
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20%20Amazon%20Kinesis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20 Amazon Kinesis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21%20AWS%20Glue%20%26%20Athena.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21 AWS Glue & Athena
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22%20Amazon%20SageMaker%20Essentials.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22 Amazon SageMaker Essentials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23%20AWS%20Security%20Services.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23 AWS Security Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24%20AWS%20KMS%20%26%20Secrets%20Manager.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 AWS KMS & Secrets Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25%20AWS%20WAF%20%26%20Shield.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25 AWS WAF & Shield
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26%20CloudWatch.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 CloudWatch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="27%20AWS%20CloudTrail%20%26%20Config.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27 AWS CloudTrail & Config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20AWS%20Systems%20Manager.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28 AWS Systems Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29%20Cost%20Management.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29 Cost Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30%20Well-Architected%20Framework.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Well-Architected Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31%20Migration%20Strategies%20%287%20Rs%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31 Migration Strategies (7 Rs)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32%20Disaster%20Recovery%20%26%20Business%20Continuity.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32 Disaster Recovery & Business Continuity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33%20Microservices%20Patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33 Microservices Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Event-Driven%20Architectures.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34 Event-Driven Architectures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35%20Multi-Account%20Strategy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35 Multi-Account Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36%20Solutions%20Architect%20Associate%20Exam%20Guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36 SAA Exam Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37%20Solutions%20Architect%20Professional%20Exam%20Guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37 SAP Exam Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Appendix%20A%20AWS%20Service%20Cheat%20Sheets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix A — Service Cheat Sheets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Appendix%20B%20Architecture%20Diagram%20Templates.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix B — Diagram Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix C — Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="Appendix%20C%20Troubleshooting%20Guide.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix C — Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ec2-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EC2 Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EC2 Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-1-cannot-connect-to-ec2-instance-via-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 1: Cannot Connect to EC2 Instance via SSH
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-2-ec2-instance-unexpectedly-terminated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 2: EC2 Instance Unexpectedly Terminated
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpc-networking-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VPC Networking Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VPC Networking Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-3-instance-cannot-access-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 3: Instance Cannot Access Internet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-4-cannot-connect-between-vpcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 4: Cannot Connect Between VPCs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rds-database-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RDS Database Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RDS Database Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-5-cannot-connect-to-rds-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 5: Cannot Connect to RDS Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-6-rds-performance-degradation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 6: RDS Performance Degradation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s3-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S3 Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="S3 Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-7-access-denied-to-s3-bucket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 7: Access Denied to S3 Bucket
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Appendix%20D%20Additional%20Resources.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix D — Additional Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ec2-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EC2 Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EC2 Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-1-cannot-connect-to-ec2-instance-via-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 1: Cannot Connect to EC2 Instance via SSH
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-2-ec2-instance-unexpectedly-terminated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 2: EC2 Instance Unexpectedly Terminated
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpc-networking-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VPC Networking Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VPC Networking Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-3-instance-cannot-access-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 3: Instance Cannot Access Internet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-4-cannot-connect-between-vpcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 4: Cannot Connect Between VPCs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rds-database-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RDS Database Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RDS Database Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-5-cannot-connect-to-rds-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 5: Cannot Connect to RDS Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-6-rds-performance-degradation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 6: RDS Performance Degradation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s3-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S3 Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="S3 Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-7-access-denied-to-s3-bucket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 7: Access Denied to S3 Bucket
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="appendix-c-troubleshooting-guide">Appendix C: Troubleshooting Guide<a class="headerlink" href="#appendix-c-troubleshooting-guide" title="Permanent link">&para;</a></h1>
+<h2 id="ec2-troubleshooting">EC2 Troubleshooting<a class="headerlink" href="#ec2-troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="issue-1-cannot-connect-to-ec2-instance-via-ssh">Issue 1: Cannot Connect to EC2 Instance via SSH<a class="headerlink" href="#issue-1-cannot-connect-to-ec2-instance-via-ssh" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>SYMPTOM:
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Connection timeout when attempting SSH to EC2 instance
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Error: &quot;ssh: connect to host X.X.X.X port 22: Operation timed out&quot;
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>DIAGNOSTIC CHECKLIST:
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>□ Check Security Group
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>□ Check Network ACL
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>□ Verify Instance State
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>□ Check Route Table
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>□ Verify Key Pair
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>□ Check Instance Reachability
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>STEP-BY-STEP RESOLUTION:
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>1. VERIFY SECURITY GROUP RULES:
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>Check inbound rules allow SSH (port 22):
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>- Go to EC2 Console → Instances → Select instance
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>- Security tab → View security group
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>- Inbound rules should have:
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>  Type: SSH
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>  Protocol: TCP
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>  Port: 22
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>  Source: Your IP or 0.0.0.0/0
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>AWS CLI Command:
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>aws ec2 describe-security-groups \
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>  --group-ids sg-xxxxx \
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>  --query &#39;SecurityGroups[0].IpPermissions&#39;
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>Expected Output:
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>[
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>  {
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    &quot;FromPort&quot;: 22,
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    &quot;ToPort&quot;: 22,
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    &quot;IpProtocol&quot;: &quot;tcp&quot;,
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    &quot;IpRanges&quot;: [{&quot;CidrIp&quot;: &quot;0.0.0.0/0&quot;}]
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>  }
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>]
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>Fix: Add SSH rule if missing
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>aws ec2 authorize-security-group-ingress \
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>  --group-id sg-xxxxx \
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>  --protocol tcp \
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>  --port 22 \
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>  --cidr 0.0.0.0/0
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>2. CHECK NETWORK ACL:
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>Network ACLs are stateless (must allow both inbound and outbound)
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>Verify:
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>- Inbound: Allow TCP 22 from your IP
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>- Outbound: Allow TCP 1024-65535 (ephemeral ports) to your IP
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>AWS CLI Command:
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>aws ec2 describe-network-acls \
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>  --filters &quot;Name=association.subnet-id,Values=subnet-xxxxx&quot;
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>Default NACL allows all traffic:
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>Inbound: Rule 100: ALLOW ALL
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>Outbound: Rule 100: ALLOW ALL
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>Custom NACL may be blocking traffic
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>Fix: Ensure NACL rules allow SSH
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>- Rule 100: Inbound TCP 22 from 0.0.0.0/0 ALLOW
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>- Rule 100: Outbound TCP 1024-65535 to 0.0.0.0/0 ALLOW
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>3. VERIFY INSTANCE STATE:
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>Instance must be in &quot;running&quot; state
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>Check:
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>aws ec2 describe-instances \
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>  --instance-ids i-xxxxx \
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>  --query &#39;Reservations[0].Instances[0].State.Name&#39;
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>Expected: &quot;running&quot;
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>If &quot;stopped&quot;: Start instance
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>aws ec2 start-instances --instance-ids i-xxxxx
+<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>
+<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>4. CHECK PUBLIC IP/DNS:
+<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>
+<a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>Instance in public subnet needs public IP
+<a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>
+<a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>Verify:
+<a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>aws ec2 describe-instances \
+<a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>  --instance-ids i-xxxxx \
+<a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>  --query &#39;Reservations[0].Instances[0].PublicIpAddress&#39;
+<a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>
+<a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>If null: Instance has no public IP
+<a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>
+<a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>Fix: Associate Elastic IP
+<a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>aws ec2 allocate-address --domain vpc
+<a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>aws ec2 associate-address \
+<a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>  --instance-id i-xxxxx \
+<a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>  --allocation-id eipalloc-xxxxx
+<a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>
+<a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>5. VERIFY ROUTE TABLE:
+<a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>
+<a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>Public subnet must have route to Internet Gateway
+<a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>
+<a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>Check route table:
+<a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>aws ec2 describe-route-tables \
+<a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>  --filters &quot;Name=association.subnet-id,Values=subnet-xxxxx&quot;
+<a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>
+<a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>Expected route:
+<a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>{
+<a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>  &quot;DestinationCidrBlock&quot;: &quot;0.0.0.0/0&quot;,
+<a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>  &quot;GatewayId&quot;: &quot;igw-xxxxx&quot;,
+<a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>  &quot;State&quot;: &quot;active&quot;
+<a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>}
+<a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>
+<a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>Fix: Add internet gateway route
+<a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>aws ec2 create-route \
+<a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>  --route-table-id rtb-xxxxx \
+<a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>  --destination-cidr-block 0.0.0.0/0 \
+<a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>  --gateway-id igw-xxxxx
+<a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>
+<a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>6. CHECK INSTANCE REACHABILITY:
+<a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>
+<a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>Use Instance Connect or Session Manager as alternative
+<a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>
+<a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>Option A: EC2 Instance Connect (browser-based SSH)
+<a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>- EC2 Console → Instances → Select → Connect
+<a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>- Choose &quot;EC2 Instance Connect&quot;
+<a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>- Click &quot;Connect&quot;
+<a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>
+<a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>Option B: Systems Manager Session Manager (no SSH key needed)
+<a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>- Requires SSM agent installed
+<a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>- IAM role with AmazonSSMManagedInstanceCore policy
+<a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>- EC2 Console → Instances → Select → Connect
+<a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>- Choose &quot;Session Manager&quot;
+<a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>
+<a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>COMMON ROOT CAUSES:
+<a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>
+<a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a>❌ Security group doesn&#39;t allow SSH from your IP
+<a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>✓ Add inbound rule: SSH (TCP 22) from your IP
+<a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>
+<a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a>❌ Instance in private subnet without public IP
+<a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a>✓ Use bastion host or Systems Manager Session Manager
+<a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>
+<a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>❌ Wrong SSH key pair
+<a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>✓ Verify you&#39;re using correct .pem key
+<a id="__codelineno-0-148" name="__codelineno-0-148" href="#__codelineno-0-148"></a>
+<a id="__codelineno-0-149" name="__codelineno-0-149" href="#__codelineno-0-149"></a>❌ Wrong username (ubuntu vs ec2-user vs admin)
+<a id="__codelineno-0-150" name="__codelineno-0-150" href="#__codelineno-0-150"></a>✓ Amazon Linux: ec2-user
+<a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a>✓ Ubuntu: ubuntu
+<a id="__codelineno-0-152" name="__codelineno-0-152" href="#__codelineno-0-152"></a>✓ Debian: admin
+<a id="__codelineno-0-153" name="__codelineno-0-153" href="#__codelineno-0-153"></a>
+<a id="__codelineno-0-154" name="__codelineno-0-154" href="#__codelineno-0-154"></a>❌ Firewall on instance blocking SSH
+<a id="__codelineno-0-155" name="__codelineno-0-155" href="#__codelineno-0-155"></a>✓ Check iptables: sudo iptables -L
+<a id="__codelineno-0-156" name="__codelineno-0-156" href="#__codelineno-0-156"></a>✓ Temporarily disable: sudo iptables -F
+<a id="__codelineno-0-157" name="__codelineno-0-157" href="#__codelineno-0-157"></a>
+<a id="__codelineno-0-158" name="__codelineno-0-158" href="#__codelineno-0-158"></a>PREVENTION:
+<a id="__codelineno-0-159" name="__codelineno-0-159" href="#__codelineno-0-159"></a>✓ Use Systems Manager Session Manager (no SSH key management)
+<a id="__codelineno-0-160" name="__codelineno-0-160" href="#__codelineno-0-160"></a>✓ Always tag security groups clearly
+<a id="__codelineno-0-161" name="__codelineno-0-161" href="#__codelineno-0-161"></a>✓ Document security group rules
+<a id="__codelineno-0-162" name="__codelineno-0-162" href="#__codelineno-0-162"></a>✓ Use bastion hosts for private instances
+<a id="__codelineno-0-163" name="__codelineno-0-163" href="#__codelineno-0-163"></a>✓ Implement VPN for secure access
+</code></pre></div>
+<h3 id="issue-2-ec2-instance-unexpectedly-terminated">Issue 2: EC2 Instance Unexpectedly Terminated<a class="headerlink" href="#issue-2-ec2-instance-unexpectedly-terminated" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>SYMPTOM:
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>EC2 instance terminated without manual intervention
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Instance no longer appears in running instances
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>ROOT CAUSES &amp; SOLUTIONS:
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>1. SPOT INSTANCE INTERRUPTION:
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>Cause: AWS reclaimed spot instance capacity
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>Check CloudWatch Logs:
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>aws ec2 describe-spot-instance-requests \
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>  --filters &quot;Name=instance-id,Values=i-xxxxx&quot;
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>Look for: &quot;marked-for-stop&quot; or &quot;marked-for-termination&quot;
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>Prevention:
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>✓ Use Spot Instance interruption notices (2-min warning)
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>✓ Implement graceful shutdown handling
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>✓ Use Spot Fleet with multiple instance types
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>✓ Mix Spot with On-Demand instances
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>2. AUTO SCALING SCALE-IN:
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>Cause: Auto Scaling Group scaled in to meet target capacity
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>Check Auto Scaling activity:
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>aws autoscaling describe-scaling-activities \
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>  --auto-scaling-group-name my-asg \
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>  --max-records 20
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>Look for: &quot;Terminating EC2 instance: i-xxxxx&quot;
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>Prevention:
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>✓ Set appropriate minimum capacity
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>✓ Use scale-in protection for critical instances
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>✓ Adjust scale-in cooldown period
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>✓ Use target tracking scaling policies
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>Enable scale-in protection:
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>aws autoscaling set-instance-protection \
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>  --instance-ids i-xxxxx \
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>  --auto-scaling-group-name my-asg \
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>  --protected-from-scale-in
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>3. INSTANCE HEALTH CHECK FAILURE:
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>Cause: Failed health checks (ELB or Auto Scaling)
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>Check ELB health:
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>aws elbv2 describe-target-health \
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>  --target-group-arn arn:aws:elasticloadbalancing:...
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>Reasons for unhealthy:
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>- Application not responding on health check port
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>- Health check path returning non-200 status
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>- Instance security group blocking ELB
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>Fix health check:
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>- Verify application running: curl http://localhost/health
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>- Check health check settings (interval, timeout, threshold)
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>- Ensure security group allows ELB traffic
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>4. INSUFFICIENT INSTANCE CAPACITY:
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>Cause: AWS couldn&#39;t maintain instance in AZ
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>Check CloudTrail for error:
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>&quot;Client.InsufficientInstanceCapacity&quot;
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>Solution:
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>✓ Use multiple instance types (Auto Scaling)
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>✓ Spread across multiple AZs
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>✓ Request capacity reservation (guaranteed capacity)
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>5. BILLING ISSUE:
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>Cause: Payment method failed, account suspended
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>
+<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>Check AWS Billing Console:
+<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>- Payment methods
+<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>- Outstanding balance
+<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>- Account status
+<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>
+<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>Resolution:
+<a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>- Update payment method
+<a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>- Contact AWS Support
+<a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>- Pay outstanding balance
+<a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>
+<a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>6. INSTANCE LIMIT REACHED:
+<a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>
+<a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>Cause: Hit service quota for instance type
+<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>
+<a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>Check quota:
+<a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>aws service-quotas get-service-quota \
+<a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>  --service-code ec2 \
+<a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>  --quota-code L-1216C47A
+<a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>
+<a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>Request increase:
+<a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>aws service-quotas request-service-quota-increase \
+<a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>  --service-code ec2 \
+<a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>  --quota-code L-1216C47A \
+<a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>  --desired-value 100
+<a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a>
+<a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a>INVESTIGATION STEPS:
+<a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a>
+<a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a>1. Check CloudTrail for termination event:
+<a id="__codelineno-1-108" name="__codelineno-1-108" href="#__codelineno-1-108"></a>aws cloudtrail lookup-events \
+<a id="__codelineno-1-109" name="__codelineno-1-109" href="#__codelineno-1-109"></a>  --lookup-attributes AttributeKey=ResourceName,AttributeValue=i-xxxxx \
+<a id="__codelineno-1-110" name="__codelineno-1-110" href="#__codelineno-1-110"></a>  --max-results 10
+<a id="__codelineno-1-111" name="__codelineno-1-111" href="#__codelineno-1-111"></a>
+<a id="__codelineno-1-112" name="__codelineno-1-112" href="#__codelineno-1-112"></a>2. Check Auto Scaling history:
+<a id="__codelineno-1-113" name="__codelineno-1-113" href="#__codelineno-1-113"></a>aws autoscaling describe-scaling-activities \
+<a id="__codelineno-1-114" name="__codelineno-1-114" href="#__codelineno-1-114"></a>  --auto-scaling-group-name my-asg
+<a id="__codelineno-1-115" name="__codelineno-1-115" href="#__codelineno-1-115"></a>
+<a id="__codelineno-1-116" name="__codelineno-1-116" href="#__codelineno-1-116"></a>3. Check System Status:
+<a id="__codelineno-1-117" name="__codelineno-1-117" href="#__codelineno-1-117"></a>aws ec2 describe-instance-status \
+<a id="__codelineno-1-118" name="__codelineno-1-118" href="#__codelineno-1-118"></a>  --instance-ids i-xxxxx \
+<a id="__codelineno-1-119" name="__codelineno-1-119" href="#__codelineno-1-119"></a>  --include-all-instances
+<a id="__codelineno-1-120" name="__codelineno-1-120" href="#__codelineno-1-120"></a>
+<a id="__codelineno-1-121" name="__codelineno-1-121" href="#__codelineno-1-121"></a>4. Review CloudWatch Metrics:
+<a id="__codelineno-1-122" name="__codelineno-1-122" href="#__codelineno-1-122"></a>- CPUUtilization (high = possible crash)
+<a id="__codelineno-1-123" name="__codelineno-1-123" href="#__codelineno-1-123"></a>- StatusCheckFailed (system issues)
+<a id="__codelineno-1-124" name="__codelineno-1-124" href="#__codelineno-1-124"></a>
+<a id="__codelineno-1-125" name="__codelineno-1-125" href="#__codelineno-1-125"></a>PREVENTION:
+<a id="__codelineno-1-126" name="__codelineno-1-126" href="#__codelineno-1-126"></a>✓ Enable termination protection for critical instances
+<a id="__codelineno-1-127" name="__codelineno-1-127" href="#__codelineno-1-127"></a>✓ Use CloudWatch alarms for instance status
+<a id="__codelineno-1-128" name="__codelineno-1-128" href="#__codelineno-1-128"></a>✓ Implement SNS notifications for terminations
+<a id="__codelineno-1-129" name="__codelineno-1-129" href="#__codelineno-1-129"></a>✓ Regular backups via AMIs or snapshots
+<a id="__codelineno-1-130" name="__codelineno-1-130" href="#__codelineno-1-130"></a>✓ Document instance configurations (IaC)
+</code></pre></div>
+<h2 id="vpc-networking-troubleshooting">VPC Networking Troubleshooting<a class="headerlink" href="#vpc-networking-troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="issue-3-instance-cannot-access-internet">Issue 3: Instance Cannot Access Internet<a class="headerlink" href="#issue-3-instance-cannot-access-internet" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>SYMPTOM:
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>EC2 instance in VPC cannot reach internet
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Ping/curl to external sites timeout
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Unable to install packages or download updates
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>DIAGNOSTIC CHECKLIST:
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>□ Instance in public or private subnet?
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>□ Route table has internet gateway route?
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>□ Security group allows outbound traffic?
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>□ Network ACL allows outbound traffic?
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>□ Instance has public IP (if public subnet)?
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>□ NAT Gateway configured (if private subnet)?
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>PUBLIC SUBNET TROUBLESHOOTING:
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>1. VERIFY INTERNET GATEWAY ATTACHED:
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>Check IGW:
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>aws ec2 describe-internet-gateways \
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>  --filters &quot;Name=attachment.vpc-id,Values=vpc-xxxxx&quot;
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>Expected: IGW attached to VPC
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>Fix if missing:
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>aws ec2 create-internet-gateway
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>aws ec2 attach-internet-gateway \
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>  --internet-gateway-id igw-xxxxx \
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>  --vpc-id vpc-xxxxx
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>2. CHECK ROUTE TABLE:
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>Route table must have route to IGW:
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>aws ec2 describe-route-tables \
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>  --filters &quot;Name=association.subnet-id,Values=subnet-xxxxx&quot;
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>Expected route:
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>Destination: 0.0.0.0/0
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>Target: igw-xxxxx
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>Fix if missing:
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>aws ec2 create-route \
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>  --route-table-id rtb-xxxxx \
+<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>  --destination-cidr-block 0.0.0.0/0 \
+<a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>  --gateway-id igw-xxxxx
+<a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>
+<a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>3. VERIFY PUBLIC IP:
+<a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>
+<a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>Instance needs public IP for outbound internet:
+<a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>aws ec2 describe-instances \
+<a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>  --instance-ids i-xxxxx \
+<a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>  --query &#39;Reservations[0].Instances[0].PublicIpAddress&#39;
+<a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a>
+<a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>Fix if null:
+<a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a>- Allocate Elastic IP
+<a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a>- Associate with instance
+<a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a>
+<a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>4. CHECK SECURITY GROUP OUTBOUND:
+<a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a>
+<a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a>Default: All outbound allowed
+<a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a>Custom: Verify outbound rules allow traffic
+<a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a>
+<a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a>aws ec2 describe-security-groups \
+<a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a>  --group-ids sg-xxxxx \
+<a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a>  --query &#39;SecurityGroups[0].IpPermissionsEgress&#39;
+<a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a>
+<a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a>Expected: Allow all outbound (0.0.0.0/0)
+<a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a>
+<a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a>PRIVATE SUBNET TROUBLESHOOTING:
+<a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a>
+<a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a>1. VERIFY NAT GATEWAY EXISTS:
+<a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a>
+<a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a>Private instances need NAT Gateway for internet:
+<a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a>aws ec2 describe-nat-gateways \
+<a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a>  --filter &quot;Name=subnet-id,Values=subnet-xxxxx&quot;
+<a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a>
+<a id="__codelineno-2-77" name="__codelineno-2-77" href="#__codelineno-2-77"></a>Expected: NAT Gateway in public subnet
+<a id="__codelineno-2-78" name="__codelineno-2-78" href="#__codelineno-2-78"></a>
+<a id="__codelineno-2-79" name="__codelineno-2-79" href="#__codelineno-2-79"></a>Create if missing:
+<a id="__codelineno-2-80" name="__codelineno-2-80" href="#__codelineno-2-80"></a># Allocate Elastic IP
+<a id="__codelineno-2-81" name="__codelineno-2-81" href="#__codelineno-2-81"></a>aws ec2 allocate-address --domain vpc
+<a id="__codelineno-2-82" name="__codelineno-2-82" href="#__codelineno-2-82"></a>
+<a id="__codelineno-2-83" name="__codelineno-2-83" href="#__codelineno-2-83"></a># Create NAT Gateway
+<a id="__codelineno-2-84" name="__codelineno-2-84" href="#__codelineno-2-84"></a>aws ec2 create-nat-gateway \
+<a id="__codelineno-2-85" name="__codelineno-2-85" href="#__codelineno-2-85"></a>  --subnet-id subnet-public-xxxxx \
+<a id="__codelineno-2-86" name="__codelineno-2-86" href="#__codelineno-2-86"></a>  --allocation-id eipalloc-xxxxx
+<a id="__codelineno-2-87" name="__codelineno-2-87" href="#__codelineno-2-87"></a>
+<a id="__codelineno-2-88" name="__codelineno-2-88" href="#__codelineno-2-88"></a>2. CHECK ROUTE TABLE:
+<a id="__codelineno-2-89" name="__codelineno-2-89" href="#__codelineno-2-89"></a>
+<a id="__codelineno-2-90" name="__codelineno-2-90" href="#__codelineno-2-90"></a>Private subnet route table must route to NAT:
+<a id="__codelineno-2-91" name="__codelineno-2-91" href="#__codelineno-2-91"></a>aws ec2 describe-route-tables \
+<a id="__codelineno-2-92" name="__codelineno-2-92" href="#__codelineno-2-92"></a>  --filters &quot;Name=association.subnet-id,Values=subnet-private-xxxxx&quot;
+<a id="__codelineno-2-93" name="__codelineno-2-93" href="#__codelineno-2-93"></a>
+<a id="__codelineno-2-94" name="__codelineno-2-94" href="#__codelineno-2-94"></a>Expected route:
+<a id="__codelineno-2-95" name="__codelineno-2-95" href="#__codelineno-2-95"></a>Destination: 0.0.0.0/0
+<a id="__codelineno-2-96" name="__codelineno-2-96" href="#__codelineno-2-96"></a>Target: nat-xxxxx
+<a id="__codelineno-2-97" name="__codelineno-2-97" href="#__codelineno-2-97"></a>
+<a id="__codelineno-2-98" name="__codelineno-2-98" href="#__codelineno-2-98"></a>Fix if missing:
+<a id="__codelineno-2-99" name="__codelineno-2-99" href="#__codelineno-2-99"></a>aws ec2 create-route \
+<a id="__codelineno-2-100" name="__codelineno-2-100" href="#__codelineno-2-100"></a>  --route-table-id rtb-private-xxxxx \
+<a id="__codelineno-2-101" name="__codelineno-2-101" href="#__codelineno-2-101"></a>  --destination-cidr-block 0.0.0.0/0 \
+<a id="__codelineno-2-102" name="__codelineno-2-102" href="#__codelineno-2-102"></a>  --nat-gateway-id nat-xxxxx
+<a id="__codelineno-2-103" name="__codelineno-2-103" href="#__codelineno-2-103"></a>
+<a id="__codelineno-2-104" name="__codelineno-2-104" href="#__codelineno-2-104"></a>3. VERIFY NAT GATEWAY STATUS:
+<a id="__codelineno-2-105" name="__codelineno-2-105" href="#__codelineno-2-105"></a>
+<a id="__codelineno-2-106" name="__codelineno-2-106" href="#__codelineno-2-106"></a>NAT Gateway must be &quot;available&quot;:
+<a id="__codelineno-2-107" name="__codelineno-2-107" href="#__codelineno-2-107"></a>aws ec2 describe-nat-gateways \
+<a id="__codelineno-2-108" name="__codelineno-2-108" href="#__codelineno-2-108"></a>  --nat-gateway-ids nat-xxxxx \
+<a id="__codelineno-2-109" name="__codelineno-2-109" href="#__codelineno-2-109"></a>  --query &#39;NatGateways[0].State&#39;
+<a id="__codelineno-2-110" name="__codelineno-2-110" href="#__codelineno-2-110"></a>
+<a id="__codelineno-2-111" name="__codelineno-2-111" href="#__codelineno-2-111"></a>If &quot;pending&quot;: Wait for availability
+<a id="__codelineno-2-112" name="__codelineno-2-112" href="#__codelineno-2-112"></a>If &quot;failed&quot;: Delete and recreate
+<a id="__codelineno-2-113" name="__codelineno-2-113" href="#__codelineno-2-113"></a>
+<a id="__codelineno-2-114" name="__codelineno-2-114" href="#__codelineno-2-114"></a>NETWORK ACL TROUBLESHOOTING:
+<a id="__codelineno-2-115" name="__codelineno-2-115" href="#__codelineno-2-115"></a>
+<a id="__codelineno-2-116" name="__codelineno-2-116" href="#__codelineno-2-116"></a>NACLs are stateless (check both inbound and outbound)
+<a id="__codelineno-2-117" name="__codelineno-2-117" href="#__codelineno-2-117"></a>
+<a id="__codelineno-2-118" name="__codelineno-2-118" href="#__codelineno-2-118"></a>Check NACL:
+<a id="__codelineno-2-119" name="__codelineno-2-119" href="#__codelineno-2-119"></a>aws ec2 describe-network-acls \
+<a id="__codelineno-2-120" name="__codelineno-2-120" href="#__codelineno-2-120"></a>  --filters &quot;Name=association.subnet-id,Values=subnet-xxxxx&quot;
+<a id="__codelineno-2-121" name="__codelineno-2-121" href="#__codelineno-2-121"></a>
+<a id="__codelineno-2-122" name="__codelineno-2-122" href="#__codelineno-2-122"></a>Required rules:
+<a id="__codelineno-2-123" name="__codelineno-2-123" href="#__codelineno-2-123"></a>Outbound:
+<a id="__codelineno-2-124" name="__codelineno-2-124" href="#__codelineno-2-124"></a>- Rule 100: 0.0.0.0/0, ALL traffic, ALLOW
+<a id="__codelineno-2-125" name="__codelineno-2-125" href="#__codelineno-2-125"></a>
+<a id="__codelineno-2-126" name="__codelineno-2-126" href="#__codelineno-2-126"></a>Inbound (for responses):
+<a id="__codelineno-2-127" name="__codelineno-2-127" href="#__codelineno-2-127"></a>- Rule 100: 0.0.0.0/0, TCP 1024-65535, ALLOW
+<a id="__codelineno-2-128" name="__codelineno-2-128" href="#__codelineno-2-128"></a>
+<a id="__codelineno-2-129" name="__codelineno-2-129" href="#__codelineno-2-129"></a>Default NACL: Allows all (no issue)
+<a id="__codelineno-2-130" name="__codelineno-2-130" href="#__codelineno-2-130"></a>Custom NACL: May block traffic
+<a id="__codelineno-2-131" name="__codelineno-2-131" href="#__codelineno-2-131"></a>
+<a id="__codelineno-2-132" name="__codelineno-2-132" href="#__codelineno-2-132"></a>TESTING:
+<a id="__codelineno-2-133" name="__codelineno-2-133" href="#__codelineno-2-133"></a>
+<a id="__codelineno-2-134" name="__codelineno-2-134" href="#__codelineno-2-134"></a>From instance, test connectivity:
+<a id="__codelineno-2-135" name="__codelineno-2-135" href="#__codelineno-2-135"></a># Test DNS resolution
+<a id="__codelineno-2-136" name="__codelineno-2-136" href="#__codelineno-2-136"></a>nslookup google.com
+<a id="__codelineno-2-137" name="__codelineno-2-137" href="#__codelineno-2-137"></a>
+<a id="__codelineno-2-138" name="__codelineno-2-138" href="#__codelineno-2-138"></a># Test HTTP
+<a id="__codelineno-2-139" name="__codelineno-2-139" href="#__codelineno-2-139"></a>curl -I http://google.com
+<a id="__codelineno-2-140" name="__codelineno-2-140" href="#__codelineno-2-140"></a>
+<a id="__codelineno-2-141" name="__codelineno-2-141" href="#__codelineno-2-141"></a># Test HTTPS
+<a id="__codelineno-2-142" name="__codelineno-2-142" href="#__codelineno-2-142"></a>curl -I https://google.com
+<a id="__codelineno-2-143" name="__codelineno-2-143" href="#__codelineno-2-143"></a>
+<a id="__codelineno-2-144" name="__codelineno-2-144" href="#__codelineno-2-144"></a># Trace route
+<a id="__codelineno-2-145" name="__codelineno-2-145" href="#__codelineno-2-145"></a>traceroute google.com
+<a id="__codelineno-2-146" name="__codelineno-2-146" href="#__codelineno-2-146"></a>
+<a id="__codelineno-2-147" name="__codelineno-2-147" href="#__codelineno-2-147"></a>COMMON MISTAKES:
+<a id="__codelineno-2-148" name="__codelineno-2-148" href="#__codelineno-2-148"></a>
+<a id="__codelineno-2-149" name="__codelineno-2-149" href="#__codelineno-2-149"></a>❌ Route table not associated with subnet
+<a id="__codelineno-2-150" name="__codelineno-2-150" href="#__codelineno-2-150"></a>✓ Associate correct route table
+<a id="__codelineno-2-151" name="__codelineno-2-151" href="#__codelineno-2-151"></a>
+<a id="__codelineno-2-152" name="__codelineno-2-152" href="#__codelineno-2-152"></a>❌ NAT Gateway in wrong AZ (different from instance)
+<a id="__codelineno-2-153" name="__codelineno-2-153" href="#__codelineno-2-153"></a>✓ NAT Gateway must be in public subnet, routed from private subnet
+<a id="__codelineno-2-154" name="__codelineno-2-154" href="#__codelineno-2-154"></a>
+<a id="__codelineno-2-155" name="__codelineno-2-155" href="#__codelineno-2-155"></a>❌ Elastic IP not allocated to NAT Gateway
+<a id="__codelineno-2-156" name="__codelineno-2-156" href="#__codelineno-2-156"></a>✓ NAT needs EIP for internet access
+<a id="__codelineno-2-157" name="__codelineno-2-157" href="#__codelineno-2-157"></a>
+<a id="__codelineno-2-158" name="__codelineno-2-158" href="#__codelineno-2-158"></a>❌ Security group blocking HTTPS (port 443)
+<a id="__codelineno-2-159" name="__codelineno-2-159" href="#__codelineno-2-159"></a>✓ Allow outbound 443
+<a id="__codelineno-2-160" name="__codelineno-2-160" href="#__codelineno-2-160"></a>
+<a id="__codelineno-2-161" name="__codelineno-2-161" href="#__codelineno-2-161"></a>❌ Instance DNS settings incorrect
+<a id="__codelineno-2-162" name="__codelineno-2-162" href="#__codelineno-2-162"></a>✓ Use VPC DNS server: 169.254.169.253 or VPC CIDR +2
+<a id="__codelineno-2-163" name="__codelineno-2-163" href="#__codelineno-2-163"></a>
+<a id="__codelineno-2-164" name="__codelineno-2-164" href="#__codelineno-2-164"></a>PREVENTION:
+<a id="__codelineno-2-165" name="__codelineno-2-165" href="#__codelineno-2-165"></a>✓ Use VPC Flow Logs to diagnose traffic
+<a id="__codelineno-2-166" name="__codelineno-2-166" href="#__codelineno-2-166"></a>✓ Document network architecture
+<a id="__codelineno-2-167" name="__codelineno-2-167" href="#__codelineno-2-167"></a>✓ Use Infrastructure as Code (Terraform/CloudFormation)
+<a id="__codelineno-2-168" name="__codelineno-2-168" href="#__codelineno-2-168"></a>✓ Test connectivity after VPC changes
+<a id="__codelineno-2-169" name="__codelineno-2-169" href="#__codelineno-2-169"></a>✓ Use VPC Reachability Analyzer
+</code></pre></div>
+<h3 id="issue-4-cannot-connect-between-vpcs">Issue 4: Cannot Connect Between VPCs<a class="headerlink" href="#issue-4-cannot-connect-between-vpcs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>SYMPTOM:
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Instances in different VPCs cannot communicate
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>VPC peering connection exists but traffic not flowing
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>ROOT CAUSES &amp; SOLUTIONS:
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>1. VPC PEERING NOT ESTABLISHED:
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>Check peering status:
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>aws ec2 describe-vpc-peering-connections \
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  --filters &quot;Name=status-code,Values=active&quot;
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>Status must be &quot;active&quot;
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>If &quot;pending-acceptance&quot;:
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>aws ec2 accept-vpc-peering-connection \
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>  --vpc-peering-connection-id pcx-xxxxx
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>2. ROUTE TABLES NOT UPDATED:
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>Both VPCs need routes to peer:
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>VPC-A route table:
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>Destination: VPC-B CIDR (10.1.0.0/16)
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>Target: pcx-xxxxx
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>VPC-B route table:
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>Destination: VPC-A CIDR (10.0.0.0/16)
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>Target: pcx-xxxxx
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>Add routes:
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>aws ec2 create-route \
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>  --route-table-id rtb-xxxxx \
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>  --destination-cidr-block 10.1.0.0/16 \
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>  --vpc-peering-connection-id pcx-xxxxx
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>3. SECURITY GROUPS:
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>Security groups must allow traffic from peer VPC CIDR
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>Example (VPC-A security group):
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>Inbound rule:
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>Type: All traffic (or specific ports)
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>Source: 10.1.0.0/16 (VPC-B CIDR)
+<a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>
+<a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>Add rule:
+<a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>aws ec2 authorize-security-group-ingress \
+<a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>  --group-id sg-xxxxx \
+<a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>  --protocol all \
+<a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>  --cidr 10.1.0.0/16
+<a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>
+<a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a>4. OVERLAPPING CIDR BLOCKS:
+<a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>
+<a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a>VPC CIDRs cannot overlap for peering
+<a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a>
+<a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a>VPC-A: 10.0.0.0/16
+<a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>VPC-B: 10.1.0.0/16 ✓ No overlap
+<a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a>
+<a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a>VPC-A: 10.0.0.0/16
+<a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a>VPC-B: 10.0.1.0/24 ✗ Overlap!
+<a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a>
+<a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a>Solution: Use non-overlapping CIDR blocks
+<a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a>Cannot fix after VPC created (must recreate)
+<a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a>
+<a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a>5. DNS RESOLUTION:
+<a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a>
+<a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a>Enable DNS resolution for peering:
+<a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a>aws ec2 modify-vpc-peering-connection-options \
+<a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a>  --vpc-peering-connection-id pcx-xxxxx \
+<a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a>  --requester-peering-connection-options \
+<a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a>    AllowDnsResolutionFromRemoteVpc=true \
+<a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a>  --accepter-peering-connection-options \
+<a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a>    AllowDnsResolutionFromRemoteVpc=true
+<a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a>
+<a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a>TESTING:
+<a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a>
+<a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a>From VPC-A instance to VPC-B instance:
+<a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a># Ping private IP
+<a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a>ping 10.1.0.10
+<a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a>
+<a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a># Test specific port
+<a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a>telnet 10.1.0.10 80
+<a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a>
+<a id="__codelineno-3-84" name="__codelineno-3-84" href="#__codelineno-3-84"></a># Trace route
+<a id="__codelineno-3-85" name="__codelineno-3-85" href="#__codelineno-3-85"></a>traceroute 10.1.0.10
+<a id="__codelineno-3-86" name="__codelineno-3-86" href="#__codelineno-3-86"></a>
+<a id="__codelineno-3-87" name="__codelineno-3-87" href="#__codelineno-3-87"></a>VPC Flow Logs can show rejected traffic
+<a id="__codelineno-3-88" name="__codelineno-3-88" href="#__codelineno-3-88"></a>
+<a id="__codelineno-3-89" name="__codelineno-3-89" href="#__codelineno-3-89"></a>ALTERNATIVE: TRANSIT GATEWAY:
+<a id="__codelineno-3-90" name="__codelineno-3-90" href="#__codelineno-3-90"></a>
+<a id="__codelineno-3-91" name="__codelineno-3-91" href="#__codelineno-3-91"></a>For multiple VPCs (&gt; 3), use Transit Gateway instead
+<a id="__codelineno-3-92" name="__codelineno-3-92" href="#__codelineno-3-92"></a>
+<a id="__codelineno-3-93" name="__codelineno-3-93" href="#__codelineno-3-93"></a>Benefits:
+<a id="__codelineno-3-94" name="__codelineno-3-94" href="#__codelineno-3-94"></a>✓ Hub-and-spoke topology
+<a id="__codelineno-3-95" name="__codelineno-3-95" href="#__codelineno-3-95"></a>✓ Transitive routing
+<a id="__codelineno-3-96" name="__codelineno-3-96" href="#__codelineno-3-96"></a>✓ Centralized management
+<a id="__codelineno-3-97" name="__codelineno-3-97" href="#__codelineno-3-97"></a>✓ Scalable (100s of VPCs)
+<a id="__codelineno-3-98" name="__codelineno-3-98" href="#__codelineno-3-98"></a>
+<a id="__codelineno-3-99" name="__codelineno-3-99" href="#__codelineno-3-99"></a>Create Transit Gateway:
+<a id="__codelineno-3-100" name="__codelineno-3-100" href="#__codelineno-3-100"></a>aws ec2 create-transit-gateway \
+<a id="__codelineno-3-101" name="__codelineno-3-101" href="#__codelineno-3-101"></a>  --description &quot;Hub for VPC connectivity&quot;
+<a id="__codelineno-3-102" name="__codelineno-3-102" href="#__codelineno-3-102"></a>
+<a id="__codelineno-3-103" name="__codelineno-3-103" href="#__codelineno-3-103"></a>Attach VPCs:
+<a id="__codelineno-3-104" name="__codelineno-3-104" href="#__codelineno-3-104"></a>aws ec2 create-transit-gateway-vpc-attachment \
+<a id="__codelineno-3-105" name="__codelineno-3-105" href="#__codelineno-3-105"></a>  --transit-gateway-id tgw-xxxxx \
+<a id="__codelineno-3-106" name="__codelineno-3-106" href="#__codelineno-3-106"></a>  --vpc-id vpc-xxxxx \
+<a id="__codelineno-3-107" name="__codelineno-3-107" href="#__codelineno-3-107"></a>  --subnet-ids subnet-xxxxx
+<a id="__codelineno-3-108" name="__codelineno-3-108" href="#__codelineno-3-108"></a>
+<a id="__codelineno-3-109" name="__codelineno-3-109" href="#__codelineno-3-109"></a>Update route tables to use TGW
+</code></pre></div>
+<h2 id="rds-database-troubleshooting">RDS Database Troubleshooting<a class="headerlink" href="#rds-database-troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="issue-5-cannot-connect-to-rds-database">Issue 5: Cannot Connect to RDS Database<a class="headerlink" href="#issue-5-cannot-connect-to-rds-database" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>SYMPTOM:
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Application cannot establish connection to RDS
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Connection timeout or &quot;Connection refused&quot; errors
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>DIAGNOSTIC STEPS:
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>1. VERIFY DATABASE STATUS:
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>Check DB instance state:
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>aws rds describe-db-instances \
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>  --db-instance-identifier mydb \
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>  --query &#39;DBInstances[0].DBInstanceStatus&#39;
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>Expected: &quot;available&quot;
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>Other states:
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>- creating: Wait for completion
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>- backing-up: Wait for backup to finish
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>- modifying: Wait for modification
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>- stopping/stopped: Start database
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>- failed: Check CloudWatch Logs
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>Start if stopped:
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>aws rds start-db-instance \
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>  --db-instance-identifier mydb
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>2. CHECK SECURITY GROUP:
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>RDS security group must allow inbound on DB port
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>For MySQL/Aurora: Port 3306
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>For PostgreSQL: Port 5432
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>For SQL Server: Port 1433
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>For Oracle: Port 1521
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>Check security group:
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>aws ec2 describe-security-groups \
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>  --group-ids sg-xxxxx
+<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>
+<a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a>Inbound rule must allow:
+<a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a>Type: MySQL/Aurora (or specific DB type)
+<a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a>Port: 3306 (or appropriate port)
+<a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a>Source: Application security group OR application CIDR
+<a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a>
+<a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a>Add rule:
+<a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a>aws ec2 authorize-security-group-ingress \
+<a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a>  --group-id sg-rds-xxxxx \
+<a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a>  --protocol tcp \
+<a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a>  --port 3306 \
+<a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a>  --source-group sg-app-xxxxx
+<a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a>
+<a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a>3. VERIFY ENDPOINT:
+<a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a>
+<a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a>Get correct endpoint:
+<a id="__codelineno-4-55" name="__codelineno-4-55" href="#__codelineno-4-55"></a>aws rds describe-db-instances \
+<a id="__codelineno-4-56" name="__codelineno-4-56" href="#__codelineno-4-56"></a>  --db-instance-identifier mydb \
+<a id="__codelineno-4-57" name="__codelineno-4-57" href="#__codelineno-4-57"></a>  --query &#39;DBInstances[0].Endpoint&#39;
+<a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a>
+<a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a>Use endpoint in connection string:
+<a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a>mysql -h mydb.abc123.us-east-1.rds.amazonaws.com \
+<a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a>      -P 3306 \
+<a id="__codelineno-4-62" name="__codelineno-4-62" href="#__codelineno-4-62"></a>      -u admin \
+<a id="__codelineno-4-63" name="__codelineno-4-63" href="#__codelineno-4-63"></a>      -p
+<a id="__codelineno-4-64" name="__codelineno-4-64" href="#__codelineno-4-64"></a>
+<a id="__codelineno-4-65" name="__codelineno-4-65" href="#__codelineno-4-65"></a>4. CHECK VPC CONFIGURATION:
+<a id="__codelineno-4-66" name="__codelineno-4-66" href="#__codelineno-4-66"></a>
+<a id="__codelineno-4-67" name="__codelineno-4-67" href="#__codelineno-4-67"></a>If RDS in private subnet:
+<a id="__codelineno-4-68" name="__codelineno-4-68" href="#__codelineno-4-68"></a>- Application must be in same VPC OR
+<a id="__codelineno-4-69" name="__codelineno-4-69" href="#__codelineno-4-69"></a>- VPN/Direct Connect to VPC OR
+<a id="__codelineno-4-70" name="__codelineno-4-70" href="#__codelineno-4-70"></a>- VPC Peering configured
+<a id="__codelineno-4-71" name="__codelineno-4-71" href="#__codelineno-4-71"></a>
+<a id="__codelineno-4-72" name="__codelineno-4-72" href="#__codelineno-4-72"></a>Test connectivity from EC2 in same VPC:
+<a id="__codelineno-4-73" name="__codelineno-4-73" href="#__codelineno-4-73"></a>telnet mydb.abc123.us-east-1.rds.amazonaws.com 3306
+<a id="__codelineno-4-74" name="__codelineno-4-74" href="#__codelineno-4-74"></a>
+<a id="__codelineno-4-75" name="__codelineno-4-75" href="#__codelineno-4-75"></a>If connection refused: Security group issue
+<a id="__codelineno-4-76" name="__codelineno-4-76" href="#__codelineno-4-76"></a>If timeout: Network routing issue
+<a id="__codelineno-4-77" name="__codelineno-4-77" href="#__codelineno-4-77"></a>
+<a id="__codelineno-4-78" name="__codelineno-4-78" href="#__codelineno-4-78"></a>5. VERIFY CREDENTIALS:
+<a id="__codelineno-4-79" name="__codelineno-4-79" href="#__codelineno-4-79"></a>
+<a id="__codelineno-4-80" name="__codelineno-4-80" href="#__codelineno-4-80"></a>Check master username:
+<a id="__codelineno-4-81" name="__codelineno-4-81" href="#__codelineno-4-81"></a>aws rds describe-db-instances \
+<a id="__codelineno-4-82" name="__codelineno-4-82" href="#__codelineno-4-82"></a>  --db-instance-identifier mydb \
+<a id="__codelineno-4-83" name="__codelineno-4-83" href="#__codelineno-4-83"></a>  --query &#39;DBInstances[0].MasterUsername&#39;
+<a id="__codelineno-4-84" name="__codelineno-4-84" href="#__codelineno-4-84"></a>
+<a id="__codelineno-4-85" name="__codelineno-4-85" href="#__codelineno-4-85"></a>Reset password if forgotten:
+<a id="__codelineno-4-86" name="__codelineno-4-86" href="#__codelineno-4-86"></a>aws rds modify-db-instance \
+<a id="__codelineno-4-87" name="__codelineno-4-87" href="#__codelineno-4-87"></a>  --db-instance-identifier mydb \
+<a id="__codelineno-4-88" name="__codelineno-4-88" href="#__codelineno-4-88"></a>  --master-user-password NewPassword123! \
+<a id="__codelineno-4-89" name="__codelineno-4-89" href="#__codelineno-4-89"></a>  --apply-immediately
+<a id="__codelineno-4-90" name="__codelineno-4-90" href="#__codelineno-4-90"></a>
+<a id="__codelineno-4-91" name="__codelineno-4-91" href="#__codelineno-4-91"></a>6. CHECK PUBLIC ACCESSIBILITY:
+<a id="__codelineno-4-92" name="__codelineno-4-92" href="#__codelineno-4-92"></a>
+<a id="__codelineno-4-93" name="__codelineno-4-93" href="#__codelineno-4-93"></a>If connecting from internet:
+<a id="__codelineno-4-94" name="__codelineno-4-94" href="#__codelineno-4-94"></a>aws rds describe-db-instances \
+<a id="__codelineno-4-95" name="__codelineno-4-95" href="#__codelineno-4-95"></a>  --db-instance-identifier mydb \
+<a id="__codelineno-4-96" name="__codelineno-4-96" href="#__codelineno-4-96"></a>  --query &#39;DBInstances[0].PubliclyAccessible&#39;
+<a id="__codelineno-4-97" name="__codelineno-4-97" href="#__codelineno-4-97"></a>
+<a id="__codelineno-4-98" name="__codelineno-4-98" href="#__codelineno-4-98"></a>If false and need internet access:
+<a id="__codelineno-4-99" name="__codelineno-4-99" href="#__codelineno-4-99"></a>aws rds modify-db-instance \
+<a id="__codelineno-4-100" name="__codelineno-4-100" href="#__codelineno-4-100"></a>  --db-instance-identifier mydb \
+<a id="__codelineno-4-101" name="__codelineno-4-101" href="#__codelineno-4-101"></a>  --publicly-accessible \
+<a id="__codelineno-4-102" name="__codelineno-4-102" href="#__codelineno-4-102"></a>  --apply-immediately
+<a id="__codelineno-4-103" name="__codelineno-4-103" href="#__codelineno-4-103"></a>
+<a id="__codelineno-4-104" name="__codelineno-4-104" href="#__codelineno-4-104"></a>⚠️ Not recommended for production (security risk)
+<a id="__codelineno-4-105" name="__codelineno-4-105" href="#__codelineno-4-105"></a>
+<a id="__codelineno-4-106" name="__codelineno-4-106" href="#__codelineno-4-106"></a>COMMON CONNECTION ERRORS:
+<a id="__codelineno-4-107" name="__codelineno-4-107" href="#__codelineno-4-107"></a>
+<a id="__codelineno-4-108" name="__codelineno-4-108" href="#__codelineno-4-108"></a>Error: &quot;Unknown database &#39;dbname&#39;&quot;
+<a id="__codelineno-4-109" name="__codelineno-4-109" href="#__codelineno-4-109"></a>Cause: Database name doesn&#39;t exist
+<a id="__codelineno-4-110" name="__codelineno-4-110" href="#__codelineno-4-110"></a>Fix: Create database or use correct name
+<a id="__codelineno-4-111" name="__codelineno-4-111" href="#__codelineno-4-111"></a>
+<a id="__codelineno-4-112" name="__codelineno-4-112" href="#__codelineno-4-112"></a>Error: &quot;Access denied for user &#39;user&#39;@&#39;host&#39;&quot;
+<a id="__codelineno-4-113" name="__codelineno-4-113" href="#__codelineno-4-113"></a>Cause: Wrong username/password or insufficient privileges
+<a id="__codelineno-4-114" name="__codelineno-4-114" href="#__codelineno-4-114"></a>Fix: Verify credentials or grant permissions
+<a id="__codelineno-4-115" name="__codelineno-4-115" href="#__codelineno-4-115"></a>
+<a id="__codelineno-4-116" name="__codelineno-4-116" href="#__codelineno-4-116"></a>Error: &quot;Can&#39;t connect to MySQL server on &#39;host&#39;&quot;
+<a id="__codelineno-4-117" name="__codelineno-4-117" href="#__codelineno-4-117"></a>Cause: Network connectivity issue
+<a id="__codelineno-4-118" name="__codelineno-4-118" href="#__codelineno-4-118"></a>Fix: Check security groups, VPC settings
+<a id="__codelineno-4-119" name="__codelineno-4-119" href="#__codelineno-4-119"></a>
+<a id="__codelineno-4-120" name="__codelineno-4-120" href="#__codelineno-4-120"></a>Error: &quot;Too many connections&quot;
+<a id="__codelineno-4-121" name="__codelineno-4-121" href="#__codelineno-4-121"></a>Cause: Max connections reached
+<a id="__codelineno-4-122" name="__codelineno-4-122" href="#__codelineno-4-122"></a>Fix: Increase max_connections parameter or close idle connections
+<a id="__codelineno-4-123" name="__codelineno-4-123" href="#__codelineno-4-123"></a>
+<a id="__codelineno-4-124" name="__codelineno-4-124" href="#__codelineno-4-124"></a>MONITORING:
+<a id="__codelineno-4-125" name="__codelineno-4-125" href="#__codelineno-4-125"></a>
+<a id="__codelineno-4-126" name="__codelineno-4-126" href="#__codelineno-4-126"></a>Enable Enhanced Monitoring:
+<a id="__codelineno-4-127" name="__codelineno-4-127" href="#__codelineno-4-127"></a>aws rds modify-db-instance \
+<a id="__codelineno-4-128" name="__codelineno-4-128" href="#__codelineno-4-128"></a>  --db-instance-identifier mydb \
+<a id="__codelineno-4-129" name="__codelineno-4-129" href="#__codelineno-4-129"></a>  --monitoring-interval 60 \
+<a id="__codelineno-4-130" name="__codelineno-4-130" href="#__codelineno-4-130"></a>  --monitoring-role-arn arn:aws:iam::xxxxx:role/rds-monitoring-role
+<a id="__codelineno-4-131" name="__codelineno-4-131" href="#__codelineno-4-131"></a>
+<a id="__codelineno-4-132" name="__codelineno-4-132" href="#__codelineno-4-132"></a>Check CloudWatch metrics:
+<a id="__codelineno-4-133" name="__codelineno-4-133" href="#__codelineno-4-133"></a>- DatabaseConnections (current connections)
+<a id="__codelineno-4-134" name="__codelineno-4-134" href="#__codelineno-4-134"></a>- CPUUtilization (high = possible issue)
+<a id="__codelineno-4-135" name="__codelineno-4-135" href="#__codelineno-4-135"></a>- FreeStorageSpace (running out of space?)
+<a id="__codelineno-4-136" name="__codelineno-4-136" href="#__codelineno-4-136"></a>- ReadLatency/WriteLatency (performance)
+<a id="__codelineno-4-137" name="__codelineno-4-137" href="#__codelineno-4-137"></a>
+<a id="__codelineno-4-138" name="__codelineno-4-138" href="#__codelineno-4-138"></a>PREVENTION:
+<a id="__codelineno-4-139" name="__codelineno-4-139" href="#__codelineno-4-139"></a>✓ Use connection pooling in application
+<a id="__codelineno-4-140" name="__codelineno-4-140" href="#__codelineno-4-140"></a>✓ Implement retry logic with exponential backoff
+<a id="__codelineno-4-141" name="__codelineno-4-141" href="#__codelineno-4-141"></a>✓ Monitor connection count (alert on 80% max)
+<a id="__codelineno-4-142" name="__codelineno-4-142" href="#__codelineno-4-142"></a>✓ Use Multi-AZ for automatic failover
+<a id="__codelineno-4-143" name="__codelineno-4-143" href="#__codelineno-4-143"></a>✓ Enable automated backups
+<a id="__codelineno-4-144" name="__codelineno-4-144" href="#__codelineno-4-144"></a>✓ Use Secrets Manager for credential management
+</code></pre></div>
+<h3 id="issue-6-rds-performance-degradation">Issue 6: RDS Performance Degradation<a class="headerlink" href="#issue-6-rds-performance-degradation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>SYMPTOM:
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Slow queries, high latency, application timeouts
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Database response times significantly increased
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>INVESTIGATION:
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>1. CHECK CLOUDWATCH METRICS:
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>Key metrics to review:
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>aws cloudwatch get-metric-statistics \
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>  --namespace AWS/RDS \
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>  --metric-name CPUUtilization \
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>  --dimensions Name=DBInstanceIdentifier,Value=mydb \
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>  --start-time 2025-11-17T00:00:00Z \
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>  --end-time 2025-11-17T12:00:00Z \
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>  --period 300 \
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>  --statistics Average
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>Metrics to investigate:
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>- CPUUtilization: High (&gt; 80%) = compute bottleneck
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>- DatabaseConnections: High = connection saturation
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>- ReadLatency/WriteLatency: High = storage bottleneck
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>- ReadIOPS/WriteIOPS: High = I/O bottleneck
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>- FreeableMemory: Low = memory pressure
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>- SwapUsage: High = insufficient memory
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>2. ENABLE PERFORMANCE INSIGHTS:
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>View query performance:
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>aws rds modify-db-instance \
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>  --db-instance-identifier mydb \
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>  --enable-performance-insights \
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>  --performance-insights-retention-period 7
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>Access Performance Insights in console:
+<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>- Top SQL queries by load
+<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>- Wait events
+<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>- Database load over time
+<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>
+<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>3. ANALYZE SLOW QUERY LOG:
+<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>
+<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>MySQL: Enable slow query log
+<a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>aws rds modify-db-parameter-group \
+<a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>  --db-parameter-group-name mygroup \
+<a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a>  --parameters &quot;ParameterName=slow_query_log,ParameterValue=1,ApplyMethod=immediate&quot; \
+<a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a>               &quot;ParameterName=long_query_time,ParameterValue=2,ApplyMethod=immediate&quot;
+<a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a>
+<a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a>Download log:
+<a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a>aws rds download-db-log-file-portion \
+<a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a>  --db-instance-identifier mydb \
+<a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a>  --log-file-name slowquery/mysql-slowquery.log
+<a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a>
+<a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a>Analyze for:
+<a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a>- Queries taking &gt; 2 seconds
+<a id="__codelineno-5-55" name="__codelineno-5-55" href="#__codelineno-5-55"></a>- Missing indexes
+<a id="__codelineno-5-56" name="__codelineno-5-56" href="#__codelineno-5-56"></a>- Full table scans
+<a id="__codelineno-5-57" name="__codelineno-5-57" href="#__codelineno-5-57"></a>- Lock waits
+<a id="__codelineno-5-58" name="__codelineno-5-58" href="#__codelineno-5-58"></a>
+<a id="__codelineno-5-59" name="__codelineno-5-59" href="#__codelineno-5-59"></a>COMMON CAUSES &amp; FIXES:
+<a id="__codelineno-5-60" name="__codelineno-5-60" href="#__codelineno-5-60"></a>
+<a id="__codelineno-5-61" name="__codelineno-5-61" href="#__codelineno-5-61"></a>1. INSUFFICIENT INSTANCE SIZE:
+<a id="__codelineno-5-62" name="__codelineno-5-62" href="#__codelineno-5-62"></a>
+<a id="__codelineno-5-63" name="__codelineno-5-63" href="#__codelineno-5-63"></a>CPU &gt; 80% sustained:
+<a id="__codelineno-5-64" name="__codelineno-5-64" href="#__codelineno-5-64"></a>Upgrade instance class:
+<a id="__codelineno-5-65" name="__codelineno-5-65" href="#__codelineno-5-65"></a>aws rds modify-db-instance \
+<a id="__codelineno-5-66" name="__codelineno-5-66" href="#__codelineno-5-66"></a>  --db-instance-identifier mydb \
+<a id="__codelineno-5-67" name="__codelineno-5-67" href="#__codelineno-5-67"></a>  --db-instance-class db.r5.2xlarge \
+<a id="__codelineno-5-68" name="__codelineno-5-68" href="#__codelineno-5-68"></a>  --apply-immediately
+<a id="__codelineno-5-69" name="__codelineno-5-69" href="#__codelineno-5-69"></a>
+<a id="__codelineno-5-70" name="__codelineno-5-70" href="#__codelineno-5-70"></a>Choose right instance type:
+<a id="__codelineno-5-71" name="__codelineno-5-71" href="#__codelineno-5-71"></a>- T3: Burstable (variable workloads)
+<a id="__codelineno-5-72" name="__codelineno-5-72" href="#__codelineno-5-72"></a>- M5: General purpose (balanced)
+<a id="__codelineno-5-73" name="__codelineno-5-73" href="#__codelineno-5-73"></a>- R5: Memory-optimized (large datasets)
+<a id="__codelineno-5-74" name="__codelineno-5-74" href="#__codelineno-5-74"></a>- X1: Extreme memory (in-memory databases)
+<a id="__codelineno-5-75" name="__codelineno-5-75" href="#__codelineno-5-75"></a>
+<a id="__codelineno-5-76" name="__codelineno-5-76" href="#__codelineno-5-76"></a>2. INSUFFICIENT STORAGE IOPS:
+<a id="__codelineno-5-77" name="__codelineno-5-77" href="#__codelineno-5-77"></a>
+<a id="__codelineno-5-78" name="__codelineno-5-78" href="#__codelineno-5-78"></a>Storage IOPS exhausted:
+<a id="__codelineno-5-79" name="__codelineno-5-79" href="#__codelineno-5-79"></a>Upgrade to Provisioned IOPS (io1/io2):
+<a id="__codelineno-5-80" name="__codelineno-5-80" href="#__codelineno-5-80"></a>aws rds modify-db-instance \
+<a id="__codelineno-5-81" name="__codelineno-5-81" href="#__codelineno-5-81"></a>  --db-instance-identifier mydb \
+<a id="__codelineno-5-82" name="__codelineno-5-82" href="#__codelineno-5-82"></a>  --storage-type io1 \
+<a id="__codelineno-5-83" name="__codelineno-5-83" href="#__codelineno-5-83"></a>  --iops 10000 \
+<a id="__codelineno-5-84" name="__codelineno-5-84" href="#__codelineno-5-84"></a>  --apply-immediately
+<a id="__codelineno-5-85" name="__codelineno-5-85" href="#__codelineno-5-85"></a>
+<a id="__codelineno-5-86" name="__codelineno-5-86" href="#__codelineno-5-86"></a>Or use gp3 with configurable IOPS:
+<a id="__codelineno-5-87" name="__codelineno-5-87" href="#__codelineno-5-87"></a>--storage-type gp3 \
+<a id="__codelineno-5-88" name="__codelineno-5-88" href="#__codelineno-5-88"></a>--iops 12000 \
+<a id="__codelineno-5-89" name="__codelineno-5-89" href="#__codelineno-5-89"></a>--storage-throughput 500
+<a id="__codelineno-5-90" name="__codelineno-5-90" href="#__codelineno-5-90"></a>
+<a id="__codelineno-5-91" name="__codelineno-5-91" href="#__codelineno-5-91"></a>3. MISSING INDEXES:
+<a id="__codelineno-5-92" name="__codelineno-5-92" href="#__codelineno-5-92"></a>
+<a id="__codelineno-5-93" name="__codelineno-5-93" href="#__codelineno-5-93"></a>Identify missing indexes from slow queries
+<a id="__codelineno-5-94" name="__codelineno-5-94" href="#__codelineno-5-94"></a>Create indexes on frequently queried columns
+<a id="__codelineno-5-95" name="__codelineno-5-95" href="#__codelineno-5-95"></a>
+<a id="__codelineno-5-96" name="__codelineno-5-96" href="#__codelineno-5-96"></a>MySQL:
+<a id="__codelineno-5-97" name="__codelineno-5-97" href="#__codelineno-5-97"></a>EXPLAIN SELECT * FROM users WHERE email = &#39;user@example.com&#39;;
+<a id="__codelineno-5-98" name="__codelineno-5-98" href="#__codelineno-5-98"></a>
+<a id="__codelineno-5-99" name="__codelineno-5-99" href="#__codelineno-5-99"></a>Look for: &quot;type: ALL&quot; (full table scan)
+<a id="__codelineno-5-100" name="__codelineno-5-100" href="#__codelineno-5-100"></a>
+<a id="__codelineno-5-101" name="__codelineno-5-101" href="#__codelineno-5-101"></a>Create index:
+<a id="__codelineno-5-102" name="__codelineno-5-102" href="#__codelineno-5-102"></a>CREATE INDEX idx_email ON users(email);
+<a id="__codelineno-5-103" name="__codelineno-5-103" href="#__codelineno-5-103"></a>
+<a id="__codelineno-5-104" name="__codelineno-5-104" href="#__codelineno-5-104"></a>4. POOR QUERY OPTIMIZATION:
+<a id="__codelineno-5-105" name="__codelineno-5-105" href="#__codelineno-5-105"></a>
+<a id="__codelineno-5-106" name="__codelineno-5-106" href="#__codelineno-5-106"></a>Inefficient queries causing high load
+<a id="__codelineno-5-107" name="__codelineno-5-107" href="#__codelineno-5-107"></a>
+<a id="__codelineno-5-108" name="__codelineno-5-108" href="#__codelineno-5-108"></a>Optimize:
+<a id="__codelineno-5-109" name="__codelineno-5-109" href="#__codelineno-5-109"></a>- Avoid SELECT *
+<a id="__codelineno-5-110" name="__codelineno-5-110" href="#__codelineno-5-110"></a>- Use appropriate JOIN types
+<a id="__codelineno-5-111" name="__codelineno-5-111" href="#__codelineno-5-111"></a>- Limit result sets
+<a id="__codelineno-5-112" name="__codelineno-5-112" href="#__codelineno-5-112"></a>- Use prepared statements
+<a id="__codelineno-5-113" name="__codelineno-5-113" href="#__codelineno-5-113"></a>- Batch operations
+<a id="__codelineno-5-114" name="__codelineno-5-114" href="#__codelineno-5-114"></a>
+<a id="__codelineno-5-115" name="__codelineno-5-115" href="#__codelineno-5-115"></a>5. TOO MANY CONNECTIONS:
+<a id="__codelineno-5-116" name="__codelineno-5-116" href="#__codelineno-5-116"></a>
+<a id="__codelineno-5-117" name="__codelineno-5-117" href="#__codelineno-5-117"></a>Max connections reached:
+<a id="__codelineno-5-118" name="__codelineno-5-118" href="#__codelineno-5-118"></a>Increase max_connections parameter:
+<a id="__codelineno-5-119" name="__codelineno-5-119" href="#__codelineno-5-119"></a>aws rds modify-db-parameter-group \
+<a id="__codelineno-5-120" name="__codelineno-5-120" href="#__codelineno-5-120"></a>  --db-parameter-group-name mygroup \
+<a id="__codelineno-5-121" name="__codelineno-5-121" href="#__codelineno-5-121"></a>  --parameters &quot;ParameterName=max_connections,ParameterValue=1000,ApplyMethod=pending-reboot&quot;
+<a id="__codelineno-5-122" name="__codelineno-5-122" href="#__codelineno-5-122"></a>
+<a id="__codelineno-5-123" name="__codelineno-5-123" href="#__codelineno-5-123"></a>Reboot to apply:
+<a id="__codelineno-5-124" name="__codelineno-5-124" href="#__codelineno-5-124"></a>aws rds reboot-db-instance \
+<a id="__codelineno-5-125" name="__codelineno-5-125" href="#__codelineno-5-125"></a>  --db-instance-identifier mydb
+<a id="__codelineno-5-126" name="__codelineno-5-126" href="#__codelineno-5-126"></a>
+<a id="__codelineno-5-127" name="__codelineno-5-127" href="#__codelineno-5-127"></a>Better: Implement connection pooling in application
+<a id="__codelineno-5-128" name="__codelineno-5-128" href="#__codelineno-5-128"></a>
+<a id="__codelineno-5-129" name="__codelineno-5-129" href="#__codelineno-5-129"></a>6. INSUFFICIENT CACHE:
+<a id="__codelineno-5-130" name="__codelineno-5-130" href="#__codelineno-5-130"></a>
+<a id="__codelineno-5-131" name="__codelineno-5-131" href="#__codelineno-5-131"></a>Increase buffer pool size (MySQL/Aurora):
+<a id="__codelineno-5-132" name="__codelineno-5-132" href="#__codelineno-5-132"></a>aws rds modify-db-parameter-group \
+<a id="__codelineno-5-133" name="__codelineno-5-133" href="#__codelineno-5-133"></a>  --db-parameter-group-name mygroup \
+<a id="__codelineno-5-134" name="__codelineno-5-134" href="#__codelineno-5-134"></a>  --parameters &quot;ParameterName=innodb_buffer_pool_size,ParameterValue={DBInstanceClassMemory*3/4},ApplyMethod=pending-reboot&quot;
+<a id="__codelineno-5-135" name="__codelineno-5-135" href="#__codelineno-5-135"></a>
+<a id="__codelineno-5-136" name="__codelineno-5-136" href="#__codelineno-5-136"></a>7. STORAGE FULL:
+<a id="__codelineno-5-137" name="__codelineno-5-137" href="#__codelineno-5-137"></a>
+<a id="__codelineno-5-138" name="__codelineno-5-138" href="#__codelineno-5-138"></a>FreeStorageSpace approaching 0:
+<a id="__codelineno-5-139" name="__codelineno-5-139" href="#__codelineno-5-139"></a>Increase allocated storage:
+<a id="__codelineno-5-140" name="__codelineno-5-140" href="#__codelineno-5-140"></a>aws rds modify-db-instance \
+<a id="__codelineno-5-141" name="__codelineno-5-141" href="#__codelineno-5-141"></a>  --db-instance-identifier mydb \
+<a id="__codelineno-5-142" name="__codelineno-5-142" href="#__codelineno-5-142"></a>  --allocated-storage 1000 \
+<a id="__codelineno-5-143" name="__codelineno-5-143" href="#__codelineno-5-143"></a>  --apply-immediately
+<a id="__codelineno-5-144" name="__codelineno-5-144" href="#__codelineno-5-144"></a>
+<a id="__codelineno-5-145" name="__codelineno-5-145" href="#__codelineno-5-145"></a>Enable storage autoscaling:
+<a id="__codelineno-5-146" name="__codelineno-5-146" href="#__codelineno-5-146"></a>aws rds modify-db-instance \
+<a id="__codelineno-5-147" name="__codelineno-5-147" href="#__codelineno-5-147"></a>  --db-instance-identifier mydb \
+<a id="__codelineno-5-148" name="__codelineno-5-148" href="#__codelineno-5-148"></a>  --max-allocated-storage 2000
+<a id="__codelineno-5-149" name="__codelineno-5-149" href="#__codelineno-5-149"></a>
+<a id="__codelineno-5-150" name="__codelineno-5-150" href="#__codelineno-5-150"></a>SCALING STRATEGIES:
+<a id="__codelineno-5-151" name="__codelineno-5-151" href="#__codelineno-5-151"></a>
+<a id="__codelineno-5-152" name="__codelineno-5-152" href="#__codelineno-5-152"></a>Vertical Scaling (Scale Up):
+<a id="__codelineno-5-153" name="__codelineno-5-153" href="#__codelineno-5-153"></a>- Larger instance class
+<a id="__codelineno-5-154" name="__codelineno-5-154" href="#__codelineno-5-154"></a>- More CPU, memory, network
+<a id="__codelineno-5-155" name="__codelineno-5-155" href="#__codelineno-5-155"></a>- Requires brief downtime (Multi-AZ: ~1 min)
+<a id="__codelineno-5-156" name="__codelineno-5-156" href="#__codelineno-5-156"></a>
+<a id="__codelineno-5-157" name="__codelineno-5-157" href="#__codelineno-5-157"></a>Horizontal Scaling (Scale Out):
+<a id="__codelineno-5-158" name="__codelineno-5-158" href="#__codelineno-5-158"></a>- Read Replicas for read traffic
+<a id="__codelineno-5-159" name="__codelineno-5-159" href="#__codelineno-5-159"></a>- Aurora: Up to 15 read replicas
+<a id="__codelineno-5-160" name="__codelineno-5-160" href="#__codelineno-5-160"></a>- Offload analytics, reporting to replicas
+<a id="__codelineno-5-161" name="__codelineno-5-161" href="#__codelineno-5-161"></a>
+<a id="__codelineno-5-162" name="__codelineno-5-162" href="#__codelineno-5-162"></a>Create Read Replica:
+<a id="__codelineno-5-163" name="__codelineno-5-163" href="#__codelineno-5-163"></a>aws rds create-db-instance-read-replica \
+<a id="__codelineno-5-164" name="__codelineno-5-164" href="#__codelineno-5-164"></a>  --db-instance-identifier mydb-replica \
+<a id="__codelineno-5-165" name="__codelineno-5-165" href="#__codelineno-5-165"></a>  --source-db-instance-identifier mydb
+<a id="__codelineno-5-166" name="__codelineno-5-166" href="#__codelineno-5-166"></a>
+<a id="__codelineno-5-167" name="__codelineno-5-167" href="#__codelineno-5-167"></a>Caching:
+<a id="__codelineno-5-168" name="__codelineno-5-168" href="#__codelineno-5-168"></a>- ElastiCache (Redis/Memcached)
+<a id="__codelineno-5-169" name="__codelineno-5-169" href="#__codelineno-5-169"></a>- Cache frequent queries
+<a id="__codelineno-5-170" name="__codelineno-5-170" href="#__codelineno-5-170"></a>- Reduce database load 70-90%
+<a id="__codelineno-5-171" name="__codelineno-5-171" href="#__codelineno-5-171"></a>
+<a id="__codelineno-5-172" name="__codelineno-5-172" href="#__codelineno-5-172"></a>PREVENTION:
+<a id="__codelineno-5-173" name="__codelineno-5-173" href="#__codelineno-5-173"></a>✓ Monitor Performance Insights weekly
+<a id="__codelineno-5-174" name="__codelineno-5-174" href="#__codelineno-5-174"></a>✓ Set CloudWatch alarms (CPU &gt; 70%, connections &gt; 80% max)
+<a id="__codelineno-5-175" name="__codelineno-5-175" href="#__codelineno-5-175"></a>✓ Regular database maintenance (VACUUM, ANALYZE)
+<a id="__codelineno-5-176" name="__codelineno-5-176" href="#__codelineno-5-176"></a>✓ Implement query caching
+<a id="__codelineno-5-177" name="__codelineno-5-177" href="#__codelineno-5-177"></a>✓ Use read replicas for read-heavy workloads
+<a id="__codelineno-5-178" name="__codelineno-5-178" href="#__codelineno-5-178"></a>✓ Right-size instance based on actual usage
+<a id="__codelineno-5-179" name="__codelineno-5-179" href="#__codelineno-5-179"></a>✓ Load test before production
+</code></pre></div>
+<h2 id="s3-troubleshooting">S3 Troubleshooting<a class="headerlink" href="#s3-troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="issue-7-access-denied-to-s3-bucket">Issue 7: Access Denied to S3 Bucket<a class="headerlink" href="#issue-7-access-denied-to-s3-bucket" title="Permanent link">&para;</a></h3>
+<p>```
+SYMPTOM:
+"Access Denied" error when accessing S3 bucket or objects
+HTTP 403 Forbidden error</p>
+<p>INVESTIGATION CHECKLIST:</p>
+<p>□ IAM policy allows action?
+□ Bucket policy allows action?
+□ Bucket Block Public Access settings?
+□ Object ACL allows access?
+□ Bucket encryption requires specific headers?
+□ VPC Endpoint policy allows access?</p>
+<p>STEP-BY-STEP DIAGNOSIS:</p>
+<ol>
+<li>CHECK IAM PERMISSIONS:</li>
+</ol>
+<p>View user/role policy:
+aws iam get-user-policy \
+  --user-name myuser \
+  --policy-name mypolicy</p>
+<p>Required permissions:
+{
+  "Effect": "Allow",
+  "Action": [
+    "s3:GetObject",
+    "s3:PutObject",
+    "s3:ListBucket"
+  ],
+  "Resource": [
+    "arn:aws:s3:::mybucket",
+    "arn:aws:s3:::mybucket/*"
+  ]
+}</p>
+<p>Note: ListBucket on bucket, Get/Put on objects (*)</p>
+<ol>
+<li>CHECK BUCKET POLICY:</li>
+</ol>
+<p>View bucket policy:
+aws s3api get-bucket-policy \
+  --bucket mybucket \
+  --query Policy \
+  --output text | jq</p>
+<p>Look for Deny statements blocking access</p>
+<p>Example policy allowing access:
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Principal": {"AWS": "arn:aws:iam::123456789012:user/myuser"},
+    "Action": "s3:GetObject",
+    "Resource": "arn:aws:s3:::mybucket/*"
+  }]
+}</p>
+<ol>
+<li>CHECK BLOCK PUBLIC ACCESS:</li>
+</ol>
+<p>View settings:
+aws s3api get-public-access-block \
+  --bucket mybucket</p>
+<p>If all set to true, public access blocked:
+{
+  "BlockPublicAcls": true,
+  "IgnorePublicAcls": true,
+  "BlockPublicPolicy": true,
+  "RestrictPublicBuckets": true
+}</p>
+<p>For public access, disable (use with caution):
+aws s3api delete-public-access-block \
+  --bucket mybucket</p>
+<p>⚠️ Only for truly public buckets (e.g., website hosting)</p>
+<ol>
+<li>CHECK OBJECT OWNERSHIP:</li>
+</ol>
+<p>Objects uploaded by different account may not be accessible</p>
+<p>Check object owner:
+aws s3api head-object \
+  --bucket mybucket \
+  --key myfile.txt \
+  --query Owner</p>
+<p>Solution: Use bucket owner full control ACL when uploading:
+aws s3 cp myfile.txt s3://mybucket/ \
+  --acl bucket-owner-full-control</p>
+<p>Or configure bucket ownership:
+aws s3api put-bucket-ownership-controls \
+  --bucket mybucket \
+  --ownership-controls Rules=[{ObjectOwnership=BucketOwnerEnforced}]</p>
+<ol>
+<li>CHECK ENCRYPTION REQUIREMENTS:</li>
+</ol>
+<p>Server-side encryption required?
+aws s3api get-bucket-encryption \
+  --bucket mybucket</p>
+<p>If encryption required, upload with:
+aws s3 cp myfile.txt s3://mybucket/ \
+  --server-side-encryption AES256</p>
+<p>Or use KMS:
+aws s3 cp myfile.txt s3://mybucket/ \
+  --server-side-encryption aws:kms \
+  --ssekms-key-id arn:aws:kms:region:account:key/key-id</p>
+<ol>
+<li>CHECK VPC ENDPOINT POLICY:</li>
+</ol>
+<p>If accessing from VPC endpoint, policy may restrict:
+aws ec2 describe-vpc-endpoints \
+  --vpc-endpoint-ids vpce-xxxxx \
+  --query 'VpcEndpoints[0].PolicyDocument'</p>
+<p>Ensure policy allows your bucket:
+{
+  "Statement": [{
+    "Effect": "Allow",
+    "Principal": "<em>",
+    "Action": "s3:</em>",
+    "Resource": [
+      "arn:aws:s3:::mybucket",
+      "arn:aws:s3:::mybucket/*"
+    ]
+  }]
+}</p>
+<p>COMMON SCENARIOS:</p>
+<p>Scenario 1: Cross-Account Access</p>
+<p>Account A bucket, Account B user needs access</p>
+<p>Account A (bucket owner):
+1. Bucket policy allowing Account B:
+{
+  "Effect": "Allow",
+  "Principal": {"AWS": "arn:aws:iam::AccountB:root"},
+  "Action": "s3:<em>",
+  "Resource": [
+    "arn:aws:s3:::mybucket",
+    "arn:aws:s3:::mybucket/</em>"
+  ]
+}</p>
+<p>Account B (user):
+2. IAM policy for user:
+{
+  "Effect": "Allow",
+  "Action": "s3:<em>",
+  "Resource": [
+    "arn:aws:s3:::mybucket",
+    "arn:aws:s3:::mybucket/</em>"
+  ]
+}</p>
+<p>Scenario 2: Public Website Hosting</p>
+<p>Allow public read access:
+1. Disable Block Public Access
+2. Bucket policy:
+{
+  "Effect": "Allow",
+  "Principal": "<em>",
+  "Action": "s3:GetObject",
+  "Resource": "arn:aws:s3:::mybucket/</em>"
+}</p>
+<p>Scenario 3: CloudFront Access</p>
+<p>S3 bucket behind CloudFront:
+1. Use Origin Access Identity (OAI) or Origin Access Control (OAC)
+2. Bucket policy allows CloudFront only:
+{
+  "Effect": "Allow",
+  "Principal": {"Service": "cloudfront.amazonaws.com"},
+  "Action": "s3:GetObject",
+  "Resource": "arn:aws:s3:::mybucket/*",
+  "Condition": {
+    "StringEquals": {
+      "AWS:SourceArn": "arn:aws:cloudfront::123456789012:distribution/DISTRIBUTIONID"
+    }
+  }
+}</p>
+<p>TESTING:</p>
+<p>Test with AWS CLI:
+aws s3 ls s3://mybucket/
+aws s3 cp s3://mybucket/file.txt ./</p>
+<p>Check with presigned URL:
+aws s3 presign s3://mybucket/file.txt \
+  --expires-in 3600</p>
+<p>If presigned URL works but direct access doesn't:
+Issue is with bucket policy or IAM permissions</p>
+<p>PREVENTION:
+✓ Use IAM policy simulator to test permissions
+✓ Enable CloudTrail to log S3 API calls
+✓ Use S3 access analyzer
+✓ Implement least privilege principle
+✓ Regular access audits
+✓ Document access patterns and requirements</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
