@@ -20,7 +20,7 @@ AWS Global Infrastructure is designed with redundancy, fault isolation, and low 
 
 ### AWS Regions
 
-An AWS Region is a physical geographic location around the world where AWS clusters data centers. Each Region is completely independent and isolated from other Regions, providing the highest level of fault tolerance and stability. As of 2025, AWS operates **34 geographic Regions** globally, with **108 Availability Zones** across **245+ countries and territories**, and plans for continued expansion. Additional Regions are announced for Malaysia, New Zealand, Thailand, and the Kingdom of Saudi Arabia.
+An AWS Region is a physical geographic location around the world where AWS clusters data centers. Each Region is completely independent and isolated from other Regions, providing the highest level of fault tolerance and stability. As of 2025, AWS operates **36+ geographic Regions** globally, with **114+ Availability Zones** across **245+ countries and territories**, and plans for continued expansion. Additional Regions are announced or in development for Malaysia, New Zealand, Thailand, and the Kingdom of Saudi Arabia.
 
 **Key Characteristics of Regions:**
 
@@ -94,7 +94,7 @@ Edge Locations are AWS sites deployed in major cities and highly populated areas
 
 **Key Characteristics of Edge Locations:**
 
-- **Global Distribution:** AWS operates **600+ Points of Presence** (edge locations + regional edge caches) across 90+ cities in 47 countries (2025)
+- **Global Distribution:** AWS operates **600+ Points of Presence** (edge locations + regional edge caches) across 100+ cities in 50+ countries (2025)
 - **Content Caching:** Cache copies of content closer to end users for faster delivery
 - **Lower Latency:** Reduce latency by serving content from the nearest Edge Location
 - **Global Accelerator:** Provide static IP addresses and route traffic over AWS’s private network
@@ -118,7 +118,7 @@ Understanding the distinction is crucial:
 | Purpose | Host AWS services and resources | Cache and deliver content |
 | Services | Full AWS service catalog | Limited services (CDN, DNS, WAF) |
 | Data Storage | Long-term persistent storage | Temporary content caching |
-| Quantity | 34 Regions (2025) | 600+ Points of Presence |
+| Quantity | 36+ Regions (2025) | 600+ Points of Presence |
 | Control | Full infrastructure control | Limited configuration (cache behavior) |
 
 **Regional Edge Caches:**
@@ -147,7 +147,7 @@ AWS Local Zones are a type of infrastructure deployment that places compute, sto
 
 **Available Local Zone Locations:**
 
-AWS Local Zones are available in major metropolitan areas including:
+AWS Local Zones are available in 30+ locations globally (as of 2025), including major metropolitan areas such as:
 - Los Angeles, California
 - Miami, Florida
 - New York, New York
@@ -156,6 +156,14 @@ AWS Local Zones are available in major metropolitan areas including:
 - Denver, Colorado
 - Las Vegas, Nevada
 - Phoenix, Arizona
+- Boston, Massachusetts
+- Atlanta, Georgia
+- Seattle, Washington
+- Minneapolis, Minnesota
+- Houston, Texas
+- International: Hamburg, Warsaw, Taipei, Kolkata, Nairobi, Manila (selected)
+
+> **Note:** Check the official AWS Local Zones page for the current full list as new locations are added frequently.
 
 **Local Zone Naming Convention:**
 
@@ -236,6 +244,7 @@ This rollout pattern affects your Region selection strategy, especially for orga
 AWS provides SLAs for its infrastructure and services:
 
 - **Regions and AZs:** Designed for 99.99% availability when properly architected across multiple AZs
+- **EC2 SLA:** 99.99% for instances running in multiple AZs
 - **Individual Services:** Each service has its own SLA (e.g., EC2: 99.99%, S3: 99.9%)
 - **Compute SLA:** Calculated at the Region level, not individual AZ level
 

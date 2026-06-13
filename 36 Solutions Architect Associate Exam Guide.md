@@ -1443,7 +1443,7 @@ B) Deploy identical infrastructure in ap-southeast-1
 C) Create a CloudFront distribution with the EC2 origin
 D) Use Route 53 latency-based routing
 
-**Answer: C** — CloudFront caches content at 450+ edge locations worldwide. Static content is served from the nearest edge, dramatically reducing latency. Moving/duplicating infrastructure (A/B) is more expensive and complex.
+**Answer: C** — CloudFront caches content at 600+ edge locations worldwide. Static content is served from the nearest edge, dramatically reducing latency. Moving/duplicating infrastructure (A/B) is more expensive and complex.
 
 ---
 

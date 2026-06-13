@@ -51,6 +51,7 @@ AWS's cloud-native database, compatible with MySQL and PostgreSQL.
 
 - **Performance:** Up to 5x MySQL, 3x PostgreSQL
 - **Storage:** Auto-scaling 10 GB to 128 TB
+- **Storage Configurations:** Standard (pay per I/O) or **Aurora I/O-Optimized** (higher storage cost, no per-I/O charges — best for I/O-intensive workloads)
 - **Replication:** Up to 15 read replicas
 - **Availability:** 99.99% with Multi-AZ
 - **Use Cases:** Cloud-native apps, high performance requirements
@@ -60,7 +61,7 @@ AWS's cloud-native database, compatible with MySQL and PostgreSQL.
 
 Open-source, feature-rich database with strong standards compliance.
 
-- **Versions:** 11, 12, 13, 14, 15, 16
+- **Versions:** 13, 14, 15, 16, 17 (check AWS docs for latest supported versions; older versions reach end-of-life)
 - **Features:** JSON support, full-text search, advanced indexes
 - **Extensions:** PostGIS, pg_stat_statements, auto_explain
 - **Use Cases:** Complex queries, JSON data, GIS applications
@@ -70,10 +71,12 @@ Open-source, feature-rich database with strong standards compliance.
 
 Popular open-source database with large ecosystem.
 
-- **Versions:** 5.7, 8.0
+- **Versions:** 8.0, 8.4 (LTS, released 2024)
 - **Features:** InnoDB engine, replication, partitioning
 - **Use Cases:** Web applications, WordPress, general-purpose
 - **Strengths:** Large community, wide tool support
+
+> **Note:** MySQL 5.7 reached end of life in October 2023. Migrate to MySQL 8.0 or 8.4.
 
 **4. MariaDB**
 
@@ -99,7 +102,7 @@ Enterprise database with advanced features.
 Microsoft's relational database.
 
 - **Editions:** Express, Web, Standard, Enterprise
-- **Versions:** 2017, 2019, 2022
+**SQL Server Versions:** 2017, 2019, 2022
 - **Features:** T-SQL, Integration Services, Always On (Multi-AZ)
 - **Use Cases:** .NET applications, Microsoft ecosystem
 - **Licensing:** BYOL or License Included

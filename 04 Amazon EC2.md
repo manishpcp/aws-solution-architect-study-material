@@ -78,6 +78,8 @@ Balanced compute, memory, and networking for diverse workloads.
 
 > **2025 Note:** AWS now requires IMDSv2 (`HttpTokens=required`) as the default for new EC2 instances launched after August 2024 in most Regions. Always set `HttpTokens=required` and `HttpPutResponseHopLimit=2` (for container workloads) in launch templates.
 
+> **SnapStart Note:** Lambda SnapStart now supports Java 11, Java 17, and Java 21 runtimes.
+
 **CPU Credits:**
 
 ```
@@ -146,7 +148,15 @@ Large memory for memory-intensive applications.
 
 High sequential read/write access to large datasets on local storage.
 
-**I3/I3en Family:**
+**I4i Family (Current Generation NVMe SSD):**
+
+- **Use Cases:** High-frequency databases (SQL, NoSQL), real-time analytics, Elasticsearch
+- **Storage:** Up to 30 TB local NVMe SSD
+- **IOPS:** Up to 3.3 million random read IOPS (higher than I3en)
+- **Processor:** Intel Xeon (Ice Lake)
+- **Note:** Supersedes I3/I3en for new deployments; prefer I4i for peak IOPS requirements
+
+**I3/I3en Family (Previous Generation):**
 
 - **Use Cases:** NoSQL databases (Cassandra, MongoDB), data warehousing, Elasticsearch
 - **Storage:** NVMe SSD instance store

@@ -22,7 +22,7 @@ Serverless doesn't mean "no servers"—servers still exist, but you don't manage
 
 1. **No Server Management:** AWS handles provisioning, patching, scaling
 2. **Automatic Scaling:** Scales from zero to thousands of concurrent executions
-3. **Pay-per-Use:** Charged only for compute time consumed (100ms increments)
+3. **Pay-per-Use:** Charged only for compute time consumed (**1ms increments** since December 2020)
 4. **Event-Driven:** Triggered by events (HTTP requests, file uploads, database changes)
 5. **Stateless:** Each invocation is independent; state stored externally
 6. **Built-in Availability:** Automatically deployed across multiple AZs
@@ -243,6 +243,7 @@ Lambda service polls source and invokes function with batches.
 ```
 Price per request: $0.20 per 1M requests
 Price per GB-second: $0.0000166667 per GB-second
+Billing granularity: 1ms (rounded up to nearest 1ms)
 
 Example 1: 128 MB, 100ms duration, 1M invocations/month
 - Request cost: 1M × $0.20 / 1M = $0.20
@@ -449,7 +450,7 @@ Lambda functions can access resources in VPC (RDS, ElastiCache, etc.).
 - Place Lambda and resources in same AZ when possible
 
 
-### Lambda SnapStart (Java)
+**Lambda SnapStart (Java 11, 17, 21)**
 
 SnapStart dramatically reduces cold starts for Java functions.
 
@@ -465,11 +466,17 @@ SnapStart dramatically reduces cold starts for Java functions.
 - 10x faster cold starts
 - From 2-3 seconds → 200-300ms
 
+**Supported Runtimes:**
+
+- Java 11 (Corretto 11)
+- Java 17 (Corretto 17)
+- Java 21 (Corretto 21) — added in 2024
+
 **Limitations:**
 
-- Java 11+ only
 - No support for: /tmp writes, networking during init
 - Unique state must be generated per invocation
+- Must publish a version before SnapStart takes effect
 
 **Use Cases:**
 
@@ -2475,7 +2482,7 @@ b) Node.js
 c) Java
 d) All runtimes
 
-**Answer: C** - SnapStart currently only supports Java 11+ runtimes.
+**Answer: C** - SnapStart currently supports Java 11, Java 17, and Java 21 runtimes (Corretto).
 
 10. **Which is true about VPC Lambda?**
 a) Always faster than non-VPC
@@ -2523,6 +2530,6 @@ b) Lambda SnapStart
 c) Larger memory
 d) Lambda layers
 
-**Answer: B** - Lambda SnapStart reduces Java cold starts from seconds to milliseconds.
+**Answer: C** - Lambda SnapStart reduces Java cold starts from seconds to milliseconds. It supports Java 11, 17, and 21 runtimes.
 
 ***

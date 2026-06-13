@@ -43,28 +43,14 @@ Subsequent requests served from cache
 - **Availability:** Multiple origins, automatic failover
 - **Flexibility:** Lambda@Edge for custom logic
 
-**Edge Locations vs Regional Edge Caches:**
-
-```
-Edge Locations:
-- 450+ worldwide
-- First tier cache
-- Direct user connection
-- Smaller cache size
-- More locations = closer to users
-
-Regional Edge Caches:
-- 13 worldwide
-- Second tier cache
-- Between edge locations and origin
-- Larger cache size
-- Extends cache duration for less popular content
-
-Request Flow:
-User → Edge Location → Regional Edge Cache → Origin
-         ↓ (cache hit)       ↓ (cache hit)
-      Served              Served
-```
+> **2025 Updated Facts:**
+> - CloudFront has **600+ Points of Presence** (edge locations + regional edge caches) across **100+ cities in 50+ countries** as of 2025 (previously quoted as 450+)
+> - CloudFront supports **gRPC** natively on ALB origins
+> - **Origin Access Control (OAC)** is the current recommended method (replaces legacy OAI — Origin Access Identity)
+> - **CloudFront Functions** support JavaScript (ES 5.1+); Lambda@Edge supports Node.js 18.x and Python 3.12
+> - **Response Headers Policies**: You can now attach managed or custom response headers policies to cache behaviors without Lambda@Edge — eliminating the need for Lambda just to add security headers
+> - **Continuous deployment**: CloudFront supports staging distributions and traffic weights for canary deployments natively (no Lambda required)
+> - **CloudFront KeyValueStore**: Serverless key-value store accessible from CloudFront Functions for dynamic configuration without redeployment
 
 
 ### Distributions
