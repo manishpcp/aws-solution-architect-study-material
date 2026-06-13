@@ -1,0 +1,3115 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Interactive study guide for AWS Solutions Architect certifications">
+      
+      
+        <meta name="author" content="AWS Architect">
+      
+      
+        <link rel="canonical" href="https://manishpcp.github.io/aws-solution-architect-study-material/18%20Amazon%20EventBridge%20%26%20Step%20Functions.html">
+      
+      
+        <link rel="prev" href="17%20Amazon%20SQS%20%26%20SNS.html">
+      
+      
+        <link rel="next" href="19%20API%20Gateway.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>18 Amazon EventBridge & Step Functions - AWS Solutions Architect</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-18-amazon-eventbridge-step-functions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="AWS Solutions Architect" class="md-header__button md-logo" aria-label="AWS Solutions Architect" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M180.4 203c-.7 22.6 10.6 32.7 10.9 39-.1 1.3-.6 2.5-1.3 3.6s-1.7 2-2.8 2.6l-12.8 9c-1.7 1.2-3.6 1.8-5.6 1.9-.4 0-8.2 1.8-20.5-25.6-7.5 9.4-17 16.9-27.9 22s-22.7 7.7-34.7 7.5c-16.3.9-60.4-9.2-58.1-56.2-1.6-38.3 34.1-62.1 70.9-60 7.1 0 21.6.4 47 6.3v-15.6c2.7-26.5-14.7-47-44.8-43.9-2.4 0-19.4-.5-45.8 10.1-7.4 3.4-8.3 2.8-10.8 2.8-7.4 0-4.4-21.5-2.9-24.2 5.2-6.4 35.9-18.4 65.9-18.2 20.1-1.8 40.1 4.4 55.7 17.3 6.3 7.1 11.2 15.4 14.2 24.4s4.2 18.5 3.5 28v69.3zM94 235.4c32.4-.5 46.2-20 49.3-30.5 2.5-10.1 2.1-16.4 2.1-27.4-9.7-2.3-23.6-4.9-39.6-4.9-15.2-1.1-42.8 5.6-41.7 32.3-1.2 16.8 11.1 31.4 30 30.5zm170.9 23.1c-7.9.7-11.5-4.9-12.7-10.4L202.4 83.4c-1-2.8-1.6-5.6-1.9-8.6-.2-1.2.1-2.4.8-3.4s1.8-1.6 3-1.8h22.2c8.8-.9 11.6 6 12.6 10.4l35.8 140.8L308.1 80c.5-3.2 2.9-11.1 12.8-10.2h17.2c2.2-.2 11.1-.5 12.7 10.4l33.3 142.5L421 80.1c.5-2.2 2.7-11.4 12.7-10.4h19.7c.9-.1 6.2-.8 5.3 8.6-.4 1.8 3.4-10.7-52.8 169.9-1.1 5.5-4.8 11.1-12.7 10.4h-18.7c-10.9 1.2-12.5-9.7-12.7-10.7l-33.2-137.1-32.8 137c-.2 1.1-1.7 11.9-12.7 10.7h-18.3zm273.5 5.6c-5.9 0-33.9-.3-57.4-12.3-2.3-1-4.3-2.6-5.7-4.8s-2.1-4.6-2.1-7.1v-10.7c0-8.5 6.2-6.9 8.8-5.9 10 4.1 16.5 7.1 28.8 9.6 36.7 7.5 52.8-2.3 56.7-4.5 13.2-7.8 14.2-25.7 5.3-34.9-10.5-8.8-15.5-9.1-53.1-21-4.6-1.3-43.7-13.6-43.8-52.4-.6-28.2 25-56.2 69.5-56 12.7 0 46.4 4.1 55.6 15.6 1.4 2.1 2 4.6 1.9 7v10.1c0 4.4-1.6 6.7-4.9 6.7-7.7-.9-21.4-11.2-49.2-10.8-6.9-.4-39.9.9-38.4 25-.4 19 26.6 26.1 29.7 26.9 36.5 11 48.6 12.8 63.1 29.6 17.1 22.2 7.9 48.3 4.3 55.4-19.1 37.5-68.4 34.4-69.3 34.4zM578.6 369c-70 51.7-171.7 79.2-258.5 79.2C203 449 89.8 405.9 2.8 327.5c-6.5-5.9-.8-14 7.2-9.5 96.5 55.2 205.7 84.2 316.9 84.1 83-.4 165.1-17.3 241.6-49.5 11.8-5 21.8 7.8 10.1 16.4m29.2-33.3c-9-11.5-59.3-5.4-81.8-2.7-6.8.8-7.9-5.1-1.8-9.5 40.1-28.2 105.9-20.1 113.4-10.6s-2.1 75.4-39.6 106.9c-5.8 4.9-11.3 2.3-8.7-4.1 8.4-21.3 27.4-68.5 18.4-80z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AWS Solutions Architect
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              18 Amazon EventBridge & Step Functions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/manishpcp/aws-solution-architect-study-material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aws-solution-architect-study-material
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="01%20AWS%20Global%20Infrastructure.html" class="md-tabs__link">
+          
+  
+  
+  Chapters
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="Appendix%20A%20AWS%20Service%20Cheat%20Sheets.html" class="md-tabs__link">
+          
+  
+  
+  Appendices
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="AWS Solutions Architect" class="md-nav__button md-logo" aria-label="AWS Solutions Architect" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M180.4 203c-.7 22.6 10.6 32.7 10.9 39-.1 1.3-.6 2.5-1.3 3.6s-1.7 2-2.8 2.6l-12.8 9c-1.7 1.2-3.6 1.8-5.6 1.9-.4 0-8.2 1.8-20.5-25.6-7.5 9.4-17 16.9-27.9 22s-22.7 7.7-34.7 7.5c-16.3.9-60.4-9.2-58.1-56.2-1.6-38.3 34.1-62.1 70.9-60 7.1 0 21.6.4 47 6.3v-15.6c2.7-26.5-14.7-47-44.8-43.9-2.4 0-19.4-.5-45.8 10.1-7.4 3.4-8.3 2.8-10.8 2.8-7.4 0-4.4-21.5-2.9-24.2 5.2-6.4 35.9-18.4 65.9-18.2 20.1-1.8 40.1 4.4 55.7 17.3 6.3 7.1 11.2 15.4 14.2 24.4s4.2 18.5 3.5 28v69.3zM94 235.4c32.4-.5 46.2-20 49.3-30.5 2.5-10.1 2.1-16.4 2.1-27.4-9.7-2.3-23.6-4.9-39.6-4.9-15.2-1.1-42.8 5.6-41.7 32.3-1.2 16.8 11.1 31.4 30 30.5zm170.9 23.1c-7.9.7-11.5-4.9-12.7-10.4L202.4 83.4c-1-2.8-1.6-5.6-1.9-8.6-.2-1.2.1-2.4.8-3.4s1.8-1.6 3-1.8h22.2c8.8-.9 11.6 6 12.6 10.4l35.8 140.8L308.1 80c.5-3.2 2.9-11.1 12.8-10.2h17.2c2.2-.2 11.1-.5 12.7 10.4l33.3 142.5L421 80.1c.5-2.2 2.7-11.4 12.7-10.4h19.7c.9-.1 6.2-.8 5.3 8.6-.4 1.8 3.4-10.7-52.8 169.9-1.1 5.5-4.8 11.1-12.7 10.4h-18.7c-10.9 1.2-12.5-9.7-12.7-10.7l-33.2-137.1-32.8 137c-.2 1.1-1.7 11.9-12.7 10.7h-18.3zm273.5 5.6c-5.9 0-33.9-.3-57.4-12.3-2.3-1-4.3-2.6-5.7-4.8s-2.1-4.6-2.1-7.1v-10.7c0-8.5 6.2-6.9 8.8-5.9 10 4.1 16.5 7.1 28.8 9.6 36.7 7.5 52.8-2.3 56.7-4.5 13.2-7.8 14.2-25.7 5.3-34.9-10.5-8.8-15.5-9.1-53.1-21-4.6-1.3-43.7-13.6-43.8-52.4-.6-28.2 25-56.2 69.5-56 12.7 0 46.4 4.1 55.6 15.6 1.4 2.1 2 4.6 1.9 7v10.1c0 4.4-1.6 6.7-4.9 6.7-7.7-.9-21.4-11.2-49.2-10.8-6.9-.4-39.9.9-38.4 25-.4 19 26.6 26.1 29.7 26.9 36.5 11 48.6 12.8 63.1 29.6 17.1 22.2 7.9 48.3 4.3 55.4-19.1 37.5-68.4 34.4-69.3 34.4zM578.6 369c-70 51.7-171.7 79.2-258.5 79.2C203 449 89.8 405.9 2.8 327.5c-6.5-5.9-.8-14 7.2-9.5 96.5 55.2 205.7 84.2 316.9 84.1 83-.4 165.1-17.3 241.6-49.5 11.8-5 21.8 7.8 10.1 16.4m29.2-33.3c-9-11.5-59.3-5.4-81.8-2.7-6.8.8-7.9-5.1-1.8-9.5 40.1-28.2 105.9-20.1 113.4-10.6s-2.1 75.4-39.6 106.9c-5.8 4.9-11.3 2.3-8.7-4.1 8.4-21.3 27.4-68.5 18.4-80z"/></svg>
+
+    </a>
+    AWS Solutions Architect
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/manishpcp/aws-solution-architect-study-material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aws-solution-architect-study-material
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20AWS%20Global%20Infrastructure.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 AWS Global Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02%20Identity%20and%20Access%20Management%20%28IAM%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 Identity and Access Management (IAM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03%20Virtual%20Private%20Cloud%20%28VPC%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 Virtual Private Cloud (VPC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04%20Amazon%20EC2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 Amazon EC2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Elastic%20Load%20Balancing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 Elastic Load Balancing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06%20Container%20Services%20%28ECS%2C%20EKS%2C%20Fargate%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 Container Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07%20AWS%20Lambda%20%26%20Serverless.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 AWS Lambda & Serverless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08%20Amazon%20S3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 Amazon S3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09%20Amazon%20EBS%20%26%20EFS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 Amazon EBS & EFS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10%20Storage%20Gateway%20%26%20DataSync.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 Storage Gateway & DataSync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Amazon%20RDS%20%26%20Aurora.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 Amazon RDS & Aurora
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12%20DynamoDB.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 DynamoDB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13%20ElastiCache%20%26%20MemoryDB.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 ElastiCache & MemoryDB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14%20Amazon%20CloudFront.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Amazon CloudFront
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15%20Route%2053.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 Route 53
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16%20Direct%20Connect%20%26%20VPN.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 Direct Connect & VPN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17%20Amazon%20SQS%20%26%20SNS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 Amazon SQS & SNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 Amazon EventBridge & Step Functions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="18%20Amazon%20EventBridge%20%26%20Step%20Functions.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 Amazon EventBridge & Step Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#theory-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theory \&amp; Concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Theory \&amp; Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-driven-architecture-fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event-Driven Architecture Fundamentals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-eventbridge-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon EventBridge Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-step-functions-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Step Functions Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orchestration-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orchestration Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hands-on-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hands-On Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hands-On Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lab-1-eventbridge-rule-to-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 1: EventBridge Rule to Lambda
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lab-2-step-functions-state-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 2: Step Functions State Machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tips \&amp; Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pitfalls-remedies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pitfalls \&amp; Remedies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20API%20Gateway.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 API Gateway
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20%20Amazon%20Kinesis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20 Amazon Kinesis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21%20AWS%20Glue%20%26%20Athena.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21 AWS Glue & Athena
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22%20Amazon%20SageMaker%20Essentials.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22 Amazon SageMaker Essentials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23%20AWS%20Security%20Services.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23 AWS Security Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24%20AWS%20KMS%20%26%20Secrets%20Manager.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 AWS KMS & Secrets Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25%20AWS%20WAF%20%26%20Shield.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25 AWS WAF & Shield
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26%20CloudWatch.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 CloudWatch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="27%20AWS%20CloudTrail%20%26%20Config.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27 AWS CloudTrail & Config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20AWS%20Systems%20Manager.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28 AWS Systems Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29%20Cost%20Management.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29 Cost Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30%20Well-Architected%20Framework.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Well-Architected Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31%20Migration%20Strategies%20%287%20Rs%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31 Migration Strategies (7 Rs)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32%20Disaster%20Recovery%20%26%20Business%20Continuity.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32 Disaster Recovery & Business Continuity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33%20Microservices%20Patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33 Microservices Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Event-Driven%20Architectures.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34 Event-Driven Architectures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35%20Multi-Account%20Strategy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35 Multi-Account Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36%20Solutions%20Architect%20Associate%20Exam%20Guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36 SAA Exam Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37%20Solutions%20Architect%20Professional%20Exam%20Guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37 SAP Exam Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Appendix%20A%20AWS%20Service%20Cheat%20Sheets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix A — Service Cheat Sheets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Appendix%20B%20Architecture%20Diagram%20Templates.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix B — Diagram Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Appendix%20C%20Troubleshooting%20Guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix C — Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Appendix%20D%20Additional%20Resources.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix D — Additional Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#theory-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theory \&amp; Concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Theory \&amp; Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-driven-architecture-fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event-Driven Architecture Fundamentals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-eventbridge-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amazon EventBridge Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-step-functions-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Step Functions Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orchestration-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orchestration Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hands-on-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hands-On Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hands-On Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lab-1-eventbridge-rule-to-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 1: EventBridge Rule to Lambda
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lab-2-step-functions-state-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 2: Step Functions State Machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tips \&amp; Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pitfalls-remedies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pitfalls \&amp; Remedies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chapter-18-amazon-eventbridge-step-functions">Chapter 18: Amazon EventBridge \&amp; Step Functions<a class="headerlink" href="#chapter-18-amazon-eventbridge-step-functions" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>Modern cloud applications require orchestration—coordinating multiple services, handling failures gracefully, managing long-running workflows, and responding to events across distributed systems. Amazon EventBridge and AWS Step Functions solve these challenges through event-driven architectures and visual workflow orchestration. EventBridge routes events between AWS services, SaaS applications, and custom applications without writing integration code, while Step Functions coordinates distributed services through state machines, handling retries, parallel execution, error handling, and human approvals with visual workflow design.</p>
+<p>The shift from monolithic to microservices architectures makes orchestration essential. Consider an order fulfillment workflow: validate payment, check inventory, reserve items, charge customer, update database, send confirmation email, trigger warehouse system, and update analytics. Traditional approaches tightly couple these steps in application code, making changes risky and failures catastrophic. EventBridge decouples services through event routing—order placement triggers events that multiple independent services process. Step Functions orchestrates the sequence—defining workflow logic visually, automatically retrying failures, branching based on conditions, and providing audit trails of every execution.</p>
+<p>Understanding EventBridge and Step Functions deeply separates basic automation from production-grade orchestration. Overly complex event patterns miss critical events. Missing error handling causes silent failures. Improper state machine design hits execution limits. Not using parallel states wastes time. Missing saga patterns leave distributed systems in inconsistent states. This chapter covers event-driven architectures and workflow orchestration from fundamentals to production patterns, including event buses, event patterns, schema registry, state machine types, error handling, retry strategies, parallel execution, saga patterns, monitoring, and building resilient distributed systems.</p>
+<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
+<h3 id="event-driven-architecture-fundamentals">Event-Driven Architecture Fundamentals<a class="headerlink" href="#event-driven-architecture-fundamentals" title="Permanent link">&para;</a></h3>
+<p><strong>Traditional vs Event-Driven Architecture:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Traditional Synchronous Architecture:
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Service A calls Service B calls Service C
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Problems:
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>- Tight coupling (A knows about B, B knows about C)
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>- Cascading failures (C down → B fails → A fails)
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>- Scaling complexity (coordinate scaling)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>- Change impact (modify C affects B and A)
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>- Long response times (sum of all latencies)
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>Example: Order Processing
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>API → Payment Service → Inventory Service → Email Service
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>↓         ↓                ↓                  ↓
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>Wait    Process          Update            Send
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>(200ms)  (300ms)         (150ms)          (100ms)
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>Total latency: 750ms
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>If email service is down → entire order fails
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>Event-Driven Architecture:
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>Service A publishes event → Event Bus → Multiple services subscribe
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>Benefits:
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>✓ Loose coupling (services don&#39;t know each other)
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>✓ Failure isolation (one service down doesn&#39;t affect others)
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>✓ Independent scaling (each service scales separately)
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>✓ Easy to add services (no code changes)
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>✓ Fast response (fire-and-forget)
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>Example: Order Processing
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>API → Order Event → EventBridge → Payment Service
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>                               → Inventory Service
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>                               → Email Service
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>                               → Analytics Service
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>↓
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>Return (50ms) - Order accepted
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>Services process independently:
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>- Payment processes in 300ms
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>- Inventory updates in 150ms
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>- Email sends in 100ms
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>- All happen in parallel
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>If email fails → order still succeeds, email retries later
+</code></pre></div>
+<p><strong>Event-Driven Patterns:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>1. Event Notification:
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Service publishes event, subscribers notified
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>No response expected from subscribers
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Fire-and-forget pattern
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Example: User signs up → Welcome email event
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Publisher: User Service
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Event: UserSignedUp {userId, email, timestamp}
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>Subscribers: Email Service, Analytics Service
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>2. Event-Carried State Transfer:
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>Event contains full state, no need to query origin
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>Subscribers cache state locally
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>Reduces coupling
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>Example: Product price changes
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>Event: ProductPriceChanged {productId, oldPrice, newPrice, name, category}
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>Subscribers update local cache without calling Product Service
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>3. Event Sourcing:
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>All state changes stored as sequence of events
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>Current state derived by replaying events
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>Complete audit trail
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>Example: Bank Account
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>Events: AccountOpened, MoneyDeposited, MoneyWithdrawn
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>Current balance = sum of all events
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>Can reconstruct state at any point in time
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>4. CQRS (Command Query Responsibility Segregation):
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>Separate write model (commands) from read model (queries)
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>Events update read models
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>Optimized for each access pattern
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>Example: E-commerce
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>Write Model: Order commands (create, update, cancel)
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>Read Models: Order history, analytics, reporting
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>Events keep read models synchronized
+</code></pre></div>
+<h3 id="amazon-eventbridge-architecture">Amazon EventBridge Architecture<a class="headerlink" href="#amazon-eventbridge-architecture" title="Permanent link">&para;</a></h3>
+<p><strong>EventBridge Components:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Event Bus:
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>- Central routing hub for events
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>- Three types: Default, Custom, Partner
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>- Events route based on rules
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>- Highly available, serverless
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>Event:
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>- JSON document describing state change
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>- Contains: source, detail-type, detail, time, region, account
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>- Maximum size: 256 KB
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>- Immutable once published
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>Rule:
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>- Pattern matching for events
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>- Targets: Services to invoke
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>- Up to 5 targets per rule
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>- Can transform event before sending
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>Target:
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>- AWS service receiving matched events
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>- Examples: Lambda, SQS, SNS, Step Functions, Kinesis
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>- Can be in different account/region
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>- Retry logic built-in
+</code></pre></div>
+<p><strong>Event Bus Types:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Default Event Bus:
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>- One per account per region
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>- Receives AWS service events automatically
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>- Cannot be deleted
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>- Free for AWS service events
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>Use Cases:
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>- AWS service integrations
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>- CloudWatch Events migration
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>- Simple event routing
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>Custom Event Bus:
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>- Created explicitly
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>- For custom application events
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>- Can be shared across accounts
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>- Resource-based policies
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>Use Cases:
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>- Multi-tenant applications (one bus per tenant)
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>- Organizational separation
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>- Cross-account event routing
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>- Business domain separation
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>Partner Event Bus:
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>- Created by SaaS partners
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>- Receives events from partner services
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>- Examples: Zendesk, Datadog, Auth0
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>Use Cases:
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>- SaaS integration
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>- Third-party events
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>- External system events
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>Multi-Bus Architecture:
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>Organization Event Bus (Shared)
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>├── Account A: Production Event Bus
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>│   ├── Microservice A events
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>│   └── Microservice B events
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>├── Account B: Development Event Bus
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>│   └── Test events
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>└── Account C: Analytics Event Bus
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>    └── All events for analysis
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>
+<a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>Benefits:
+<a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>✓ Isolation by environment/domain
+<a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>✓ Fine-grained access control
+<a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>✓ Simplified management
+<a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>✓ Cross-account routing
+</code></pre></div>
+<p><strong>Event Pattern Matching:</strong></p>
+<p>Event patterns filter which events trigger rules:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Event Structure:
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>{
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>  &quot;version&quot;: &quot;0&quot;,
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  &quot;id&quot;: &quot;uuid&quot;,
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  &quot;detail-type&quot;: &quot;Order Placed&quot;,
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>  &quot;source&quot;: &quot;com.myapp.orders&quot;,
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>  &quot;account&quot;: &quot;123456789012&quot;,
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>  &quot;time&quot;: &quot;2025-01-15T10:30:00Z&quot;,
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>  &quot;region&quot;: &quot;us-east-1&quot;,
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>  &quot;resources&quot;: [],
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>  &quot;detail&quot;: {
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    &quot;orderId&quot;: &quot;order-123&quot;,
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    &quot;customerId&quot;: &quot;customer-456&quot;,
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    &quot;amount&quot;: 299.99,
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    &quot;status&quot;: &quot;pending&quot;,
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>    &quot;items&quot;: [...]
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>  }
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>}
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>Pattern Matching Examples:
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>1. Exact Match:
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>{
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>  &quot;source&quot;: [&quot;com.myapp.orders&quot;],
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>  &quot;detail-type&quot;: [&quot;Order Placed&quot;]
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>}
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>Matches: Events from orders source with Order Placed type
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>2. Prefix Match:
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>{
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>  &quot;source&quot;: [{&quot;prefix&quot;: &quot;com.myapp.&quot;}]
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>}
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>Matches: Any event from com.myapp.* sources
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>3. Suffix Match:
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>{
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>  &quot;detail-type&quot;: [{&quot;suffix&quot;: &quot;.created&quot;}]
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>}
+<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>Matches: UserCreated, OrderCreated, etc.
+<a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a>
+<a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a>4. Numeric Range:
+<a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a>{
+<a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a>  &quot;detail&quot;: {
+<a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a>    &quot;amount&quot;: [{&quot;numeric&quot;: [&quot;&gt;&quot;, 100]}]
+<a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a>  }
+<a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a>}
+<a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a>Matches: Orders with amount &gt; 100
+<a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a>
+<a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a>5. Exists Check:
+<a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a>{
+<a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a>  &quot;detail&quot;: {
+<a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a>    &quot;customerId&quot;: [{&quot;exists&quot;: true}]
+<a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a>  }
+<a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a>}
+<a id="__codelineno-4-55" name="__codelineno-4-55" href="#__codelineno-4-55"></a>Matches: Events containing customerId field
+<a id="__codelineno-4-56" name="__codelineno-4-56" href="#__codelineno-4-56"></a>
+<a id="__codelineno-4-57" name="__codelineno-4-57" href="#__codelineno-4-57"></a>6. Anything-But:
+<a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a>{
+<a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a>  &quot;detail&quot;: {
+<a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a>    &quot;status&quot;: [{&quot;anything-but&quot;: [&quot;cancelled&quot;, &quot;failed&quot;]}]
+<a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a>  }
+<a id="__codelineno-4-62" name="__codelineno-4-62" href="#__codelineno-4-62"></a>}
+<a id="__codelineno-4-63" name="__codelineno-4-63" href="#__codelineno-4-63"></a>Matches: All statuses except cancelled and failed
+<a id="__codelineno-4-64" name="__codelineno-4-64" href="#__codelineno-4-64"></a>
+<a id="__codelineno-4-65" name="__codelineno-4-65" href="#__codelineno-4-65"></a>7. Complex Pattern:
+<a id="__codelineno-4-66" name="__codelineno-4-66" href="#__codelineno-4-66"></a>{
+<a id="__codelineno-4-67" name="__codelineno-4-67" href="#__codelineno-4-67"></a>  &quot;source&quot;: [&quot;com.myapp.orders&quot;],
+<a id="__codelineno-4-68" name="__codelineno-4-68" href="#__codelineno-4-68"></a>  &quot;detail-type&quot;: [&quot;Order Placed&quot;],
+<a id="__codelineno-4-69" name="__codelineno-4-69" href="#__codelineno-4-69"></a>  &quot;detail&quot;: {
+<a id="__codelineno-4-70" name="__codelineno-4-70" href="#__codelineno-4-70"></a>    &quot;amount&quot;: [{&quot;numeric&quot;: [&quot;&gt;=&quot;, 1000]}],
+<a id="__codelineno-4-71" name="__codelineno-4-71" href="#__codelineno-4-71"></a>    &quot;region&quot;: [&quot;us-east&quot;, &quot;us-west&quot;],
+<a id="__codelineno-4-72" name="__codelineno-4-72" href="#__codelineno-4-72"></a>    &quot;priority&quot;: [{&quot;anything-but&quot;: [&quot;low&quot;]}]
+<a id="__codelineno-4-73" name="__codelineno-4-73" href="#__codelineno-4-73"></a>  }
+<a id="__codelineno-4-74" name="__codelineno-4-74" href="#__codelineno-4-74"></a>}
+<a id="__codelineno-4-75" name="__codelineno-4-75" href="#__codelineno-4-75"></a>Matches: High-value orders in US with non-low priority
+<a id="__codelineno-4-76" name="__codelineno-4-76" href="#__codelineno-4-76"></a>
+<a id="__codelineno-4-77" name="__codelineno-4-77" href="#__codelineno-4-77"></a>Pattern Best Practices:
+<a id="__codelineno-4-78" name="__codelineno-4-78" href="#__codelineno-4-78"></a>✓ Be specific (reduce unnecessary invocations)
+<a id="__codelineno-4-79" name="__codelineno-4-79" href="#__codelineno-4-79"></a>✓ Use prefix/suffix for flexibility
+<a id="__codelineno-4-80" name="__codelineno-4-80" href="#__codelineno-4-80"></a>✓ Validate patterns before production
+<a id="__codelineno-4-81" name="__codelineno-4-81" href="#__codelineno-4-81"></a>✓ Document pattern logic
+<a id="__codelineno-4-82" name="__codelineno-4-82" href="#__codelineno-4-82"></a>✓ Test with sample events
+</code></pre></div>
+<p><strong>EventBridge Schema Registry:</strong></p>
+<p>Schema Registry discovers, stores, and versions event schemas:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Purpose:
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>- Discover event structure automatically
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>- Generate code bindings for events
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>- Version control for schemas
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>- Documentation and discovery
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>Schema Discovery:
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>EventBridge analyzes events on bus
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    ↓
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>Automatically infers schema structure
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    ↓
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>Stores in Schema Registry
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    ↓
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>Developers browse available events
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>Schema Versioning:
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>Version 1: {orderId, amount}
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>    ↓
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>Event structure changes
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>    ↓
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>Version 2: {orderId, amount, currency, tax}
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>    ↓
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>Both versions supported
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>    ↓
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>Consumers upgrade at own pace
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>Code Generation:
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>Select schema from registry
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>    ↓
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>Generate code bindings (Java, Python, TypeScript)
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>    ↓
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>Type-safe event handling in application
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>Example Generated Code (Python):
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>from aws_schema_registry import OrderPlaced
+<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>
+<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>def handler(event):
+<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>    order = OrderPlaced.from_dict(event[&#39;detail&#39;])
+<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>    print(f&quot;Order {order.order_id} for ${order.amount}&quot;)
+<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>    # Type-safe access to event fields
+<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>
+<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>Benefits:
+<a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>✓ Discover available events
+<a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>✓ Type-safe event handling
+<a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a>✓ Version management
+<a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a>✓ Code generation
+<a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a>✓ Schema validation
+</code></pre></div>
+<p><strong>Event Replay and Archive:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Event Archive:
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>- Store events for replay/audit
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>- Retention: Indefinite
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>- Replays events to same or different bus
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>Use Cases:
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>1. Disaster Recovery:
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>   System failure → Replay events → Restore state
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>2. Testing:
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>   Capture production events → Replay in test environment
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>3. New Service:
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>   Deploy new service → Replay historical events → Catch up
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>4. Debugging:
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>   Issue occurred → Replay specific events → Reproduce problem
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>Archive Configuration:
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>Archive Name: production-order-events
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>Event Pattern: {source: [&quot;com.myapp.orders&quot;]}
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>Retention: Indefinite
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>Archive Size: Pay for storage ($0.023/GB-month)
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>Replay Process:
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>1. Create archive (continuous or one-time)
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>2. Events matching pattern stored
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>3. Initiate replay when needed
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>4. Specify:
+<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>   - Time range (start/end)
+<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>   - Destination bus
+<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a>   - Replay speed (as-fast-as-possible or original timing)
+<a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>
+<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a>Example Scenario:
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>New analytics service deployed
+<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>    ↓
+<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>Needs last 30 days of order events
+<a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a>    ↓
+<a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>Replay from archive
+<a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a>    ↓
+<a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a>Service processes historical data
+<a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a>    ↓
+<a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a>Catches up to present
+<a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a>    ↓
+<a id="__codelineno-6-45" name="__codelineno-6-45" href="#__codelineno-6-45"></a>Begins processing real-time events
+<a id="__codelineno-6-46" name="__codelineno-6-46" href="#__codelineno-6-46"></a>
+<a id="__codelineno-6-47" name="__codelineno-6-47" href="#__codelineno-6-47"></a>Limitations:
+<a id="__codelineno-6-48" name="__codelineno-6-48" href="#__codelineno-6-48"></a>- Replay order not guaranteed (parallel replay)
+<a id="__codelineno-6-49" name="__codelineno-6-49" href="#__codelineno-6-49"></a>- Events replayed with new timestamp
+<a id="__codelineno-6-50" name="__codelineno-6-50" href="#__codelineno-6-50"></a>- Original event ID preserved in replay-name field
+</code></pre></div>
+<h3 id="aws-step-functions-architecture">AWS Step Functions Architecture<a class="headerlink" href="#aws-step-functions-architecture" title="Permanent link">&para;</a></h3>
+<p><strong>State Machine Fundamentals:</strong></p>
+<p>Step Functions coordinates distributed systems through state machines:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>State Machine:
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>- Visual workflow definition
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>- JSON specification (Amazon States Language)
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>- Coordinates multiple services
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>- Handles errors and retries
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>- Provides execution history
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>State Machine Types:
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>Standard Workflows:
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>- Duration: Up to 1 year
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>- Execution rate: 2,000/second
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>- Pricing: Per state transition
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>- Use: Long-running workflows
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>Characteristics:
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>✓ Exactly-once execution
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>✓ Full execution history
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>✓ Audit trail
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>✓ Visual monitoring
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>Use Cases:
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>- Multi-step business processes
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>- Long-running tasks
+<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>- Human approval workflows
+<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>- Batch processing
+<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>
+<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>Express Workflows:
+<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>- Duration: Up to 5 minutes
+<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>- Execution rate: 100,000/second
+<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a>- Pricing: Per execution duration
+<a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a>- Use: High-volume event processing
+<a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a>
+<a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a>Characteristics:
+<a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a>✓ At-least-once execution
+<a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a>✓ Minimal history (CloudWatch Logs)
+<a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a>✓ Higher throughput
+<a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a>✓ Lower cost for high-volume
+<a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a>
+<a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a>Subtypes:
+<a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a>- Synchronous: Wait for completion (API Gateway integration)
+<a id="__codelineno-7-42" name="__codelineno-7-42" href="#__codelineno-7-42"></a>- Asynchronous: Fire-and-forget (EventBridge, Lambda)
+<a id="__codelineno-7-43" name="__codelineno-7-43" href="#__codelineno-7-43"></a>
+<a id="__codelineno-7-44" name="__codelineno-7-44" href="#__codelineno-7-44"></a>Use Cases:
+<a id="__codelineno-7-45" name="__codelineno-7-45" href="#__codelineno-7-45"></a>- IoT data processing
+<a id="__codelineno-7-46" name="__codelineno-7-46" href="#__codelineno-7-46"></a>- Streaming data transformation
+<a id="__codelineno-7-47" name="__codelineno-7-47" href="#__codelineno-7-47"></a>- High-volume microservices
+<a id="__codelineno-7-48" name="__codelineno-7-48" href="#__codelineno-7-48"></a>- Real-time processing
+<a id="__codelineno-7-49" name="__codelineno-7-49" href="#__codelineno-7-49"></a>
+<a id="__codelineno-7-50" name="__codelineno-7-50" href="#__codelineno-7-50"></a>Comparison:
+<a id="__codelineno-7-51" name="__codelineno-7-51" href="#__codelineno-7-51"></a>Standard: Long-running, audit trail, exactly-once
+<a id="__codelineno-7-52" name="__codelineno-7-52" href="#__codelineno-7-52"></a>Express: High-volume, short-duration, at-least-once
+</code></pre></div>
+<p><strong>State Types:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>1. Task State:
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Performs work (invoke Lambda, publish SNS, call API)
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>Example:
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>&quot;ProcessPayment&quot;: {
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>  &quot;Type&quot;: &quot;Task&quot;,
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>  &quot;Resource&quot;: &quot;arn:aws:lambda:...:function:process-payment&quot;,
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>  &quot;Next&quot;: &quot;CheckInventory&quot;
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>}
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>2. Choice State:
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>Branching logic based on input
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>Example:
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>&quot;CheckAmount&quot;: {
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>  &quot;Type&quot;: &quot;Choice&quot;,
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>  &quot;Choices&quot;: [
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>    {
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>      &quot;Variable&quot;: &quot;$.amount&quot;,
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>      &quot;NumericGreaterThan&quot;: 1000,
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>      &quot;Next&quot;: &quot;HighValueOrder&quot;
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>    },
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>    {
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>      &quot;Variable&quot;: &quot;$.amount&quot;,
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>      &quot;NumericLessThanEquals&quot;: 1000,
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>      &quot;Next&quot;: &quot;StandardOrder&quot;
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>    }
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>  ],
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>  &quot;Default&quot;: &quot;StandardOrder&quot;
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>}
+<a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a>
+<a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a>3. Parallel State:
+<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a>Execute multiple branches simultaneously
+<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a>
+<a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a>Example:
+<a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a>&quot;ProcessOrder&quot;: {
+<a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a>  &quot;Type&quot;: &quot;Parallel&quot;,
+<a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a>  &quot;Branches&quot;: [
+<a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a>    {
+<a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a>      &quot;StartAt&quot;: &quot;ChargeCustomer&quot;,
+<a id="__codelineno-8-41" name="__codelineno-8-41" href="#__codelineno-8-41"></a>      &quot;States&quot;: {...}
+<a id="__codelineno-8-42" name="__codelineno-8-42" href="#__codelineno-8-42"></a>    },
+<a id="__codelineno-8-43" name="__codelineno-8-43" href="#__codelineno-8-43"></a>    {
+<a id="__codelineno-8-44" name="__codelineno-8-44" href="#__codelineno-8-44"></a>      &quot;StartAt&quot;: &quot;UpdateInventory&quot;,
+<a id="__codelineno-8-45" name="__codelineno-8-45" href="#__codelineno-8-45"></a>      &quot;States&quot;: {...}
+<a id="__codelineno-8-46" name="__codelineno-8-46" href="#__codelineno-8-46"></a>    },
+<a id="__codelineno-8-47" name="__codelineno-8-47" href="#__codelineno-8-47"></a>    {
+<a id="__codelineno-8-48" name="__codelineno-8-48" href="#__codelineno-8-48"></a>      &quot;StartAt&quot;: &quot;SendEmail&quot;,
+<a id="__codelineno-8-49" name="__codelineno-8-49" href="#__codelineno-8-49"></a>      &quot;States&quot;: {...}
+<a id="__codelineno-8-50" name="__codelineno-8-50" href="#__codelineno-8-50"></a>    }
+<a id="__codelineno-8-51" name="__codelineno-8-51" href="#__codelineno-8-51"></a>  ],
+<a id="__codelineno-8-52" name="__codelineno-8-52" href="#__codelineno-8-52"></a>  &quot;Next&quot;: &quot;OrderComplete&quot;
+<a id="__codelineno-8-53" name="__codelineno-8-53" href="#__codelineno-8-53"></a>}
+<a id="__codelineno-8-54" name="__codelineno-8-54" href="#__codelineno-8-54"></a>
+<a id="__codelineno-8-55" name="__codelineno-8-55" href="#__codelineno-8-55"></a>4. Map State:
+<a id="__codelineno-8-56" name="__codelineno-8-56" href="#__codelineno-8-56"></a>Iterate over array elements
+<a id="__codelineno-8-57" name="__codelineno-8-57" href="#__codelineno-8-57"></a>
+<a id="__codelineno-8-58" name="__codelineno-8-58" href="#__codelineno-8-58"></a>Example:
+<a id="__codelineno-8-59" name="__codelineno-8-59" href="#__codelineno-8-59"></a>&quot;ProcessItems&quot;: {
+<a id="__codelineno-8-60" name="__codelineno-8-60" href="#__codelineno-8-60"></a>  &quot;Type&quot;: &quot;Map&quot;,
+<a id="__codelineno-8-61" name="__codelineno-8-61" href="#__codelineno-8-61"></a>  &quot;ItemsPath&quot;: &quot;$.items&quot;,
+<a id="__codelineno-8-62" name="__codelineno-8-62" href="#__codelineno-8-62"></a>  &quot;Iterator&quot;: {
+<a id="__codelineno-8-63" name="__codelineno-8-63" href="#__codelineno-8-63"></a>    &quot;StartAt&quot;: &quot;ValidateItem&quot;,
+<a id="__codelineno-8-64" name="__codelineno-8-64" href="#__codelineno-8-64"></a>    &quot;States&quot;: {...}
+<a id="__codelineno-8-65" name="__codelineno-8-65" href="#__codelineno-8-65"></a>  },
+<a id="__codelineno-8-66" name="__codelineno-8-66" href="#__codelineno-8-66"></a>  &quot;Next&quot;: &quot;CompleteOrder&quot;
+<a id="__codelineno-8-67" name="__codelineno-8-67" href="#__codelineno-8-67"></a>}
+<a id="__codelineno-8-68" name="__codelineno-8-68" href="#__codelineno-8-68"></a>
+<a id="__codelineno-8-69" name="__codelineno-8-69" href="#__codelineno-8-69"></a>5. Wait State:
+<a id="__codelineno-8-70" name="__codelineno-8-70" href="#__codelineno-8-70"></a>Delay execution
+<a id="__codelineno-8-71" name="__codelineno-8-71" href="#__codelineno-8-71"></a>
+<a id="__codelineno-8-72" name="__codelineno-8-72" href="#__codelineno-8-72"></a>Example:
+<a id="__codelineno-8-73" name="__codelineno-8-73" href="#__codelineno-8-73"></a>&quot;WaitForApproval&quot;: {
+<a id="__codelineno-8-74" name="__codelineno-8-74" href="#__codelineno-8-74"></a>  &quot;Type&quot;: &quot;Wait&quot;,
+<a id="__codelineno-8-75" name="__codelineno-8-75" href="#__codelineno-8-75"></a>  &quot;Seconds&quot;: 3600,
+<a id="__codelineno-8-76" name="__codelineno-8-76" href="#__codelineno-8-76"></a>  &quot;Next&quot;: &quot;CheckApprovalStatus&quot;
+<a id="__codelineno-8-77" name="__codelineno-8-77" href="#__codelineno-8-77"></a>}
+<a id="__codelineno-8-78" name="__codelineno-8-78" href="#__codelineno-8-78"></a>
+<a id="__codelineno-8-79" name="__codelineno-8-79" href="#__codelineno-8-79"></a>Or:
+<a id="__codelineno-8-80" name="__codelineno-8-80" href="#__codelineno-8-80"></a>&quot;WaitUntilDueDate&quot;: {
+<a id="__codelineno-8-81" name="__codelineno-8-81" href="#__codelineno-8-81"></a>  &quot;Type&quot;: &quot;Wait&quot;,
+<a id="__codelineno-8-82" name="__codelineno-8-82" href="#__codelineno-8-82"></a>  &quot;TimestampPath&quot;: &quot;$.dueDate&quot;,
+<a id="__codelineno-8-83" name="__codelineno-8-83" href="#__codelineno-8-83"></a>  &quot;Next&quot;: &quot;ProcessPayment&quot;
+<a id="__codelineno-8-84" name="__codelineno-8-84" href="#__codelineno-8-84"></a>}
+<a id="__codelineno-8-85" name="__codelineno-8-85" href="#__codelineno-8-85"></a>
+<a id="__codelineno-8-86" name="__codelineno-8-86" href="#__codelineno-8-86"></a>6. Succeed State:
+<a id="__codelineno-8-87" name="__codelineno-8-87" href="#__codelineno-8-87"></a>Successful termination
+<a id="__codelineno-8-88" name="__codelineno-8-88" href="#__codelineno-8-88"></a>
+<a id="__codelineno-8-89" name="__codelineno-8-89" href="#__codelineno-8-89"></a>Example:
+<a id="__codelineno-8-90" name="__codelineno-8-90" href="#__codelineno-8-90"></a>&quot;OrderCompleted&quot;: {
+<a id="__codelineno-8-91" name="__codelineno-8-91" href="#__codelineno-8-91"></a>  &quot;Type&quot;: &quot;Succeed&quot;
+<a id="__codelineno-8-92" name="__codelineno-8-92" href="#__codelineno-8-92"></a>}
+<a id="__codelineno-8-93" name="__codelineno-8-93" href="#__codelineno-8-93"></a>
+<a id="__codelineno-8-94" name="__codelineno-8-94" href="#__codelineno-8-94"></a>7. Fail State:
+<a id="__codelineno-8-95" name="__codelineno-8-95" href="#__codelineno-8-95"></a>Failed termination with error
+<a id="__codelineno-8-96" name="__codelineno-8-96" href="#__codelineno-8-96"></a>
+<a id="__codelineno-8-97" name="__codelineno-8-97" href="#__codelineno-8-97"></a>Example:
+<a id="__codelineno-8-98" name="__codelineno-8-98" href="#__codelineno-8-98"></a>&quot;OrderFailed&quot;: {
+<a id="__codelineno-8-99" name="__codelineno-8-99" href="#__codelineno-8-99"></a>  &quot;Type&quot;: &quot;Fail&quot;,
+<a id="__codelineno-8-100" name="__codelineno-8-100" href="#__codelineno-8-100"></a>  &quot;Error&quot;: &quot;OrderProcessingError&quot;,
+<a id="__codelineno-8-101" name="__codelineno-8-101" href="#__codelineno-8-101"></a>  &quot;Cause&quot;: &quot;Payment declined&quot;
+<a id="__codelineno-8-102" name="__codelineno-8-102" href="#__codelineno-8-102"></a>}
+<a id="__codelineno-8-103" name="__codelineno-8-103" href="#__codelineno-8-103"></a>
+<a id="__codelineno-8-104" name="__codelineno-8-104" href="#__codelineno-8-104"></a>8. Pass State:
+<a id="__codelineno-8-105" name="__codelineno-8-105" href="#__codelineno-8-105"></a>Pass input to output (transform data)
+<a id="__codelineno-8-106" name="__codelineno-8-106" href="#__codelineno-8-106"></a>
+<a id="__codelineno-8-107" name="__codelineno-8-107" href="#__codelineno-8-107"></a>Example:
+<a id="__codelineno-8-108" name="__codelineno-8-108" href="#__codelineno-8-108"></a>&quot;TransformData&quot;: {
+<a id="__codelineno-8-109" name="__codelineno-8-109" href="#__codelineno-8-109"></a>  &quot;Type&quot;: &quot;Pass&quot;,
+<a id="__codelineno-8-110" name="__codelineno-8-110" href="#__codelineno-8-110"></a>  &quot;Result&quot;: {
+<a id="__codelineno-8-111" name="__codelineno-8-111" href="#__codelineno-8-111"></a>    &quot;status&quot;: &quot;processing&quot;
+<a id="__codelineno-8-112" name="__codelineno-8-112" href="#__codelineno-8-112"></a>  },
+<a id="__codelineno-8-113" name="__codelineno-8-113" href="#__codelineno-8-113"></a>  &quot;ResultPath&quot;: &quot;$.orderStatus&quot;,
+<a id="__codelineno-8-114" name="__codelineno-8-114" href="#__codelineno-8-114"></a>  &quot;Next&quot;: &quot;ProcessOrder&quot;
+<a id="__codelineno-8-115" name="__codelineno-8-115" href="#__codelineno-8-115"></a>}
+</code></pre></div>
+<p><strong>Error Handling and Retry Logic:</strong></p>
+<p>Step Functions provides sophisticated error handling:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Error Types:
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Predefined Errors:
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>- States.ALL: Catch-all for any error
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>- States.Timeout: Execution timeout
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>- States.TaskFailed: Task execution failed
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>- States.Permissions: IAM permission denied
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>- States.ResultPathMatchFailure: Result path invalid
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>- States.ParameterPathFailure: Parameter path invalid
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>- States.BranchFailed: Parallel branch failed
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>- States.NoChoiceMatched: No choice matched
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>Custom Errors:
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>Applications can throw named errors:
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>- PaymentDeclined
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>- InsufficientInventory
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>- InvalidOrderData
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>Retry Configuration:
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>&quot;Retry&quot;: [
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>  {
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>    &quot;ErrorEquals&quot;: [&quot;States.TaskFailed&quot;],
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>    &quot;IntervalSeconds&quot;: 2,
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>    &quot;MaxAttempts&quot;: 3,
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>    &quot;BackoffRate&quot;: 2.0
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>  }
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>]
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a>
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a>Retry Behavior:
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a>Attempt 1: Fails
+<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a>Wait 2 seconds
+<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a>Attempt 2: Fails
+<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a>Wait 4 seconds (2 × 2.0)
+<a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a>Attempt 3: Fails
+<a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a>Wait 8 seconds (4 × 2.0)
+<a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a>Final attempt: Fails → Move to Catch
+<a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a>
+<a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a>Catch Configuration:
+<a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a>
+<a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a>&quot;Catch&quot;: [
+<a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a>  {
+<a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a>    &quot;ErrorEquals&quot;: [&quot;PaymentDeclined&quot;],
+<a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a>    &quot;Next&quot;: &quot;HandlePaymentDecline&quot;,
+<a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a>    &quot;ResultPath&quot;: &quot;$.error&quot;
+<a id="__codelineno-9-46" name="__codelineno-9-46" href="#__codelineno-9-46"></a>  },
+<a id="__codelineno-9-47" name="__codelineno-9-47" href="#__codelineno-9-47"></a>  {
+<a id="__codelineno-9-48" name="__codelineno-9-48" href="#__codelineno-9-48"></a>    &quot;ErrorEquals&quot;: [&quot;States.ALL&quot;],
+<a id="__codelineno-9-49" name="__codelineno-9-49" href="#__codelineno-9-49"></a>    &quot;Next&quot;: &quot;HandleGenericError&quot;
+<a id="__codelineno-9-50" name="__codelineno-9-50" href="#__codelineno-9-50"></a>  }
+<a id="__codelineno-9-51" name="__codelineno-9-51" href="#__codelineno-9-51"></a>]
+<a id="__codelineno-9-52" name="__codelineno-9-52" href="#__codelineno-9-52"></a>
+<a id="__codelineno-9-53" name="__codelineno-9-53" href="#__codelineno-9-53"></a>Error Handling Flow:
+<a id="__codelineno-9-54" name="__codelineno-9-54" href="#__codelineno-9-54"></a>Task executes → Error occurs
+<a id="__codelineno-9-55" name="__codelineno-9-55" href="#__codelineno-9-55"></a>    ↓
+<a id="__codelineno-9-56" name="__codelineno-9-56" href="#__codelineno-9-56"></a>Check Retry configuration
+<a id="__codelineno-9-57" name="__codelineno-9-57" href="#__codelineno-9-57"></a>    ↓
+<a id="__codelineno-9-58" name="__codelineno-9-58" href="#__codelineno-9-58"></a>If retries remaining → Retry with backoff
+<a id="__codelineno-9-59" name="__codelineno-9-59" href="#__codelineno-9-59"></a>    ↓
+<a id="__codelineno-9-60" name="__codelineno-9-60" href="#__codelineno-9-60"></a>If retries exhausted → Check Catch
+<a id="__codelineno-9-61" name="__codelineno-9-61" href="#__codelineno-9-61"></a>    ↓
+<a id="__codelineno-9-62" name="__codelineno-9-62" href="#__codelineno-9-62"></a>If Catch matches → Transition to error state
+<a id="__codelineno-9-63" name="__codelineno-9-63" href="#__codelineno-9-63"></a>    ↓
+<a id="__codelineno-9-64" name="__codelineno-9-64" href="#__codelineno-9-64"></a>If no Catch → Execution fails
+<a id="__codelineno-9-65" name="__codelineno-9-65" href="#__codelineno-9-65"></a>
+<a id="__codelineno-9-66" name="__codelineno-9-66" href="#__codelineno-9-66"></a>Best Practices:
+<a id="__codelineno-9-67" name="__codelineno-9-67" href="#__codelineno-9-67"></a>✓ Retry transient errors (network, throttling)
+<a id="__codelineno-9-68" name="__codelineno-9-68" href="#__codelineno-9-68"></a>✓ Don&#39;t retry permanent errors (validation, not found)
+<a id="__codelineno-9-69" name="__codelineno-9-69" href="#__codelineno-9-69"></a>✓ Use exponential backoff (BackoffRate &gt; 1)
+<a id="__codelineno-9-70" name="__codelineno-9-70" href="#__codelineno-9-70"></a>✓ Catch specific errors before generic
+<a id="__codelineno-9-71" name="__codelineno-9-71" href="#__codelineno-9-71"></a>✓ Log errors for debugging
+<a id="__codelineno-9-72" name="__codelineno-9-72" href="#__codelineno-9-72"></a>✓ Set reasonable MaxAttempts (3-5)
+</code></pre></div>
+<p><strong>Input/Output Processing:</strong></p>
+<p>Step Functions manipulates data flowing through states:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Input/Output Path Concepts:
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>InputPath:
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>- Selects portion of input to pass to state
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>- JSONPath expression
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>- Default: &quot;$&quot; (entire input)
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>OutputPath:
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>- Selects portion of output to pass to next state
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>- JSONPath expression
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>- Default: &quot;$&quot; (entire output)
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>ResultPath:
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>- Where to place task result in output
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>- Can merge result with input
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>- Default: &quot;$&quot; (replace entire output)
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>Parameters:
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>- Construct input for task
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>- Can use input values, context variables
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>- Flexible data transformation
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>Example Workflow:
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a>Input to State:
+<a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a>{
+<a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>  &quot;order&quot;: {
+<a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>    &quot;orderId&quot;: &quot;123&quot;,
+<a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a>    &quot;amount&quot;: 299.99
+<a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a>  },
+<a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a>  &quot;customer&quot;: {
+<a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a>    &quot;customerId&quot;: &quot;456&quot;,
+<a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a>    &quot;email&quot;: &quot;user@example.com&quot;
+<a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a>  }
+<a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a>}
+<a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a>
+<a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a>State Definition:
+<a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a>&quot;ProcessPayment&quot;: {
+<a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a>  &quot;Type&quot;: &quot;Task&quot;,
+<a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a>  &quot;Resource&quot;: &quot;arn:aws:lambda:...&quot;,
+<a id="__codelineno-10-41" name="__codelineno-10-41" href="#__codelineno-10-41"></a>  &quot;InputPath&quot;: &quot;$.order&quot;,
+<a id="__codelineno-10-42" name="__codelineno-10-42" href="#__codelineno-10-42"></a>  &quot;Parameters&quot;: {
+<a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a>    &quot;orderId.$&quot;: &quot;$.orderId&quot;,
+<a id="__codelineno-10-44" name="__codelineno-10-44" href="#__codelineno-10-44"></a>    &quot;amount.$&quot;: &quot;$.amount&quot;
+<a id="__codelineno-10-45" name="__codelineno-10-45" href="#__codelineno-10-45"></a>  },
+<a id="__codelineno-10-46" name="__codelineno-10-46" href="#__codelineno-10-46"></a>  &quot;ResultPath&quot;: &quot;$.paymentResult&quot;,
+<a id="__codelineno-10-47" name="__codelineno-10-47" href="#__codelineno-10-47"></a>  &quot;OutputPath&quot;: &quot;$&quot;,
+<a id="__codelineno-10-48" name="__codelineno-10-48" href="#__codelineno-10-48"></a>  &quot;Next&quot;: &quot;SendConfirmation&quot;
+<a id="__codelineno-10-49" name="__codelineno-10-49" href="#__codelineno-10-49"></a>}
+<a id="__codelineno-10-50" name="__codelineno-10-50" href="#__codelineno-10-50"></a>
+<a id="__codelineno-10-51" name="__codelineno-10-51" href="#__codelineno-10-51"></a>Step-by-Step:
+<a id="__codelineno-10-52" name="__codelineno-10-52" href="#__codelineno-10-52"></a>1. InputPath selects: {&quot;orderId&quot;: &quot;123&quot;, &quot;amount&quot;: 299.99}
+<a id="__codelineno-10-53" name="__codelineno-10-53" href="#__codelineno-10-53"></a>2. Parameters constructs: {&quot;orderId&quot;: &quot;123&quot;, &quot;amount&quot;: 299.99}
+<a id="__codelineno-10-54" name="__codelineno-10-54" href="#__codelineno-10-54"></a>3. Lambda executes, returns: {&quot;transactionId&quot;: &quot;txn-789&quot;, &quot;status&quot;: &quot;success&quot;}
+<a id="__codelineno-10-55" name="__codelineno-10-55" href="#__codelineno-10-55"></a>4. ResultPath merges result:
+<a id="__codelineno-10-56" name="__codelineno-10-56" href="#__codelineno-10-56"></a>{
+<a id="__codelineno-10-57" name="__codelineno-10-57" href="#__codelineno-10-57"></a>  &quot;order&quot;: {...},
+<a id="__codelineno-10-58" name="__codelineno-10-58" href="#__codelineno-10-58"></a>  &quot;customer&quot;: {...},
+<a id="__codelineno-10-59" name="__codelineno-10-59" href="#__codelineno-10-59"></a>  &quot;paymentResult&quot;: {
+<a id="__codelineno-10-60" name="__codelineno-10-60" href="#__codelineno-10-60"></a>    &quot;transactionId&quot;: &quot;txn-789&quot;,
+<a id="__codelineno-10-61" name="__codelineno-10-61" href="#__codelineno-10-61"></a>    &quot;status&quot;: &quot;success&quot;
+<a id="__codelineno-10-62" name="__codelineno-10-62" href="#__codelineno-10-62"></a>  }
+<a id="__codelineno-10-63" name="__codelineno-10-63" href="#__codelineno-10-63"></a>}
+<a id="__codelineno-10-64" name="__codelineno-10-64" href="#__codelineno-10-64"></a>5. OutputPath passes entire object to next state
+<a id="__codelineno-10-65" name="__codelineno-10-65" href="#__codelineno-10-65"></a>
+<a id="__codelineno-10-66" name="__codelineno-10-66" href="#__codelineno-10-66"></a>Context Variables:
+<a id="__codelineno-10-67" name="__codelineno-10-67" href="#__codelineno-10-67"></a>
+<a id="__codelineno-10-68" name="__codelineno-10-68" href="#__codelineno-10-68"></a>$$.Execution.Id - Unique execution ID
+<a id="__codelineno-10-69" name="__codelineno-10-69" href="#__codelineno-10-69"></a>$$.Execution.Name - Execution name
+<a id="__codelineno-10-70" name="__codelineno-10-70" href="#__codelineno-10-70"></a>$$.Execution.StartTime - Start timestamp
+<a id="__codelineno-10-71" name="__codelineno-10-71" href="#__codelineno-10-71"></a>$$.State.Name - Current state name
+<a id="__codelineno-10-72" name="__codelineno-10-72" href="#__codelineno-10-72"></a>$$.State.EnteredTime - State entry time
+<a id="__codelineno-10-73" name="__codelineno-10-73" href="#__codelineno-10-73"></a>
+<a id="__codelineno-10-74" name="__codelineno-10-74" href="#__codelineno-10-74"></a>Use in Parameters:
+<a id="__codelineno-10-75" name="__codelineno-10-75" href="#__codelineno-10-75"></a>&quot;Parameters&quot;: {
+<a id="__codelineno-10-76" name="__codelineno-10-76" href="#__codelineno-10-76"></a>  &quot;executionId.$&quot;: &quot;$$.Execution.Id&quot;,
+<a id="__codelineno-10-77" name="__codelineno-10-77" href="#__codelineno-10-77"></a>  &quot;orderId.$&quot;: &quot;$.order.orderId&quot;
+<a id="__codelineno-10-78" name="__codelineno-10-78" href="#__codelineno-10-78"></a>}
+</code></pre></div>
+<p><strong>Parallel Processing Patterns:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Pattern 1: Parallel Independent Tasks
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>&quot;ProcessOrder&quot;: {
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>  &quot;Type&quot;: &quot;Parallel&quot;,
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>  &quot;Branches&quot;: [
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    {
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>      &quot;StartAt&quot;: &quot;ProcessPayment&quot;,
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>      &quot;States&quot;: {
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>        &quot;ProcessPayment&quot;: {
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>          &quot;Type&quot;: &quot;Task&quot;,
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>          &quot;Resource&quot;: &quot;arn:aws:lambda:...&quot;,
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>          &quot;End&quot;: true
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>        }
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>      }
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>    },
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>    {
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>      &quot;StartAt&quot;: &quot;UpdateInventory&quot;,
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>      &quot;States&quot;: {
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>        &quot;UpdateInventory&quot;: {
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>          &quot;Type&quot;: &quot;Task&quot;,
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>          &quot;Resource&quot;: &quot;arn:aws:lambda:...&quot;,
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>          &quot;End&quot;: true
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>        }
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>      }
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>    },
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>    {
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>      &quot;StartAt&quot;: &quot;SendNotification&quot;,
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>      &quot;States&quot;: {
+<a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a>        &quot;SendNotification&quot;: {
+<a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a>          &quot;Type&quot;: &quot;Task&quot;,
+<a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a>          &quot;Resource&quot;: &quot;arn:aws:lambda:...&quot;,
+<a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a>          &quot;End&quot;: true
+<a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a>        }
+<a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a>      }
+<a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a>    }
+<a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a>  ],
+<a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a>  &quot;Next&quot;: &quot;AggregateResults&quot;
+<a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a>}
+<a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a>
+<a id="__codelineno-11-40" name="__codelineno-11-40" href="#__codelineno-11-40"></a>Execution:
+<a id="__codelineno-11-41" name="__codelineno-11-41" href="#__codelineno-11-41"></a>All three branches execute simultaneously
+<a id="__codelineno-11-42" name="__codelineno-11-42" href="#__codelineno-11-42"></a>Payment: 300ms
+<a id="__codelineno-11-43" name="__codelineno-11-43" href="#__codelineno-11-43"></a>Inventory: 150ms
+<a id="__codelineno-11-44" name="__codelineno-11-44" href="#__codelineno-11-44"></a>Notification: 100ms
+<a id="__codelineno-11-45" name="__codelineno-11-45" href="#__codelineno-11-45"></a>Total time: 300ms (slowest branch)
+<a id="__codelineno-11-46" name="__codelineno-11-46" href="#__codelineno-11-46"></a>Sequential would be: 550ms
+<a id="__codelineno-11-47" name="__codelineno-11-47" href="#__codelineno-11-47"></a>
+<a id="__codelineno-11-48" name="__codelineno-11-48" href="#__codelineno-11-48"></a>Pattern 2: Map State for Iteration
+<a id="__codelineno-11-49" name="__codelineno-11-49" href="#__codelineno-11-49"></a>
+<a id="__codelineno-11-50" name="__codelineno-11-50" href="#__codelineno-11-50"></a>Process 100 items:
+<a id="__codelineno-11-51" name="__codelineno-11-51" href="#__codelineno-11-51"></a>
+<a id="__codelineno-11-52" name="__codelineno-11-52" href="#__codelineno-11-52"></a>&quot;ProcessItems&quot;: {
+<a id="__codelineno-11-53" name="__codelineno-11-53" href="#__codelineno-11-53"></a>  &quot;Type&quot;: &quot;Map&quot;,
+<a id="__codelineno-11-54" name="__codelineno-11-54" href="#__codelineno-11-54"></a>  &quot;ItemsPath&quot;: &quot;$.items&quot;,
+<a id="__codelineno-11-55" name="__codelineno-11-55" href="#__codelineno-11-55"></a>  &quot;MaxConcurrency&quot;: 10,
+<a id="__codelineno-11-56" name="__codelineno-11-56" href="#__codelineno-11-56"></a>  &quot;Iterator&quot;: {
+<a id="__codelineno-11-57" name="__codelineno-11-57" href="#__codelineno-11-57"></a>    &quot;StartAt&quot;: &quot;ProcessItem&quot;,
+<a id="__codelineno-11-58" name="__codelineno-11-58" href="#__codelineno-11-58"></a>    &quot;States&quot;: {
+<a id="__codelineno-11-59" name="__codelineno-11-59" href="#__codelineno-11-59"></a>      &quot;ProcessItem&quot;: {
+<a id="__codelineno-11-60" name="__codelineno-11-60" href="#__codelineno-11-60"></a>        &quot;Type&quot;: &quot;Task&quot;,
+<a id="__codelineno-11-61" name="__codelineno-11-61" href="#__codelineno-11-61"></a>        &quot;Resource&quot;: &quot;arn:aws:lambda:...&quot;,
+<a id="__codelineno-11-62" name="__codelineno-11-62" href="#__codelineno-11-62"></a>        &quot;End&quot;: true
+<a id="__codelineno-11-63" name="__codelineno-11-63" href="#__codelineno-11-63"></a>      }
+<a id="__codelineno-11-64" name="__codelineno-11-64" href="#__codelineno-11-64"></a>    }
+<a id="__codelineno-11-65" name="__codelineno-11-65" href="#__codelineno-11-65"></a>  },
+<a id="__codelineno-11-66" name="__codelineno-11-66" href="#__codelineno-11-66"></a>  &quot;ResultPath&quot;: &quot;$.processedItems&quot;,
+<a id="__codelineno-11-67" name="__codelineno-11-67" href="#__codelineno-11-67"></a>  &quot;Next&quot;: &quot;Complete&quot;
+<a id="__codelineno-11-68" name="__codelineno-11-68" href="#__codelineno-11-68"></a>}
+<a id="__codelineno-11-69" name="__codelineno-11-69" href="#__codelineno-11-69"></a>
+<a id="__codelineno-11-70" name="__codelineno-11-70" href="#__codelineno-11-70"></a>Execution:
+<a id="__codelineno-11-71" name="__codelineno-11-71" href="#__codelineno-11-71"></a>100 items processed in batches of 10 concurrent
+<a id="__codelineno-11-72" name="__codelineno-11-72" href="#__codelineno-11-72"></a>Each item: 1 second
+<a id="__codelineno-11-73" name="__codelineno-11-73" href="#__codelineno-11-73"></a>Total time: 10 seconds (vs 100 seconds sequential)
+<a id="__codelineno-11-74" name="__codelineno-11-74" href="#__codelineno-11-74"></a>
+<a id="__codelineno-11-75" name="__codelineno-11-75" href="#__codelineno-11-75"></a>Benefits:
+<a id="__codelineno-11-76" name="__codelineno-11-76" href="#__codelineno-11-76"></a>✓ Dramatically faster execution
+<a id="__codelineno-11-77" name="__codelineno-11-77" href="#__codelineno-11-77"></a>✓ Better resource utilization
+<a id="__codelineno-11-78" name="__codelineno-11-78" href="#__codelineno-11-78"></a>✓ Independent failure handling
+<a id="__codelineno-11-79" name="__codelineno-11-79" href="#__codelineno-11-79"></a>✓ Automatic aggregation of results
+</code></pre></div>
+<h3 id="orchestration-patterns">Orchestration Patterns<a class="headerlink" href="#orchestration-patterns" title="Permanent link">&para;</a></h3>
+<p><strong>Saga Pattern (Distributed Transactions):</strong></p>
+<p>Saga pattern handles distributed transactions without 2PC (two-phase commit):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Problem: Distributed Transaction
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Order Service → Payment Service → Inventory Service → Shipping Service
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>Requirements:
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>- All succeed or all rollback
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>- No 2PC available (microservices)
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>- Need consistency
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>Saga Solution: Sequence of local transactions with compensating actions
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>Forward Path (Success):
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>1. Reserve Inventory → Success
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>2. Process Payment → Success
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>3. Create Shipment → Success
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>4. Order Complete → Success
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>Compensating Path (Failure at step 3):
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>1. Reserve Inventory → Success
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>2. Process Payment → Success
+<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>3. Create Shipment → FAILS
+<a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>4. Compensate Payment (refund) ← Rollback
+<a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>5. Compensate Inventory (release) ← Rollback
+<a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>6. Order Failed
+<a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>
+<a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a>Step Functions Implementation:
+<a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>
+<a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>&quot;OrderSaga&quot;: {
+<a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>  &quot;StartAt&quot;: &quot;ReserveInventory&quot;,
+<a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>  &quot;States&quot;: {
+<a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a>    &quot;ReserveInventory&quot;: {
+<a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a>      &quot;Type&quot;: &quot;Task&quot;,
+<a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a>      &quot;Resource&quot;: &quot;arn:aws:lambda:...:reserve-inventory&quot;,
+<a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a>      &quot;Catch&quot;: [{
+<a id="__codelineno-12-35" name="__codelineno-12-35" href="#__codelineno-12-35"></a>        &quot;ErrorEquals&quot;: [&quot;States.ALL&quot;],
+<a id="__codelineno-12-36" name="__codelineno-12-36" href="#__codelineno-12-36"></a>        &quot;Next&quot;: &quot;OrderFailed&quot;
+<a id="__codelineno-12-37" name="__codelineno-12-37" href="#__codelineno-12-37"></a>      }],
+<a id="__codelineno-12-38" name="__codelineno-12-38" href="#__codelineno-12-38"></a>      &quot;Next&quot;: &quot;ProcessPayment&quot;
+<a id="__codelineno-12-39" name="__codelineno-12-39" href="#__codelineno-12-39"></a>    },
+<a id="__codelineno-12-40" name="__codelineno-12-40" href="#__codelineno-12-40"></a>    &quot;ProcessPayment&quot;: {
+<a id="__codelineno-12-41" name="__codelineno-12-41" href="#__codelineno-12-41"></a>      &quot;Type&quot;: &quot;Task&quot;,
+<a id="__codelineno-12-42" name="__codelineno-12-42" href="#__codelineno-12-42"></a>      &quot;Resource&quot;: &quot;arn:aws:lambda:...:process-payment&quot;,
+<a id="__codelineno-12-43" name="__codelineno-12-43" href="#__codelineno-12-43"></a>      &quot;Catch&quot;: [{
+<a id="__codelineno-12-44" name="__codelineno-12-44" href="#__codelineno-12-44"></a>        &quot;ErrorEquals&quot;: [&quot;States.ALL&quot;],
+<a id="__codelineno-12-45" name="__codelineno-12-45" href="#__codelineno-12-45"></a>        &quot;Next&quot;: &quot;CompensateInventory&quot;
+<a id="__codelineno-12-46" name="__codelineno-12-46" href="#__codelineno-12-46"></a>      }],
+<a id="__codelineno-12-47" name="__codelineno-12-47" href="#__codelineno-12-47"></a>      &quot;Next&quot;: &quot;CreateShipment&quot;
+<a id="__codelineno-12-48" name="__codelineno-12-48" href="#__codelineno-12-48"></a>    },
+<a id="__codelineno-12-49" name="__codelineno-12-49" href="#__codelineno-12-49"></a>    &quot;CreateShipment&quot;: {
+<a id="__codelineno-12-50" name="__codelineno-12-50" href="#__codelineno-12-50"></a>      &quot;Type&quot;: &quot;Task&quot;,
+<a id="__codelineno-12-51" name="__codelineno-12-51" href="#__codelineno-12-51"></a>      &quot;Resource&quot;: &quot;arn:aws:lambda:...:create-shipment&quot;,
+<a id="__codelineno-12-52" name="__codelineno-12-52" href="#__codelineno-12-52"></a>      &quot;Catch&quot;: [{
+<a id="__codelineno-12-53" name="__codelineno-12-53" href="#__codelineno-12-53"></a>        &quot;ErrorEquals&quot;: [&quot;States.ALL&quot;],
+<a id="__codelineno-12-54" name="__codelineno-12-54" href="#__codelineno-12-54"></a>        &quot;Next&quot;: &quot;CompensatePayment&quot;
+<a id="__codelineno-12-55" name="__codelineno-12-55" href="#__codelineno-12-55"></a>      }],
+<a id="__codelineno-12-56" name="__codelineno-12-56" href="#__codelineno-12-56"></a>      &quot;Next&quot;: &quot;OrderComplete&quot;
+<a id="__codelineno-12-57" name="__codelineno-12-57" href="#__codelineno-12-57"></a>    },
+<a id="__codelineno-12-58" name="__codelineno-12-58" href="#__codelineno-12-58"></a>    &quot;OrderComplete&quot;: {
+<a id="__codelineno-12-59" name="__codelineno-12-59" href="#__codelineno-12-59"></a>      &quot;Type&quot;: &quot;Succeed&quot;
+<a id="__codelineno-12-60" name="__codelineno-12-60" href="#__codelineno-12-60"></a>    },
+<a id="__codelineno-12-61" name="__codelineno-12-61" href="#__codelineno-12-61"></a>    &quot;CompensatePayment&quot;: {
+<a id="__codelineno-12-62" name="__codelineno-12-62" href="#__codelineno-12-62"></a>      &quot;Type&quot;: &quot;Task&quot;,
+<a id="__codelineno-12-63" name="__codelineno-12-63" href="#__codelineno-12-63"></a>      &quot;Resource&quot;: &quot;arn:aws:lambda:...:refund-payment&quot;,
+<a id="__codelineno-12-64" name="__codelineno-12-64" href="#__codelineno-12-64"></a>      &quot;Next&quot;: &quot;CompensateInventory&quot;
+<a id="__codelineno-12-65" name="__codelineno-12-65" href="#__codelineno-12-65"></a>    },
+<a id="__codelineno-12-66" name="__codelineno-12-66" href="#__codelineno-12-66"></a>    &quot;CompensateInventory&quot;: {
+<a id="__codelineno-12-67" name="__codelineno-12-67" href="#__codelineno-12-67"></a>      &quot;Type&quot;: &quot;Task&quot;,
+<a id="__codelineno-12-68" name="__codelineno-12-68" href="#__codelineno-12-68"></a>      &quot;Resource&quot;: &quot;arn:aws:lambda:...:release-inventory&quot;,
+<a id="__codelineno-12-69" name="__codelineno-12-69" href="#__codelineno-12-69"></a>      &quot;Next&quot;: &quot;OrderFailed&quot;
+<a id="__codelineno-12-70" name="__codelineno-12-70" href="#__codelineno-12-70"></a>    },
+<a id="__codelineno-12-71" name="__codelineno-12-71" href="#__codelineno-12-71"></a>    &quot;OrderFailed&quot;: {
+<a id="__codelineno-12-72" name="__codelineno-12-72" href="#__codelineno-12-72"></a>      &quot;Type&quot;: &quot;Fail&quot;,
+<a id="__codelineno-12-73" name="__codelineno-12-73" href="#__codelineno-12-73"></a>      &quot;Error&quot;: &quot;OrderProcessingFailed&quot;
+<a id="__codelineno-12-74" name="__codelineno-12-74" href="#__codelineno-12-74"></a>    }
+<a id="__codelineno-12-75" name="__codelineno-12-75" href="#__codelineno-12-75"></a>  }
+<a id="__codelineno-12-76" name="__codelineno-12-76" href="#__codelineno-12-76"></a>}
+<a id="__codelineno-12-77" name="__codelineno-12-77" href="#__codelineno-12-77"></a>
+<a id="__codelineno-12-78" name="__codelineno-12-78" href="#__codelineno-12-78"></a>Key Points:
+<a id="__codelineno-12-79" name="__codelineno-12-79" href="#__codelineno-12-79"></a>✓ Each service has compensating action
+<a id="__codelineno-12-80" name="__codelineno-12-80" href="#__codelineno-12-80"></a>✓ Failures trigger rollback chain
+<a id="__codelineno-12-81" name="__codelineno-12-81" href="#__codelineno-12-81"></a>✓ Eventually consistent
+<a id="__codelineno-12-82" name="__codelineno-12-82" href="#__codelineno-12-82"></a>✓ Audit trail of all steps
+<a id="__codelineno-12-83" name="__codelineno-12-83" href="#__codelineno-12-83"></a>✓ No distributed locks
+</code></pre></div>
+<p><strong>Human-in-the-Loop Pattern:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Workflow with Manual Approval:
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>&quot;OrderApprovalWorkflow&quot;: {
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>  &quot;StartAt&quot;: &quot;ValidateOrder&quot;,
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>  &quot;States&quot;: {
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    &quot;ValidateOrder&quot;: {
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>      &quot;Type&quot;: &quot;Task&quot;,
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>      &quot;Resource&quot;: &quot;arn:aws:lambda:...&quot;,
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>      &quot;Next&quot;: &quot;CheckAmount&quot;
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>    },
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>    &quot;CheckAmount&quot;: {
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>      &quot;Type&quot;: &quot;Choice&quot;,
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>      &quot;Choices&quot;: [{
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>        &quot;Variable&quot;: &quot;$.amount&quot;,
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>        &quot;NumericGreaterThan&quot;: 10000,
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>        &quot;Next&quot;: &quot;RequestApproval&quot;
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>      }],
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>      &quot;Default&quot;: &quot;ProcessOrder&quot;
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>    },
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>    &quot;RequestApproval&quot;: {
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>      &quot;Type&quot;: &quot;Task&quot;,
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>      &quot;Resource&quot;: &quot;arn:aws:states:::sqs:sendMessage.waitForTaskToken&quot;,
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a>      &quot;Parameters&quot;: {
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>        &quot;QueueUrl&quot;: &quot;https://sqs...&quot;,
+<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>        &quot;MessageBody&quot;: {
+<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>          &quot;orderId.$&quot;: &quot;$.orderId&quot;,
+<a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a>          &quot;amount.$&quot;: &quot;$.amount&quot;,
+<a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a>          &quot;taskToken.$&quot;: &quot;$$.Task.Token&quot;
+<a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a>        }
+<a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a>      },
+<a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a>      &quot;Next&quot;: &quot;ProcessOrder&quot;
+<a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a>    },
+<a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a>    &quot;ProcessOrder&quot;: {
+<a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a>      &quot;Type&quot;: &quot;Task&quot;,
+<a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a>      &quot;Resource&quot;: &quot;arn:aws:lambda:...&quot;,
+<a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a>      &quot;End&quot;: true
+<a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a>    }
+<a id="__codelineno-13-38" name="__codelineno-13-38" href="#__codelineno-13-38"></a>  }
+<a id="__codelineno-13-39" name="__codelineno-13-39" href="#__codelineno-13-39"></a>}
+<a id="__codelineno-13-40" name="__codelineno-13-40" href="#__codelineno-13-40"></a>
+<a id="__codelineno-13-41" name="__codelineno-13-41" href="#__codelineno-13-41"></a>Flow:
+<a id="__codelineno-13-42" name="__codelineno-13-42" href="#__codelineno-13-42"></a>1. Order validated
+<a id="__codelineno-13-43" name="__codelineno-13-43" href="#__codelineno-13-43"></a>2. If &gt; $10,000 → Request approval
+<a id="__codelineno-13-44" name="__codelineno-13-44" href="#__codelineno-13-44"></a>3. Workflow pauses (waitForTaskToken)
+<a id="__codelineno-13-45" name="__codelineno-13-45" href="#__codelineno-13-45"></a>4. Message sent to SQS
+<a id="__codelineno-13-46" name="__codelineno-13-46" href="#__codelineno-13-46"></a>5. Admin reviews order
+<a id="__codelineno-13-47" name="__codelineno-13-47" href="#__codelineno-13-47"></a>6. Admin approves/rejects
+<a id="__codelineno-13-48" name="__codelineno-13-48" href="#__codelineno-13-48"></a>7. Call SendTaskSuccess/SendTaskFailure API
+<a id="__codelineno-13-49" name="__codelineno-13-49" href="#__codelineno-13-49"></a>8. Workflow resumes
+<a id="__codelineno-13-50" name="__codelineno-13-50" href="#__codelineno-13-50"></a>9. Process or cancel order
+<a id="__codelineno-13-51" name="__codelineno-13-51" href="#__codelineno-13-51"></a>
+<a id="__codelineno-13-52" name="__codelineno-13-52" href="#__codelineno-13-52"></a>Benefits:
+<a id="__codelineno-13-53" name="__codelineno-13-53" href="#__codelineno-13-53"></a>✓ Workflow pauses indefinitely
+<a id="__codelineno-13-54" name="__codelineno-13-54" href="#__codelineno-13-54"></a>✓ No polling required
+<a id="__codelineno-13-55" name="__codelineno-13-55" href="#__codelineno-13-55"></a>✓ Human decision integrated
+<a id="__codelineno-13-56" name="__codelineno-13-56" href="#__codelineno-13-56"></a>✓ Complete audit trail
+<a id="__codelineno-13-57" name="__codelineno-13-57" href="#__codelineno-13-57"></a>✓ Timeout supported (max 1 year)
+</code></pre></div>
+<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
+<h3 id="lab-1-eventbridge-rule-to-lambda">Lab 1: EventBridge Rule to Lambda<a class="headerlink" href="#lab-1-eventbridge-rule-to-lambda" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">events</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;events&#39;</span><span class="p">)</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="c1"># Create custom event bus</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="n">events</span><span class="o">.</span><span class="n">create_event_bus</span><span class="p">(</span><span class="n">Name</span><span class="o">=</span><span class="s1">&#39;orders-bus&#39;</span><span class="p">)</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="c1"># Create rule</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="n">events</span><span class="o">.</span><span class="n">put_rule</span><span class="p">(</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>    <span class="n">Name</span><span class="o">=</span><span class="s1">&#39;high-value-orders&#39;</span><span class="p">,</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>    <span class="n">EventBusName</span><span class="o">=</span><span class="s1">&#39;orders-bus&#39;</span><span class="p">,</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>    <span class="n">EventPattern</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;com.myapp.orders&#39;</span><span class="p">],</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>        <span class="s1">&#39;detail-type&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Order Placed&#39;</span><span class="p">],</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>        <span class="s1">&#39;detail&#39;</span><span class="p">:</span> <span class="p">{</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>            <span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;numeric&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]}]</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>        <span class="p">}</span>
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>    <span class="p">}),</span>
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>    <span class="n">State</span><span class="o">=</span><span class="s1">&#39;ENABLED&#39;</span>
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="p">)</span>
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="c1"># Add Lambda target</span>
+<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="n">events</span><span class="o">.</span><span class="n">put_targets</span><span class="p">(</span>
+<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>    <span class="n">Rule</span><span class="o">=</span><span class="s1">&#39;high-value-orders&#39;</span><span class="p">,</span>
+<a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>    <span class="n">EventBusName</span><span class="o">=</span><span class="s1">&#39;orders-bus&#39;</span><span class="p">,</span>
+<a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a>    <span class="n">Targets</span><span class="o">=</span><span class="p">[{</span>
+<a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a>        <span class="s1">&#39;Id&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+<a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a>        <span class="s1">&#39;Arn&#39;</span><span class="p">:</span> <span class="s1">&#39;arn:aws:lambda:us-east-1:123456789012:function:process-high-value-order&#39;</span>
+<a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>    <span class="p">}]</span>
+<a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a><span class="p">)</span>
+</code></pre></div>
+<h3 id="lab-2-step-functions-state-machine">Lab 2: Step Functions State Machine<a class="headerlink" href="#lab-2-step-functions-state-machine" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="p">{</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span><span class="nt">&quot;Comment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Order processing workflow&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span><span class="nt">&quot;StartAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ValidateOrder&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span><span class="nt">&quot;States&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="nt">&quot;ValidateOrder&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">      </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Task&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:lambda:us-east-1:123456789012:function:validate-order&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">      </span><span class="nt">&quot;Next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ProcessPayment&quot;</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">    </span><span class="nt">&quot;ProcessPayment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">      </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Task&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:lambda:us-east-1:123456789012:function:process-payment&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">      </span><span class="nt">&quot;Retry&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">        </span><span class="nt">&quot;ErrorEquals&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;States.TaskFailed&quot;</span><span class="p">],</span>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">        </span><span class="nt">&quot;IntervalSeconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">        </span><span class="nt">&quot;MaxAttempts&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="w">        </span><span class="nt">&quot;BackoffRate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="w">      </span><span class="p">}],</span>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="w">      </span><span class="nt">&quot;Catch&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span>
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="w">        </span><span class="nt">&quot;ErrorEquals&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;PaymentDeclined&quot;</span><span class="p">],</span>
+<a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="w">        </span><span class="nt">&quot;Next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PaymentFailed&quot;</span>
+<a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="w">      </span><span class="p">}],</span>
+<a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="w">      </span><span class="nt">&quot;Next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FulfillOrder&quot;</span>
+<a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a><span class="w">    </span><span class="nt">&quot;FulfillOrder&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a><span class="w">      </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Parallel&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a><span class="w">      </span><span class="nt">&quot;Branches&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a><span class="w">          </span><span class="nt">&quot;StartAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;UpdateInventory&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a><span class="w">          </span><span class="nt">&quot;States&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a><span class="w">            </span><span class="nt">&quot;UpdateInventory&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a><span class="w">              </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Task&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-33" name="__codelineno-15-33" href="#__codelineno-15-33"></a><span class="w">              </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:lambda:...:function:update-inventory&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-34" name="__codelineno-15-34" href="#__codelineno-15-34"></a><span class="w">              </span><span class="nt">&quot;End&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-15-35" name="__codelineno-15-35" href="#__codelineno-15-35"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-15-36" name="__codelineno-15-36" href="#__codelineno-15-36"></a><span class="w">          </span><span class="p">}</span>
+<a id="__codelineno-15-37" name="__codelineno-15-37" href="#__codelineno-15-37"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-15-38" name="__codelineno-15-38" href="#__codelineno-15-38"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-15-39" name="__codelineno-15-39" href="#__codelineno-15-39"></a><span class="w">          </span><span class="nt">&quot;StartAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SendConfirmation&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-40" name="__codelineno-15-40" href="#__codelineno-15-40"></a><span class="w">          </span><span class="nt">&quot;States&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-41" name="__codelineno-15-41" href="#__codelineno-15-41"></a><span class="w">            </span><span class="nt">&quot;SendConfirmation&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-42" name="__codelineno-15-42" href="#__codelineno-15-42"></a><span class="w">              </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Task&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-43" name="__codelineno-15-43" href="#__codelineno-15-43"></a><span class="w">              </span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arn:aws:lambda:...:function:send-email&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-44" name="__codelineno-15-44" href="#__codelineno-15-44"></a><span class="w">              </span><span class="nt">&quot;End&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-15-45" name="__codelineno-15-45" href="#__codelineno-15-45"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-15-46" name="__codelineno-15-46" href="#__codelineno-15-46"></a><span class="w">          </span><span class="p">}</span>
+<a id="__codelineno-15-47" name="__codelineno-15-47" href="#__codelineno-15-47"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-15-48" name="__codelineno-15-48" href="#__codelineno-15-48"></a><span class="w">      </span><span class="p">],</span>
+<a id="__codelineno-15-49" name="__codelineno-15-49" href="#__codelineno-15-49"></a><span class="w">      </span><span class="nt">&quot;Next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OrderComplete&quot;</span>
+<a id="__codelineno-15-50" name="__codelineno-15-50" href="#__codelineno-15-50"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-15-51" name="__codelineno-15-51" href="#__codelineno-15-51"></a><span class="w">    </span><span class="nt">&quot;OrderComplete&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-52" name="__codelineno-15-52" href="#__codelineno-15-52"></a><span class="w">      </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Succeed&quot;</span>
+<a id="__codelineno-15-53" name="__codelineno-15-53" href="#__codelineno-15-53"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-15-54" name="__codelineno-15-54" href="#__codelineno-15-54"></a><span class="w">    </span><span class="nt">&quot;PaymentFailed&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-55" name="__codelineno-15-55" href="#__codelineno-15-55"></a><span class="w">      </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fail&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-56" name="__codelineno-15-56" href="#__codelineno-15-56"></a><span class="w">      </span><span class="nt">&quot;Error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PaymentDeclined&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-57" name="__codelineno-15-57" href="#__codelineno-15-57"></a><span class="w">      </span><span class="nt">&quot;Cause&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Customer payment was declined&quot;</span>
+<a id="__codelineno-15-58" name="__codelineno-15-58" href="#__codelineno-15-58"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-15-59" name="__codelineno-15-59" href="#__codelineno-15-59"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-15-60" name="__codelineno-15-60" href="#__codelineno-15-60"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
+<p><strong>Tip 1: Use Event Archives for Replay</strong>
+Always enable archives for production events—invaluable for disaster recovery and debugging.</p>
+<p><strong>Tip 2: Start with Express Workflows for High-Volume</strong>
+Use Express workflows for IoT/streaming (100,000/sec throughput vs Standard 2,000/sec).</p>
+<p><strong>Tip 3: Implement Saga Pattern for Distributed Transactions</strong>
+Use compensating transactions instead of distributed locks—more resilient for microservices.</p>
+<p><strong>Tip 4: Use Parallel States to Reduce Latency</strong>
+Execute independent tasks in parallel (3 tasks × 1s = 1s total vs 3s sequential).</p>
+<p><strong>Tip 5: Leverage waitForTaskToken for Human Approval</strong>
+Pause workflows indefinitely for manual approvals without polling or timeouts.</p>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
+<p><strong>Pitfall 1: Overly Complex Event Patterns</strong>
+<em>Problem:</em> Patterns too specific miss events; too broad trigger unnecessary invocations.
+<em>Solution:</em> Test patterns with sample events; start broad, refine based on actual usage.</p>
+<p><strong>Pitfall 2: Missing Error Handling in State Machines</strong>
+<em>Problem:</em> Unhandled errors cause entire workflow to fail without cleanup.
+<em>Solution:</em> Add Retry and Catch to every Task state; implement compensating actions.</p>
+<p><strong>Pitfall 3: State Machine Timeout Issues</strong>
+<em>Problem:</em> Workflows hit 1-year limit or 5-minute Express limit.
+<em>Solution:</em> Use Standard for long workflows; break large workflows into smaller sub-workflows.</p>
+<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>EventBridge maximum event size?</strong> 256 KB</li>
+<li><strong>Step Functions Standard workflow max duration?</strong> 1 year</li>
+<li><strong>Step Functions Express workflow max duration?</strong> 5 minutes</li>
+<li><strong>EventBridge maximum targets per rule?</strong> 5</li>
+<li><strong>Step Functions execution limit (Standard)?</strong> 2,000 per second per account</li>
+</ol>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

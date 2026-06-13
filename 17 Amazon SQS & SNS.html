@@ -1,0 +1,2882 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Interactive study guide for AWS Solutions Architect certifications">
+      
+      
+        <meta name="author" content="AWS Architect">
+      
+      
+        <link rel="canonical" href="https://manishpcp.github.io/aws-solution-architect-study-material/17%20Amazon%20SQS%20%26%20SNS.html">
+      
+      
+        <link rel="prev" href="16%20Direct%20Connect%20%26%20VPN.html">
+      
+      
+        <link rel="next" href="18%20Amazon%20EventBridge%20%26%20Step%20Functions.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>17 Amazon SQS & SNS - AWS Solutions Architect</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#part-6-application-integration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="AWS Solutions Architect" class="md-header__button md-logo" aria-label="AWS Solutions Architect" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M180.4 203c-.7 22.6 10.6 32.7 10.9 39-.1 1.3-.6 2.5-1.3 3.6s-1.7 2-2.8 2.6l-12.8 9c-1.7 1.2-3.6 1.8-5.6 1.9-.4 0-8.2 1.8-20.5-25.6-7.5 9.4-17 16.9-27.9 22s-22.7 7.7-34.7 7.5c-16.3.9-60.4-9.2-58.1-56.2-1.6-38.3 34.1-62.1 70.9-60 7.1 0 21.6.4 47 6.3v-15.6c2.7-26.5-14.7-47-44.8-43.9-2.4 0-19.4-.5-45.8 10.1-7.4 3.4-8.3 2.8-10.8 2.8-7.4 0-4.4-21.5-2.9-24.2 5.2-6.4 35.9-18.4 65.9-18.2 20.1-1.8 40.1 4.4 55.7 17.3 6.3 7.1 11.2 15.4 14.2 24.4s4.2 18.5 3.5 28v69.3zM94 235.4c32.4-.5 46.2-20 49.3-30.5 2.5-10.1 2.1-16.4 2.1-27.4-9.7-2.3-23.6-4.9-39.6-4.9-15.2-1.1-42.8 5.6-41.7 32.3-1.2 16.8 11.1 31.4 30 30.5zm170.9 23.1c-7.9.7-11.5-4.9-12.7-10.4L202.4 83.4c-1-2.8-1.6-5.6-1.9-8.6-.2-1.2.1-2.4.8-3.4s1.8-1.6 3-1.8h22.2c8.8-.9 11.6 6 12.6 10.4l35.8 140.8L308.1 80c.5-3.2 2.9-11.1 12.8-10.2h17.2c2.2-.2 11.1-.5 12.7 10.4l33.3 142.5L421 80.1c.5-2.2 2.7-11.4 12.7-10.4h19.7c.9-.1 6.2-.8 5.3 8.6-.4 1.8 3.4-10.7-52.8 169.9-1.1 5.5-4.8 11.1-12.7 10.4h-18.7c-10.9 1.2-12.5-9.7-12.7-10.7l-33.2-137.1-32.8 137c-.2 1.1-1.7 11.9-12.7 10.7h-18.3zm273.5 5.6c-5.9 0-33.9-.3-57.4-12.3-2.3-1-4.3-2.6-5.7-4.8s-2.1-4.6-2.1-7.1v-10.7c0-8.5 6.2-6.9 8.8-5.9 10 4.1 16.5 7.1 28.8 9.6 36.7 7.5 52.8-2.3 56.7-4.5 13.2-7.8 14.2-25.7 5.3-34.9-10.5-8.8-15.5-9.1-53.1-21-4.6-1.3-43.7-13.6-43.8-52.4-.6-28.2 25-56.2 69.5-56 12.7 0 46.4 4.1 55.6 15.6 1.4 2.1 2 4.6 1.9 7v10.1c0 4.4-1.6 6.7-4.9 6.7-7.7-.9-21.4-11.2-49.2-10.8-6.9-.4-39.9.9-38.4 25-.4 19 26.6 26.1 29.7 26.9 36.5 11 48.6 12.8 63.1 29.6 17.1 22.2 7.9 48.3 4.3 55.4-19.1 37.5-68.4 34.4-69.3 34.4zM578.6 369c-70 51.7-171.7 79.2-258.5 79.2C203 449 89.8 405.9 2.8 327.5c-6.5-5.9-.8-14 7.2-9.5 96.5 55.2 205.7 84.2 316.9 84.1 83-.4 165.1-17.3 241.6-49.5 11.8-5 21.8 7.8 10.1 16.4m29.2-33.3c-9-11.5-59.3-5.4-81.8-2.7-6.8.8-7.9-5.1-1.8-9.5 40.1-28.2 105.9-20.1 113.4-10.6s-2.1 75.4-39.6 106.9c-5.8 4.9-11.3 2.3-8.7-4.1 8.4-21.3 27.4-68.5 18.4-80z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AWS Solutions Architect
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              17 Amazon SQS & SNS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/manishpcp/aws-solution-architect-study-material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aws-solution-architect-study-material
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="01%20AWS%20Global%20Infrastructure.html" class="md-tabs__link">
+          
+  
+  
+  Chapters
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="Appendix%20A%20AWS%20Service%20Cheat%20Sheets.html" class="md-tabs__link">
+          
+  
+  
+  Appendices
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="AWS Solutions Architect" class="md-nav__button md-logo" aria-label="AWS Solutions Architect" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M180.4 203c-.7 22.6 10.6 32.7 10.9 39-.1 1.3-.6 2.5-1.3 3.6s-1.7 2-2.8 2.6l-12.8 9c-1.7 1.2-3.6 1.8-5.6 1.9-.4 0-8.2 1.8-20.5-25.6-7.5 9.4-17 16.9-27.9 22s-22.7 7.7-34.7 7.5c-16.3.9-60.4-9.2-58.1-56.2-1.6-38.3 34.1-62.1 70.9-60 7.1 0 21.6.4 47 6.3v-15.6c2.7-26.5-14.7-47-44.8-43.9-2.4 0-19.4-.5-45.8 10.1-7.4 3.4-8.3 2.8-10.8 2.8-7.4 0-4.4-21.5-2.9-24.2 5.2-6.4 35.9-18.4 65.9-18.2 20.1-1.8 40.1 4.4 55.7 17.3 6.3 7.1 11.2 15.4 14.2 24.4s4.2 18.5 3.5 28v69.3zM94 235.4c32.4-.5 46.2-20 49.3-30.5 2.5-10.1 2.1-16.4 2.1-27.4-9.7-2.3-23.6-4.9-39.6-4.9-15.2-1.1-42.8 5.6-41.7 32.3-1.2 16.8 11.1 31.4 30 30.5zm170.9 23.1c-7.9.7-11.5-4.9-12.7-10.4L202.4 83.4c-1-2.8-1.6-5.6-1.9-8.6-.2-1.2.1-2.4.8-3.4s1.8-1.6 3-1.8h22.2c8.8-.9 11.6 6 12.6 10.4l35.8 140.8L308.1 80c.5-3.2 2.9-11.1 12.8-10.2h17.2c2.2-.2 11.1-.5 12.7 10.4l33.3 142.5L421 80.1c.5-2.2 2.7-11.4 12.7-10.4h19.7c.9-.1 6.2-.8 5.3 8.6-.4 1.8 3.4-10.7-52.8 169.9-1.1 5.5-4.8 11.1-12.7 10.4h-18.7c-10.9 1.2-12.5-9.7-12.7-10.7l-33.2-137.1-32.8 137c-.2 1.1-1.7 11.9-12.7 10.7h-18.3zm273.5 5.6c-5.9 0-33.9-.3-57.4-12.3-2.3-1-4.3-2.6-5.7-4.8s-2.1-4.6-2.1-7.1v-10.7c0-8.5 6.2-6.9 8.8-5.9 10 4.1 16.5 7.1 28.8 9.6 36.7 7.5 52.8-2.3 56.7-4.5 13.2-7.8 14.2-25.7 5.3-34.9-10.5-8.8-15.5-9.1-53.1-21-4.6-1.3-43.7-13.6-43.8-52.4-.6-28.2 25-56.2 69.5-56 12.7 0 46.4 4.1 55.6 15.6 1.4 2.1 2 4.6 1.9 7v10.1c0 4.4-1.6 6.7-4.9 6.7-7.7-.9-21.4-11.2-49.2-10.8-6.9-.4-39.9.9-38.4 25-.4 19 26.6 26.1 29.7 26.9 36.5 11 48.6 12.8 63.1 29.6 17.1 22.2 7.9 48.3 4.3 55.4-19.1 37.5-68.4 34.4-69.3 34.4zM578.6 369c-70 51.7-171.7 79.2-258.5 79.2C203 449 89.8 405.9 2.8 327.5c-6.5-5.9-.8-14 7.2-9.5 96.5 55.2 205.7 84.2 316.9 84.1 83-.4 165.1-17.3 241.6-49.5 11.8-5 21.8 7.8 10.1 16.4m29.2-33.3c-9-11.5-59.3-5.4-81.8-2.7-6.8.8-7.9-5.1-1.8-9.5 40.1-28.2 105.9-20.1 113.4-10.6s-2.1 75.4-39.6 106.9c-5.8 4.9-11.3 2.3-8.7-4.1 8.4-21.3 27.4-68.5 18.4-80z"/></svg>
+
+    </a>
+    AWS Solutions Architect
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/manishpcp/aws-solution-architect-study-material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aws-solution-architect-study-material
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20AWS%20Global%20Infrastructure.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 AWS Global Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02%20Identity%20and%20Access%20Management%20%28IAM%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 Identity and Access Management (IAM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03%20Virtual%20Private%20Cloud%20%28VPC%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 Virtual Private Cloud (VPC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04%20Amazon%20EC2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 Amazon EC2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Elastic%20Load%20Balancing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 Elastic Load Balancing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06%20Container%20Services%20%28ECS%2C%20EKS%2C%20Fargate%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 Container Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07%20AWS%20Lambda%20%26%20Serverless.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 AWS Lambda & Serverless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08%20Amazon%20S3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 Amazon S3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09%20Amazon%20EBS%20%26%20EFS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 Amazon EBS & EFS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10%20Storage%20Gateway%20%26%20DataSync.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 Storage Gateway & DataSync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Amazon%20RDS%20%26%20Aurora.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 Amazon RDS & Aurora
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12%20DynamoDB.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 DynamoDB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13%20ElastiCache%20%26%20MemoryDB.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 ElastiCache & MemoryDB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14%20Amazon%20CloudFront.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Amazon CloudFront
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15%20Route%2053.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 Route 53
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16%20Direct%20Connect%20%26%20VPN.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 Direct Connect & VPN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="17%20Amazon%20SQS%20%26%20SNS.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 Amazon SQS & SNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18%20Amazon%20EventBridge%20%26%20Step%20Functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 Amazon EventBridge & Step Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20API%20Gateway.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 API Gateway
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20%20Amazon%20Kinesis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20 Amazon Kinesis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21%20AWS%20Glue%20%26%20Athena.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21 AWS Glue & Athena
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22%20Amazon%20SageMaker%20Essentials.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22 Amazon SageMaker Essentials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23%20AWS%20Security%20Services.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23 AWS Security Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24%20AWS%20KMS%20%26%20Secrets%20Manager.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 AWS KMS & Secrets Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25%20AWS%20WAF%20%26%20Shield.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25 AWS WAF & Shield
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26%20CloudWatch.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 CloudWatch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="27%20AWS%20CloudTrail%20%26%20Config.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27 AWS CloudTrail & Config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20AWS%20Systems%20Manager.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28 AWS Systems Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29%20Cost%20Management.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29 Cost Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30%20Well-Architected%20Framework.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Well-Architected Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31%20Migration%20Strategies%20%287%20Rs%29.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31 Migration Strategies (7 Rs)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32%20Disaster%20Recovery%20%26%20Business%20Continuity.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32 Disaster Recovery & Business Continuity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33%20Microservices%20Patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33 Microservices Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Event-Driven%20Architectures.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34 Event-Driven Architectures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35%20Multi-Account%20Strategy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35 Multi-Account Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36%20Solutions%20Architect%20Associate%20Exam%20Guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36 SAA Exam Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37%20Solutions%20Architect%20Professional%20Exam%20Guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37 SAP Exam Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Appendix%20A%20AWS%20Service%20Cheat%20Sheets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix A — Service Cheat Sheets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Appendix%20B%20Architecture%20Diagram%20Templates.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix B — Diagram Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Appendix%20C%20Troubleshooting%20Guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix C — Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Appendix%20D%20Additional%20Resources.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix D — Additional Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="part-6-application-integration">Part 6: Application Integration<a class="headerlink" href="#part-6-application-integration" title="Permanent link">&para;</a></h1>
+<h1 id="chapter-17-amazon-sqs-sns">Chapter 17: Amazon SQS \&amp; SNS<a class="headerlink" href="#chapter-17-amazon-sqs-sns" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>Modern distributed applications require asynchronous communication to achieve scalability, resilience, and loose coupling. Synchronous point-to-point communication creates tight dependencies—when one service is down or slow, calling services fail or wait indefinitely. Amazon Simple Queue Service (SQS) and Amazon Simple Notification Service (SNS) solve these problems through message queuing and pub/sub patterns. SQS provides reliable message queuing where producers send messages that consumers process asynchronously, decoupling components and enabling independent scaling. SNS implements publish-subscribe messaging where publishers send messages to topics that fan out to multiple subscribers simultaneously.</p>
+<p>The architectural patterns enabled by SQS and SNS are fundamental to cloud-native applications. Consider an e-commerce order processing system: when customers place orders, the system must charge payment, update inventory, send confirmation emails, trigger warehouse fulfillment, and update analytics—five independent operations. Synchronous execution means order placement takes seconds and any single failure (email service down) blocks the entire flow. With SQS/SNS, order placement publishes to an SNS topic, which fans out to five SQS queues processed independently. Order placement returns instantly, operations scale independently, temporary failures don't block order acceptance, and retry logic handles transient issues.</p>
+<p>Understanding SQS and SNS deeply separates basic message passing from production-grade distributed systems. Misconfigured visibility timeouts cause duplicate processing. Missing dead-letter queues lose failed messages permanently. Not using FIFO queues when ordering matters causes data corruption. Improper retry strategies overwhelm systems during failures. Missing message attributes prevent efficient filtering. This chapter covers SQS and SNS from fundamentals to production patterns, including queue types, message ordering, fanout architectures, filtering, dead-letter queues, visibility timeout, long polling, FIFO guarantees, decoupling strategies, monitoring, and building resilient microservices architectures.</p>
+<h2 id="theory-concepts">Theory \&amp; Concepts<a class="headerlink" href="#theory-concepts" title="Permanent link">&para;</a></h2>
+<h3 id="messaging-patterns-overview">Messaging Patterns Overview<a class="headerlink" href="#messaging-patterns-overview" title="Permanent link">&para;</a></h3>
+<p><strong>Why Asynchronous Messaging?</strong></p>
+<p>Distributed systems face inherent challenges that messaging patterns address:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Problems with Synchronous Communication:
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Tight Coupling:
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Service A → calls → Service B → calls → Service C
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Problem:
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>- If Service B is down, Service A fails
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>- If Service C is slow, everything is slow
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>- Changes in B or C affect A
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>- Cascading failures common
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>Scalability Issues:
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>Peak Load Scenario:
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>- 1000 requests/second arrive
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>- Backend can handle 100/second
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>- 900 requests fail or timeout
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>- No buffering mechanism
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>- Manual scaling coordination
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>Reliability Problems:
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>- Network issues cause failures
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>- Service restarts lose in-flight requests
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>- No automatic retry
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>- Error handling at every call
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>- Distributed transactions complex
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Benefits of Asynchronous Messaging:
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Loose Coupling:
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Service A → SQS Queue → Service B
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Benefits:
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>✓ Services don&#39;t know about each other
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>✓ Service B can be down temporarily
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>✓ Changes don&#39;t propagate immediately
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>✓ Independent deployment cycles
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>Scalability:
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>Producer → Queue (buffer) → Consumer (auto-scales)
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>Benefits:
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>✓ Queue buffers load spikes
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>✓ Consumers scale based on queue depth
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>✓ Producers and consumers scale independently
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>✓ Smooth traffic to backend systems
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>Reliability:
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>Message → Queue → Retry on failure → DLQ after max retries
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>Benefits:
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>✓ Messages persist in queue
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>✓ Automatic retry on failure
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>✓ Dead-letter queues for poison messages
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>✓ Service restarts don&#39;t lose messages
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>Flexibility:
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>Publisher → SNS Topic → Multiple Subscribers
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>Benefits:
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>✓ Add subscribers without changing publisher
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>✓ Different processing logic per subscriber
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>✓ Fanout to multiple systems
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>✓ Decouple event producers from consumers
+</code></pre></div>
+<p><strong>Messaging Patterns:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Point-to-Point (SQS):
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Producer → Queue → Single Consumer
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Characteristics:
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>- Each message processed by one consumer
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>- Messages removed after successful processing
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>- Load balancing across consumers
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>- Order optional (standard) or guaranteed (FIFO)
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>Use Cases:
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>- Job processing
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>- Task distribution
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>- Work queues
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>- Command processing
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>Publish-Subscribe (SNS):
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>Publisher → Topic → Multiple Subscribers
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>Characteristics:
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>- Each message delivered to all subscribers
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>- Fire-and-forget delivery
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>- Fanout to multiple endpoints
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>- No message persistence (real-time)
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>Use Cases:
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>- Event notifications
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>- Broadcasting updates
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>- Multiple system coordination
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>- Fanout architectures
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>Fanout Pattern (SNS → SQS):
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>Publisher → SNS Topic → Multiple SQS Queues → Multiple Consumers
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>Characteristics:
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>- Combines pub/sub and queuing
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>- Persistent message delivery
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>- Independent processing per queue
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>- Best of both patterns
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>Use Cases:
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>- Event-driven architectures
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>- Microservices communication
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>- Parallel processing workflows
+<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>- System integration
+</code></pre></div>
+<h3 id="amazon-sqs-architecture">Amazon SQS Architecture<a class="headerlink" href="#amazon-sqs-architecture" title="Permanent link">&para;</a></h3>
+<p><strong>SQS Fundamentals:</strong></p>
+<p>Amazon SQS is a fully managed message queuing service providing reliable, scalable message delivery:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>SQS Core Concepts:
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Message:
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>- Payload: Up to 256 KB of text data
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>- Attributes: Metadata (key-value pairs)
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>- MessageId: Unique identifier
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>- ReceiptHandle: Required for deletion
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>- Lifecycle: Send → Receive → Process → Delete
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>Queue:
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>- Named message store
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>- FIFO or Standard type
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>- Retention: 1 minute to 14 days (default 4 days)
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>- Capacity: Unlimited messages, unlimited throughput
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>- Region-scoped: Not global
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>Message Flow:
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>Producer sends message
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    ↓
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>Message stored in SQS (distributed across servers)
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>    ↓
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>Consumer polls for messages (receive)
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>    ↓
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>Message becomes invisible (visibility timeout)
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>    ↓
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>Consumer processes message
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>    ↓
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>Consumer deletes message (success)
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>OR
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>Visibility timeout expires → message reappears (failure)
+</code></pre></div>
+<p><strong>SQS Queue Types:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Standard Queue:
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Characteristics:
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>- Unlimited throughput: Nearly unlimited messages/second
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>- At-least-once delivery: Messages delivered at least once
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>- Best-effort ordering: Messages usually in order, not guaranteed
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>- No additional costs: Cheapest option
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>Delivery Guarantees:
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>- Message delivered ≥1 time (possible duplicates)
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>- Order not guaranteed
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>- Consumer must handle duplicates (idempotency)
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>Performance:
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>- Throughput: Unlimited
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>- Latency: &lt; 10ms (typical)
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>- Batching: Up to 10 messages per API call
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>Use Cases:
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>- High-throughput workloads
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>- Order doesn&#39;t matter
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>- Application handles duplicates
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>- Cost-sensitive scenarios
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>- Most common use case
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>Example Scenario:
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>Image Processing Pipeline:
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>Upload image → SQS → Lambda processes → Store in S3
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>- Order of processing doesn&#39;t matter
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>- Idempotent operation (process image by ID)
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>- High throughput needed
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>- Standard queue perfect fit
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>Potential Issues:
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>Message 1: &quot;Create order&quot;
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>Message 2: &quot;Cancel order&quot;
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>If processed out of order → incorrect state
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>Solution: Use FIFO queue or version numbers
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>FIFO Queue:
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Characteristics:
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>- Exactly-once processing: Each message processed once
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>- Guaranteed ordering: Strict message order preserved
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>- Limited throughput: 300 TPS (3,000 with batching)
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>- Higher cost: More expensive than standard
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>Delivery Guarantees:
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>- Message delivered exactly once (deduplication)
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>- Strict ordering within message group
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>- No duplicates (5-minute deduplication window)
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>Performance:
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>- Throughput: 300 TPS (transactions per second)
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>- Batching: 3,000 TPS (10 messages per batch)
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>- Latency: Slightly higher than standard
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>Naming Convention:
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>- Must end with .fifo suffix
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>- Example: orders.fifo, transactions.fifo
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>Key Features:
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>1. Message Deduplication:
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>   - Deduplication ID required
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>   - 5-minute deduplication window
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>   - Same ID within window = duplicate (rejected)
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>   Methods:
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>   a) Content-based (automatic hash)
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>   b) Explicit deduplication ID
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>2. Message Groups:
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>   - Messages grouped by Message Group ID
+<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>   - Ordering guaranteed within group
+<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>   - Different groups processed in parallel
+<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>   - Enables parallel processing with ordering
+<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>
+<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>   Example:
+<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>   Group &quot;user-123&quot;: Message 1 → Message 2 → Message 3 (ordered)
+<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>   Group &quot;user-456&quot;: Message A → Message B → Message C (ordered)
+<a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>   Groups processed in parallel
+<a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>
+<a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a>Use Cases:
+<a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a>- Financial transactions (order critical)
+<a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a>- E-commerce order processing (create → update → fulfill)
+<a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a>- Event sourcing (order = state)
+<a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a>- Workflows with steps (must execute in sequence)
+<a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a>
+<a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a>Example Scenario:
+<a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a>Bank Transfer:
+<a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a>1. Validate account
+<a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a>2. Deduct from source
+<a id="__codelineno-5-55" name="__codelineno-5-55" href="#__codelineno-5-55"></a>3. Add to destination
+<a id="__codelineno-5-56" name="__codelineno-5-56" href="#__codelineno-5-56"></a>4. Send confirmation
+<a id="__codelineno-5-57" name="__codelineno-5-57" href="#__codelineno-5-57"></a>
+<a id="__codelineno-5-58" name="__codelineno-5-58" href="#__codelineno-5-58"></a>Must execute in order, exactly once
+<a id="__codelineno-5-59" name="__codelineno-5-59" href="#__codelineno-5-59"></a>FIFO queue required
+</code></pre></div>
+<p><strong>SQS Standard vs FIFO Comparison:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>┌─────────────────────┬──────────────────┬─────────────────┐
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>│ Feature             │ Standard         │ FIFO            │
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>├─────────────────────┼──────────────────┼─────────────────┤
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>│ Throughput          │ Unlimited        │ 300-3,000 TPS   │
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>│ Ordering            │ Best-effort      │ Guaranteed      │
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>│ Delivery            │ At-least-once    │ Exactly-once    │
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>│ Duplicates          │ Possible         │ No duplicates   │
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>│ Latency             │ &lt; 10ms           │ Slightly higher │
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>│ Cost                │ Lower            │ Higher          │
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>│ Name suffix         │ Any              │ .fifo required  │
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>│ Message groups      │ N/A              │ Yes             │
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>│ Deduplication       │ Manual           │ Built-in        │
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>│ Use case            │ High throughput  │ Order critical  │
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>└─────────────────────┴──────────────────┴─────────────────┘
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>Decision Tree:
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>┌─────────────────────────────────────┐
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>│ Does order matter?                  │
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>├─────────────┬───────────────────────┤
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>│ Yes         │ No                    │
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>│             │                       │
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>│ FIFO Queue  │ Need &gt; 3,000 TPS?    │
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>│             │                       │
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>│             ├──────────┬────────────┤
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>│             │ Yes      │ No         │
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>│             │          │            │
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>│             │ Standard │ Standard   │
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>│             │          │ or FIFO    │
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>└─────────────┴──────────┴────────────┘
+</code></pre></div>
+<h3 id="message-lifecycle-and-visibility-timeout">Message Lifecycle and Visibility Timeout<a class="headerlink" href="#message-lifecycle-and-visibility-timeout" title="Permanent link">&para;</a></h3>
+<p><strong>Message Lifecycle:</strong></p>
+<p>Understanding the complete message journey is critical:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Complete Message Lifecycle:
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>1. Message Creation:
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>   Producer creates message
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>   - Body: Message content (up to 256 KB)
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>   - Attributes: Metadata
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>   - Optional: Delay, MessageGroupId, DeduplicationId
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>2. Send to Queue:
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>   Producer calls SendMessage API
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>   - Message stored in SQS (distributed)
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>   - Returns MessageId
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>   - Message immediately available (unless delay set)
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>3. Message Available:
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>   Message in queue, waiting for consumer
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>   - Visible to consumers
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>   - Can be received by any polling consumer
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>   - Retention: 1 min to 14 days
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>4. Receive Message:
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>   Consumer calls ReceiveMessage API
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>   - Message returned to consumer
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>   - Message becomes invisible (visibility timeout starts)
+<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>   - Returns ReceiptHandle (required for deletion)
+<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>
+<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>5. Processing:
+<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>   Consumer processes message
+<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>   - Message invisible to other consumers
+<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>   - Visibility timeout counting down
+<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a>   - Can extend timeout if needed
+<a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a>
+<a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a>6. Success Path - Delete:
+<a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a>   Consumer deletes message (DeleteMessage API)
+<a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a>   - Requires ReceiptHandle
+<a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a>   - Message permanently removed from queue
+<a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a>   - Processing complete
+<a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a>
+<a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a>7. Failure Path - Timeout:
+<a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a>   Visibility timeout expires without deletion
+<a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a>   - Message becomes visible again
+<a id="__codelineno-7-42" name="__codelineno-7-42" href="#__codelineno-7-42"></a>   - Another consumer can receive it
+<a id="__codelineno-7-43" name="__codelineno-7-43" href="#__codelineno-7-43"></a>   - Receive count increments
+<a id="__codelineno-7-44" name="__codelineno-7-44" href="#__codelineno-7-44"></a>   - Retry automatically
+<a id="__codelineno-7-45" name="__codelineno-7-45" href="#__codelineno-7-45"></a>
+<a id="__codelineno-7-46" name="__codelineno-7-46" href="#__codelineno-7-46"></a>8. Max Retries - Dead Letter Queue:
+<a id="__codelineno-7-47" name="__codelineno-7-47" href="#__codelineno-7-47"></a>   After maxReceiveCount retries
+<a id="__codelineno-7-48" name="__codelineno-7-48" href="#__codelineno-7-48"></a>   - Message moved to DLQ
+<a id="__codelineno-7-49" name="__codelineno-7-49" href="#__codelineno-7-49"></a>   - Isolated for investigation
+<a id="__codelineno-7-50" name="__codelineno-7-50" href="#__codelineno-7-50"></a>   - Won&#39;t block queue
+</code></pre></div>
+<p><strong>Visibility Timeout Deep Dive:</strong></p>
+<p>The visibility timeout is critical for preventing duplicate processing:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Visibility Timeout Mechanics:
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>What It Is:
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>Duration a message is invisible after being received
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>Prevents other consumers from receiving same message
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>Allows consumer time to process without interference
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>Default: 30 seconds
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>Range: 0 seconds to 12 hours
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>Configurable: Per queue and per message
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>Timeout Flow:
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>Consumer A receives message (t=0)
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>    ↓
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>Message invisible to all consumers
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>    ↓
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>Visibility timeout = 30 seconds
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>    ↓
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>Consumer A processing (25 seconds elapsed)
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>    ↓
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>Two Possible Outcomes:
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>Success:
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>Consumer A deletes message (t=25s)
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>→ Message removed permanently
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>→ No other consumer sees it
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>Failure:
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>Timeout expires (t=30s)
+<a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a>→ Message becomes visible again
+<a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a>→ Consumer B can now receive it
+<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a>→ ReceiveCount increments
+<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a>
+<a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a>Extending Visibility Timeout:
+<a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a>
+<a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a>Scenario: Long-running task
+<a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a>- Receive message (30s timeout)
+<a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a>- Start processing (will take 60s)
+<a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a>- After 20s: Call ChangeMessageVisibility
+<a id="__codelineno-8-41" name="__codelineno-8-41" href="#__codelineno-8-41"></a>- Extend timeout by 60s
+<a id="__codelineno-8-42" name="__codelineno-8-42" href="#__codelineno-8-42"></a>- Complete processing
+<a id="__codelineno-8-43" name="__codelineno-8-43" href="#__codelineno-8-43"></a>- Delete message
+<a id="__codelineno-8-44" name="__codelineno-8-44" href="#__codelineno-8-44"></a>
+<a id="__codelineno-8-45" name="__codelineno-8-45" href="#__codelineno-8-45"></a>API:
+<a id="__codelineno-8-46" name="__codelineno-8-46" href="#__codelineno-8-46"></a>ChangeMessageVisibility(
+<a id="__codelineno-8-47" name="__codelineno-8-47" href="#__codelineno-8-47"></a>    QueueUrl=queue_url,
+<a id="__codelineno-8-48" name="__codelineno-8-48" href="#__codelineno-8-48"></a>    ReceiptHandle=receipt_handle,
+<a id="__codelineno-8-49" name="__codelineno-8-49" href="#__codelineno-8-49"></a>    VisibilityTimeout=60  # Additional seconds
+<a id="__codelineno-8-50" name="__codelineno-8-50" href="#__codelineno-8-50"></a>)
+<a id="__codelineno-8-51" name="__codelineno-8-51" href="#__codelineno-8-51"></a>
+<a id="__codelineno-8-52" name="__codelineno-8-52" href="#__codelineno-8-52"></a>Best Practice: Extend before timeout expires
+</code></pre></div>
+<p><strong>Visibility Timeout Scenarios:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Scenario 1: Too Short
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Setting: 5 seconds
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Processing: 30 seconds
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>Timeline:
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>t=0: Consumer A receives message
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>t=5: Timeout expires, message visible
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>t=5: Consumer B receives same message
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>t=30: Consumer A deletes (success)
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>t=35: Consumer B deletes (success)
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>Problem: Duplicate processing
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>Impact: Same message processed twice
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>Solution: Increase timeout or extend during processing
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>Scenario 2: Too Long
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>Setting: 10 minutes
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>Processing: 5 seconds
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>Timeline:
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>t=0: Consumer A receives message
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>t=3: Consumer A crashes (message not deleted)
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>t=10min: Timeout expires, message visible
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>t=10min: Consumer B receives message
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>Problem: Slow retry on failure
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>Impact: 10-minute delay before retry
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>Solution: Reduce timeout for faster retry
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a>
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a>Scenario 3: Optimal
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a>Setting: 2× average processing time
+<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a>Processing: Average 30s, max 50s
+<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a>
+<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a>Timeline:
+<a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a>t=0: Consumer receives message
+<a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a>t=30: Normal case - delete successfully
+<a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a>OR
+<a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a>t=60: Timeout expires (consumer failed)
+<a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a>t=60: Another consumer retries immediately
+<a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a>
+<a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a>Result: Fast retry without duplicates
+<a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a>
+<a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a>Recommended Formula:
+<a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a>Visibility Timeout = 2 × Average Processing Time
+<a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a>If processing varies widely, use ChangeMessageVisibility
+</code></pre></div>
+<h3 id="dead-letter-queues-dlq">Dead Letter Queues (DLQ)<a class="headerlink" href="#dead-letter-queues-dlq" title="Permanent link">&para;</a></h3>
+<p>Dead Letter Queues isolate problematic messages that can't be processed:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>DLQ Purpose and Architecture:
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Problem Without DLQ:
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>Poison message arrives (malformed, causes error)
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    ↓
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>Consumer receives → fails → message visible again
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>    ↓
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>Another consumer receives → fails → repeat
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    ↓
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>Infinite retry loop, blocking queue
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>Solution With DLQ:
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>Main Queue (maxReceiveCount=3)
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>    ↓
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>Message received 3 times, always fails
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>    ↓
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>Automatically moved to DLQ
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>    ↓
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>Main queue continues processing other messages
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>    ↓
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>DLQ messages investigated separately
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>Configuration:
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>Main Queue Settings:
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a>- RedrivePolicy: Points to DLQ ARN
+<a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a>- maxReceiveCount: Number of retries before DLQ
+<a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>- Recommended: 3-5 retries
+<a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>
+<a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a>DLQ Configuration:
+<a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a>- Same type as main queue (Standard or FIFO)
+<a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a>- Higher retention (14 days recommended)
+<a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a>- Separate monitoring/alerting
+<a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a>- Manual or automated analysis
+<a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a>
+<a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a>Message Flow:
+<a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a>1. Message fails (exception, timeout, etc.)
+<a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a>2. ReceiveCount increments
+<a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a>3. Message returns to queue after visibility timeout
+<a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a>4. Repeat until ReceiveCount = maxReceiveCount
+<a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a>5. Message moved to DLQ
+<a id="__codelineno-10-41" name="__codelineno-10-41" href="#__codelineno-10-41"></a>6. Alert sent (CloudWatch alarm)
+<a id="__codelineno-10-42" name="__codelineno-10-42" href="#__codelineno-10-42"></a>
+<a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a>DLQ Best Practices:
+<a id="__codelineno-10-44" name="__codelineno-10-44" href="#__codelineno-10-44"></a>
+<a id="__codelineno-10-45" name="__codelineno-10-45" href="#__codelineno-10-45"></a>Monitoring:
+<a id="__codelineno-10-46" name="__codelineno-10-46" href="#__codelineno-10-46"></a>✓ CloudWatch alarm when DLQ receives messages
+<a id="__codelineno-10-47" name="__codelineno-10-47" href="#__codelineno-10-47"></a>✓ Track ApproximateNumberOfMessagesVisible
+<a id="__codelineno-10-48" name="__codelineno-10-48" href="#__codelineno-10-48"></a>✓ Alert operations team immediately
+<a id="__codelineno-10-49" name="__codelineno-10-49" href="#__codelineno-10-49"></a>✓ Log reasons for DLQ movement
+<a id="__codelineno-10-50" name="__codelineno-10-50" href="#__codelineno-10-50"></a>
+<a id="__codelineno-10-51" name="__codelineno-10-51" href="#__codelineno-10-51"></a>Investigation:
+<a id="__codelineno-10-52" name="__codelineno-10-52" href="#__codelineno-10-52"></a>- Examine message body (what&#39;s wrong?)
+<a id="__codelineno-10-53" name="__codelineno-10-53" href="#__codelineno-10-53"></a>- Check error logs (why did it fail?)
+<a id="__codelineno-10-54" name="__codelineno-10-54" href="#__codelineno-10-54"></a>- Review message attributes
+<a id="__codelineno-10-55" name="__codelineno-10-55" href="#__codelineno-10-55"></a>- Identify pattern (all similar messages failing?)
+<a id="__codelineno-10-56" name="__codelineno-10-56" href="#__codelineno-10-56"></a>
+<a id="__codelineno-10-57" name="__codelineno-10-57" href="#__codelineno-10-57"></a>Resolution Options:
+<a id="__codelineno-10-58" name="__codelineno-10-58" href="#__codelineno-10-58"></a>1. Fix issue, reprocess manually
+<a id="__codelineno-10-59" name="__codelineno-10-59" href="#__codelineno-10-59"></a>2. Redrive messages back to main queue
+<a id="__codelineno-10-60" name="__codelineno-10-60" href="#__codelineno-10-60"></a>3. Archive for later analysis
+<a id="__codelineno-10-61" name="__codelineno-10-61" href="#__codelineno-10-61"></a>4. Delete if irrelevant
+<a id="__codelineno-10-62" name="__codelineno-10-62" href="#__codelineno-10-62"></a>
+<a id="__codelineno-10-63" name="__codelineno-10-63" href="#__codelineno-10-63"></a>Common DLQ Triggers:
+<a id="__codelineno-10-64" name="__codelineno-10-64" href="#__codelineno-10-64"></a>- Malformed message data
+<a id="__codelineno-10-65" name="__codelineno-10-65" href="#__codelineno-10-65"></a>- Missing required fields
+<a id="__codelineno-10-66" name="__codelineno-10-66" href="#__codelineno-10-66"></a>- Downstream service unavailable
+<a id="__codelineno-10-67" name="__codelineno-10-67" href="#__codelineno-10-67"></a>- Processing timeout
+<a id="__codelineno-10-68" name="__codelineno-10-68" href="#__codelineno-10-68"></a>- Business logic errors
+<a id="__codelineno-10-69" name="__codelineno-10-69" href="#__codelineno-10-69"></a>- Unexpected data types
+</code></pre></div>
+<p><strong>DLQ Patterns:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Pattern 1: Simple Retry → DLQ
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>Main Queue → Process → Success ✓
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>           ↓ Fail
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>         Retry (3×) → DLQ
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>Use Case: Most scenarios
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>Pattern 2: Multi-Stage DLQ
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>Main Queue → DLQ-1 (immediate failures)
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>           ↓
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>        Retry → DLQ-2 (persistent failures)
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>Use Case: Differentiate failure types
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>Pattern 3: DLQ Reprocessing
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>DLQ → Fix issue → Redrive to Main Queue → Reprocess
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>Use Case: Transient issues resolved
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>Redrive Process:
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>1. Fix underlying issue (deploy code fix)
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>2. Use StartMessageMoveTask API
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>3. Messages move from DLQ back to main queue
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>4. Reprocessing happens automatically
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>5. Monitor for successful processing
+</code></pre></div>
+<h3 id="amazon-sns-architecture">Amazon SNS Architecture<a class="headerlink" href="#amazon-sns-architecture" title="Permanent link">&para;</a></h3>
+<p><strong>SNS Fundamentals:</strong></p>
+<p>Amazon SNS implements publish-subscribe messaging for event distribution:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>SNS Core Concepts:
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Topic:
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>- Named communication channel
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>- Publishers send messages to topic
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>- Topic fans out to subscribers
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>- No message storage (ephemeral)
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>- Region-scoped
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>Publisher:
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>- Sends messages to topic
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>- Can be: Application, AWS service, CloudWatch alarm
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>- No knowledge of subscribers
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>- Fire-and-forget delivery
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>Subscriber:
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>- Receives messages from topic
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>- Types: SQS, Lambda, HTTP/HTTPS, Email, SMS
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>- Message delivered to all subscribers
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>- Independent processing
+<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>
+<a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>Message:
+<a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>- Subject: Optional (for email)
+<a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>- Body: JSON or text (up to 256 KB)
+<a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>- Attributes: Metadata for filtering
+<a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a>- MessageId: Unique identifier
+<a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>- Published: Immediate fanout
+<a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>
+<a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>Message Flow:
+<a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>Publisher publishes to topic
+<a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a>    ↓
+<a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a>SNS receives message
+<a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a>    ↓
+<a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a>SNS fans out to all subscribers (parallel)
+<a id="__codelineno-12-35" name="__codelineno-12-35" href="#__codelineno-12-35"></a>    ↓
+<a id="__codelineno-12-36" name="__codelineno-12-36" href="#__codelineno-12-36"></a>├─ SQS Queue 1
+<a id="__codelineno-12-37" name="__codelineno-12-37" href="#__codelineno-12-37"></a>├─ Lambda Function
+<a id="__codelineno-12-38" name="__codelineno-12-38" href="#__codelineno-12-38"></a>├─ HTTP endpoint
+<a id="__codelineno-12-39" name="__codelineno-12-39" href="#__codelineno-12-39"></a>└─ Email address
+<a id="__codelineno-12-40" name="__codelineno-12-40" href="#__codelineno-12-40"></a>
+<a id="__codelineno-12-41" name="__codelineno-12-41" href="#__codelineno-12-41"></a>Delivery: Best-effort, no guaranteed order
+</code></pre></div>
+<p><strong>SNS Subscription Types:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>1. SQS (Most Common):
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>SNS Topic → SQS Queue
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>Benefits:
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>✓ Persistent delivery (queue stores messages)
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>✓ Retry logic (SQS handles failures)
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>✓ Decoupled processing
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>✓ Multiple consumers per queue
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>Use Cases:
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>- Fanout to multiple processing systems
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>- Durable message delivery
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>- Asynchronous processing
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>- System integration
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>2. Lambda:
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>SNS Topic → Lambda Function (invoked directly)
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>Benefits:
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>✓ Immediate processing
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>✓ No infrastructure management
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>✓ Event-driven compute
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a>✓ Scales automatically
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>
+<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>Use Cases:
+<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>- Real-time processing
+<a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a>- Lightweight transformations
+<a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a>- Notification handling
+<a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a>- Event-driven workflows
+<a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a>
+<a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a>3. HTTP/HTTPS:
+<a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a>SNS Topic → Webhook endpoint
+<a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a>
+<a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a>Benefits:
+<a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a>✓ Integration with external systems
+<a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a>✓ Standard protocol
+<a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a>✓ Flexible consumers
+<a id="__codelineno-13-38" name="__codelineno-13-38" href="#__codelineno-13-38"></a>
+<a id="__codelineno-13-39" name="__codelineno-13-39" href="#__codelineno-13-39"></a>Requirements:
+<a id="__codelineno-13-40" name="__codelineno-13-40" href="#__codelineno-13-40"></a>- Publicly accessible endpoint
+<a id="__codelineno-13-41" name="__codelineno-13-41" href="#__codelineno-13-41"></a>- Endpoint must confirm subscription
+<a id="__codelineno-13-42" name="__codelineno-13-42" href="#__codelineno-13-42"></a>- Handle message signature verification
+<a id="__codelineno-13-43" name="__codelineno-13-43" href="#__codelineno-13-43"></a>
+<a id="__codelineno-13-44" name="__codelineno-13-44" href="#__codelineno-13-44"></a>Use Cases:
+<a id="__codelineno-13-45" name="__codelineno-13-45" href="#__codelineno-13-45"></a>- Third-party integrations
+<a id="__codelineno-13-46" name="__codelineno-13-46" href="#__codelineno-13-46"></a>- On-premises systems
+<a id="__codelineno-13-47" name="__codelineno-13-47" href="#__codelineno-13-47"></a>- External webhooks
+<a id="__codelineno-13-48" name="__codelineno-13-48" href="#__codelineno-13-48"></a>- Legacy system integration
+<a id="__codelineno-13-49" name="__codelineno-13-49" href="#__codelineno-13-49"></a>
+<a id="__codelineno-13-50" name="__codelineno-13-50" href="#__codelineno-13-50"></a>4. Email/Email-JSON:
+<a id="__codelineno-13-51" name="__codelineno-13-51" href="#__codelineno-13-51"></a>SNS Topic → Email address
+<a id="__codelineno-13-52" name="__codelineno-13-52" href="#__codelineno-13-52"></a>
+<a id="__codelineno-13-53" name="__codelineno-13-53" href="#__codelineno-13-53"></a>Benefits:
+<a id="__codelineno-13-54" name="__codelineno-13-54" href="#__codelineno-13-54"></a>✓ Human notifications
+<a id="__codelineno-13-55" name="__codelineno-13-55" href="#__codelineno-13-55"></a>✓ No infrastructure needed
+<a id="__codelineno-13-56" name="__codelineno-13-56" href="#__codelineno-13-56"></a>✓ Simple alerting
+<a id="__codelineno-13-57" name="__codelineno-13-57" href="#__codelineno-13-57"></a>
+<a id="__codelineno-13-58" name="__codelineno-13-58" href="#__codelineno-13-58"></a>Limitations:
+<a id="__codelineno-13-59" name="__codelineno-13-59" href="#__codelineno-13-59"></a>- Not for high-volume
+<a id="__codelineno-13-60" name="__codelineno-13-60" href="#__codelineno-13-60"></a>- Delivery not guaranteed
+<a id="__codelineno-13-61" name="__codelineno-13-61" href="#__codelineno-13-61"></a>- Manual subscription confirmation
+<a id="__codelineno-13-62" name="__codelineno-13-62" href="#__codelineno-13-62"></a>
+<a id="__codelineno-13-63" name="__codelineno-13-63" href="#__codelineno-13-63"></a>Use Cases:
+<a id="__codelineno-13-64" name="__codelineno-13-64" href="#__codelineno-13-64"></a>- Admin alerts
+<a id="__codelineno-13-65" name="__codelineno-13-65" href="#__codelineno-13-65"></a>- Low-volume notifications
+<a id="__codelineno-13-66" name="__codelineno-13-66" href="#__codelineno-13-66"></a>- Human-in-the-loop workflows
+<a id="__codelineno-13-67" name="__codelineno-13-67" href="#__codelineno-13-67"></a>
+<a id="__codelineno-13-68" name="__codelineno-13-68" href="#__codelineno-13-68"></a>5. SMS:
+<a id="__codelineno-13-69" name="__codelineno-13-69" href="#__codelineno-13-69"></a>SNS Topic → Phone number
+<a id="__codelineno-13-70" name="__codelineno-13-70" href="#__codelineno-13-70"></a>
+<a id="__codelineno-13-71" name="__codelineno-13-71" href="#__codelineno-13-71"></a>Benefits:
+<a id="__codelineno-13-72" name="__codelineno-13-72" href="#__codelineno-13-72"></a>✓ Mobile notifications
+<a id="__codelineno-13-73" name="__codelineno-13-73" href="#__codelineno-13-73"></a>✓ Global reach
+<a id="__codelineno-13-74" name="__codelineno-13-74" href="#__codelineno-13-74"></a>
+<a id="__codelineno-13-75" name="__codelineno-13-75" href="#__codelineno-13-75"></a>Costs:
+<a id="__codelineno-13-76" name="__codelineno-13-76" href="#__codelineno-13-76"></a>- Per-message charges
+<a id="__codelineno-13-77" name="__codelineno-13-77" href="#__codelineno-13-77"></a>- Varies by country
+<a id="__codelineno-13-78" name="__codelineno-13-78" href="#__codelineno-13-78"></a>
+<a id="__codelineno-13-79" name="__codelineno-13-79" href="#__codelineno-13-79"></a>Use Cases:
+<a id="__codelineno-13-80" name="__codelineno-13-80" href="#__codelineno-13-80"></a>- Critical alerts
+<a id="__codelineno-13-81" name="__codelineno-13-81" href="#__codelineno-13-81"></a>- MFA codes
+<a id="__codelineno-13-82" name="__codelineno-13-82" href="#__codelineno-13-82"></a>- Status updates
+<a id="__codelineno-13-83" name="__codelineno-13-83" href="#__codelineno-13-83"></a>
+<a id="__codelineno-13-84" name="__codelineno-13-84" href="#__codelineno-13-84"></a>6. Platform Endpoints (Mobile Push):
+<a id="__codelineno-13-85" name="__codelineno-13-85" href="#__codelineno-13-85"></a>SNS Topic → Mobile device
+<a id="__codelineno-13-86" name="__codelineno-13-86" href="#__codelineno-13-86"></a>
+<a id="__codelineno-13-87" name="__codelineno-13-87" href="#__codelineno-13-87"></a>Platforms:
+<a id="__codelineno-13-88" name="__codelineno-13-88" href="#__codelineno-13-88"></a>- APNs (Apple)
+<a id="__codelineno-13-89" name="__codelineno-13-89" href="#__codelineno-13-89"></a>- FCM (Google Firebase)
+<a id="__codelineno-13-90" name="__codelineno-13-90" href="#__codelineno-13-90"></a>- ADM (Amazon Device Messaging)
+<a id="__codelineno-13-91" name="__codelineno-13-91" href="#__codelineno-13-91"></a>
+<a id="__codelineno-13-92" name="__codelineno-13-92" href="#__codelineno-13-92"></a>Use Cases:
+<a id="__codelineno-13-93" name="__codelineno-13-93" href="#__codelineno-13-93"></a>- Mobile app notifications
+<a id="__codelineno-13-94" name="__codelineno-13-94" href="#__codelineno-13-94"></a>- Push notifications
+<a id="__codelineno-13-95" name="__codelineno-13-95" href="#__codelineno-13-95"></a>- Device-specific messaging
+</code></pre></div>
+<p><strong>SNS Standard vs FIFO:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>SNS Standard Topic:
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>Characteristics:
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>- Unlimited throughput
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>- Best-effort message ordering
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>- At-least-once delivery (possible duplicates)
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>- Supports all subscription types
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>Use Cases:
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>- Event notifications
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>- Broadcasting updates
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>- High-volume messaging
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>SNS FIFO Topic:
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>Characteristics:
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>- Limited throughput (300 TPS, 3,000 with batching)
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>- Strict message ordering
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>- Exactly-once message delivery
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>- Only supports SQS FIFO subscriptions
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a>Requirements:
+<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>- Topic name must end with .fifo
+<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>- Subscribers must be SQS FIFO queues
+<a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>- Message groups for ordering
+<a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a>
+<a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a>Use Cases:
+<a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a>- Event sourcing
+<a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>- Ordered state changes
+<a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a>- Transaction coordination
+<a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a>
+<a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a>Comparison:
+<a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a>Standard: High throughput, any subscriber
+<a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a>FIFO: Guaranteed order, only SQS FIFO
+</code></pre></div>
+<h3 id="fanout-pattern-sns-sqs">Fanout Pattern (SNS → SQS)<a class="headerlink" href="#fanout-pattern-sns-sqs" title="Permanent link">&para;</a></h3>
+<p>The fanout pattern is one of the most powerful architectures in AWS:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Architecture:
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>                    SNS Topic
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>                        ↓
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>        ┌───────────────┼───────────────┐
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>        ↓               ↓               ↓
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    SQS Queue 1    SQS Queue 2    SQS Queue 3
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>        ↓               ↓               ↓
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>   Consumer A      Consumer B      Consumer C
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    (Email)        (Analytics)      (Audit)
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>Benefits:
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>Loose Coupling:
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>- Publisher doesn&#39;t know consumers exist
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>- Add/remove consumers without changing publisher
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>- Consumers scale independently
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>Parallel Processing:
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>- All queues receive message simultaneously
+<a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>- Independent processing speeds
+<a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>- No blocking between consumers
+<a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>
+<a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>Durability:
+<a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a>- SQS stores messages persistently
+<a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a>- Retry logic per queue
+<a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a>- DLQ per consumer
+<a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a>- No message loss
+<a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a>
+<a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a>Scalability:
+<a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a>- Each queue scales independently
+<a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a>- Multiple consumers per queue
+<a id="__codelineno-15-33" name="__codelineno-15-33" href="#__codelineno-15-33"></a>- Auto-scaling based on queue depth
+<a id="__codelineno-15-34" name="__codelineno-15-34" href="#__codelineno-15-34"></a>
+<a id="__codelineno-15-35" name="__codelineno-15-35" href="#__codelineno-15-35"></a>Real-World Example: E-Commerce Order
+<a id="__codelineno-15-36" name="__codelineno-15-36" href="#__codelineno-15-36"></a>
+<a id="__codelineno-15-37" name="__codelineno-15-37" href="#__codelineno-15-37"></a>Order Placed → SNS Topic → Fanout
+<a id="__codelineno-15-38" name="__codelineno-15-38" href="#__codelineno-15-38"></a>    ↓
+<a id="__codelineno-15-39" name="__codelineno-15-39" href="#__codelineno-15-39"></a>├─ Payment Queue → Process payment
+<a id="__codelineno-15-40" name="__codelineno-15-40" href="#__codelineno-15-40"></a>├─ Inventory Queue → Update stock
+<a id="__codelineno-15-41" name="__codelineno-15-41" href="#__codelineno-15-41"></a>├─ Email Queue → Send confirmation
+<a id="__codelineno-15-42" name="__codelineno-15-42" href="#__codelineno-15-42"></a>├─ Warehouse Queue → Prepare shipment
+<a id="__codelineno-15-43" name="__codelineno-15-43" href="#__codelineno-15-43"></a>├─ Analytics Queue → Update metrics
+<a id="__codelineno-15-44" name="__codelineno-15-44" href="#__codelineno-15-44"></a>└─ Audit Queue → Log transaction
+<a id="__codelineno-15-45" name="__codelineno-15-45" href="#__codelineno-15-45"></a>
+<a id="__codelineno-15-46" name="__codelineno-15-46" href="#__codelineno-15-46"></a>Advantages:
+<a id="__codelineno-15-47" name="__codelineno-15-47" href="#__codelineno-15-47"></a>- Order placement returns immediately
+<a id="__codelineno-15-48" name="__codelineno-15-48" href="#__codelineno-15-48"></a>- Each operation independent
+<a id="__codelineno-15-49" name="__codelineno-15-49" href="#__codelineno-15-49"></a>- Failure in email doesn&#39;t block inventory
+<a id="__codelineno-15-50" name="__codelineno-15-50" href="#__codelineno-15-50"></a>- Each system scales separately
+<a id="__codelineno-15-51" name="__codelineno-15-51" href="#__codelineno-15-51"></a>- Easy to add new workflows
+<a id="__codelineno-15-52" name="__codelineno-15-52" href="#__codelineno-15-52"></a>
+<a id="__codelineno-15-53" name="__codelineno-15-53" href="#__codelineno-15-53"></a>Without Fanout (Synchronous):
+<a id="__codelineno-15-54" name="__codelineno-15-54" href="#__codelineno-15-54"></a>Order → Payment → Inventory → Email → Warehouse → Analytics → Audit
+<a id="__codelineno-15-55" name="__codelineno-15-55" href="#__codelineno-15-55"></a>Problems:
+<a id="__codelineno-15-56" name="__codelineno-15-56" href="#__codelineno-15-56"></a>✗ Slow (sum of all latencies)
+<a id="__codelineno-15-57" name="__codelineno-15-57" href="#__codelineno-15-57"></a>✗ Any failure blocks everything
+<a id="__codelineno-15-58" name="__codelineno-15-58" href="#__codelineno-15-58"></a>✗ Complex error handling
+<a id="__codelineno-15-59" name="__codelineno-15-59" href="#__codelineno-15-59"></a>✗ Cannot scale independently
+</code></pre></div>
+<p><strong>Fanout Configuration:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Setup Steps:
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>1. Create SNS Topic:
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>   - Standard or FIFO
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>   - Access policy allowing publish
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>2. Create SQS Queues (one per consumer):
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>   - Configure queue settings
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>   - Set DLQ for each queue
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>   - Configure visibility timeout
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>3. Subscribe Queues to Topic:
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>   - Create subscription
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>   - SNS sends to SQS automatically
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>   - Set subscription filter policy (optional)
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>4. Grant Permissions:
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>   - SQS queue policy allows SNS to send
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>   - Automatic when subscribing via console
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>   - Manual via queue policy for CLI/API
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>
+<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a>Queue Policy Example:
+<a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a>{
+<a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a>  &quot;Effect&quot;: &quot;Allow&quot;,
+<a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a>  &quot;Principal&quot;: {&quot;Service&quot;: &quot;sns.amazonaws.com&quot;},
+<a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a>  &quot;Action&quot;: &quot;sqs:SendMessage&quot;,
+<a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a>  &quot;Resource&quot;: &quot;queue-arn&quot;,
+<a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a>  &quot;Condition&quot;: {
+<a id="__codelineno-16-29" name="__codelineno-16-29" href="#__codelineno-16-29"></a>    &quot;ArnEquals&quot;: {
+<a id="__codelineno-16-30" name="__codelineno-16-30" href="#__codelineno-16-30"></a>      &quot;aws:SourceArn&quot;: &quot;topic-arn&quot;
+<a id="__codelineno-16-31" name="__codelineno-16-31" href="#__codelineno-16-31"></a>    }
+<a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a>  }
+<a id="__codelineno-16-33" name="__codelineno-16-33" href="#__codelineno-16-33"></a>}
+<a id="__codelineno-16-34" name="__codelineno-16-34" href="#__codelineno-16-34"></a>
+<a id="__codelineno-16-35" name="__codelineno-16-35" href="#__codelineno-16-35"></a>Message Format in SQS:
+<a id="__codelineno-16-36" name="__codelineno-16-36" href="#__codelineno-16-36"></a>SQS receives SNS message wrapper:
+<a id="__codelineno-16-37" name="__codelineno-16-37" href="#__codelineno-16-37"></a>{
+<a id="__codelineno-16-38" name="__codelineno-16-38" href="#__codelineno-16-38"></a>  &quot;Type&quot;: &quot;Notification&quot;,
+<a id="__codelineno-16-39" name="__codelineno-16-39" href="#__codelineno-16-39"></a>  &quot;MessageId&quot;: &quot;...&quot;,
+<a id="__codelineno-16-40" name="__codelineno-16-40" href="#__codelineno-16-40"></a>  &quot;TopicArn&quot;: &quot;...&quot;,
+<a id="__codelineno-16-41" name="__codelineno-16-41" href="#__codelineno-16-41"></a>  &quot;Subject&quot;: &quot;...&quot;,
+<a id="__codelineno-16-42" name="__codelineno-16-42" href="#__codelineno-16-42"></a>  &quot;Message&quot;: &quot;actual message body&quot;,
+<a id="__codelineno-16-43" name="__codelineno-16-43" href="#__codelineno-16-43"></a>  &quot;Timestamp&quot;: &quot;...&quot;,
+<a id="__codelineno-16-44" name="__codelineno-16-44" href="#__codelineno-16-44"></a>  &quot;MessageAttributes&quot;: {...}
+<a id="__codelineno-16-45" name="__codelineno-16-45" href="#__codelineno-16-45"></a>}
+<a id="__codelineno-16-46" name="__codelineno-16-46" href="#__codelineno-16-46"></a>
+<a id="__codelineno-16-47" name="__codelineno-16-47" href="#__codelineno-16-47"></a>Consumer must parse SNS wrapper to get actual message
+</code></pre></div>
+<h3 id="message-filtering">Message Filtering<a class="headerlink" href="#message-filtering" title="Permanent link">&para;</a></h3>
+<p>SNS message filtering reduces unnecessary message delivery:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Problem Without Filtering:
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>All subscribers receive all messages
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>Consumers filter at application level
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>Wasted processing, bandwidth, costs
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>Solution With Filtering:
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>Subscribers define filter policy
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>SNS only delivers matching messages
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>Reduces unnecessary deliveries
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>Filter Policy Syntax:
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>String Matching:
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>{&quot;eventType&quot;: [&quot;order_placed&quot;, &quot;order_cancelled&quot;]}
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>Receives only messages with eventType = &quot;order_placed&quot; OR &quot;order_cancelled&quot;
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>Numeric Matching:
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>{&quot;price&quot;: [{&quot;numeric&quot;: [&quot;&gt;=&quot;, 100]}]}
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>Receives only messages with price &gt;= 100
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>
+<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>Prefix Matching:
+<a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>{&quot;region&quot;: [{&quot;prefix&quot;: &quot;us-&quot;}]}
+<a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>Receives messages with region starting with &quot;us-&quot;
+<a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>
+<a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>Anything-but:
+<a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>{&quot;environment&quot;: [{&quot;anything-but&quot;: [&quot;production&quot;]}]}
+<a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>Receives messages where environment is NOT production
+<a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a>
+<a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a>Exists:
+<a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a>{&quot;userId&quot;: [{&quot;exists&quot;: true}]}
+<a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a>Receives only messages that have userId attribute
+<a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a>
+<a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a>Complex Example:
+<a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a>{
+<a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a>  &quot;eventType&quot;: [&quot;order_placed&quot;],
+<a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a>  &quot;region&quot;: [{&quot;prefix&quot;: &quot;us-&quot;}],
+<a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a>  &quot;amount&quot;: [{&quot;numeric&quot;: [&quot;&gt;&quot;, 100]}],
+<a id="__codelineno-17-38" name="__codelineno-17-38" href="#__codelineno-17-38"></a>  &quot;priority&quot;: [&quot;high&quot;, &quot;urgent&quot;]
+<a id="__codelineno-17-39" name="__codelineno-17-39" href="#__codelineno-17-39"></a>}
+<a id="__codelineno-17-40" name="__codelineno-17-40" href="#__codelineno-17-40"></a>
+<a id="__codelineno-17-41" name="__codelineno-17-41" href="#__codelineno-17-41"></a>Matches messages with:
+<a id="__codelineno-17-42" name="__codelineno-17-42" href="#__codelineno-17-42"></a>- eventType = &quot;order_placed&quot; AND
+<a id="__codelineno-17-43" name="__codelineno-17-43" href="#__codelineno-17-43"></a>- region starts with &quot;us-&quot; AND
+<a id="__codelineno-17-44" name="__codelineno-17-44" href="#__codelineno-17-44"></a>- amount &gt; 100 AND
+<a id="__codelineno-17-45" name="__codelineno-17-45" href="#__codelineno-17-45"></a>- priority = &quot;high&quot; OR &quot;urgent&quot;
+<a id="__codelineno-17-46" name="__codelineno-17-46" href="#__codelineno-17-46"></a>
+<a id="__codelineno-17-47" name="__codelineno-17-47" href="#__codelineno-17-47"></a>Real-World Example:
+<a id="__codelineno-17-48" name="__codelineno-17-48" href="#__codelineno-17-48"></a>
+<a id="__codelineno-17-49" name="__codelineno-17-49" href="#__codelineno-17-49"></a>SNS Topic: &quot;orders&quot;
+<a id="__codelineno-17-50" name="__codelineno-17-50" href="#__codelineno-17-50"></a>Message Attributes:
+<a id="__codelineno-17-51" name="__codelineno-17-51" href="#__codelineno-17-51"></a>- eventType: order_placed
+<a id="__codelineno-17-52" name="__codelineno-17-52" href="#__codelineno-17-52"></a>- region: us-west-2
+<a id="__codelineno-17-53" name="__codelineno-17-53" href="#__codelineno-17-53"></a>- amount: 250
+<a id="__codelineno-17-54" name="__codelineno-17-54" href="#__codelineno-17-54"></a>- priority: high
+<a id="__codelineno-17-55" name="__codelineno-17-55" href="#__codelineno-17-55"></a>
+<a id="__codelineno-17-56" name="__codelineno-17-56" href="#__codelineno-17-56"></a>Subscriber A (Analytics):
+<a id="__codelineno-17-57" name="__codelineno-17-57" href="#__codelineno-17-57"></a>Filter: {&quot;eventType&quot;: [&quot;order_placed&quot;]}
+<a id="__codelineno-17-58" name="__codelineno-17-58" href="#__codelineno-17-58"></a>Result: Receives message ✓
+<a id="__codelineno-17-59" name="__codelineno-17-59" href="#__codelineno-17-59"></a>
+<a id="__codelineno-17-60" name="__codelineno-17-60" href="#__codelineno-17-60"></a>Subscriber B (High-Value Orders):
+<a id="__codelineno-17-61" name="__codelineno-17-61" href="#__codelineno-17-61"></a>Filter: {&quot;amount&quot;: [{&quot;numeric&quot;: [&quot;&gt;=&quot;, 1000]}]}
+<a id="__codelineno-17-62" name="__codelineno-17-62" href="#__codelineno-17-62"></a>Result: Does NOT receive (250 &lt; 1000) ✗
+<a id="__codelineno-17-63" name="__codelineno-17-63" href="#__codelineno-17-63"></a>
+<a id="__codelineno-17-64" name="__codelineno-17-64" href="#__codelineno-17-64"></a>Subscriber C (US Orders):
+<a id="__codelineno-17-65" name="__codelineno-17-65" href="#__codelineno-17-65"></a>Filter: {&quot;region&quot;: [{&quot;prefix&quot;: &quot;us-&quot;}]}
+<a id="__codelineno-17-66" name="__codelineno-17-66" href="#__codelineno-17-66"></a>Result: Receives message ✓
+<a id="__codelineno-17-67" name="__codelineno-17-67" href="#__codelineno-17-67"></a>
+<a id="__codelineno-17-68" name="__codelineno-17-68" href="#__codelineno-17-68"></a>Benefits:
+<a id="__codelineno-17-69" name="__codelineno-17-69" href="#__codelineno-17-69"></a>✓ Reduced message processing
+<a id="__codelineno-17-70" name="__codelineno-17-70" href="#__codelineno-17-70"></a>✓ Lower costs (fewer SQS messages)
+<a id="__codelineno-17-71" name="__codelineno-17-71" href="#__codelineno-17-71"></a>✓ Less network bandwidth
+<a id="__codelineno-17-72" name="__codelineno-17-72" href="#__codelineno-17-72"></a>✓ Faster consumer processing
+<a id="__codelineno-17-73" name="__codelineno-17-73" href="#__codelineno-17-73"></a>✓ Simpler consumer logic
+</code></pre></div>
+<h3 id="long-polling-vs-short-polling">Long Polling vs Short Polling<a class="headerlink" href="#long-polling-vs-short-polling" title="Permanent link">&para;</a></h3>
+<p>Polling strategy significantly impacts costs and latency:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Short Polling (Default):
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>Behavior:
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>- ReceiveMessage returns immediately
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>- Returns available messages or empty response
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>- Consumer polls repeatedly
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>Timeline:
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>t=0ms: Send ReceiveMessage request
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>t=50ms: Response received (empty or with messages)
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>t=100ms: Send ReceiveMessage request again
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>t=150ms: Response received
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>(Continuous polling)
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>Characteristics:
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>- Immediate response
+<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>- Can receive no messages (empty response)
+<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>- High request volume
+<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>- More expensive
+<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a>
+<a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>Costs:
+<a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>Example: Poll every 100ms = 10 requests/second
+<a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>10 req/s × 3600s × 24h = 864,000 requests/day
+<a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a>Cost: ~$0.35/day ($10.50/month) for one consumer
+<a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a>
+<a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a>Issues:
+<a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a>✗ Empty responses count toward quota
+<a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a>✗ High API request costs
+<a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a>✗ CPU usage for constant polling
+<a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a>✗ Network bandwidth wasted
+<a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a>
+<a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a>Long Polling:
+<a id="__codelineno-18-33" name="__codelineno-18-33" href="#__codelineno-18-33"></a>
+<a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a>Behavior:
+<a id="__codelineno-18-35" name="__codelineno-18-35" href="#__codelineno-18-35"></a>- ReceiveMessage waits for messages (1-20 seconds)
+<a id="__codelineno-18-36" name="__codelineno-18-36" href="#__codelineno-18-36"></a>- Returns when message arrives or timeout
+<a id="__codelineno-18-37" name="__codelineno-18-37" href="#__codelineno-18-37"></a>- Reduces empty responses
+<a id="__codelineno-18-38" name="__codelineno-18-38" href="#__codelineno-18-38"></a>
+<a id="__codelineno-18-39" name="__codelineno-18-39" href="#__codelineno-18-39"></a>Timeline:
+<a id="__codelineno-18-40" name="__codelineno-18-40" href="#__codelineno-18-40"></a>t=0ms: Send ReceiveMessage (WaitTimeSeconds=20)
+<a id="__codelineno-18-41" name="__codelineno-18-41" href="#__codelineno-18-41"></a>t=5000ms: Message arrives, response sent
+<a id="__codelineno-18-42" name="__codelineno-18-42" href="#__codelineno-18-42"></a>OR
+<a id="__codelineno-18-43" name="__codelineno-18-43" href="#__codelineno-18-43"></a>t=20000ms: Timeout, empty response sent
+<a id="__codelineno-18-44" name="__codelineno-18-44" href="#__codelineno-18-44"></a>
+<a id="__codelineno-18-45" name="__codelineno-18-45" href="#__codelineno-18-45"></a>Characteristics:
+<a id="__codelineno-18-46" name="__codelineno-18-46" href="#__codelineno-18-46"></a>- Wait for messages (up to 20 seconds)
+<a id="__codelineno-18-47" name="__codelineno-18-47" href="#__codelineno-18-47"></a>- Fewer empty responses
+<a id="__codelineno-18-48" name="__codelineno-18-48" href="#__codelineno-18-48"></a>- More efficient
+<a id="__codelineno-18-49" name="__codelineno-18-49" href="#__codelineno-18-49"></a>- Lower cost
+<a id="__codelineno-18-50" name="__codelineno-18-50" href="#__codelineno-18-50"></a>
+<a id="__codelineno-18-51" name="__codelineno-18-51" href="#__codelineno-18-51"></a>Configuration:
+<a id="__codelineno-18-52" name="__codelineno-18-52" href="#__codelineno-18-52"></a>Queue Setting:
+<a id="__codelineno-18-53" name="__codelineno-18-53" href="#__codelineno-18-53"></a>ReceiveMessageWaitTimeSeconds = 20 (enable long polling)
+<a id="__codelineno-18-54" name="__codelineno-18-54" href="#__codelineno-18-54"></a>
+<a id="__codelineno-18-55" name="__codelineno-18-55" href="#__codelineno-18-55"></a>Per-Request:
+<a id="__codelineno-18-56" name="__codelineno-18-56" href="#__codelineno-18-56"></a>WaitTimeSeconds parameter in ReceiveMessage API
+<a id="__codelineno-18-57" name="__codelineno-18-57" href="#__codelineno-18-57"></a>
+<a id="__codelineno-18-58" name="__codelineno-18-58" href="#__codelineno-18-58"></a>Costs:
+<a id="__codelineno-18-59" name="__codelineno-18-59" href="#__codelineno-18-59"></a>Example: Wait 20 seconds per request
+<a id="__codelineno-18-60" name="__codelineno-18-60" href="#__codelineno-18-60"></a>Messages arrive every 5 seconds on average
+<a id="__codelineno-18-61" name="__codelineno-18-61" href="#__codelineno-18-61"></a>= ~4 messages per request
+<a id="__codelineno-18-62" name="__codelineno-18-62" href="#__codelineno-18-62"></a>= Fewer API calls, more messages per call
+<a id="__codelineno-18-63" name="__codelineno-18-63" href="#__codelineno-18-63"></a>
+<a id="__codelineno-18-64" name="__codelineno-18-64" href="#__codelineno-18-64"></a>Savings: 90-99% reduction in API calls
+<a id="__codelineno-18-65" name="__codelineno-18-65" href="#__codelineno-18-65"></a>
+<a id="__codelineno-18-66" name="__codelineno-18-66" href="#__codelineno-18-66"></a>Benefits:
+<a id="__codelineno-18-67" name="__codelineno-18-67" href="#__codelineno-18-67"></a>✓ Fewer empty responses
+<a id="__codelineno-18-68" name="__codelineno-18-68" href="#__codelineno-18-68"></a>✓ Lower costs (fewer API calls)
+<a id="__codelineno-18-69" name="__codelineno-18-69" href="#__codelineno-18-69"></a>✓ Reduced latency (immediate when message arrives)
+<a id="__codelineno-18-70" name="__codelineno-18-70" href="#__codelineno-18-70"></a>✓ Less CPU usage
+<a id="__codelineno-18-71" name="__codelineno-18-71" href="#__codelineno-18-71"></a>✓ Better resource utilization
+<a id="__codelineno-18-72" name="__codelineno-18-72" href="#__codelineno-18-72"></a>
+<a id="__codelineno-18-73" name="__codelineno-18-73" href="#__codelineno-18-73"></a>Recommendation:
+<a id="__codelineno-18-74" name="__codelineno-18-74" href="#__codelineno-18-74"></a>Always use long polling (set WaitTimeSeconds=20)
+<a id="__codelineno-18-75" name="__codelineno-18-75" href="#__codelineno-18-75"></a>Only use short polling if immediate response required
+</code></pre></div>
+<h3 id="batch-operations">Batch Operations<a class="headerlink" href="#batch-operations" title="Permanent link">&para;</a></h3>
+<p>Batching significantly improves performance and reduces costs:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Individual Operations:
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>Send 10 messages:
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>for i in range(10):
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>    sqs.send_message(QueueUrl=url, MessageBody=body)
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>Result: 10 API calls
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>Cost: 10 requests charged
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>Time: 10 × latency
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>Batch Operations:
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>Send 10 messages:
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>sqs.send_message_batch(
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>    QueueUrl=url,
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>    Entries=[
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>        {&#39;Id&#39;: &#39;1&#39;, &#39;MessageBody&#39;: &#39;msg1&#39;},
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>        {&#39;Id&#39;: &#39;2&#39;, &#39;MessageBody&#39;: &#39;msg2&#39;},
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>        ...
+<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>        {&#39;Id&#39;: &#39;10&#39;, &#39;MessageBody&#39;: &#39;msg10&#39;}
+<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>    ]
+<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>)
+<a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>
+<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>Result: 1 API call
+<a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>Cost: 1 request charged (90% savings)
+<a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>Time: 1 × latency (10× faster)
+<a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a>
+<a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a>Batch Limits:
+<a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a>
+<a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a>SendMessageBatch:
+<a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a>- Up to 10 messages per request
+<a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a>- Maximum 256 KB total payload
+<a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a>- Returns success/failure per message
+<a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a>
+<a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a>ReceiveMessage:
+<a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a>- MaxNumberOfMessages=10 (up to 10)
+<a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a>- Returns 1-10 messages
+<a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a>- Use with long polling
+<a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a>
+<a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a>DeleteMessageBatch:
+<a id="__codelineno-19-41" name="__codelineno-19-41" href="#__codelineno-19-41"></a>- Up to 10 messages per request
+<a id="__codelineno-19-42" name="__codelineno-19-42" href="#__codelineno-19-42"></a>- Requires ReceiptHandle for each
+<a id="__codelineno-19-43" name="__codelineno-19-43" href="#__codelineno-19-43"></a>- Returns success/failure per message
+<a id="__codelineno-19-44" name="__codelineno-19-44" href="#__codelineno-19-44"></a>
+<a id="__codelineno-19-45" name="__codelineno-19-45" href="#__codelineno-19-45"></a>ChangeMessageVisibilityBatch:
+<a id="__codelineno-19-46" name="__codelineno-19-46" href="#__codelineno-19-46"></a>- Up to 10 messages per request
+<a id="__codelineno-19-47" name="__codelineno-19-47" href="#__codelineno-19-47"></a>- Extend timeout for multiple messages
+<a id="__codelineno-19-48" name="__codelineno-19-48" href="#__codelineno-19-48"></a>- Efficient for long-running tasks
+<a id="__codelineno-19-49" name="__codelineno-19-49" href="#__codelineno-19-49"></a>
+<a id="__codelineno-19-50" name="__codelineno-19-50" href="#__codelineno-19-50"></a>Cost Comparison:
+<a id="__codelineno-19-51" name="__codelineno-19-51" href="#__codelineno-19-51"></a>
+<a id="__codelineno-19-52" name="__codelineno-19-52" href="#__codelineno-19-52"></a>Scenario: 1 million messages/day
+<a id="__codelineno-19-53" name="__codelineno-19-53" href="#__codelineno-19-53"></a>
+<a id="__codelineno-19-54" name="__codelineno-19-54" href="#__codelineno-19-54"></a>Without Batching:
+<a id="__codelineno-19-55" name="__codelineno-19-55" href="#__codelineno-19-55"></a>1,000,000 SendMessage calls
+<a id="__codelineno-19-56" name="__codelineno-19-56" href="#__codelineno-19-56"></a>Cost: 1M × $0.40/million = $0.40
+<a id="__codelineno-19-57" name="__codelineno-19-57" href="#__codelineno-19-57"></a>
+<a id="__codelineno-19-58" name="__codelineno-19-58" href="#__codelineno-19-58"></a>With Batching (10 messages/batch):
+<a id="__codelineno-19-59" name="__codelineno-19-59" href="#__codelineno-19-59"></a>100,000 SendMessageBatch calls
+<a id="__codelineno-19-60" name="__codelineno-19-60" href="#__codelineno-19-60"></a>Cost: 100K × $0.40/million = $0.04
+<a id="__codelineno-19-61" name="__codelineno-19-61" href="#__codelineno-19-61"></a>
+<a id="__codelineno-19-62" name="__codelineno-19-62" href="#__codelineno-19-62"></a>Savings: $0.36/day = $131/year (90% reduction)
+<a id="__codelineno-19-63" name="__codelineno-19-63" href="#__codelineno-19-63"></a>
+<a id="__codelineno-19-64" name="__codelineno-19-64" href="#__codelineno-19-64"></a>Best Practices:
+<a id="__codelineno-19-65" name="__codelineno-19-65" href="#__codelineno-19-65"></a>✓ Always batch when possible
+<a id="__codelineno-19-66" name="__codelineno-19-66" href="#__codelineno-19-66"></a>✓ Handle partial failures in batch
+<a id="__codelineno-19-67" name="__codelineno-19-67" href="#__codelineno-19-67"></a>✓ Monitor successful vs failed messages
+<a id="__codelineno-19-68" name="__codelineno-19-68" href="#__codelineno-19-68"></a>✓ Batch size: 10 for optimal efficiency
+<a id="__codelineno-19-69" name="__codelineno-19-69" href="#__codelineno-19-69"></a>✓ Consider payload size limits
+</code></pre></div>
+<h2 id="hands-on-implementation">Hands-On Implementation<a class="headerlink" href="#hands-on-implementation" title="Permanent link">&para;</a></h2>
+<h3 id="lab-1-sqs-standard-queue-with-dlq">Lab 1: SQS Standard Queue with DLQ<a class="headerlink" href="#lab-1-sqs-standard-queue-with-dlq" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="n">sqs</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;sqs&#39;</span><span class="p">)</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="c1"># Create dead-letter queue</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="n">dlq_response</span> <span class="o">=</span> <span class="n">sqs</span><span class="o">.</span><span class="n">create_queue</span><span class="p">(</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>    <span class="n">QueueName</span><span class="o">=</span><span class="s1">&#39;orders-dlq&#39;</span><span class="p">,</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>    <span class="n">Attributes</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>        <span class="s1">&#39;MessageRetentionPeriod&#39;</span><span class="p">:</span> <span class="s1">&#39;1209600&#39;</span>  <span class="c1"># 14 days</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>    <span class="p">}</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="p">)</span>
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="n">dlq_url</span> <span class="o">=</span> <span class="n">dlq_response</span><span class="p">[</span><span class="s1">&#39;QueueUrl&#39;</span><span class="p">]</span>
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="n">dlq_arn</span> <span class="o">=</span> <span class="n">sqs</span><span class="o">.</span><span class="n">get_queue_attributes</span><span class="p">(</span>
+<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>    <span class="n">QueueUrl</span><span class="o">=</span><span class="n">dlq_url</span><span class="p">,</span>
+<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>    <span class="n">AttributeNames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;QueueArn&#39;</span><span class="p">]</span>
+<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="p">)[</span><span class="s1">&#39;Attributes&#39;</span><span class="p">][</span><span class="s1">&#39;QueueArn&#39;</span><span class="p">]</span>
+<a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>
+<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a><span class="c1"># Create main queue with DLQ</span>
+<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="n">main_response</span> <span class="o">=</span> <span class="n">sqs</span><span class="o">.</span><span class="n">create_queue</span><span class="p">(</span>
+<a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>    <span class="n">QueueName</span><span class="o">=</span><span class="s1">&#39;orders&#39;</span><span class="p">,</span>
+<a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>    <span class="n">Attributes</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>        <span class="s1">&#39;VisibilityTimeout&#39;</span><span class="p">:</span> <span class="s1">&#39;60&#39;</span><span class="p">,</span>
+<a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>        <span class="s1">&#39;ReceiveMessageWaitTimeSeconds&#39;</span><span class="p">:</span> <span class="s1">&#39;20&#39;</span><span class="p">,</span>  <span class="c1"># Long polling</span>
+<a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>        <span class="s1">&#39;RedrivePolicy&#39;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+<a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>            <span class="s1">&#39;deadLetterTargetArn&#39;</span><span class="p">:</span> <span class="n">dlq_arn</span><span class="p">,</span>
+<a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a>            <span class="s1">&#39;maxReceiveCount&#39;</span><span class="p">:</span> <span class="s1">&#39;3&#39;</span>
+<a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a>        <span class="p">})</span>
+<a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a>    <span class="p">}</span>
+<a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a><span class="p">)</span>
+<a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a><span class="n">queue_url</span> <span class="o">=</span> <span class="n">main_response</span><span class="p">[</span><span class="s1">&#39;QueueUrl&#39;</span><span class="p">]</span>
+</code></pre></div>
+<h3 id="lab-2-sns-topic-with-sqs-fanout">Lab 2: SNS Topic with SQS Fanout<a class="headerlink" href="#lab-2-sns-topic-with-sqs-fanout" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">sns</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;sns&#39;</span><span class="p">)</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">sqs</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;sqs&#39;</span><span class="p">)</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># Create SNS topic</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="n">topic_response</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">create_topic</span><span class="p">(</span><span class="n">Name</span><span class="o">=</span><span class="s1">&#39;order-events&#39;</span><span class="p">)</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="n">topic_arn</span> <span class="o">=</span> <span class="n">topic_response</span><span class="p">[</span><span class="s1">&#39;TopicArn&#39;</span><span class="p">]</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="c1"># Create SQS queues</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="n">queues</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;email-queue&#39;</span><span class="p">,</span> <span class="s1">&#39;analytics-queue&#39;</span><span class="p">,</span> <span class="s1">&#39;audit-queue&#39;</span><span class="p">]</span>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="k">for</span> <span class="n">queue_name</span> <span class="ow">in</span> <span class="n">queues</span><span class="p">:</span>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>    <span class="n">queue_url</span> <span class="o">=</span> <span class="n">sqs</span><span class="o">.</span><span class="n">create_queue</span><span class="p">(</span><span class="n">QueueName</span><span class="o">=</span><span class="n">queue_name</span><span class="p">)[</span><span class="s1">&#39;QueueUrl&#39;</span><span class="p">]</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>    <span class="n">queue_arn</span> <span class="o">=</span> <span class="n">sqs</span><span class="o">.</span><span class="n">get_queue_attributes</span><span class="p">(</span>
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>        <span class="n">QueueUrl</span><span class="o">=</span><span class="n">queue_url</span><span class="p">,</span>
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>        <span class="n">AttributeNames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;QueueArn&#39;</span><span class="p">]</span>
+<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>    <span class="p">)[</span><span class="s1">&#39;Attributes&#39;</span><span class="p">][</span><span class="s1">&#39;QueueArn&#39;</span><span class="p">]</span>
+<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>
+<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>    <span class="c1"># Subscribe queue to topic</span>
+<a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a>    <span class="n">sns</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span>
+<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>        <span class="n">TopicArn</span><span class="o">=</span><span class="n">topic_arn</span><span class="p">,</span>
+<a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>        <span class="n">Protocol</span><span class="o">=</span><span class="s1">&#39;sqs&#39;</span><span class="p">,</span>
+<a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>        <span class="n">Endpoint</span><span class="o">=</span><span class="n">queue_arn</span>
+<a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>    <span class="p">)</span>
+</code></pre></div>
+<h2 id="tips-best-practices">Tips \&amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Permanent link">&para;</a></h2>
+<p><strong>Tip 1: Always Use Long Polling</strong>
+Set ReceiveMessageWaitTimeSeconds=20 to reduce costs by 90% and improve efficiency.</p>
+<p><strong>Tip 2: Implement Idempotency</strong>
+Always design consumers to handle duplicate messages safely (use unique IDs, check before processing).</p>
+<p><strong>Tip 3: Set Appropriate Visibility Timeout</strong>
+Use 2× average processing time; extend during processing if needed to prevent duplicates.</p>
+<p><strong>Tip 4: Use Batch Operations</strong>
+Batch send/receive/delete reduces costs by 90% and improves throughput 10×.</p>
+<p><strong>Tip 5: Monitor DLQ Continuously</strong>
+Set CloudWatch alarm on DLQ message count—messages in DLQ indicate processing failures.</p>
+<h2 id="pitfalls-remedies">Pitfalls \&amp; Remedies<a class="headerlink" href="#pitfalls-remedies" title="Permanent link">&para;</a></h2>
+<p><strong>Pitfall 1: Message Duplication (Standard Queue)</strong>
+<em>Problem:</em> Same message processed multiple times causing incorrect state.
+<em>Solution:</em> Implement idempotency using unique message IDs, database constraints, or conditional writes.</p>
+<p><strong>Pitfall 2: Visibility Timeout Too Short</strong>
+<em>Problem:</em> Timeout expires before processing completes, causing duplicate processing.
+<em>Solution:</em> Set timeout to 2× average processing time, use ChangeMessageVisibility for long tasks.</p>
+<p><strong>Pitfall 3: No Dead-Letter Queue</strong>
+<em>Problem:</em> Poison messages retry forever, blocking queue and hiding processing failures.
+<em>Solution:</em> Always configure DLQ with maxReceiveCount=3-5, monitor DLQ for messages.</p>
+<h2 id="review-questions">Review Questions<a class="headerlink" href="#review-questions" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>SQS maximum message size?</strong> 256 KB</li>
+<li><strong>SQS message retention range?</strong> 1 minute to 14 days (default 4 days)</li>
+<li><strong>FIFO queue throughput?</strong> 300 TPS (3,000 with batching)</li>
+<li><strong>SNS message delivery guarantee?</strong> At-least-once (best-effort for standard)</li>
+<li><strong>Long polling wait time range?</strong> 0-20 seconds</li>
+</ol>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
