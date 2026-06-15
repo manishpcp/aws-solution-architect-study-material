@@ -58,7 +58,7 @@ flowchart TB
     EC2App1 --> ElastiCache
     EC2App2 --> ElastiCache
     S3 -.-> CF
-
+```
 
 COMPONENTS:
 
