@@ -434,11 +434,12 @@ VPC Peering creates a networking connection between two VPCs, enabling routing u
 
 **Transitive Routing Example:**
 
-```
-VPC A (10.0.0.0/16) ←→ VPC B (10.1.0.0/16) ←→ VPC C (10.2.0.0/16)
-
-VPC A cannot communicate with VPC C through VPC B
-Direct peering required: VPC A ←→ VPC C
+```mermaid
+flowchart LR
+    A["VPC A\n10.0.0.0/16"] <-->|peered| B["VPC B\n10.1.0.0/16"]
+    B <-->|peered| C["VPC C\n10.2.0.0/16"]
+    A -.->|"✗ NOT routable\nthrough VPC B"| C
+    A <-->|"direct peer required"| C
 ```
 
 **Peering Limitations:**
@@ -473,29 +474,28 @@ AWS Transit Gateway acts as a cloud router, connecting multiple VPCs and on-prem
 
 **VPC Peering Full Mesh (5 VPCs):**
 
-```
-Connections required: n(n-1)/2 = 5(4)/2 = 10 peering connections
-
-VPC1 ←→ VPC2
-VPC1 ←→ VPC3
-VPC1 ←→ VPC4
-VPC1 ←→ VPC5
-VPC2 ←→ VPC3
-VPC2 ←→ VPC4
-VPC2 ←→ VPC5
-VPC3 ←→ VPC4
-VPC3 ←→ VPC5
-VPC4 ←→ VPC5
+```mermaid
+flowchart TD
+    V1((VPC 1)) <--> V2((VPC 2)) & V3((VPC 3)) & V4((VPC 4)) & V5((VPC 5))
+    V2 <--> V3 & V4 & V5
+    V3 <--> V4 & V5
+    V4 <--> V5
+    note["10 peering connections required\nn×(n-1)÷2 = 5×4÷2"]
+    style note fill:#fff3cd,stroke:#ffc107
 ```
 
 **Transit Gateway Hub-Spoke (5 VPCs):**
 
-```
-Connections required: n = 5 attachments
-
-      TGW
-    /  |  \
-VPC1 VPC2 VPC3 VPC4 VPC5
+```mermaid
+flowchart TD
+    TGW((Transit\nGateway))
+    TGW --- V1((VPC 1))
+    TGW --- V2((VPC 2))
+    TGW --- V3((VPC 3))
+    TGW --- V4((VPC 4))
+    TGW --- V5((VPC 5))
+    note["5 attachments — transitive routing included"]
+    style note fill:#d4edda,stroke:#28a745
 ```
 
 **Transit Gateway Attachments:**
@@ -701,23 +701,30 @@ VPCs can be dual-stack, supporting both IPv4 and IPv6.
 
 **Architecture Overview:**
 
-```
-VPC: 10.0.0.0/16
-
-Public Tier (Web):
-- 10.0.1.0/24 (us-east-1a)
-- 10.0.2.0/24 (us-east-1b)
-- 10.0.3.0/24 (us-east-1c)
-
-Application Tier:
-- 10.0.11.0/24 (us-east-1a)
-- 10.0.12.0/24 (us-east-1b)
-- 10.0.13.0/24 (us-east-1c)
-
-Database Tier:
-- 10.0.21.0/24 (us-east-1a)
-- 10.0.22.0/24 (us-east-1b)
-- 10.0.23.0/24 (us-east-1c)
+```mermaid
+flowchart TB
+    IGW[Internet Gateway]
+    subgraph VPC["VPC 10.0.0.0/16"]
+        subgraph AZ_A["us-east-1a"]
+            PUB_A["Public 10.0.1.0/24"] --> NAT_A[NAT GW]
+            APP_A["App 10.0.11.0/24"]
+            DB_A["DB 10.0.21.0/24"]
+        end
+        subgraph AZ_B["us-east-1b"]
+            PUB_B["Public 10.0.2.0/24"] --> NAT_B[NAT GW]
+            APP_B["App 10.0.12.0/24"]
+            DB_B["DB 10.0.22.0/24"]
+        end
+        subgraph AZ_C["us-east-1c"]
+            PUB_C["Public 10.0.3.0/24"] --> NAT_C[NAT GW]
+            APP_C["App 10.0.13.0/24"]
+            DB_C["DB 10.0.23.0/24"]
+        end
+    end
+    IGW <--> PUB_A & PUB_B & PUB_C
+    NAT_A --> APP_A & DB_A
+    NAT_B --> APP_B & DB_B
+    NAT_C --> APP_C & DB_C
 ```
 
 
@@ -1734,20 +1741,12 @@ For enterprise environments with multiple VPCs and hybrid connectivity, a hub-an
 
 **Architecture Components:**
 
-```
-                    Transit Gateway
-                          |
-        +-----------------+------------------+
-        |                 |                  |
-    Shared Services     Production        Development
-        VPC               VPC                VPC
-        |                                     |
-    (DNS, AD,          (Applications)      (Test Env)
-     Monitoring)                             
-        |                                     
-   VPN/Direct Connect
-        |
-   On-Premises
+```mermaid
+flowchart TB
+    OnPrem[On-Premises] <-->|"VPN / Direct Connect"| TGW((Transit\nGateway))
+    TGW --- SS["Shared Services VPC\n(DNS, AD, Monitoring)"]
+    TGW --- Prod["Production VPC\n(Applications)"]
+    TGW --- Dev["Development VPC\n(Test Env)"]
 ```
 
 **Implementation Strategy:**
@@ -1985,9 +1984,12 @@ VPN_DX_ID=$(aws ec2 create-vpn-connection \
 
 Route all internet-bound traffic through a security VPC for inspection:
 
-```
-Production VPC → Transit Gateway → Security VPC (Firewall) → Internet
-Development VPC → Transit Gateway → Security VPC (Firewall) → Internet
+```mermaid
+flowchart LR
+    ProdVPC[Production VPC] --> TGW((Transit\nGateway))
+    DevVPC[Development VPC] --> TGW
+    TGW --> SecVPC["Security VPC\n(Firewall / NGFW)"]
+    SecVPC --> Internet((Internet))
 ```
 
 **Implementation:**

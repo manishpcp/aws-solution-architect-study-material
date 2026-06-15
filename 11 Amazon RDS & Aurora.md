@@ -125,15 +125,18 @@ Multi-AZ provides high availability through synchronous replication to a standby
 
 **Architecture:**
 
-```
-Primary AZ (us-east-1a)
-├── Primary RDS Instance
-├── Synchronous replication
-└── DNS endpoint (remains same during failover)
-        ↓
-Standby AZ (us-east-1b)
-├── Standby RDS Instance (not accessible)
-└── Automatic failover on failure
+```mermaid
+flowchart TB
+    subgraph AZ_A["Primary AZ — us-east-1a"]
+        PRI["Primary RDS Instance\n(reads + writes)"]
+        DNS["DNS Endpoint\n(unchanged on failover)"]
+    end
+    subgraph AZ_B["Standby AZ — us-east-1b"]
+        STB["Standby RDS Instance\n(not accessible)"]
+    end
+    PRI -- "Synchronous replication" --> STB
+    DNS --> PRI
+    STB -. "Auto-promotes on failure" .-> DNS
 ```
 
 **How It Works:**
@@ -177,19 +180,12 @@ Read replicas enable horizontal scaling for read-heavy workloads through asynchr
 
 **Architecture:**
 
-```
-Primary Instance (us-east-1a)
-├── Accepts writes
-└── Asynchronous replication
-        ↓
-Read Replica 1 (us-east-1b)
-├── Read-only
-├── Own endpoint
-└── Replication lag: typically < 1 second
-        ↓
-Read Replica 2 (us-east-1c)
-├── Read-only
-└── Can be promoted to standalone
+```mermaid
+flowchart LR
+    APP[Application] -- writes --> PRI
+    APP -- reads --> RR1 & RR2
+    PRI["Primary\nus-east-1a"] -- "async replication" --> RR1["Read Replica 1\nus-east-1b\n(read-only)"]
+    PRI -- "async replication" --> RR2["Read Replica 2\nus-east-1c\n(promotable)"]
 ```
 
 **Key Features:**
@@ -262,14 +258,16 @@ Aurora is purpose-built for the cloud with a distributed, fault-tolerant storage
 
 **Storage Architecture:**
 
-```
-Aurora Instance (Compute)
-        ↓
-Aurora Shared Storage (10 GB - 128 TB)
-├── Replication: 6 copies across 3 AZs
-├── Self-healing: Continuous data verification
-├── Automatic growth: 10 GB increments
-└── Quorum-based: Write requires 4/6 acknowledgments
+```mermaid
+flowchart TB
+    C1["Aurora Instance (Compute)"] --> S
+    subgraph S["Aurora Shared Storage — 10 GB to 128 TB"]
+        AZ1["AZ-1\ncopy 1 + 2"]
+        AZ2["AZ-2\ncopy 3 + 4"]
+        AZ3["AZ-3\ncopy 5 + 6"]
+    end
+    S -- "Write quorum: 4/6" --> W[Write ACK]
+    S -- "Read quorum: 3/6" --> R[Read ACK]
 ```
 
 **Key Innovations:**
@@ -291,15 +289,13 @@ Aurora Shared Storage (10 GB - 128 TB)
 
 **Aurora Cluster:**
 
-```
-Aurora Cluster Endpoint (writes) → Primary Instance (writer)
-                                           ↓
-                                    Shared Storage
-                                           ↑
-Reader Endpoint (reads) → [Round-robin across read replicas]
-├── Read Replica 1
-├── Read Replica 2
-└── Read Replica 3 (up to 15 total)
+```mermaid
+flowchart TB
+    CE["Cluster Endpoint\n(writes)"] --> PW["Primary Writer"]
+    RE["Reader Endpoint\n(round-robin reads)"] --> RR1["Read Replica 1"]
+    RE --> RR2["Read Replica 2"]
+    RE --> RR3["Read Replica 3\n(up to 15 total)"]
+    PW & RR1 & RR2 & RR3 <--> SS[("Shared Storage")]
 ```
 
 **Aurora Endpoints:**
@@ -333,17 +329,11 @@ Aurora Serverless automatically scales compute capacity based on application dem
 
 **Architecture:**
 
-```
-Application
-    ↓
-Aurora Serverless Endpoint (proxy)
-    ↓
-Serverless Pool (ACUs - Aurora Capacity Units)
-├── Scales 0-256 ACUs (MySQL), 0.5-256 ACUs (PostgreSQL)
-├── Auto-pause when idle
-└── Auto-resume on connection
-    ↓
-Aurora Storage (shared)
+```mermaid
+flowchart TB
+    APP[Application] --> EP["Serverless Endpoint (proxy)"]
+    EP --> POOL["ACU Pool\n0.5–128 ACUs (v2)\nAuto-pause when idle\nAuto-resume on connect"]
+    POOL --> SS[("Aurora Shared Storage")]
 ```
 
 **Key Features:**
@@ -467,15 +457,21 @@ aws rds backtrack-db-cluster \
 
 **Network Isolation:**
 
-```
-VPC (10.0.0.0/16)
-├── Public Subnet (DMZ)
-│   └── Application Servers
-│
-└── Private Subnet (Database tier)
-    ├── RDS Instances (no internet access)
-    ├── Security Group: Only allow from app tier
-    └── Network ACL: Additional layer
+```mermaid
+flowchart TB
+    subgraph VPC["VPC 10.0.0.0/16"]
+        subgraph PUB["Public Subnet (DMZ)"]
+            APP[Application Servers]
+        end
+        subgraph PRIV["Private Subnet (Database tier)"]
+            RDS["RDS Instances\n(no internet access)"]
+            SG["Security Group:\nAllow port 5432 from App tier only"]
+            NACL[Network ACL]
+        end
+    end
+    APP -- "port 5432" --> RDS
+    SG -. enforces .-> RDS
+    NACL -. subnet boundary .-> PRIV
 ```
 
 **Encryption:**
@@ -903,15 +899,13 @@ RDS Proxy manages connection pooling at the AWS infrastructure level.
 
 **Architecture:**
 
-```
-Application Instances (100s)
-        ↓
-RDS Proxy (connection pooling)
-├── Manages connection lifecycle
-├── Connection multiplexing
-└── Automatic failover handling
-        ↓
-RDS Database (limited connections)
+```mermaid
+flowchart TB
+    A1[App Instance 1] & A2[App Instance 2] & AN[App Instance N] --> PROXY
+    subgraph PROXY["RDS Proxy"]
+        POOL["Connection Pool\n+ Multiplexing\n+ Failover handling"]
+    end
+    PROXY --> DB[("RDS Database")]
 ```
 
 **Benefits:**
@@ -1147,45 +1141,38 @@ analyze_performance_insights('production-postgres')
 
 **Multi-AZ with Read Replicas:**
 
-```
-Primary AZ (us-east-1a)
-├── Primary Instance (writes + reads)
-└── Synchronous replication to standby
-
-Standby AZ (us-east-1b)
-└── Standby Instance (automatic failover)
-
-Read Scaling AZs
-├── Read Replica 1 (us-east-1a) - Read traffic
-├── Read Replica 2 (us-east-1b) - Read traffic
-└── Read Replica 3 (us-east-1c) - Read traffic
-
-Benefits:
-- HA: Multi-AZ failover
-- Performance: Distributed reads
-- DR: Can promote replica to different region
+```mermaid
+flowchart TB
+    APP[Application] -- writes --> PRI
+    APP -- reads --> RR1 & RR2 & RR3
+    subgraph AZ_A["us-east-1a"]
+        PRI["Primary (writes)"] -- sync --> STB
+        RR1["Read Replica 1"]
+    end
+    subgraph AZ_B["us-east-1b"]
+        STB["Standby (auto-failover)"]
+        RR2["Read Replica 2"]
+    end
+    subgraph AZ_C["us-east-1c"]
+        RR3["Read Replica 3"]
+    end
 ```
 
 **Aurora HA Architecture:**
 
-```
-Aurora Cluster (99.99% availability)
-├── Primary Instance (Writer)
-│   └── Failover target: Highest priority replica
-│
-├── Reader Tier (Auto-scaling)
-│   ├── Replica 1 (Priority 1) - Failover candidate
-│   ├── Replica 2 (Priority 2)
-│   └── Replica 3-15 (as needed)
-│
-└── Storage Layer
-    └── 6-way replication across 3 AZs
-
-Failover Priority:
-1. Same AZ as primary
-2. Highest failover priority (tier 0-15)
-3. Largest instance size
-4. Newest replica
+```mermaid
+flowchart TB
+    subgraph Cluster["Aurora Cluster — 99.99% availability"]
+        PRI["Primary Writer\n(failover → highest priority replica)"]
+        RR1["Replica 1 — Priority 1\n(failover candidate)"]
+        RR2["Replica 2 — Priority 2"]
+        RRN["Replica 3–15 (as needed)"]
+    end
+    PRI & RR1 & RR2 & RRN <--> SL
+    subgraph SL["Storage Layer"]
+        direction LR
+        C1["AZ-1\n2 copies"] & C2["AZ-2\n2 copies"] & C3["AZ-3\n2 copies"]
+    end
 ```
 
 **Automated Failover Testing:**
@@ -1295,21 +1282,24 @@ test_failover('production-postgres')
 
 **RTO and RPO Planning:**
 
-```
-Recovery Time Objective (RTO): How quickly can we recover?
-Recovery Point Objective (RPO): How much data loss is acceptable?
+| Strategy | RTO | RPO | Cost |
+|---|---|---|---|
+| Multi-AZ | 60–120 sec | 0 (sync) | 2× base |
+| Read Replica | Minutes | Seconds | 1.5× base |
+| Cross-Region | 5–15 min | Seconds–min | 2× base |
+| Snapshot | Hours | Snapshot age | Low |
+| Aurora Global | < 1 min | < 1 sec | 2.5× base |
 
-Strategy Matrix:
-
-┌─────────────────┬──────────────┬──────────────┬─────────────┐
-│ Strategy        │ RTO          │ RPO          │ Cost        │
-├─────────────────┼──────────────┼──────────────┼─────────────┤
-│ Multi-AZ        │ 60-120 sec   │ 0 (sync)     │ 2x base     │
-│ Read Replica    │ Minutes      │ Seconds      │ 1.5x base   │
-│ Cross-Region    │ 5-15 min     │ Seconds-min  │ 2x base     │
-│ Snapshot        │ Hours        │ Snapshot age │ Low         │
-│ Aurora Global   │ <1 min       │ <1 sec       │ 2.5x base   │
-└─────────────────┴──────────────┴──────────────┴─────────────┘
+```mermaid
+quadrantChart
+    title RTO vs RPO by DR Strategy
+    x-axis Low RPO --> High RPO
+    y-axis Low RTO --> High RTO
+    Aurora Global DB: [0.05, 0.05]
+    Multi-AZ: [0.05, 0.25]
+    Read Replica: [0.15, 0.35]
+    Cross-Region Replica: [0.2, 0.45]
+    Snapshot Restore: [0.9, 0.9]
 ```
 
 **Disaster Recovery Automation:**

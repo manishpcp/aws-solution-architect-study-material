@@ -12,7 +12,7 @@ Whether you are preparing for **AWS SAA-C03**, **SA-Pro**, upgrading skills for 
 You will find:
 
 - ✔️ All AWS core services explained with clarity  
-- ✔️ 35+ chapters and 4 appendices covering architecture, design, migration, security & networking  
+- ✔️ 37 chapters + README as Chapter 0, plus 4 appendices covering architecture, design, migration, security & networking  
 - ✔️ Cheat sheets, diagrams, templates & troubleshooting guides  
 - ✔️ Real-world patterns, best practices, and AWS-recommended architectures  
 - ✔️ Clean, structured markdown files ready to read or reuse in your projects  
@@ -26,6 +26,7 @@ If you want to **truly understand AWS and become an elite cloud architect**, thi
 
 ### **Core AWS Services**
 
+0. README (Chapter 0)  
 1. AWS Global Infrastructure  
 2. Identity and Access Management (IAM)  
 3. Virtual Private Cloud (VPC)  
