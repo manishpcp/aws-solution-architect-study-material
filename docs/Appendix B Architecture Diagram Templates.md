@@ -11,66 +11,54 @@ SCALABILITY: Auto Scaling across all tiers
 
 ARCHITECTURE DIAGRAM:
 
-                        ┌─────────────────┐
-                        │   Route 53      │
-                        │   DNS Service   │
-                        └────────┬────────┘
-                                 │
-                        ┌────────▼────────┐
-                        │   CloudFront    │
-                        │   CDN Layer     │
-                        └────────┬────────┘
-                                 │
-    ┌────────────────────────────┴────────────────────────────┐
-    │                         VPC                              │
-    │  ┌───────────────────────────────────────────────────┐  │
-    │  │               Public Subnets                      │  │
-    │  │  ┌──────────────────┐    ┌──────────────────┐   │  │
-    │  │  │   AZ-1a          │    │   AZ-1b          │   │  │
-    │  │  │  ┌────────────┐  │    │  ┌────────────┐  │   │  │
-    │  │  │  │    ALB     │  │    │  │    ALB     │  │   │  │
-    │  │  │  └─────┬──────┘  │    │  └─────┬──────┘  │   │  │
-    │  │  └────────┼─────────┘    └────────┼─────────┘   │  │
-    │  └───────────┼──────────────────────┼──────────────┘  │
-    │              │                      │                  │
-    │  ┌───────────┼──────────────────────┼──────────────┐  │
-    │  │   Private Subnets (Web Tier)     │              │  │
-    │  │  ┌────────▼─────────┐    ┌───────▼──────────┐  │  │
-    │  │  │   AZ-1a          │    │   AZ-1b          │  │  │
-    │  │  │  ┌────────────┐  │    │  ┌────────────┐  │  │  │
-    │  │  │  │ EC2 (Web)  │  │    │  │ EC2 (Web)  │  │  │  │
-    │  │  │  │ Auto Scale │  │    │  │ Auto Scale │  │  │  │
-    │  │  │  └─────┬──────┘  │    │  └─────┬──────┘  │  │  │
-    │  │  └────────┼─────────┘    └────────┼─────────┘  │  │
-    │  └───────────┼──────────────────────┼──────────────┘  │
-    │              │                      │                  │
-    │  ┌───────────┼──────────────────────┼──────────────┐  │
-    │  │   Private Subnets (App Tier)     │              │  │
-    │  │  ┌────────▼─────────┐    ┌───────▼──────────┐  │  │
-    │  │  │   AZ-1a          │    │   AZ-1b          │  │  │
-    │  │  │  ┌────────────┐  │    │  ┌────────────┐  │  │  │
-    │  │  │  │ EC2 (App)  │  │    │  │ EC2 (App)  │  │  │  │
-    │  │  │  │ Auto Scale │  │    │  │ Auto Scale │  │  │  │
-    │  │  │  └─────┬──────┘  │    │  └─────┬──────┘  │  │  │
-    │  │  └────────┼─────────┘    └────────┼─────────┘  │  │
-    │  └───────────┼──────────────────────┼──────────────┘  │
-    │              │                      │                  │
-    │  ┌───────────┴──────────────────────┴──────────────┐  │
-    │  │   Private Subnets (Data Tier)                   │  │
-    │  │           ┌──────────────────┐                  │  │
-    │  │           │   RDS Multi-AZ   │                  │  │
-    │  │           │   Primary + SB   │                  │  │
-    │  │           └──────────────────┘                  │  │
-    │  │           ┌──────────────────┐                  │  │
-    │  │           │  ElastiCache     │                  │  │
-    │  │           │  Redis Cluster   │                  │  │
-    │  │           └──────────────────┘                  │  │
-    │  └─────────────────────────────────────────────────┘  │
-    │                                                        │
-    │  ┌─────────────────────────────────────────────────┐  │
-    │  │          S3 Buckets (Static Assets)             │  │
-    │  └─────────────────────────────────────────────────┘  │
-    └────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph External["External Layer"]
+        R53[Route 53\nDNS Service] --> CF[CloudFront\nCDN Layer]
+    end
+
+    subgraph VPC["VPC"]
+        subgraph PublicSubnets["Public Subnets"]
+            direction TB
+            ALB1[ALB\nAZ-1a]
+            ALB2[ALB\nAZ-1b]
+        end
+
+        subgraph PrivateWeb["Private Subnets (Web Tier)"]
+            direction TB
+            EC2Web1[EC2\nWeb\nAuto Scale\nAZ-1a]
+            EC2Web2[EC2\nWeb\nAuto Scale\nAZ-1b]
+        end
+
+        subgraph PrivateApp["Private Subnets (App Tier)"]
+            direction TB
+            EC2App1[EC2\nApp\nAuto Scale\nAZ-1a]
+            EC2App2[EC2\nApp\nAuto Scale\nAZ-1b]
+        end
+
+        subgraph PrivateDB["Private Subnets (Data Tier)"]
+            direction TB
+            RDS[RDS Multi-AZ\nPrimary + Standby]
+            ElastiCache[ElastiCache\nRedis Cluster]
+        end
+
+        subgraph S3["S3 Buckets (Static Assets)"]
+            S3[Static Assets]
+        end
+    end
+
+    CF --> ALB1
+    CF --> ALB2
+    ALB1 --> EC2Web1
+    ALB2 --> EC2Web2
+    EC2Web1 --> EC2App1
+    EC2Web2 --> EC2App2
+    EC2App1 --> RDS
+    EC2App2 --> RDS
+    EC2App1 --> ElastiCache
+    EC2App2 --> ElastiCache
+    S3 -.-> CF
+```
 
 COMPONENTS:
 
@@ -185,46 +173,36 @@ SCALABILITY: Automatic, unlimited
 
 ARCHITECTURE DIAGRAM:
 
-                    ┌─────────────────┐
-                    │   Route 53      │
-                    └────────┬────────┘
-                             │
-                    ┌────────▼────────┐
-                    │   CloudFront    │
-                    │  (CDN + S3)     │
-                    └────────┬────────┘
-                             │
-        ┌────────────────────┴────────────────────┐
-        │                                         │
-   ┌────▼────┐                            ┌──────▼──────┐
-   │   S3    │                            │ API Gateway │
-   │ Static  │                            │   REST API  │
-   │ Website │                            └──────┬──────┘
-   └─────────┘                                   │
-                                                 │
-                        ┌────────────────────────┼────────────────────────┐
-                        │                        │                        │
-                  ┌─────▼─────┐          ┌──────▼──────┐         ┌───────▼──────┐
-                  │  Lambda   │          │   Lambda    │         │   Lambda     │
-                  │  Auth     │          │   Users     │         │   Orders     │
-                  │ (Cognito) │          │   Service   │         │   Service    │
-                  └───────────┘          └──────┬──────┘         └───────┬──────┘
-                                                │                        │
-                                         ┌──────▼──────┐         ┌───────▼──────┐
-                                         │  DynamoDB   │         │  DynamoDB    │
-                                         │ Users Table │         │ Orders Table │
-                                         └─────────────┘         └──────────────┘
+```mermaid
+flowchart LR
+    subgraph Internet["Public Internet"]
+        R53[Route 53] --> CF[CloudFront\n(CDN + S3)]
+        CF -->|Static content| S3[S3\nStatic Website]
+    end
 
-                    ┌─────────────────────────────────────┐
-                    │        Supporting Services          │
-                    ├─────────────────────────────────────┤
-                    │  • Cognito (User Authentication)    │
-                    │  • S3 (Static Hosting)              │
-                    │  • SQS (Async Processing)           │
-                    │  • SNS (Notifications)              │
-                    │  • CloudWatch (Logging/Monitoring)  │
-                    │  • X-Ray (Distributed Tracing)      │
-                    └─────────────────────────────────────┘
+    subgraph AWS["AWS Cloud"]
+        CF -->|API calls| API[API Gateway\nREST API]
+        
+        API -->|Auth|/auth[Lambda Auth\n(Cognito)]
+        API -->|Users|/users[Lambda Users\nService]
+        API -->|Orders|/orders[Lambda Orders\nService]
+        
+        /users --> DDBUsers[DynamoDB\nUsers Table]
+        /orders --> DDBOrders[DynamoDB\nOrders Table]
+        
+        subgraph Supporting["Supporting Services"]
+            Cognito[Cognito\nUser Auth]
+            SQS[SQS\nAsync Processing]
+            SNS[SNS\nNotifications]
+            CW[CloudWatch\nMonitoring]
+            XRay[X-Ray\nTracing]
+        end
+    end
+
+    /auth -.-> Cognito
+    /users -.-> SQS
+    /orders -.-> SNS
+```
 
 COMPONENTS:
 
@@ -432,66 +410,57 @@ SCALABILITY: Burst to cloud
 
 ARCHITECTURE DIAGRAM:
 
-┌─────────────────────────────────────────────────────────────┐
-│                    ON-PREMISES DATA CENTER                  │
-├─────────────────────────────────────────────────────────────┤
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │   Active     │  │   Database   │  │   Storage    │     │
-│  │  Directory   │  │   Servers    │  │   Arrays     │     │
-│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘     │
-│         │                 │                  │              │
-│  ┌──────▼─────────────────▼──────────────────▼───────┐     │
-│  │           On-Premises Network                     │     │
-│  │         (10.0.0.0/8 - Private)                   │     │
-│  └──────┬────────────────────────────────────────────┘     │
-│         │                                                   │
-│  ┌──────▼──────┐                                           │
-│  │  Firewall   │                                           │
-│  └──────┬──────┘                                           │
-└─────────┼────────────────────────────────────────────────┘
-          │
-    ┌─────▼──────┐
-    │  Direct    │ 1 Gbps Dedicated Connection
-    │  Connect   │ (Private, Consistent Bandwidth)
-    └─────┬──────┘
-          │
-┌─────────▼────────────────────────────────────────────────────┐
-│                         AWS CLOUD                            │
-│  ┌───────────────────────────────────────────────────────┐  │
-│  │              Virtual Private Gateway                  │  │
-│  └────────────────────────┬──────────────────────────────┘  │
-│                           │                                  │
-│  ┌────────────────────────▼──────────────────────────────┐  │
-│  │                Transit Gateway                        │  │
-│  │            (Hub for VPC Connectivity)                 │  │
-│  └─┬────────────────────────────────────────────────┬────┘  │
-│    │                                                │         │
-│  ┌─▼──────────────────┐               ┌────────────▼────┐   │
-│  │  Production VPC    │               │  Shared Svcs VPC│   │
-│  │  (172.16.0.0/16)   │               │  (192.168.0.0/16)│   │
-│  │                    │               │                 │   │
-│  │  ┌──────────────┐  │               │  ┌───────────┐  │   │
-│  │  │   Web Tier   │  │               │  │ AD Conn   │  │   │
-│  │  │  (Public)    │  │               │  │ (LDAP)    │  │   │
-│  │  └──────┬───────┘  │               │  └───────────┘  │   │
-│  │         │          │               │  ┌───────────┐  │   │
-│  │  ┌──────▼───────┐  │               │  │  DNS      │  │   │
-│  │  │   App Tier   │  │               │  │ (Route53) │  │   │
-│  │  │  (Private)   │  │               │  └───────────┘  │   │
-│  │  └──────┬───────┘  │               │  ┌───────────┐  │   │
-│  │         │          │               │  │ Storage   │  │   │
-│  │  ┌──────▼───────┐  │               │  │  Gateway  │  │   │
-│  │  │   RDS        │  │               │  └───────────┘  │   │
-│  │  │  (Hybrid)    │  │               └─────────────────┘   │
-│  │  └──────────────┘  │                                     │
-│  └────────────────────┘                                     │
-│                                                              │
-│  ┌───────────────────────────────────────────────────────┐  │
-│  │              S3 (Hybrid Cloud Storage)                │  │
-│  │  • File Gateway (NFS/SMB to on-premises)             │  │
-│  │  • Cross-region replication for DR                   │  │
-│  └───────────────────────────────────────────────────────┘  │
-└──────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph OnPrem["On-Premises Data Center"]
+        subgraph OnPremServices["On-Premises Network (10.0.0.0/8)"]
+            ActiveDir[Active Directory]
+            DBServers[Database Servers]
+            StorageArr[Storage Arrays]
+            Firewall[Firewall]
+        end
+    end
+
+    subgraph Connectivity["Connectivity Layer"]
+        DirCon[Direct Connect\n1 Gbps Dedicated Connection]
+    end
+
+    subgraph AWS["AWS Cloud"]
+        subgraph VPC["Virtual Private Gateway"]
+            TGW[Transit Gateway\nHub for VPC Connectivity]
+        end
+
+        subgraph ProdVPC["Production VPC (172.16.0.0/16)"]
+            direction TB
+            ALB[Application Load Balancer]
+            EC2Web[EC2 Web Tier]
+            EC2App[EC2 App Tier]
+            RDS[RDS Aurora\n(Hybrid Mode)]
+        end
+
+        subgraph SharedVPC["Shared Services VPC (192.168.0.0/16)"]
+            direction TB
+            ADConn[AD Connector\n(LDAP)]
+            Route53Hosted[Route 53 Resolver]
+            StorageGW[Storage Gateway]
+        end
+
+        S3[S3\n(Hybrid Cloud Storage)]
+    end
+
+    ActiveDir <--> Firewall
+    DBServers <--> Firewall
+    StorageArr <--> Firewall
+    Firewall --- DirCon
+    
+    DirCon --- TGW
+    TGW --- ProdVPC
+    TGW --- SharedVPC
+    
+    ProdVPC === RDS
+    SharedVPC --- StorageGW
+    SharedVPC --- ADConn
+```
 
 CONNECTIVITY OPTIONS:
 
@@ -509,12 +478,12 @@ Backup: Site-to-Site VPN
 
 Architecture:
 On-Premises → Direct Connect → Direct Connect Gateway
-                    ↓
-              Transit Gateway
-                    ↓
-        ┌───────────┴───────────┐
-        ↓                       ↓
-  Production VPC        Shared Services VPC
+                     ↓
+               Transit Gateway
+                     ↓
+         ┌───────────┴───────────┐
+         ↓                       ↓
+   Production VPC        Shared Services VPC
 
 Backup VPN Path:
 On-Premises → VPN → Virtual Private Gateway → Transit Gateway
@@ -654,49 +623,69 @@ SCALABILITY: Global scale, region-independent
 
 ARCHITECTURE DIAGRAM:
 
-                        ┌─────────────────┐
-                        │   Route 53      │
-                        │  Geo-proximity  │
-                        │  Routing Policy │
-                        └────────┬────────┘
-                                 │
-            ┌────────────────────┼────────────────────┐
-            │                    │                    │
-   ┌────────▼────────┐  ┌────────▼────────┐  ┌───────▼─────────┐
-   │ Global          │  │ Global          │  │ Global          │
-   │ Accelerator     │  │ Accelerator     │  │ Accelerator     │
-   │ (us-east-1)     │  │ (eu-west-1)     │  │ (ap-south-1)    │
-   └────────┬────────┘  └────────┬────────┘  └────────┬────────┘
-            │                    │                     │
-┌───────────▼─────────┐ ┌────────▼─────────┐ ┌────────▼─────────┐
-│   US-EAST-1 VPC     │ │  EU-WEST-1 VPC   │ │ AP-SOUTH-1 VPC   │
-├─────────────────────┤ ├──────────────────┤ ├──────────────────┤
-│  ┌───────────────┐  │ │ ┌───────────────┐│ │ ┌───────────────┐│
-│  │     ALB       │  │ │ │     ALB       ││ │ │     ALB       ││
-│  └───────┬───────┘  │ │ └───────┬───────┘│ │ └───────┬───────┘│
-│          │          │ │         │        │ │         │        │
-│  ┌───────▼───────┐  │ │ ┌───────▼───────┐│ │ ┌───────▼───────┐│
-│  │  ECS Fargate  │  │ │ │  ECS Fargate  ││ │ │  ECS Fargate  ││
-│  │  (10-100)     │  │ │ │  (10-100)     ││ │ │  (10-100)     ││
-│  └───────┬───────┘  │ │ └───────┬───────┘│ │ └───────┬───────┘│
-│          │          │ │         │        │ │         │        │
-│  ┌───────▼───────┐  │ │ ┌───────▼───────┐│ │ ┌───────▼───────┐│
-│  │    Aurora     │  │ │ │    Aurora     ││ │ │    Aurora     ││
-│  │  Global DB    │  │ │ │  Global DB    ││ │ │  Global DB    ││
-│  │  (Primary)    │  │ │ │  (Secondary)  ││ │ │  (Secondary)  ││
-│  └───────┬───────┘  │ │ └───────┬───────┘│ │ └───────┬───────┘│
-│          │          │ │         │        │ │         │        │
-└──────────┼──────────┘ └─────────┼────────┘ └─────────┼────────┘
-           └────────────────────<1s replication>────────┘
+```mermaid
+flowchart TB
+    subgraph Global["Global Traffic Management"]
+        R53[Route 53\nGeo-proximity Routing]
+    end
 
-        ┌────────────────────────────────────────────┐
-        │         Shared Global Services             │
-        ├────────────────────────────────────────────┤
-        │  • CloudFront (Edge Caching)               │
-        │  • DynamoDB Global Tables                  │
-        │  • S3 Cross-Region Replication             │
-        │  • ElastiCache Global Datastore            │
-        └────────────────────────────────────────────┘
+    subgraph GAs["AWS Global Accelerators"]
+        GA1[Global Accelerator\nus-east-1]
+        GA2[Global Accelerator\neu-west-1]
+        GA3[Global Accelerator\nap-south-1]
+    end
+
+    subgraph Regions["Regional Deployments"]
+        direction TB
+        subgraph USEast["US-EAST-1 VPC (Primary)"]
+            ALB_US[ALB]
+            ECS_US[ECS Fargate\n(10-100 tasks)]
+            Aurora_US[Aurora Global DB\n(Primary)]
+        end
+
+        subgraph EUNorth["EU-WEST-1 VPC (Secondary)"]
+            ALB_EU[ALB]
+            ECS_EU[ECS Fargate\n(10-100 tasks)]
+            Aurora_EU[Aurora Global DB\n(Secondary)]
+        end
+
+        subgraph APSouth["AP-SOUTH-1 VPC (Secondary)"]
+            ALB_AP[ALB]
+            ECS_AP[ECS Fargate\n(10-100 tasks)]
+            Aurora_AP[Aurora Global DB\n(Secondary)]
+        end
+    end
+
+    subgraph SharedServices["Shared Global Services"]
+        CF[CloudFront\nEdge Caching]
+        DDB[DynamoDB Global\nTables]
+        S3_CR[S3 Cross-Region\nReplication]
+        ElastiCache_Global[ElastiCache Global\nDatastore]
+    end
+
+    R53 --> GA1
+    R53 --> GA2
+    R53 --> GA3
+    
+    GA1 --> ALB_US
+    GA2 --> ALB_EU
+    GA3 --> ALB_AP
+
+    ALB_US --> ECS_US --> Aurora_US
+    ALB_EU --> ECS_EU --> Aurora_EU
+    ALB_AP --> ECS_AP --> Aurora_AP
+
+    Aurora_US <-.-> Aurora_EU
+    Aurora_US <-.-> Aurora_AP
+    Aurora_EU <-.-> Aurora_AP
+
+    CF -.-> GA1
+    CF -.-> GA2
+    CF -.-> GA3
+    DDB -.-> ECS_US
+    DDB -.-> ECS_EU
+    DDB -.-> ECS_AP
+```
 
 COMPONENTS:
 
