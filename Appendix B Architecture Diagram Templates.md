@@ -2,7 +2,7 @@
 
 ## Template 1: Three-Tier Web Application
 
-```
+
 ARCHITECTURE: Classic three-tier web application
 USE CASE: E-commerce, SaaS applications, corporate websites
 CHARACTERISTICS: Presentation, application, data tiers
@@ -58,7 +58,7 @@ flowchart TB
     EC2App1 --> ElastiCache
     EC2App2 --> ElastiCache
     S3 -.-> CF
-```
+
 
 COMPONENTS:
 
@@ -159,12 +159,12 @@ EXAM NOTES:
 ✓ ElastiCache for session state
 ✓ RDS Multi-AZ for zero data loss
 ✓ Security Groups for defense in depth
-```
+
 
 
 ## Template 2: Serverless Web Application
 
-```
+
 ARCHITECTURE: Serverless event-driven web application
 USE CASE: API-driven applications, mobile backends, microservices
 CHARACTERISTICS: No server management, pay-per-use, auto-scaling
@@ -392,12 +392,12 @@ EXAM NOTES:
 ✓ S3 + CloudFront for static hosting
 ✓ Auto-scaling with no management
 ✓ Pay per request (cost optimization)
-```
+
 
 
 ## Template 3: Hybrid Cloud Architecture
 
-```
+
 ARCHITECTURE: Enterprise hybrid cloud with on-premises integration
 USE CASE: Large enterprises, gradual cloud migration, regulatory requirements
 CHARACTERISTICS: On-premises + AWS, secure connectivity, hybrid workloads
@@ -604,12 +604,12 @@ EXAM NOTES:
 ✓ Storage Gateway for hybrid storage
 ✓ AD Connector for hybrid identity
 ✓ Gradual migration strategy
-```
+
 
 
 ## Template 4: Multi-Region Active-Active
 
-```
+
 ARCHITECTURE: Global multi-region active-active deployment
 USE CASE: Global applications, disaster recovery, low latency worldwide
 CHARACTERISTICS: Multiple regions serving traffic, automatic failover
