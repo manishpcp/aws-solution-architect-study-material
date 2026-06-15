@@ -2,170 +2,170 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/index.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/01%20AWS%20Global%20Infrastructure.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/02%20Identity%20and%20Access%20Management%20%28IAM%29.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/03%20Virtual%20Private%20Cloud%20%28VPC%29.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/04%20Amazon%20EC2.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/05%20Elastic%20Load%20Balancing.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/06%20Container%20Services%20%28ECS%2C%20EKS%2C%20Fargate%29.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/07%20AWS%20Lambda%20%26%20Serverless.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/08%20Amazon%20S3.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/09%20Amazon%20EBS%20%26%20EFS.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/10%20Storage%20Gateway%20%26%20DataSync.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/11%20Amazon%20RDS%20%26%20Aurora.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/12%20DynamoDB.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/13%20ElastiCache%20%26%20MemoryDB.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/14%20Amazon%20CloudFront.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/15%20Route%2053.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/16%20Direct%20Connect%20%26%20VPN.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/17%20Amazon%20SQS%20%26%20SNS.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/18%20Amazon%20EventBridge%20%26%20Step%20Functions.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/19%20API%20Gateway.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/20%20Amazon%20Kinesis.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/21%20AWS%20Glue%20%26%20Athena.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/22%20Amazon%20SageMaker%20Essentials.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/23%20AWS%20Security%20Services.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/24%20AWS%20KMS%20%26%20Secrets%20Manager.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/25%20AWS%20WAF%20%26%20Shield.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/26%20CloudWatch.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/27%20AWS%20CloudTrail%20%26%20Config.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/28%20AWS%20Systems%20Manager.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/29%20Cost%20Management.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/30%20Well-Architected%20Framework.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/31%20Migration%20Strategies%20%287%20Rs%29.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/32%20Disaster%20Recovery%20%26%20Business%20Continuity.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/33%20Microservices%20Patterns.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/34%20Event-Driven%20Architectures.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/35%20Multi-Account%20Strategy.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/36%20Solutions%20Architect%20Associate%20Exam%20Guide.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/37%20Solutions%20Architect%20Professional%20Exam%20Guide.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/Appendix%20A%20AWS%20Service%20Cheat%20Sheets.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/Appendix%20B%20Architecture%20Diagram%20Templates.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/Appendix%20C%20Troubleshooting%20Guide.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
          <loc>https://manishpcp.github.io/aws-solution-architect-study-material/Appendix%20D%20Additional%20Resources.html</loc>
-         <lastmod>2026-06-13</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
 </urlset>
