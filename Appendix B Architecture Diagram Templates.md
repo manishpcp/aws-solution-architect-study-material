@@ -14,35 +14,35 @@ ARCHITECTURE DIAGRAM:
 ```mermaid
 flowchart TB
     subgraph External["External Layer"]
-        R53[Route 53\nDNS Service] --> CF[CloudFront\nCDN Layer]
+        R53[Route 53] --> CF[CloudFront]
     end
 
     subgraph VPC["VPC"]
         subgraph PublicSubnets["Public Subnets"]
             direction TB
-            ALB1[ALB\nAZ-1a]
-            ALB2[ALB\nAZ-1b]
+            ALB1[ALB<br>AZ-1a]
+            ALB2[ALB<br>AZ-1b]
         end
 
-        subgraph PrivateWeb["Private Subnets (Web Tier)"]
+        subgraph PrivateWeb["Private Subnets Web Tier"]
             direction TB
-            EC2Web1[EC2\nWeb\nAuto Scale\nAZ-1a]
-            EC2Web2[EC2\nWeb\nAuto Scale\nAZ-1b]
+            EC2Web1[EC2<br>Web<br>AZ-1a]
+            EC2Web2[EC2<br>Web<br>AZ-1b]
         end
 
-        subgraph PrivateApp["Private Subnets (App Tier)"]
+        subgraph PrivateApp["Private Subnets App Tier"]
             direction TB
-            EC2App1[EC2\nApp\nAuto Scale\nAZ-1a]
-            EC2App2[EC2\nApp\nAuto Scale\nAZ-1b]
+            EC2App1[EC2<br>App<br>AZ-1a]
+            EC2App2[EC2<br>App<br>AZ-1b]
         end
 
-        subgraph PrivateDB["Private Subnets (Data Tier)"]
+        subgraph PrivateDB["Private Subnets Data Tier"]
             direction TB
-            RDS[RDS Multi-AZ\nPrimary + Standby]
-            ElastiCache[ElastiCache\nRedis Cluster]
+            RDS[RDS Multi-AZ<br>Primary + Standby]
+            ElastiCache[ElastiCache<br>Redis Cluster]
         end
 
-        subgraph S3["S3 Buckets (Static Assets)"]
+        subgraph S3Buckets["S3 Buckets Static Assets"]
             S3[Static Assets]
         end
     end
@@ -176,32 +176,28 @@ ARCHITECTURE DIAGRAM:
 ```mermaid
 flowchart LR
     subgraph Internet["Public Internet"]
-        R53[Route 53] --> CF[CloudFront\n(CDN + S3)]
-        CF -->|Static content| S3[S3\nStatic Website]
+        R53[Route 53] --> CF[CloudFront]
+        CF -->|Static| S3[S3<br>Static Website]
     end
 
     subgraph AWS["AWS Cloud"]
-        CF -->|API calls| API[API Gateway\nREST API]
+        CF -->|API| API[API Gateway]
         
-        API -->|Auth|/auth[Lambda Auth\n(Cognito)]
-        API -->|Users|/users[Lambda Users\nService]
-        API -->|Orders|/orders[Lambda Orders\nService]
+        API -->|Auth|/auth[Lambda Auth]
+        API -->|Users|/users[Lambda Users]
+        API -->|Orders|/orders[Lambda Orders]
         
-        /users --> DDBUsers[DynamoDB\nUsers Table]
-        /orders --> DDBOrders[DynamoDB\nOrders Table]
+        /users --> DDBUsers[DynamoDB<br>Users]
+        /orders --> DDBOrders[DynamoDB<br>Orders]
         
         subgraph Supporting["Supporting Services"]
-            Cognito[Cognito\nUser Auth]
-            SQS[SQS\nAsync Processing]
-            SNS[SNS\nNotifications]
-            CW[CloudWatch\nMonitoring]
-            XRay[X-Ray\nTracing]
+            Cognito[Cognito<br>User Auth]
+            SQS[SQS<br>Async]
+            SNS[SNS<br>Notifications]
+            CW[CloudWatch<br>Monitoring]
+            XRay[X-Ray<br>Tracing]
         end
     end
-
-    /auth -.-> Cognito
-    /users -.-> SQS
-    /orders -.-> SNS
 ```
 
 COMPONENTS:
@@ -412,8 +408,8 @@ ARCHITECTURE DIAGRAM:
 
 ```mermaid
 flowchart LR
-    subgraph OnPrem["On-Premises Data Center"]
-        subgraph OnPremServices["On-Premises Network (10.0.0.0/8)"]
+    subgraph OnPrem["On-Premises"]
+        subgraph OnPremServices["On-Premises Network"]
             ActiveDir[Active Directory]
             DBServers[Database Servers]
             StorageArr[Storage Arrays]
@@ -421,31 +417,31 @@ flowchart LR
         end
     end
 
-    subgraph Connectivity["Connectivity Layer"]
-        DirCon[Direct Connect\n1 Gbps Dedicated Connection]
+    subgraph Connectivity["Direct Connect"]
+        DirCon[Direct Connect<br>1 Gbps]
     end
 
     subgraph AWS["AWS Cloud"]
         subgraph VPC["Virtual Private Gateway"]
-            TGW[Transit Gateway\nHub for VPC Connectivity]
+            TGW[Transit Gateway]
         end
 
-        subgraph ProdVPC["Production VPC (172.16.0.0/16)"]
+        subgraph ProdVPC["Production VPC"]
             direction TB
             ALB[Application Load Balancer]
             EC2Web[EC2 Web Tier]
             EC2App[EC2 App Tier]
-            RDS[RDS Aurora\n(Hybrid Mode)]
+            RDS[RDS Aurora]
         end
 
-        subgraph SharedVPC["Shared Services VPC (192.168.0.0/16)"]
+        subgraph SharedVPC["Shared Services VPC"]
             direction TB
-            ADConn[AD Connector\n(LDAP)]
+            ADConn[AD Connector]
             Route53Hosted[Route 53 Resolver]
             StorageGW[Storage Gateway]
         end
 
-        S3[S3\n(Hybrid Cloud Storage)]
+        S3[S3 Hybrid Storage]
     end
 
     ActiveDir <--> Firewall
@@ -457,7 +453,6 @@ flowchart LR
     TGW --- ProdVPC
     TGW --- SharedVPC
     
-    ProdVPC === RDS
     SharedVPC --- StorageGW
     SharedVPC --- ADConn
 ```
@@ -626,41 +621,41 @@ ARCHITECTURE DIAGRAM:
 ```mermaid
 flowchart TB
     subgraph Global["Global Traffic Management"]
-        R53[Route 53\nGeo-proximity Routing]
+        R53[Route 53<br>Geo Routing]
     end
 
-    subgraph GAs["AWS Global Accelerators"]
-        GA1[Global Accelerator\nus-east-1]
-        GA2[Global Accelerator\neu-west-1]
-        GA3[Global Accelerator\nap-south-1]
+    subgraph GAs["Global Accelerators"]
+        GA1[Global Accelerator<br>us-east-1]
+        GA2[Global Accelerator<br>eu-west-1]
+        GA3[Global Accelerator<br>ap-south-1]
     end
 
     subgraph Regions["Regional Deployments"]
         direction TB
-        subgraph USEast["US-EAST-1 VPC (Primary)"]
+        subgraph USEast["US-EAST-1 VPC"]
             ALB_US[ALB]
-            ECS_US[ECS Fargate\n(10-100 tasks)]
-            Aurora_US[Aurora Global DB\n(Primary)]
+            ECS_US[ECS Fargate<br>10-100 tasks]
+            Aurora_US[Aurora<br>Global DB]
         end
 
-        subgraph EUNorth["EU-WEST-1 VPC (Secondary)"]
+        subgraph EUNorth["EU-WEST-1 VPC"]
             ALB_EU[ALB]
-            ECS_EU[ECS Fargate\n(10-100 tasks)]
-            Aurora_EU[Aurora Global DB\n(Secondary)]
+            ECS_EU[ECS Fargate<br>10-100 tasks]
+            Aurora_EU[Aurora<br>Global DB]
         end
 
-        subgraph APSouth["AP-SOUTH-1 VPC (Secondary)"]
+        subgraph APSouth["AP-SOUTH-1 VPC"]
             ALB_AP[ALB]
-            ECS_AP[ECS Fargate\n(10-100 tasks)]
-            Aurora_AP[Aurora Global DB\n(Secondary)]
+            ECS_AP[ECS Fargate<br>10-100 tasks]
+            Aurora_AP[Aurora<br>Global DB]
         end
     end
 
     subgraph SharedServices["Shared Global Services"]
-        CF[CloudFront\nEdge Caching]
-        DDB[DynamoDB Global\nTables]
-        S3_CR[S3 Cross-Region\nReplication]
-        ElastiCache_Global[ElastiCache Global\nDatastore]
+        CF[CloudFront<br>Edge]
+        DDB[DynamoDB Global<br>Tables]
+        S3_CR[S3 Cross-Region<br>Replication]
+        ElastiCache_Global[ElastiCache<br>Global Datastore]
     end
 
     R53 --> GA1
@@ -682,9 +677,6 @@ flowchart TB
     CF -.-> GA1
     CF -.-> GA2
     CF -.-> GA3
-    DDB -.-> ECS_US
-    DDB -.-> ECS_EU
-    DDB -.-> ECS_AP
 ```
 
 COMPONENTS:
