@@ -106,22 +106,6 @@ If you find this helpful, give the repository a ⭐ on GitHub — it motivates c
 
 ---
 
-## 🚀 Run Locally
-
-```bash
-pip install -r requirements.txt
-mkdocs serve
-```
-
-Open `http://127.0.0.1:8000`.
-
-## 🌐 Deploy to GitHub Pages
-
-```bash
-mkdocs gh-deploy
-```
-
-This publishes the site to the `gh-pages` branch.
 
 ## 📬 Contributions Welcome
 
