@@ -1,0 +1,114 @@
+site_name: AWS Solutions Architect
+site_description: Interactive study guide for AWS Solutions Architect certifications
+site_author: AWS Architect
+site_url: https://manishpcp.github.io/aws-solution-architect-study-material/
+repo_name: aws-solution-architect-study-material
+repo_url: https://github.com/manishpcp/aws-solution-architect-study-material
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep orange
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep orange
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+    logo: fontawesome/brands/aws
+
+plugins:
+  - search:
+      lang: en
+      separator: '[\s\-\.,:!\(\)=/]+'
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.smartsymbols
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - toc:
+      permalink: false
+      title: On this page
+  - attr_list
+
+docs_dir: docs
+site_dir: site
+use_directory_urls: false
+extra:
+  include_search_terms: []
+
+nav:
+  - Home: index.md
+  - Chapters:
+    - 01 AWS Global Infrastructure: 01 AWS Global Infrastructure.md
+    - 02 Identity and Access Management (IAM): 02 Identity and Access Management (IAM).md
+    - 03 Virtual Private Cloud (VPC): 03 Virtual Private Cloud (VPC).md
+    - 04 Amazon EC2: 04 Amazon EC2.md
+    - 05 Elastic Load Balancing: 05 Elastic Load Balancing.md
+    - 06 Container Services: 06 Container Services (ECS, EKS, Fargate).md
+    - 07 AWS Lambda & Serverless: 07 AWS Lambda & Serverless.md
+    - 08 Amazon S3: 08 Amazon S3.md
+    - 09 Amazon EBS & EFS: 09 Amazon EBS & EFS.md
+    - 10 Storage Gateway & DataSync: 10 Storage Gateway & DataSync.md
+    - 11 Amazon RDS & Aurora: 11 Amazon RDS & Aurora.md
+    - 12 DynamoDB: 12 DynamoDB.md
+    - 13 ElastiCache & MemoryDB: 13 ElastiCache & MemoryDB.md
+    - 14 Amazon CloudFront: 14 Amazon CloudFront.md
+    - 15 Route 53: 15 Route 53.md
+    - 16 Direct Connect & VPN: 16 Direct Connect & VPN.md
+    - 17 Amazon SQS & SNS: 17 Amazon SQS & SNS.md
+    - 18 Amazon EventBridge & Step Functions: 18 Amazon EventBridge & Step Functions.md
+    - 19 API Gateway: 19 API Gateway.md
+    - 20 Amazon Kinesis: 20 Amazon Kinesis.md
+    - 21 AWS Glue & Athena: 21 AWS Glue & Athena.md
+    - 22 Amazon SageMaker Essentials: 22 Amazon SageMaker Essentials.md
+    - 23 AWS Security Services: 23 AWS Security Services.md
+    - 24 AWS KMS & Secrets Manager: 24 AWS KMS & Secrets Manager.md
+    - 25 AWS WAF & Shield: 25 AWS WAF & Shield.md
+    - 26 CloudWatch: 26 CloudWatch.md
+    - 27 AWS CloudTrail & Config: 27 AWS CloudTrail & Config.md
+    - 28 AWS Systems Manager: 28 AWS Systems Manager.md
+    - 29 Cost Management: 29 Cost Management.md
+    - 30 Well-Architected Framework: 30 Well-Architected Framework.md
+    - 31 Migration Strategies (7 Rs): 31 Migration Strategies (7 Rs).md
+    - 32 Disaster Recovery & Business Continuity: 32 Disaster Recovery & Business Continuity.md
+    - 33 Microservices Patterns: 33 Microservices Patterns.md
+    - 34 Event-Driven Architectures: 34 Event-Driven Architectures.md
+    - 35 Multi-Account Strategy: 35 Multi-Account Strategy.md
+    - 36 SAA Exam Guide: 36 Solutions Architect Associate Exam Guide.md
+    - 37 SAP Exam Guide: 37 Solutions Architect Professional Exam Guide.md
+  - Appendices:
+    - Appendix A — Service Cheat Sheets: Appendix A AWS Service Cheat Sheets.md
+    - Appendix B — Diagram Templates: Appendix B Architecture Diagram Templates.md
+    - Appendix C — Troubleshooting Guide: Appendix C Troubleshooting Guide.md
+    - Appendix D — Additional Resources: Appendix D Additional Resources.md
